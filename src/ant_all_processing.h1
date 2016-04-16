@@ -1,0 +1,970 @@
+#ifndef __ANT_PROCESSING_H__
+#define __ANT_PROCESSING_H__
+
+#include <string>
+#include <vector>
+#include <map>
+
+#define C_FORMAT_BUFFER_SIZE  ( 1 <<  6 )
+#define C_VERSION_BUFFER_SIZE ( 1 <<  6 )
+#define C_ERROR_BUFFER_SIZE   ( 1 << 10 )
+
+class amSplitString;
+
+extern bool bridge2txt
+(
+    int         &errorCode,
+    const char  *deviceFile,
+    const char  *mcAddressIn,
+    const char  *interface,
+    int          mcPortNoIn,
+    const char  *mcAddressOut,
+    int          mcPortNoOut,
+    bool         writeStdout,
+    int          timeOutSec,
+    const char  *inputFileName,
+    bool         semiCookedIn,
+    bool         semiCookedOut,
+    bool         outputAsJSON,
+    bool         useLocalTime,
+    bool         diagnostics,
+    bool         raw
+);
+
+
+class antProcessing
+{
+    private:
+
+        double rho;
+        double rhoDefault;
+        double nbMagnetsDefault;
+        double gearRatioDefault;
+        double wheelCircumferenceDefault;
+        double calibrationRhoDefault;
+        double airSpeedMultiplierDefault;
+        int    offsetDefault;
+        int    slope_Nm_10Hz_Default;
+
+        int precTime;
+        int precVal;
+
+        bool onlyRegistered;
+
+        char version[ C_VERSION_BUFFER_SIZE ];
+        char localDiagnosticsBuffer[ C_BUFFER_SIZE ];
+        char doubleValueFormatString[ C_SMALL_BUFFER_SIZE ];
+        char timeValueFormatString[ C_SMALL_BUFFER_SIZE ];
+
+        std::vector<std::string> supportedSpeedOnlySensorTypes;
+        std::vector<std::string> supportedPowerSpeedSensorTypes;
+        std::vector<std::string> supportedSPCADSensorTypes;
+        std::vector<std::string> supportedPowerOnlySensorTypes;
+        std::vector<std::string> supportedPowerCadenceSensorTypes;
+        std::vector<std::string> supportedCadenceSensorTypes;
+        std::vector<std::string> supportedAeroSensorTypes;
+        std::vector<std::string> supportedHrmSensorTypes;
+        std::vector<std::string> supportedEnvironmentSensorTypes;
+
+        std::vector<std::string> devices;
+
+        std::map<std::string, double>       nbMagnetsTable;
+        std::map<std::string, unsigned int> startTable;
+        std::map<std::string, unsigned int> eventTimeTable;
+        std::map<std::string, unsigned int> eventDistTable;
+        std::map<std::string, unsigned int> eventCountTable;
+        std::map<std::string, unsigned int> totalCountTable;
+        std::map<std::string, unsigned int> cadenceTimeTable;    // For SPCAD we need 2 tables for event
+        std::map<std::string, unsigned int> cadenceCountTable;   // time and count: 1 for speed, 1 for cadence
+        std::map<std::string, unsigned int> crankPeriodTable;
+        std::map<std::string, unsigned int> accumulatedTorqueTable;
+        std::map<std::string, unsigned int> accumulatedPowerTable;
+        std::map<std::string, unsigned int> cadenceTable;
+        std::map<std::string, unsigned int> operatingTimeTable;
+        std::map<std::string, unsigned int> totalStrideCountTable;
+        std::map<std::string, unsigned int> totalTimeIntTable;
+        std::map<std::string, unsigned int> strideCountTable;
+        std::map<std::string, unsigned int> crankOrWheelPeriodTable;
+        std::map<std::string, double>       wheelCircumferenceTable;
+        std::map<std::string, double>       airSpeedMultiplierTable;
+        std::map<std::string, double>       totalTimeTable;
+        std::map<std::string, double>       totalDistTable;
+        std::map<std::string, double>       totalEventDistTable;
+        std::map<std::string, unsigned int> offsetTable;
+        std::map<std::string, unsigned int> slope_Nm_10Hz_Table;
+        std::map<std::string, double>       rhoCalibrationTable;
+        std::map<std::string, double>       speedTable;
+        std::map<std::string, double>       torqueTable;
+        std::map<std::string, double>       powerTable;
+        std::map<std::string, unsigned int> sameEventCountTable;
+        std::map<std::string, unsigned int> sameWheelRevCountTable;
+        std::map<std::string, unsigned int> otherAccumulatedPowerTable;
+        std::map<std::string, unsigned int> otherTotalCountTable;
+        std::map<std::string, unsigned int> otherEventCountTable;
+        std::map<std::string, unsigned int> otherCrankOrWheelPeriodTable;
+        std::map<std::string, unsigned int> otherAccumulatedTorqueTable;
+
+        double convertAirspeed( int );
+        double convertYaw( int, int );
+
+#       ifdef __SINGLE_LEG__
+        bool isLeftCrankEvent( const QString &sensorID, unsigned int newValue, unsigned int rollOver );
+#       endif // __SINGLE_LEG__
+
+        bool isSemiCookedFormat137( const char *inputBuffer );
+        unsigned int splitFormat137_SPB7 ( const char *inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_CAD7A( const char *inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_B01( const char *inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_B52( const char *inputBuffer, amSplitString &outWords );
+        bool createB01ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB02ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB03ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB13ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB46ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB50ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB51ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+        bool createB52ResultString
+             (
+                 char                *resultBuffer,
+                 char                *diagnosticsBuffer,
+                 bool                 semiCookedOut,
+                 bool                 outputAsJSON,
+                 bool                 diagnostics,
+                 const amSplitString &words
+             );
+
+        amDeviceType processAeroSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceIDNo,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut,
+                         bool               outputAsJSON,
+                         bool               diagnostics
+                     );
+        amDeviceType processHRMSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processBikeSpeedSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processBikeCadenceSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processBikeSpeedCadenceSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeter
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB01
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB02
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB03
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB10
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB11
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB12
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB13
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB20
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB46
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB50
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB51
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB52
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processMultiSportSpeedAndDistanceSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processBloodPressureSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processAudioControl
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processWeightScale
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processStrideBasedSpeedAndDistanceSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+        amDeviceType processEnvironmentSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         const std::string &deviceID,
+                         const std::string &timeStampBuffer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut = false,
+                         bool               outputAsJSON  = false,
+                         bool               diagnostics   = false
+                     );
+
+        amDeviceType processUndefinedSensorType
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        outputSemiCooked,
+                         bool        outputAsJSON,
+                         bool        diagnostics
+                     );
+        amDeviceType processAeroSensorSemiCooked
+                     (   
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );  
+        amDeviceType processHRMSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processBikeSpeedSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processBikeCadenceSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processBikeSpeedCadenceSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut,
+                         bool        outputAsJSON,
+                         bool        diagnostics
+                     );
+        amDeviceType processPowerMeterB01SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB02SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB03SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB10SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB11SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB12SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB13SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB20SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB46SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB50SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB51SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processPowerMeterB52SemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+
+        amDeviceType processMultiSportSpeedAndDistanceSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processBloodPressureSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processAudioControlSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processWeightScaleSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+        amDeviceType processStrideBasedSpeedAndDistanceSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut,
+                         bool        outputAsJSON,
+                         bool        diagnostics
+                     );
+        amDeviceType processEnvironmentSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut = false,
+                         bool        outputAsJSON  = false,
+                         bool        diagnostics   = false
+                     );
+
+
+        void convertAdditionalDataFromSemiCooked( char * );
+        void convertAdditionalDataToSemiCooked( char * );
+
+        bool createB01ResultString
+             (
+                 char *,
+                 int,
+                 const std::string &,
+                 double,
+                 const char *,
+                 const char * = "<unknown version>"
+             );
+
+        bool createB10ResultString
+             (
+                 char *,
+                 int,
+                 const std::string &,
+                 double,
+                 int,
+                 int,
+                 int,
+                 int,
+                 const char * = "<unknown version>"
+             );
+
+        bool createB11ResultString
+             (
+                 char *,
+                 int,
+                 const std::string &,
+                 double,
+                 int,
+                 int,
+                 int,
+                 int,
+                 int,
+                 int,
+                 const char * = "<unknown version>"
+             );
+
+        bool createB12ResultString
+             (
+                 char *,
+                 int,
+                 const std::string &,
+                 double,
+                 int,
+                 int,
+                 int,
+                 int,
+                 int,
+                 const char * = "<unknown version>"
+             );
+
+        bool createB13ResultString
+             (
+                 char *,
+                 int,
+                 const std::string &,
+                 double,
+                 int,
+                 int,
+                 int,
+                 int,
+                 const char * = "<unknown version>"
+             );
+
+        bool createB20ResultString
+             (
+                 char              *resultBuffer,
+                 int                resultBufferSize,
+                 const std::string &sensorID,
+                 double             subSecondTimer,
+                 int                deltaEventCount,
+                 int                deltaTimeStamp,
+                 int                deltaTorqueTicks,
+                 int                factorySlope_Nm_10Hz,
+                 const char        *curVersion
+             );
+
+        void initializeSupportedDeviceTypes( void );
+        bool isSensorTypeInList( const std::string &, const std::vector<std::string> & );
+        bool isSupportedSpeedOnlySensor( const std::string & );
+        bool isSupportedPowerSpeedSensor( const std::string & );
+        bool isSupportedSPCADSensor( const std::string & );
+        bool isSupportedPowerOnlySensor( const std::string & );
+        bool isSupportedPowerCadenceSensor( const std::string & );
+        bool isSupportedCadenceSensor( const std::string & );
+        bool isSupportedAeroSensor( const std::string & );
+        bool isSupportedHrmSensor( const std::string & );
+
+        bool isSupportedEnvironmentSensor( const std::string &sensorID );
+        double getCalibrationRho( const std::string &sensorID );
+        double getAirSpeedMultiplier( const std::string &sensorID );
+        double getNbMagnets( const std::string &sensorID );
+        double getWheelCircumference( const std::string &sensorID );
+        double getSpeed( const std::string &sensorID );
+        unsigned int getOffset( const std::string &sensorID );
+        unsigned int getSlope_Nm_10Hz( const std::string &sensorID );
+        double getPower( const std::string &sensorID );
+        double getTorque( const std::string &sensorID );
+        unsigned int getCadence( const std::string &sensorID );
+        unsigned int getDeltaInt( bool &rollOverHappened, const std::string &sensorID, unsigned int rollOver, std::map<std::string, unsigned int> &valueTable, unsigned int newValue );
+        void printDoubleValue( char *resultBuffer, const char *formatString, double value );
+        double convertTemp10( unsigned int temp10 );
+        double convertTemp100( unsigned int temp100 );
+
+        char errorMessage[ C_ERROR_BUFFER_SIZE ];
+        bool errorFlag;
+        bool useLocalTime;
+
+
+    public:
+
+        antProcessing();
+        virtual ~antProcessing() {}
+
+        inline void setRho( double value ) { rho = value; }
+        inline void setLocalTime( bool value ) { useLocalTime = value; }
+
+        void resetError( void );
+        inline bool getError( void ) const { return errorFlag; }
+        inline const char *getErrorMessage( void ) const { return errorMessage; }
+
+        bool readDeviceFile( const char *, char * );
+        bool readDeviceFileStream( std::ifstream &, char * );
+
+        bool setSpeedSensorWheelCircumference( const std::string &, double );
+        bool setSpeedSensorNbMagnets         ( const std::string &, double );
+        bool setPowerSensorOffset            ( const std::string &, int );
+        bool setPowerSensorSlope_Nm_10Hz     ( const std::string &, int );
+        bool setAeroSensorRho                ( const std::string &, double );
+        bool setAeroSensorMultiplier         ( const std::string &, double );
+        void setOnlyRegistered( bool value ) { onlyRegistered = value; }
+
+        bool appendSpeedSensor
+             (
+                 const std::string &,
+                 double = C_WHEEL_CIRCUMFERENCE_DEFAULT,
+                 double = C_NB_MAGNETS_DEFAULT
+             );
+        bool appendSpeedSensor
+             (
+                 const char *,
+                 double = C_WHEEL_CIRCUMFERENCE_DEFAULT,
+                 double = C_NB_MAGNETS_DEFAULT
+             );
+
+        bool appendPowerSensor( const std::string & );
+        bool appendPowerSensor( const char * );
+        bool appendWTPowerSensor( const std::string &, double );
+        bool appendWTPowerSensor( const char *, double );
+        bool appendCTFPowerSensor( const std::string &, int, int );
+        bool appendCTFPowerSensor( const char *, int, int );
+
+        bool appendCadenceSensor( const std::string & );
+        bool appendCadenceSensor( const char * );
+        bool appendAeroSensor
+             (
+                 const char *,
+                 double = C_CALIBRATION_RHO_DEFAULT,
+                 double = C_AIR_SPEED_MULTIPLIER_DEFAULT
+             );
+        bool appendAeroSensor
+             (
+                 const std::string &,
+                 double = C_CALIBRATION_RHO_DEFAULT,
+                 double = C_AIR_SPEED_MULTIPLIER_DEFAULT
+             );
+        bool appendHrmSensor( const char * );
+        bool appendHrmSensor( const std::string & );
+
+        bool appendEnvironmentSensor( const char * );
+        bool appendEnvironmentSensor( const std::string & );
+
+        bool isDeviceRegistered( const std::string & );
+        bool isDeviceRegistered( int, int, int = 0 );
+
+        inline int getTimePrecision( void ) const { return precTime; }
+        void setTimePrecision( int );
+        inline int getValuePrecision( void ) const { return precVal; }
+        void setValuePrecision( int );
+
+        amDeviceType processSensor
+                     (
+                         char              *resultBuffer,
+                         char              *diagnosticsBuffer,
+                         int                deviceType,
+                         const std::string &deviceIDNo,
+                         double             subSecondTimer,
+                         unsigned char      payLoad[],
+                         bool               semiCookedOut,
+                         bool               outputAsJSON,
+                         bool               diagnostics,
+                         bool               outputLocaltime
+                     );
+        amDeviceType processSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        semiCookedOut,
+                         bool        outputAsJSON,
+                         bool        diagnostics,
+                         bool        outputLocalTime
+                     );
+
+        amDeviceType updateSensorSemiCooked
+                     (
+                         char       *resultBuffer,
+                         char       *diagnosticsBuffer,
+                         const char *inputBuffer,
+                         bool        outputAsJSON,
+                         bool        diagnostics,
+                         bool        outputLocalTime
+                     );
+
+        bool createB02ResultString
+             (
+                 char              *resultBuffer,
+                 int                resultBufferSize,
+                 const std::string &sensorID,
+                 double             subSecondTimer,
+                 int                subPage,
+                 int                byte2,
+                 int                byte3,
+                 int                byte4,
+                 int                byte5,
+                 int                byte6,
+                 int                byte7,
+                 const char        *curVersion
+             );
+
+        bool createB03ResultString
+             (
+                 char              *resultBuffer,
+                 int                resultBufferSize,
+                 const std::string &sensorID,
+                 double             subSecondTimer,
+                 int                nbDataTypes,
+                 int                dataType,
+                 int                scaleFactor,
+                 double             timeStamp,
+                 int                value,
+                 const char        *curVersion
+             );
+
+        bool createB46ResultString
+             (
+                 char              *resultBuffer,
+                 int                resultBufferSize,
+                 const std::string &sensorID,
+                 double             subSecondTimer,
+                 int                descriptor1,
+                 int                descriptor2,
+                 int                requestedResponse,
+                 int                requestedPageNo,
+                 int                commandType,
+                 const char        *curVersion
+             );
+
+        void setRhoDefault( double value ) { rhoDefault = value; }
+        void setNbMagnetsDefault( double value ) { nbMagnetsDefault = value; }
+        void setGearRatioDefault( double value ) { gearRatioDefault = value; }
+        void setWheelCircumferenceDefault( double value ) { wheelCircumferenceDefault = value; }
+        void setCalibrationRhoDefault( double value ) { calibrationRhoDefault = value; }
+        void setAirSpeedMultiplierDefault( double value ) { airSpeedMultiplierDefault = value; }
+        void setOffsetDefault( int value ) { offsetDefault = value; }
+        void setSlopeDefault( int value ) { slope_Nm_10Hz_Default = value; }
+        void resetRhoDefault( void )  { rhoDefault = C_RHO_DEFAULT; }
+        void resetNbMagnetsDefault( void ) { nbMagnetsDefault = C_NB_MAGNETS_DEFAULT; }
+        void resetGearRatioDefault( void ) { gearRatioDefault = C_GEAR_RATIO_DEFAULT; }
+        void resetWheelCircumferenceDefault( void ) { wheelCircumferenceDefault = C_WHEEL_CIRCUMFERENCE_DEFAULT; }
+        void resetCalibrationRhoDefault( void ) { calibrationRhoDefault = C_CALIBRATION_RHO_DEFAULT; }
+        void resetAirSpeedMultiplierDefault( void ) { airSpeedMultiplierDefault = C_AIR_SPEED_MULTIPLIER_DEFAULT; }
+        void resetOffsetDefault( void ) { offsetDefault = C_OFFSET_DEFAULT; }
+        void resetSlopeDefault( void ) { slope_Nm_10Hz_Default = C_SLOPE_DEFAULT; }
+
+        void reset( void );
+
+};
+
+#endif // __ANT_PROCESSING_H__
+
+

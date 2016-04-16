@@ -1,0 +1,119 @@
+aero_ant2txt.o: aero_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_aero_processing.h ant_processing.h am_split_string.h
+ant_aero_processing.o: ant_aero_processing.cpp b2t_utils.h \
+  ant_constants.h ant_aero_processing.h ant_processing.h \
+  am_split_string.h
+b2t_utils.o: b2t_utils.cpp b2t_utils.h ant_constants.h
+am_split_string.o: am_split_string.cpp ant_constants.h am_split_string.h
+ant_processing.o: ant_processing.cpp b2t_utils.h ant_constants.h \
+  ant_processing.h am_split_string.h
+cadence_ant2txt.o: cadence_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_cadence_processing.h ant_processing.h am_split_string.h \
+  ant_cadence_speed_processing.h ant_speed_processing.h
+ant_cadence_processing.o: ant_cadence_processing.cpp b2t_utils.h \
+  ant_constants.h ant_cadence_processing.h ant_processing.h \
+  am_split_string.h ant_cadence_speed_processing.h \
+  ant_speed_processing.h
+ant_cadence_speed_processing.o: ant_cadence_speed_processing.cpp \
+  ant_cadence_speed_processing.h ant_constants.h ant_processing.h \
+  am_split_string.h ant_speed_processing.h
+ant_speed_processing.o: ant_speed_processing.cpp ant_constants.h \
+  ant_speed_processing.h
+hrm_ant2txt.o: hrm_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_hrm_processing.h ant_processing.h am_split_string.h
+ant_hrm_processing.o: ant_hrm_processing.cpp b2t_utils.h ant_constants.h \
+  ant_hrm_processing.h ant_processing.h am_split_string.h
+speed_only_ant2txt.o: speed_only_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_speed_only_processing.h ant_processing.h am_split_string.h \
+  ant_speed_processing.h
+ant_speed_only_processing.o: ant_speed_only_processing.cpp b2t_utils.h \
+  ant_constants.h ant_speed_only_processing.h ant_processing.h \
+  am_split_string.h ant_speed_processing.h
+spcad_ant2txt.o: spcad_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_spcad_processing.h ant_processing.h am_split_string.h \
+  ant_speed_processing.h ant_cadence_processing.h \
+  ant_cadence_speed_processing.h
+ant_spcad_processing.o: ant_spcad_processing.cpp b2t_utils.h \
+  ant_constants.h am_split_string.h ant_spcad_processing.h \
+  ant_processing.h ant_speed_processing.h ant_cadence_processing.h \
+  ant_cadence_speed_processing.h
+power_ant2txt.o: power_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_power_processing.h ant_processing.h am_split_string.h \
+  ant_cadence_speed_processing.h ant_speed_processing.h
+ant_power_processing.o: ant_power_processing.cpp b2t_utils.h \
+  ant_constants.h ant_power_processing.h ant_processing.h \
+  am_split_string.h ant_cadence_speed_processing.h \
+  ant_speed_processing.h
+audio_ant2txt.o: audio_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_audio_processing.h ant_processing.h am_split_string.h
+ant_audio_processing.o: ant_audio_processing.cpp b2t_utils.h \
+  ant_constants.h ant_audio_processing.h ant_processing.h \
+  am_split_string.h
+stride_speed_dist_ant2txt.o: stride_speed_dist_ant2txt.cpp b2t_utils.h \
+  ant_constants.h ant_stride_speed_dist_processing.h ant_processing.h \
+  am_split_string.h
+ant_stride_speed_dist_processing.o: ant_stride_speed_dist_processing.cpp \
+  b2t_utils.h ant_constants.h ant_stride_speed_dist_processing.h \
+  ant_processing.h am_split_string.h
+environment_ant2txt.o: environment_ant2txt.cpp b2t_utils.h \
+  ant_constants.h ant_environment_processing.h ant_processing.h \
+  am_split_string.h
+ant_environment_processing.o: ant_environment_processing.cpp b2t_utils.h \
+  ant_constants.h ant_environment_processing.h ant_processing.h \
+  am_split_string.h
+blood_pressure_ant2txt.o: blood_pressure_ant2txt.cpp b2t_utils.h \
+  ant_constants.h ant_blood_pressure_processing.h ant_processing.h \
+  am_split_string.h
+ant_blood_pressure_processing.o: ant_blood_pressure_processing.cpp \
+  b2t_utils.h ant_constants.h ant_blood_pressure_processing.h \
+  ant_processing.h am_split_string.h
+weight_ant2txt.o: weight_ant2txt.cpp b2t_utils.h ant_constants.h \
+  ant_weight_processing.h ant_processing.h am_split_string.h
+ant_weight_processing.o: ant_weight_processing.cpp b2t_utils.h \
+  ant_constants.h ant_weight_processing.h ant_processing.h \
+  am_split_string.h
+multi_sport_speed_dist_ant2txt.o: multi_sport_speed_dist_ant2txt.cpp \
+  b2t_utils.h ant_constants.h ant_multi_sport_speed_dist_processing.h \
+  ant_processing.h am_split_string.h
+ant_multi_sport_speed_dist_processing.o: \
+  ant_multi_sport_speed_dist_processing.cpp b2t_utils.h ant_constants.h \
+  ant_multi_sport_speed_dist_processing.h ant_processing.h \
+  am_split_string.h
+bridge2txt.o: bridge2txt.cpp b2t_utils.h ant_constants.h ant_processing.h \
+  am_split_string.h
+ant_aero_processing.o: ant_aero_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h
+b2t_utils.o: b2t_utils.h ant_constants.h
+am_split_string.o: am_split_string.h
+ant_processing.o: ant_processing.h am_split_string.h
+ant_cadence_processing.o: ant_cadence_processing.h ant_processing.h \
+  am_split_string.h ant_cadence_speed_processing.h ant_constants.h \
+  ant_speed_processing.h
+ant_cadence_speed_processing.o: ant_cadence_speed_processing.h \
+  ant_constants.h ant_processing.h am_split_string.h \
+  ant_speed_processing.h
+ant_speed_processing.o: ant_speed_processing.h ant_constants.h
+ant_hrm_processing.o: ant_hrm_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h
+ant_speed_only_processing.o: ant_speed_only_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h ant_speed_processing.h
+ant_spcad_processing.o: ant_spcad_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h ant_speed_processing.h \
+  ant_cadence_processing.h ant_cadence_speed_processing.h
+ant_power_processing.o: ant_power_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h ant_cadence_speed_processing.h \
+  ant_speed_processing.h
+ant_stride_speed_dist_processing.o: ant_stride_speed_dist_processing.h \
+  ant_constants.h ant_processing.h am_split_string.h
+ant_environment_processing.o: ant_environment_processing.h \
+  ant_constants.h ant_processing.h am_split_string.h
+ant_blood_pressure_processing.o: ant_blood_pressure_processing.h \
+  ant_processing.h am_split_string.h
+ant_weight_processing.o: ant_weight_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h
+ant_multi_sport_speed_dist_processing.o: \
+  ant_multi_sport_speed_dist_processing.h ant_constants.h \
+  ant_processing.h am_split_string.h
+ant_audio_processing.o: ant_audio_processing.h ant_processing.h \
+  am_split_string.h
+ant_constants.o: ant_constants.h

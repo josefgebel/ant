@@ -1,0 +1,3690 @@
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.700000,
+   "semi-cooked": true,
+   "raw air speed": 1492,
+   "raw yaw angle": 1966,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.800000,
+   "semi-cooked": true,
+   "raw air speed": 1498,
+   "raw yaw angle": 2384,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.900000,
+   "semi-cooked": true,
+   "raw air speed": 1498,
+   "raw yaw angle": 2384,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.000000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2497,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.100000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2497,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.200000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2496,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.300000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2496,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.400000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2475,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.500000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 2475,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.600000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 2294,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.700000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 2294,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.800000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 2194,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.900000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 2194,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.000000,
+   "semi-cooked": true,
+   "raw air speed": 1495,
+   "raw yaw angle": 2075,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.100000,
+   "semi-cooked": true,
+   "raw air speed": 1495,
+   "raw yaw angle": 2075,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.200000,
+   "semi-cooked": true,
+   "raw air speed": 1493,
+   "raw yaw angle": 1949,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.300000,
+   "semi-cooked": true,
+   "raw air speed": 1493,
+   "raw yaw angle": 1949,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.400000,
+   "semi-cooked": true,
+   "raw air speed": 1489,
+   "raw yaw angle": 1643,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.500000,
+   "semi-cooked": true,
+   "raw air speed": 1487,
+   "raw yaw angle": 1451,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.600000,
+   "semi-cooked": true,
+   "raw air speed": 1487,
+   "raw yaw angle": 1451,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.700000,
+   "semi-cooked": true,
+   "raw air speed": 1482,
+   "raw yaw angle": 1070,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.800000,
+   "semi-cooked": true,
+   "raw air speed": 1479,
+   "raw yaw angle": 874,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.900000,
+   "semi-cooked": true,
+   "raw air speed": 1479,
+   "raw yaw angle": 874,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.000000,
+   "semi-cooked": true,
+   "raw air speed": 1475,
+   "raw yaw angle": 641,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.100000,
+   "semi-cooked": true,
+   "raw air speed": 1475,
+   "raw yaw angle": 641,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.200000,
+   "semi-cooked": true,
+   "raw air speed": 1472,
+   "raw yaw angle": 433,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.300000,
+   "semi-cooked": true,
+   "raw air speed": 1472,
+   "raw yaw angle": 433,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.400000,
+   "semi-cooked": true,
+   "raw air speed": 1464,
+   "raw yaw angle": 65529,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.500000,
+   "semi-cooked": true,
+   "raw air speed": 1464,
+   "raw yaw angle": 65529,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.600000,
+   "semi-cooked": true,
+   "raw air speed": 1460,
+   "raw yaw angle": 65286,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.700000,
+   "semi-cooked": true,
+   "raw air speed": 1460,
+   "raw yaw angle": 65286,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.800000,
+   "semi-cooked": true,
+   "raw air speed": 1456,
+   "raw yaw angle": 65075,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.900000,
+   "semi-cooked": true,
+   "raw air speed": 1456,
+   "raw yaw angle": 65075,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.000000,
+   "semi-cooked": true,
+   "raw air speed": 1451,
+   "raw yaw angle": 64852,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.100000,
+   "semi-cooked": true,
+   "raw air speed": 1451,
+   "raw yaw angle": 64852,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.200000,
+   "semi-cooked": true,
+   "raw air speed": 1447,
+   "raw yaw angle": 64649,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.300000,
+   "semi-cooked": true,
+   "raw air speed": 1447,
+   "raw yaw angle": 64649,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.400000,
+   "semi-cooked": true,
+   "raw air speed": 1442,
+   "raw yaw angle": 64439,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.500000,
+   "semi-cooked": true,
+   "raw air speed": 1442,
+   "raw yaw angle": 64439,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.600000,
+   "semi-cooked": true,
+   "raw air speed": 1437,
+   "raw yaw angle": 64252,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.700000,
+   "semi-cooked": true,
+   "raw air speed": 1437,
+   "raw yaw angle": 64252,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.800000,
+   "semi-cooked": true,
+   "raw air speed": 1431,
+   "raw yaw angle": 64049,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.900000,
+   "semi-cooked": true,
+   "raw air speed": 1431,
+   "raw yaw angle": 64049,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.000000,
+   "semi-cooked": true,
+   "raw air speed": 1420,
+   "raw yaw angle": 63718,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.100000,
+   "semi-cooked": true,
+   "raw air speed": 1414,
+   "raw yaw angle": 63579,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.200000,
+   "semi-cooked": true,
+   "raw air speed": 1414,
+   "raw yaw angle": 63579,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.300000,
+   "semi-cooked": true,
+   "raw air speed": 1408,
+   "raw yaw angle": 63436,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.400000,
+   "semi-cooked": true,
+   "raw air speed": 1408,
+   "raw yaw angle": 63436,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.500000,
+   "semi-cooked": true,
+   "raw air speed": 1395,
+   "raw yaw angle": 63230,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.600000,
+   "semi-cooked": true,
+   "raw air speed": 1395,
+   "raw yaw angle": 63230,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.700000,
+   "semi-cooked": true,
+   "raw air speed": 1382,
+   "raw yaw angle": 63093,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.800000,
+   "semi-cooked": true,
+   "raw air speed": 1382,
+   "raw yaw angle": 63093,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.900000,
+   "semi-cooked": true,
+   "raw air speed": 1346,
+   "raw yaw angle": 63103,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.000000,
+   "semi-cooked": true,
+   "raw air speed": 1339,
+   "raw yaw angle": 63166,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.100000,
+   "semi-cooked": true,
+   "raw air speed": 1339,
+   "raw yaw angle": 63166,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.200000,
+   "semi-cooked": true,
+   "raw air speed": 1331,
+   "raw yaw angle": 63243,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.300000,
+   "semi-cooked": true,
+   "raw air speed": 1331,
+   "raw yaw angle": 63243,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.400000,
+   "semi-cooked": true,
+   "raw air speed": 1323,
+   "raw yaw angle": 63350,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.500000,
+   "semi-cooked": true,
+   "raw air speed": 1323,
+   "raw yaw angle": 63350,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.600000,
+   "semi-cooked": true,
+   "raw air speed": 1316,
+   "raw yaw angle": 63462,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.700000,
+   "semi-cooked": true,
+   "raw air speed": 1316,
+   "raw yaw angle": 63462,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.800000,
+   "semi-cooked": true,
+   "raw air speed": 1307,
+   "raw yaw angle": 63598,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.900000,
+   "semi-cooked": true,
+   "raw air speed": 1300,
+   "raw yaw angle": 63740,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.000000,
+   "semi-cooked": true,
+   "raw air speed": 1300,
+   "raw yaw angle": 63740,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.100000,
+   "semi-cooked": true,
+   "raw air speed": 1292,
+   "raw yaw angle": 63906,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.200000,
+   "semi-cooked": true,
+   "raw air speed": 1292,
+   "raw yaw angle": 63906,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.300000,
+   "semi-cooked": true,
+   "raw air speed": 1275,
+   "raw yaw angle": 64278,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.400000,
+   "semi-cooked": true,
+   "raw air speed": 1275,
+   "raw yaw angle": 64278,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.500000,
+   "semi-cooked": true,
+   "raw air speed": 1267,
+   "raw yaw angle": 64467,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.600000,
+   "semi-cooked": true,
+   "raw air speed": 1267,
+   "raw yaw angle": 64467,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.700000,
+   "semi-cooked": true,
+   "raw air speed": 1259,
+   "raw yaw angle": 64678,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.800000,
+   "semi-cooked": true,
+   "raw air speed": 1259,
+   "raw yaw angle": 64678,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.900000,
+   "semi-cooked": true,
+   "raw air speed": 1251,
+   "raw yaw angle": 64882,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.000000,
+   "semi-cooked": true,
+   "raw air speed": 1251,
+   "raw yaw angle": 64882,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.100000,
+   "semi-cooked": true,
+   "raw air speed": 1241,
+   "raw yaw angle": 65120,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.200000,
+   "semi-cooked": true,
+   "raw air speed": 1241,
+   "raw yaw angle": 65120,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.300000,
+   "semi-cooked": true,
+   "raw air speed": 1233,
+   "raw yaw angle": 65332,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.400000,
+   "semi-cooked": true,
+   "raw air speed": 1233,
+   "raw yaw angle": 65332,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.500000,
+   "semi-cooked": true,
+   "raw air speed": 1225,
+   "raw yaw angle": 23,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.600000,
+   "semi-cooked": true,
+   "raw air speed": 1225,
+   "raw yaw angle": 23,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.700000,
+   "semi-cooked": true,
+   "raw air speed": 1217,
+   "raw yaw angle": 237,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.800000,
+   "semi-cooked": true,
+   "raw air speed": 1217,
+   "raw yaw angle": 237,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.900000,
+   "semi-cooked": true,
+   "raw air speed": 1207,
+   "raw yaw angle": 478,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.000000,
+   "semi-cooked": true,
+   "raw air speed": 1207,
+   "raw yaw angle": 478,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.100000,
+   "semi-cooked": true,
+   "raw air speed": 1199,
+   "raw yaw angle": 686,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.200000,
+   "semi-cooked": true,
+   "raw air speed": 1199,
+   "raw yaw angle": 686,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.300000,
+   "semi-cooked": true,
+   "raw air speed": 1182,
+   "raw yaw angle": 1098,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.400000,
+   "semi-cooked": true,
+   "raw air speed": 1173,
+   "raw yaw angle": 1312,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.500000,
+   "semi-cooked": true,
+   "raw air speed": 1165,
+   "raw yaw angle": 1489,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.600000,
+   "semi-cooked": true,
+   "raw air speed": 1165,
+   "raw yaw angle": 1489,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.700000,
+   "semi-cooked": true,
+   "raw air speed": 1139,
+   "raw yaw angle": 1977,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.800000,
+   "semi-cooked": true,
+   "raw air speed": 1106,
+   "raw yaw angle": 2389,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.900000,
+   "semi-cooked": true,
+   "raw air speed": 1098,
+   "raw yaw angle": 2443,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.000000,
+   "semi-cooked": true,
+   "raw air speed": 1074,
+   "raw yaw angle": 2495,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.100000,
+   "semi-cooked": true,
+   "raw air speed": 1074,
+   "raw yaw angle": 2495,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.200000,
+   "semi-cooked": true,
+   "raw air speed": 1067,
+   "raw yaw angle": 2472,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.300000,
+   "semi-cooked": true,
+   "raw air speed": 1067,
+   "raw yaw angle": 2472,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.400000,
+   "semi-cooked": true,
+   "raw air speed": 1052,
+   "raw yaw angle": 2369,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.500000,
+   "semi-cooked": true,
+   "raw air speed": 1044,
+   "raw yaw angle": 2280,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.600000,
+   "semi-cooked": true,
+   "raw air speed": 1044,
+   "raw yaw angle": 2280,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.700000,
+   "semi-cooked": true,
+   "raw air speed": 1023,
+   "raw yaw angle": 1937,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.800000,
+   "semi-cooked": true,
+   "raw air speed": 1023,
+   "raw yaw angle": 1937,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.900000,
+   "semi-cooked": true,
+   "raw air speed": 1016,
+   "raw yaw angle": 1784,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.000000,
+   "semi-cooked": true,
+   "raw air speed": 1016,
+   "raw yaw angle": 1784,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.100000,
+   "semi-cooked": true,
+   "raw air speed": 997,
+   "raw yaw angle": 1256,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.200000,
+   "semi-cooked": true,
+   "raw air speed": 997,
+   "raw yaw angle": 1256,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.300000,
+   "semi-cooked": true,
+   "raw air speed": 991,
+   "raw yaw angle": 1053,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.400000,
+   "semi-cooked": true,
+   "raw air speed": 985,
+   "raw yaw angle": 856,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.500000,
+   "semi-cooked": true,
+   "raw air speed": 978,
+   "raw yaw angle": 623,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.600000,
+   "semi-cooked": true,
+   "raw air speed": 978,
+   "raw yaw angle": 623,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.700000,
+   "semi-cooked": true,
+   "raw air speed": 962,
+   "raw yaw angle": 65511,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.800000,
+   "semi-cooked": true,
+   "raw air speed": 962,
+   "raw yaw angle": 65511,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.900000,
+   "semi-cooked": true,
+   "raw air speed": 957,
+   "raw yaw angle": 65267,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.000000,
+   "semi-cooked": true,
+   "raw air speed": 957,
+   "raw yaw angle": 65267,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.100000,
+   "semi-cooked": true,
+   "raw air speed": 952,
+   "raw yaw angle": 65056,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.200000,
+   "semi-cooked": true,
+   "raw air speed": 947,
+   "raw yaw angle": 64834,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.300000,
+   "semi-cooked": true,
+   "raw air speed": 943,
+   "raw yaw angle": 64632,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.400000,
+   "semi-cooked": true,
+   "raw air speed": 943,
+   "raw yaw angle": 64632,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.500000,
+   "semi-cooked": true,
+   "raw air speed": 938,
+   "raw yaw angle": 64409,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.600000,
+   "semi-cooked": true,
+   "raw air speed": 938,
+   "raw yaw angle": 64409,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.700000,
+   "semi-cooked": true,
+   "raw air speed": 934,
+   "raw yaw angle": 64223,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.800000,
+   "semi-cooked": true,
+   "raw air speed": 927,
+   "raw yaw angle": 63869,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.900000,
+   "semi-cooked": true,
+   "raw air speed": 927,
+   "raw yaw angle": 63869,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.000000,
+   "semi-cooked": true,
+   "raw air speed": 923,
+   "raw yaw angle": 63695,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.100000,
+   "semi-cooked": true,
+   "raw air speed": 923,
+   "raw yaw angle": 63695,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.200000,
+   "semi-cooked": true,
+   "raw air speed": 917,
+   "raw yaw angle": 63426,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.300000,
+   "semi-cooked": true,
+   "raw air speed": 917,
+   "raw yaw angle": 63426,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.400000,
+   "semi-cooked": true,
+   "raw air speed": 912,
+   "raw yaw angle": 63218,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.500000,
+   "semi-cooked": true,
+   "raw air speed": 912,
+   "raw yaw angle": 63218,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.600000,
+   "semi-cooked": true,
+   "raw air speed": 906,
+   "raw yaw angle": 63055,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.700000,
+   "semi-cooked": true,
+   "raw air speed": 904,
+   "raw yaw angle": 63037,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.800000,
+   "semi-cooked": true,
+   "raw air speed": 904,
+   "raw yaw angle": 63037,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.900000,
+   "semi-cooked": true,
+   "raw air speed": 902,
+   "raw yaw angle": 63066,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.000000,
+   "semi-cooked": true,
+   "raw air speed": 902,
+   "raw yaw angle": 63066,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.100000,
+   "semi-cooked": true,
+   "raw air speed": 901,
+   "raw yaw angle": 63108,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.200000,
+   "semi-cooked": true,
+   "raw air speed": 901,
+   "raw yaw angle": 63108,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.300000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63177,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.400000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63177,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.500000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63256,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.600000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63256,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.700000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63620,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.800000,
+   "semi-cooked": true,
+   "raw air speed": 900,
+   "raw yaw angle": 63620,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.900000,
+   "semi-cooked": true,
+   "raw air speed": 901,
+   "raw yaw angle": 63763,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.000000,
+   "semi-cooked": true,
+   "raw air speed": 901,
+   "raw yaw angle": 63763,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.100000,
+   "semi-cooked": true,
+   "raw air speed": 902,
+   "raw yaw angle": 64101,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.200000,
+   "semi-cooked": true,
+   "raw air speed": 902,
+   "raw yaw angle": 64101,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.300000,
+   "semi-cooked": true,
+   "raw air speed": 904,
+   "raw yaw angle": 64294,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.400000,
+   "semi-cooked": true,
+   "raw air speed": 904,
+   "raw yaw angle": 64294,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.500000,
+   "semi-cooked": true,
+   "raw air speed": 905,
+   "raw yaw angle": 64498,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.600000,
+   "semi-cooked": true,
+   "raw air speed": 905,
+   "raw yaw angle": 64498,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.700000,
+   "semi-cooked": true,
+   "raw air speed": 909,
+   "raw yaw angle": 64914,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.800000,
+   "semi-cooked": true,
+   "raw air speed": 909,
+   "raw yaw angle": 64914,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.900000,
+   "semi-cooked": true,
+   "raw air speed": 911,
+   "raw yaw angle": 65138,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.000000,
+   "semi-cooked": true,
+   "raw air speed": 911,
+   "raw yaw angle": 65138,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.100000,
+   "semi-cooked": true,
+   "raw air speed": 914,
+   "raw yaw angle": 65350,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.200000,
+   "semi-cooked": true,
+   "raw air speed": 914,
+   "raw yaw angle": 65350,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.300000,
+   "semi-cooked": true,
+   "raw air speed": 917,
+   "raw yaw angle": 57,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.400000,
+   "semi-cooked": true,
+   "raw air speed": 917,
+   "raw yaw angle": 57,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.500000,
+   "semi-cooked": true,
+   "raw air speed": 920,
+   "raw yaw angle": 270,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.600000,
+   "semi-cooked": true,
+   "raw air speed": 920,
+   "raw yaw angle": 270,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.700000,
+   "semi-cooked": true,
+   "raw air speed": 926,
+   "raw yaw angle": 704,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.800000,
+   "semi-cooked": true,
+   "raw air speed": 930,
+   "raw yaw angle": 934,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.900000,
+   "semi-cooked": true,
+   "raw air speed": 930,
+   "raw yaw angle": 934,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.000000,
+   "semi-cooked": true,
+   "raw air speed": 947,
+   "raw yaw angle": 1691,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.100000,
+   "semi-cooked": true,
+   "raw air speed": 947,
+   "raw yaw angle": 1691,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.200000,
+   "semi-cooked": true,
+   "raw air speed": 951,
+   "raw yaw angle": 1842,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.300000,
+   "semi-cooked": true,
+   "raw air speed": 967,
+   "raw yaw angle": 2231,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.400000,
+   "semi-cooked": true,
+   "raw air speed": 967,
+   "raw yaw angle": 2231,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.500000,
+   "semi-cooked": true,
+   "raw air speed": 972,
+   "raw yaw angle": 2319,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.600000,
+   "semi-cooked": true,
+   "raw air speed": 972,
+   "raw yaw angle": 2319,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.700000,
+   "semi-cooked": true,
+   "raw air speed": 978,
+   "raw yaw angle": 2395,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.800000,
+   "semi-cooked": true,
+   "raw air speed": 990,
+   "raw yaw angle": 2485,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.900000,
+   "semi-cooked": true,
+   "raw air speed": 990,
+   "raw yaw angle": 2485,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.000000,
+   "semi-cooked": true,
+   "raw air speed": 996,
+   "raw yaw angle": 2499,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.100000,
+   "semi-cooked": true,
+   "raw air speed": 996,
+   "raw yaw angle": 2499,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.200000,
+   "semi-cooked": true,
+   "raw air speed": 1002,
+   "raw yaw angle": 2494,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.300000,
+   "semi-cooked": true,
+   "raw air speed": 1008,
+   "raw yaw angle": 2470,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.400000,
+   "semi-cooked": true,
+   "raw air speed": 1008,
+   "raw yaw angle": 2470,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.500000,
+   "semi-cooked": true,
+   "raw air speed": 1022,
+   "raw yaw angle": 2363,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.600000,
+   "semi-cooked": true,
+   "raw air speed": 1022,
+   "raw yaw angle": 2363,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.700000,
+   "semi-cooked": true,
+   "raw air speed": 1029,
+   "raw yaw angle": 2273,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.800000,
+   "semi-cooked": true,
+   "raw air speed": 1029,
+   "raw yaw angle": 2273,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.900000,
+   "semi-cooked": true,
+   "raw air speed": 1036,
+   "raw yaw angle": 2176,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.000000,
+   "semi-cooked": true,
+   "raw air speed": 1036,
+   "raw yaw angle": 2176,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.100000,
+   "semi-cooked": true,
+   "raw air speed": 1050,
+   "raw yaw angle": 1925,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.200000,
+   "semi-cooked": true,
+   "raw air speed": 1050,
+   "raw yaw angle": 1925,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.300000,
+   "semi-cooked": true,
+   "raw air speed": 1058,
+   "raw yaw angle": 1761,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.400000,
+   "semi-cooked": true,
+   "raw air speed": 1058,
+   "raw yaw angle": 1761,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.500000,
+   "semi-cooked": true,
+   "raw air speed": 1066,
+   "raw yaw angle": 1603,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.600000,
+   "semi-cooked": true,
+   "raw air speed": 1066,
+   "raw yaw angle": 1603,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.700000,
+   "semi-cooked": true,
+   "raw air speed": 1074,
+   "raw yaw angle": 1421,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.800000,
+   "semi-cooked": true,
+   "raw air speed": 1081,
+   "raw yaw angle": 1240,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.900000,
+   "semi-cooked": true,
+   "raw air speed": 1090,
+   "raw yaw angle": 1023,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.000000,
+   "semi-cooked": true,
+   "raw air speed": 1090,
+   "raw yaw angle": 1023,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.100000,
+   "semi-cooked": true,
+   "raw air speed": 1097,
+   "raw yaw angle": 824,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.200000,
+   "semi-cooked": true,
+   "raw air speed": 1105,
+   "raw yaw angle": 606,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.300000,
+   "semi-cooked": true,
+   "raw air speed": 1105,
+   "raw yaw angle": 606,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.400000,
+   "semi-cooked": true,
+   "raw air speed": 1122,
+   "raw yaw angle": 154,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.500000,
+   "semi-cooked": true,
+   "raw air speed": 1122,
+   "raw yaw angle": 154,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.600000,
+   "semi-cooked": true,
+   "raw air speed": 1138,
+   "raw yaw angle": 65250,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.700000,
+   "semi-cooked": true,
+   "raw air speed": 1138,
+   "raw yaw angle": 65250,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.800000,
+   "semi-cooked": true,
+   "raw air speed": 1146,
+   "raw yaw angle": 65039,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.900000,
+   "semi-cooked": true,
+   "raw air speed": 1146,
+   "raw yaw angle": 65039,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.000000,
+   "semi-cooked": true,
+   "raw air speed": 1155,
+   "raw yaw angle": 64803,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.100000,
+   "semi-cooked": true,
+   "raw air speed": 1155,
+   "raw yaw angle": 64803,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.200000,
+   "semi-cooked": true,
+   "raw air speed": 1164,
+   "raw yaw angle": 64602,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.300000,
+   "semi-cooked": true,
+   "raw air speed": 1164,
+   "raw yaw angle": 64602,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.400000,
+   "semi-cooked": true,
+   "raw air speed": 1172,
+   "raw yaw angle": 64394,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.500000,
+   "semi-cooked": true,
+   "raw air speed": 1172,
+   "raw yaw angle": 64394,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.600000,
+   "semi-cooked": true,
+   "raw air speed": 1189,
+   "raw yaw angle": 64021,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.700000,
+   "semi-cooked": true,
+   "raw air speed": 1189,
+   "raw yaw angle": 64021,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.800000,
+   "semi-cooked": true,
+   "raw air speed": 1197,
+   "raw yaw angle": 63857,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.900000,
+   "semi-cooked": true,
+   "raw air speed": 1197,
+   "raw yaw angle": 63857,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.000000,
+   "semi-cooked": true,
+   "raw air speed": 1206,
+   "raw yaw angle": 63684,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.100000,
+   "semi-cooked": true,
+   "raw air speed": 1206,
+   "raw yaw angle": 63684,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.200000,
+   "semi-cooked": true,
+   "raw air speed": 1223,
+   "raw yaw angle": 63418,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.300000,
+   "semi-cooked": true,
+   "raw air speed": 1223,
+   "raw yaw angle": 63418,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.400000,
+   "semi-cooked": true,
+   "raw air speed": 1231,
+   "raw yaw angle": 63313,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.500000,
+   "semi-cooked": true,
+   "raw air speed": 1231,
+   "raw yaw angle": 63313,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.600000,
+   "semi-cooked": true,
+   "raw air speed": 1240,
+   "raw yaw angle": 63212,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.700000,
+   "semi-cooked": true,
+   "raw air speed": 1240,
+   "raw yaw angle": 63212,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.800000,
+   "semi-cooked": true,
+   "raw air speed": 1248,
+   "raw yaw angle": 63142,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.900000,
+   "semi-cooked": true,
+   "raw air speed": 1257,
+   "raw yaw angle": 63086,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.000000,
+   "semi-cooked": true,
+   "raw air speed": 1257,
+   "raw yaw angle": 63086,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.100000,
+   "semi-cooked": true,
+   "raw air speed": 1265,
+   "raw yaw angle": 63053,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.200000,
+   "semi-cooked": true,
+   "raw air speed": 1265,
+   "raw yaw angle": 63053,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.300000,
+   "semi-cooked": true,
+   "raw air speed": 1274,
+   "raw yaw angle": 63037,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.400000,
+   "semi-cooked": true,
+   "raw air speed": 1274,
+   "raw yaw angle": 63037,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.500000,
+   "semi-cooked": true,
+   "raw air speed": 1282,
+   "raw yaw angle": 63042,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.600000,
+   "semi-cooked": true,
+   "raw air speed": 1282,
+   "raw yaw angle": 63042,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.700000,
+   "semi-cooked": true,
+   "raw air speed": 1290,
+   "raw yaw angle": 63068,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.800000,
+   "semi-cooked": true,
+   "raw air speed": 1307,
+   "raw yaw angle": 63182,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.900000,
+   "semi-cooked": true,
+   "raw air speed": 1307,
+   "raw yaw angle": 63182,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.000000,
+   "semi-cooked": true,
+   "raw air speed": 1314,
+   "raw yaw angle": 63262,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.100000,
+   "semi-cooked": true,
+   "raw air speed": 1314,
+   "raw yaw angle": 63262,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.200000,
+   "semi-cooked": true,
+   "raw air speed": 1322,
+   "raw yaw angle": 63366,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.300000,
+   "semi-cooked": true,
+   "raw air speed": 1322,
+   "raw yaw angle": 63366,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.400000,
+   "semi-cooked": true,
+   "raw air speed": 1329,
+   "raw yaw angle": 63480,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.500000,
+   "semi-cooked": true,
+   "raw air speed": 1338,
+   "raw yaw angle": 63628,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.600000,
+   "semi-cooked": true,
+   "raw air speed": 1338,
+   "raw yaw angle": 63628,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.700000,
+   "semi-cooked": true,
+   "raw air speed": 1345,
+   "raw yaw angle": 63773,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.800000,
+   "semi-cooked": true,
+   "raw air speed": 1359,
+   "raw yaw angle": 64112,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.900000,
+   "semi-cooked": true,
+   "raw air speed": 1359,
+   "raw yaw angle": 64112,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.000000,
+   "semi-cooked": true,
+   "raw air speed": 1367,
+   "raw yaw angle": 64319,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.100000,
+   "semi-cooked": true,
+   "raw air speed": 1367,
+   "raw yaw angle": 64319,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.200000,
+   "semi-cooked": true,
+   "raw air speed": 1374,
+   "raw yaw angle": 64509,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.300000,
+   "semi-cooked": true,
+   "raw air speed": 1374,
+   "raw yaw angle": 64509,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.400000,
+   "semi-cooked": true,
+   "raw air speed": 1381,
+   "raw yaw angle": 64722,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.500000,
+   "semi-cooked": true,
+   "raw air speed": 1381,
+   "raw yaw angle": 64722,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.600000,
+   "semi-cooked": true,
+   "raw air speed": 1387,
+   "raw yaw angle": 64926,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.700000,
+   "semi-cooked": true,
+   "raw air speed": 1387,
+   "raw yaw angle": 64926,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.800000,
+   "semi-cooked": true,
+   "raw air speed": 1394,
+   "raw yaw angle": 65165,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.900000,
+   "semi-cooked": true,
+   "raw air speed": 1394,
+   "raw yaw angle": 65165,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.000000,
+   "semi-cooked": true,
+   "raw air speed": 1400,
+   "raw yaw angle": 65377,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.100000,
+   "semi-cooked": true,
+   "raw air speed": 1400,
+   "raw yaw angle": 65377,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.200000,
+   "semi-cooked": true,
+   "raw air speed": 1413,
+   "raw yaw angle": 282,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.300000,
+   "semi-cooked": true,
+   "raw air speed": 1413,
+   "raw yaw angle": 282,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.400000,
+   "semi-cooked": true,
+   "raw air speed": 1419,
+   "raw yaw angle": 507,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.500000,
+   "semi-cooked": true,
+   "raw air speed": 1419,
+   "raw yaw angle": 507,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.600000,
+   "semi-cooked": true,
+   "raw air speed": 1424,
+   "raw yaw angle": 729,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.700000,
+   "semi-cooked": true,
+   "raw air speed": 1424,
+   "raw yaw angle": 729,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.800000,
+   "semi-cooked": true,
+   "raw air speed": 1430,
+   "raw yaw angle": 944,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.900000,
+   "semi-cooked": true,
+   "raw air speed": 1430,
+   "raw yaw angle": 944,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.000000,
+   "semi-cooked": true,
+   "raw air speed": 1435,
+   "raw yaw angle": 1138,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.100000,
+   "semi-cooked": true,
+   "raw air speed": 1435,
+   "raw yaw angle": 1138,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.200000,
+   "semi-cooked": true,
+   "raw air speed": 1440,
+   "raw yaw angle": 1337,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.300000,
+   "semi-cooked": true,
+   "raw air speed": 1440,
+   "raw yaw angle": 1337,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.400000,
+   "semi-cooked": true,
+   "raw air speed": 1445,
+   "raw yaw angle": 1512,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.500000,
+   "semi-cooked": true,
+   "raw air speed": 1445,
+   "raw yaw angle": 1512,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.600000,
+   "semi-cooked": true,
+   "raw air speed": 1450,
+   "raw yaw angle": 1698,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.700000,
+   "semi-cooked": true,
+   "raw air speed": 1450,
+   "raw yaw angle": 1698,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.800000,
+   "semi-cooked": true,
+   "raw air speed": 1455,
+   "raw yaw angle": 1849,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.900000,
+   "semi-cooked": true,
+   "raw air speed": 1455,
+   "raw yaw angle": 1849,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.000000,
+   "semi-cooked": true,
+   "raw air speed": 1459,
+   "raw yaw angle": 1995,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.100000,
+   "semi-cooked": true,
+   "raw air speed": 1459,
+   "raw yaw angle": 1995,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.200000,
+   "semi-cooked": true,
+   "raw air speed": 1463,
+   "raw yaw angle": 2116,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.300000,
+   "semi-cooked": true,
+   "raw air speed": 1463,
+   "raw yaw angle": 2116,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.400000,
+   "semi-cooked": true,
+   "raw air speed": 1468,
+   "raw yaw angle": 2235,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.500000,
+   "semi-cooked": true,
+   "raw air speed": 1468,
+   "raw yaw angle": 2235,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.600000,
+   "semi-cooked": true,
+   "raw air speed": 1475,
+   "raw yaw angle": 2397,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.700000,
+   "semi-cooked": true,
+   "raw air speed": 1475,
+   "raw yaw angle": 2397,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.800000,
+   "semi-cooked": true,
+   "raw air speed": 1478,
+   "raw yaw angle": 2449,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.900000,
+   "semi-cooked": true,
+   "raw air speed": 1478,
+   "raw yaw angle": 2449,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.000000,
+   "semi-cooked": true,
+   "raw air speed": 1481,
+   "raw yaw angle": 2486,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.100000,
+   "semi-cooked": true,
+   "raw air speed": 1491,
+   "raw yaw angle": 2418,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.200000,
+   "semi-cooked": true,
+   "raw air speed": 1491,
+   "raw yaw angle": 2418,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.300000,
+   "semi-cooked": true,
+   "raw air speed": 1493,
+   "raw yaw angle": 2356,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.400000,
+   "semi-cooked": true,
+   "raw air speed": 1493,
+   "raw yaw angle": 2356,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.500000,
+   "semi-cooked": true,
+   "raw air speed": 1495,
+   "raw yaw angle": 2269,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.600000,
+   "semi-cooked": true,
+   "raw air speed": 1495,
+   "raw yaw angle": 2269,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.700000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 2172,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.800000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 2172,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.900000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 2041,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.000000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 2041,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.100000,
+   "semi-cooked": true,
+   "raw air speed": 1498,
+   "raw yaw angle": 1911,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.200000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1755,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.300000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1755,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.400000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1402,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.500000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1402,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.600000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1221,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.700000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1017,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.800000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 1017,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.900000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 818,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.000000,
+   "semi-cooked": true,
+   "raw air speed": 1499,
+   "raw yaw angle": 818,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.100000,
+   "semi-cooked": true,
+   "raw air speed": 1498,
+   "raw yaw angle": 584,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.200000,
+   "semi-cooked": true,
+   "raw air speed": 1498,
+   "raw yaw angle": 584,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.300000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 375,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.400000,
+   "semi-cooked": true,
+   "raw air speed": 1497,
+   "raw yaw angle": 375,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.500000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 148,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.600000,
+   "semi-cooked": true,
+   "raw air speed": 1496,
+   "raw yaw angle": 148,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.700000,
+   "semi-cooked": true,
+   "raw air speed": 1494,
+   "raw yaw angle": 65471,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.800000,
+   "semi-cooked": true,
+   "raw air speed": 1494,
+   "raw yaw angle": 65471,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.900000,
+   "semi-cooked": true,
+   "raw air speed": 1492,
+   "raw yaw angle": 65228,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.000000,
+   "semi-cooked": true,
+   "raw air speed": 1492,
+   "raw yaw angle": 65228,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.100000,
+   "semi-cooked": true,
+   "raw air speed": 1491,
+   "raw yaw angle": 65018,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.200000,
+   "semi-cooked": true,
+   "raw air speed": 1491,
+   "raw yaw angle": 65018,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.300000,
+   "semi-cooked": true,
+   "raw air speed": 1486,
+   "raw yaw angle": 64596,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.400000,
+   "semi-cooked": true,
+   "raw air speed": 1483,
+   "raw yaw angle": 64375,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.500000,
+   "semi-cooked": true,
+   "raw air speed": 1483,
+   "raw yaw angle": 64375,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.600000,
+   "semi-cooked": true,
+   "raw air speed": 1477,
+   "raw yaw angle": 64003,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.700000,
+   "semi-cooked": true,
+   "raw air speed": 1477,
+   "raw yaw angle": 64003,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.800000,
+   "semi-cooked": true,
+   "raw air speed": 1474,
+   "raw yaw angle": 63841,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.900000,
+   "semi-cooked": true,
+   "raw air speed": 1474,
+   "raw yaw angle": 63841,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.000000,
+   "semi-cooked": true,
+   "raw air speed": 1470,
+   "raw yaw angle": 63680,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.100000,
+   "semi-cooked": true,
+   "raw air speed": 1470,
+   "raw yaw angle": 63680,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.200000,
+   "semi-cooked": true,
+   "raw air speed": 1467,
+   "raw yaw angle": 63535,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.300000,
+   "semi-cooked": true,
+   "raw air speed": 1467,
+   "raw yaw angle": 63535,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.400000,
+   "semi-cooked": true,
+   "raw air speed": 1462,
+   "raw yaw angle": 63406,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.500000,
+   "semi-cooked": true,
+   "raw air speed": 1462,
+   "raw yaw angle": 63406,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.600000,
+   "semi-cooked": true,
+   "raw air speed": 1458,
+   "raw yaw angle": 63303,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.700000,
+   "semi-cooked": true,
+   "raw air speed": 1458,
+   "raw yaw angle": 63303,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.800000,
+   "semi-cooked": true,
+   "raw air speed": 1450,
+   "raw yaw angle": 63140,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.900000,
+   "semi-cooked": true,
+   "raw air speed": 1450,
+   "raw yaw angle": 63140,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.000000,
+   "semi-cooked": true,
+   "raw air speed": 1444,
+   "raw yaw angle": 63082,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.100000,
+   "semi-cooked": true,
+   "raw air speed": 1444,
+   "raw yaw angle": 63082,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.200000,
+   "semi-cooked": true,
+   "raw air speed": 1423,
+   "raw yaw angle": 63072,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.300000,
+   "semi-cooked": true,
+   "raw air speed": 1423,
+   "raw yaw angle": 63072,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.400000,
+   "semi-cooked": true,
+   "raw air speed": 1418,
+   "raw yaw angle": 63117,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.500000,
+   "semi-cooked": true,
+   "raw air speed": 1418,
+   "raw yaw angle": 63117,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.600000,
+   "semi-cooked": true,
+   "raw air speed": 1406,
+   "raw yaw angle": 63265,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.700000,
+   "semi-cooked": true,
+   "raw air speed": 1406,
+   "raw yaw angle": 63265,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.800000,
+   "semi-cooked": true,
+   "raw air speed": 1399,
+   "raw yaw angle": 63377,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.900000,
+   "semi-cooked": true,
+   "raw air speed": 1393,
+   "raw yaw angle": 63492,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.000000,
+   "semi-cooked": true,
+   "raw air speed": 1393,
+   "raw yaw angle": 63492,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.100000,
+   "semi-cooked": true,
+   "raw air speed": 1380,
+   "raw yaw angle": 63777,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.200000,
+   "semi-cooked": true,
+   "raw air speed": 1380,
+   "raw yaw angle": 63777,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.300000,
+   "semi-cooked": true,
+   "raw air speed": 1373,
+   "raw yaw angle": 63947,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.400000,
+   "semi-cooked": true,
+   "raw air speed": 1373,
+   "raw yaw angle": 63947,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.500000,
+   "semi-cooked": true,
+   "raw air speed": 1365,
+   "raw yaw angle": 64130,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.600000,
+   "semi-cooked": true,
+   "raw air speed": 1365,
+   "raw yaw angle": 64130,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.700000,
+   "semi-cooked": true,
+   "raw air speed": 1358,
+   "raw yaw angle": 64325,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.800000,
+   "semi-cooked": true,
+   "raw air speed": 1358,
+   "raw yaw angle": 64325,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.900000,
+   "semi-cooked": true,
+   "raw air speed": 1351,
+   "raw yaw angle": 64515,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.000000,
+   "semi-cooked": true,
+   "raw air speed": 1351,
+   "raw yaw angle": 64515,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.100000,
+   "semi-cooked": true,
+   "raw air speed": 1344,
+   "raw yaw angle": 64728,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.200000,
+   "semi-cooked": true,
+   "raw air speed": 1344,
+   "raw yaw angle": 64728,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.300000,
+   "semi-cooked": true,
+   "raw air speed": 1336,
+   "raw yaw angle": 64933,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.400000,
+   "semi-cooked": true,
+   "raw air speed": 1336,
+   "raw yaw angle": 64933,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.500000,
+   "semi-cooked": true,
+   "raw air speed": 1328,
+   "raw yaw angle": 65172,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.600000,
+   "semi-cooked": true,
+   "raw air speed": 1328,
+   "raw yaw angle": 65172,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.700000,
+   "semi-cooked": true,
+   "raw air speed": 1321,
+   "raw yaw angle": 65384,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.800000,
+   "semi-cooked": true,
+   "raw air speed": 1321,
+   "raw yaw angle": 65384,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.900000,
+   "semi-cooked": true,
+   "raw air speed": 1313,
+   "raw yaw angle": 76,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.000000,
+   "semi-cooked": true,
+   "raw air speed": 1313,
+   "raw yaw angle": 76,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.100000,
+   "semi-cooked": true,
+   "raw air speed": 1305,
+   "raw yaw angle": 288,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.200000,
+   "semi-cooked": true,
+   "raw air speed": 1296,
+   "raw yaw angle": 529,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.300000,
+   "semi-cooked": true,
+   "raw air speed": 1296,
+   "raw yaw angle": 529,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.400000,
+   "semi-cooked": true,
+   "raw air speed": 1289,
+   "raw yaw angle": 735,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.500000,
+   "semi-cooked": true,
+   "raw air speed": 1289,
+   "raw yaw angle": 735,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+

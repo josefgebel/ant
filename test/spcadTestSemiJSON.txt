@@ -1,0 +1,4932 @@
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 242.600000,
+   "semi-cooked": true,
+   "delta speed event time": 313,
+   "delta wheel revolution count": 8591,
+   "delta cadence event time": 19936,
+   "delta crank revolution count": 65531,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 242.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 242.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 243.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 243.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 243.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 243.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 244.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 245.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 246.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 246.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 246.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 246.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 246.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 247.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 247.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 247.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 247.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 248.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 248.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 248.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 248.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 248.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 249.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 250.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 250.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 250.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 250.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 251.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 251.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 251.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 251.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 252.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 253.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 253.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 253.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 253.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 253.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 254.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 255.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 255.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 255.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 255.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 256.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 257.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 258.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 258.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 258.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 258.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 259.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 259.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 259.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 259.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 259.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 260.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 260.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 260.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 260.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 260.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 261.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 261.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 261.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 261.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 261.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 262.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 262.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 262.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 262.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 263.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 264.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 264.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 264.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 264.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 264.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 265.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 265.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 265.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 265.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 266.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 267.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 268.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 268.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 268.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 268.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 269.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 269.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 269.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 269.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 269.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 270.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 270.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 270.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 270.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 271.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 272.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 272.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 272.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 272.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 273.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 274.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 274.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 274.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 274.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 274.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 275.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 275.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 275.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 275.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 275.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 276.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 277.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 277.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 277.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 277.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 278.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 278.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 278.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 278.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 278.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 279.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 280.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 280.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 280.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 280.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 280.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 281.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 282.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 282.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 282.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 282.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 282.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 283.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 284.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 285.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 285.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 285.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 285.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 286.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 286.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 286.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 286.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 286.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 287.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 287.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 287.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 287.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 287.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 288.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 288.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 288.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 288.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 289.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 289.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 289.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 289.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 290.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 290.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 290.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 290.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 290.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 291.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 291.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 291.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 291.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 292.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 293.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 293.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 293.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 293.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 294.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 294.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 294.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 294.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 294.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 295.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 295.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 295.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 295.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 295.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 296.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 297.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 297.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 297.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 297.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 297.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 298.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 299.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 299.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 299.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 299.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 299.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 300.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 301.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 301.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 301.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 301.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 301.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 302.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 303.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 303.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 303.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 303.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 303.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 304.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 304.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 304.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 304.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 305.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 306.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 307.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 307.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 307.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 307.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 308.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 309.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 309.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 309.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 309.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 310.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 310.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 310.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 310.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 310.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 311.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 311.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 311.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 311.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 312.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 312.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 312.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 312.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 312.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 313.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 314.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 314.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 314.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 314.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 314.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 315.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 316.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 317.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 317.300000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 317.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 317.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 317.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.100000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 318.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 319.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 319.700000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 319.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 319.900000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 320.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 320.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 321.400000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 321.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 661.200000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 46040,
+   "delta crank revolution count": 2,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 661.600000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 1771,
+   "delta crank revolution count": 1,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 661.800000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 662.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 456,
+   "delta crank revolution count": 1,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 704.500000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPCAD790_54742",
+   "timestamp": 705.000000,
+   "semi-cooked": true,
+   "delta speed event time": 0,
+   "delta wheel revolution count": 0,
+   "delta cadence event time": 0,
+   "delta crank revolution count": 0,
+   "program name": "spcad_ant2txt",
+   "version": "1.0.0"
+}
+

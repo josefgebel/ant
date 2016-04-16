@@ -1,0 +1,1301 @@
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1847.100000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 3036080,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1847.300000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1847.500000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1848.100000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1848.300000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1848.400000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 2,
+   "manufacturer id": 13,
+   "serial number": 32768,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1852.000000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 2,
+   "manufacturer id": 13,
+   "serial number": 32768,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1853.100000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1853.200000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.100000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.200000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.400000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.500000,
+   "semi-cooked": false,
+   "speed": 813.118644,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.800000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 48,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1854.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1855.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1855.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1855.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1855.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.600000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1856.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1858.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 2,
+   "manufacturer id": 13,
+   "serial number": 32768,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1860.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 2,
+   "manufacturer id": 13,
+   "serial number": 32768,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_34307",
+   "timestamp": 1867.600000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 48,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1873.300000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1873.800000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.000000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.200000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.400000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.500000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.700000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1874.900000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1875.100000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1875.400000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1875.600000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1875.700000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1875.900000,
+   "semi-cooked": false,
+   "speed": 20758.970459,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1876.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1877.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1877.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1877.800000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1877.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 131,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1878.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1878.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 3,
+   "manufacturer id": 255,
+   "hardware revision": 5,
+   "model number": 3,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1878.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 343646,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1878.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1878.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.800000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1879.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1880.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1880.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1880.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1881.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1881.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1881.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1881.600000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1881.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1882.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1882.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1882.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1883.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1883.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1883.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1883.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1883.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1884.000000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1884.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1884.400000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1884.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1884.900000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1885.300000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1885.600000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1885.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1885.800000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1886.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1886.500000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1886.600000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 129,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1886.700000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1887.100000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "SPB7_45222",
+   "timestamp": 1887.200000,
+   "semi-cooked": false,
+   "speed": 0.000000,
+   "wheel circumference": 2.096000,
+   "number of magnets": 1,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "speed_only_ant2txt",
+   "version": "1.0.0"
+}
+
