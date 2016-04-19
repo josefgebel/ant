@@ -4,26 +4,57 @@
 amSplitString::amSplitString
 (
     void
-) : curWordNo( 0 )
+)
 {
-    separators.push_back( '\t' );
-    separators.push_back( ' ' );
-    terminals.push_back( '\0' );
-    terminals.push_back( '\n' );
-    terminals.push_back( '\r' );
+    init();
 }
 
 amSplitString::amSplitString
 (
-    const char *text
-) : curWordNo( 0 )
+    const std::string &text
+)
 {
-    separators.push_back( '\t' );
-    separators.push_back( ' ' );
-    terminals.push_back( '\0' );
-    terminals.push_back( '\n' );
-    terminals.push_back( '\r' );
+    init();
     split( text );
+}
+
+void amSplitString::init
+(
+    void
+)
+{
+    curWordNo   = 0;
+    separators  = '\t';
+    separators += ' ';
+    terminals   = '\0';
+    terminals  += '\n';
+    terminals  += '\r';
+}
+
+bool amSplitString::isInString
+(
+    char               testChar,
+    const std::string &text
+) const
+{
+    std::string::const_iterator tPtr = text.begin();
+    for ( ; ( tPtr != text.end() ) && ( *tPtr != testChar ); ++tPtr );
+    return ( tPtr != text.end() );
+}
+
+void amSplitString::removeFromString
+(
+    char         obsoleteChar,
+    std::string &text
+)
+{
+    for ( std::string::iterator tPtr = text.begin(); tPtr != text.end(); ++tPtr )
+    {
+        if ( *tPtr == obsoleteChar )
+        {
+            text.erase( tPtr );
+        }
+    }
 }
 
 bool amSplitString::isSeparator
@@ -31,14 +62,7 @@ bool amSplitString::isSeparator
     char testChar
 ) const
 {
-    for ( std::vector<char>::const_iterator sPtr = separators.begin(); sPtr != separators.end(); ++sPtr )
-    {
-        if ( *sPtr == testChar )
-        {
-            return true;
-        }
-    }
-    return false;
+    return isInString( testChar, separators );
 }
 
 bool amSplitString::isTerminal
@@ -46,32 +70,7 @@ bool amSplitString::isTerminal
     char testChar
 ) const
 {
-    for ( std::vector<char>::const_iterator tPtr = terminals.begin(); tPtr != terminals.end(); ++tPtr )
-    {
-        if ( *tPtr == testChar )
-        {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool amSplitString::isAdditionalTerminal
-(
-    char        testChar,
-    const char *additionalTermnials
-) const
-{
-    if ( additionalTermnials != NULL )
-    {
-        const char *aPtr = additionalTermnials;
-        while ( ( *aPtr != 0 ) && ( *aPtr != testChar ) )
-        {
-            ++aPtr;
-        }
-        return ( *aPtr == testChar );
-    }
-    return false;
+    return isInString( testChar, terminals );
 }
 
 void amSplitString::addSeparator
@@ -81,26 +80,8 @@ void amSplitString::addSeparator
 {
     if ( !isSeparator( newSeparator ) )
     {
-        separators.push_back( newSeparator );
+        separators += newSeparator;
     }
-}
-
-bool amSplitString::isAdditionalSeparator
-(
-    char        testChar,
-    const char *additionalSeparators
-) const
-{
-    if ( additionalSeparators != NULL )
-    {
-        const char *aPtr = additionalSeparators;
-        while ( ( *aPtr != 0 ) && ( *aPtr != testChar ) )
-        {
-            ++aPtr;
-        }
-        return ( *aPtr == testChar );
-    }
-    return false;
 }
 
 void amSplitString::addTerminal
@@ -110,7 +91,7 @@ void amSplitString::addTerminal
 {
     if ( !isTerminal( newTerminal ) )
     {
-        terminals.push_back( newTerminal );
+        terminals += newTerminal;
     }
 }
 
@@ -119,13 +100,7 @@ void amSplitString::removeSeparator
     char obsoleteSeparator
 )
 {
-    for ( std::vector<char>::iterator sPtr = separators.begin(); sPtr != separators.end(); ++sPtr )
-    {
-        if ( *sPtr == obsoleteSeparator )
-        {
-            separators.erase( sPtr );
-        }
-    }
+    removeFromString( obsoleteSeparator, separators );
 }
 
 void amSplitString::removeTerminal
@@ -133,67 +108,45 @@ void amSplitString::removeTerminal
     char obsoleteTerminal
 )
 {
-    for ( std::vector<char>::iterator tPtr = terminals.begin(); tPtr != terminals.end(); ++tPtr )
-    {
-        if ( *tPtr == obsoleteTerminal )
-        {
-            terminals.erase( tPtr );
-        }
-    }
+    removeFromString( obsoleteTerminal, terminals );
 }
 
-size_t amSplitString::split
-(
-    const char *text,
-    const char *additionalTermnials,
-    const char *additionalSeparators
-)
-{
-    char        auxBuffer[ C_BUFFER_SIZE ];
-    char       *aPtr = auxBuffer;
-    const char *tPtr = text;
-    memset( auxBuffer, 0, C_BUFFER_SIZE );
-
-    words.clear();
-    curWordNo = 0;
-    *aPtr     = 0;
-
-    while ( !isTerminal( *tPtr ) && !isAdditionalTerminal( *tPtr, additionalTermnials ) )
-    {
-        if ( isSeparator( *tPtr ) || isAdditionalSeparator( *tPtr, additionalSeparators ) )
-        {
-            if ( strlen( auxBuffer ) )
-            {
-                words.push_back( auxBuffer );
-                aPtr = auxBuffer;
-                memset( auxBuffer, 0, C_BUFFER_SIZE );
-            }
-        }
-        else
-        {
-            *aPtr = *tPtr;
-            ++aPtr;
-            *aPtr = 0;
-        }
-        ++tPtr;
-    }
-    if ( strlen( auxBuffer ) )
-    {
-        words.push_back( auxBuffer );
-    }
-
-    return words.size();
-}
 
 size_t amSplitString::split
 (
     const std::string &text,
-    const char        *additionalTermnials,
-    const char        *additionalSeparators
+    const std::string &additionalTermnials,
+    const std::string &additionalSeparators
 )
 {
-    size_t result = split( text.c_str(), additionalTermnials, additionalSeparators );
-    return result;
+    std::string                 word;
+    std::string::const_iterator tPtr = text.begin();
+
+    words.clear();
+    curWordNo = 0;
+
+    while ( !isTerminal( *tPtr ) && !isInString( *tPtr, additionalTermnials ) && ( tPtr != text.end() ) )
+    {
+        if ( isSeparator( *tPtr ) || isInString( *tPtr, additionalSeparators ) )
+        {
+            if ( !word.empty() )
+            {
+                words.push_back( word );
+                word.clear();
+            }
+        }
+        else
+        {
+            word += *tPtr;
+        }
+        ++tPtr;
+    }
+    if ( !word.empty() )
+    {
+        words.push_back( word );
+    }
+
+    return words.size();
 }
 
 void amSplitString::push_back
@@ -246,5 +199,27 @@ const std::string amSplitString::getNextWord
         return words[ curWordNo++ ];
     }
     return std::string( "" );
+}
+
+std::ostream &operator<<
+(
+    std::ostream        &ostr,
+    const amSplitString &splitString
+)
+{
+    size_t nbWords = splitString.size();
+    if ( nbWords == 0 )
+    {
+        ostr << "<empty>";
+    }
+    else
+    {
+        ostr << "\"" << splitString[ 0 ] << "\"";
+        for ( size_t counter = 1; counter < nbWords; ++counter )
+        {
+            ostr << "\t\"" << splitString[ counter ] << "\"";
+        }
+    }
+    return ostr;
 }
 

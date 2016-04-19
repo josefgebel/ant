@@ -237,7 +237,7 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter++ ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );

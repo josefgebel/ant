@@ -1,6 +1,8 @@
 #ifndef __AM_SPLIT_STRING_H__
 #define __AM_SPLIT_STRING_H__
 
+#include <fstream>
+#include <ostream>
 #include <vector>
 #include <string>
 
@@ -9,7 +11,7 @@ class amSplitString
     public:
 
         amSplitString( void );
-        amSplitString( const char * );
+        amSplitString( const std::string & );
 
         inline void removeAllTerminals( void )  { terminals.clear(); }
         inline void removeAllSeparators( void ) { separators.clear(); }
@@ -20,8 +22,7 @@ class amSplitString
         void removeTerminal( char );
         void removeSeparator( char );
 
-        size_t split( const char        *text, const char *additionalTermnials = "", const char *additionalSeparators = "" );
-        size_t split( const std::string &text, const char *additionalTermnials = "", const char *additionalSeparators = "" );
+        size_t split( const std::string &text, const std::string &additionalTermnials = "", const std::string &additionalSeparators = "" );
 
         void push_back( const std::string &newWord );
         const std::string getWord( unsigned int ) const;
@@ -32,19 +33,23 @@ class amSplitString
 
         inline size_t size( void ) const { return words.size(); }
 
+
     private:
 
         std::vector<std::string> words;
-        std::vector<char>        terminals;
-        std::vector<char>        separators;
+        std::string              terminals;
+        std::string              separators;
+        size_t                   curWordNo;
 
-        bool isTerminal( char ) const;
-        bool isSeparator( char ) const;
-        bool isAdditionalTerminal( char, const char * ) const;
-        bool isAdditionalSeparator( char, const char * ) const;
+        void init            ( void );
+        bool isTerminal      ( char ) const;
+        bool isSeparator     ( char ) const;
+        bool isInString      ( char, const std::string & ) const;
+        void removeFromString( char, std::string & );
 
-        unsigned int curWordNo;
 };
+
+extern std::ostream &operator<<( std::ostream &, const amSplitString & );
 
 #endif // __AM_SPLIT_STRING_H__
 

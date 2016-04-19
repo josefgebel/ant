@@ -536,7 +536,8 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
                     appendDiagnosticsLine( "Delta Cumulative Wheel Count", deltaWheelRevolutionCount );
                 }
 
-                switch ( dataPage & 0x0F )
+                int dataPageMod128 = dataPage & 0x0F;
+                switch ( dataPageMod128 )
                 {
                     case  0: // - - Page 0: No Additional Data - - - - - - - - - - - - - - -
                              result = SPEED_SENSOR;
@@ -596,7 +597,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter++ ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );

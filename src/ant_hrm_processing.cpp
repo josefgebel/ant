@@ -160,7 +160,7 @@ amDeviceType antHRMProcessing::processHRMSensor
         rollOver                    = 256;  // 256 = 1 Byte
         deltaHeartBeatCount         = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, heartBeatCount );
         totalHeartBeatCount         = totalCountTable[ sensorID ] + deltaHeartBeatCount;
-        totalCountTable[ sensorID ] = totalHeartBeatEventTime;
+        totalCountTable[ sensorID ] = totalHeartBeatCount;
         if ( diagnostics )
         {
             *auxBuffer = 0;
@@ -171,7 +171,8 @@ amDeviceType antHRMProcessing::processHRMSensor
             appendDiagnosticsLine( "Delta Heart Beat Count", deltaHeartBeatCount, auxBuffer );
         }
 
-        switch ( dataPage & 0x0F )
+        int dataPageMod128 = dataPage & 0x0F;
+        switch ( dataPageMod128 )
         {
             case  0: // - - Page 0: No Additional Data - - - - - - - - - - - - - - -
                      result = HEART_RATE_METER;
@@ -223,11 +224,12 @@ amDeviceType antHRMProcessing::processHRMSensor
 
             case  4: // - - Page 4: Previous Heartbeat Time - - - - - - - - - - - - -
                      result                          = HEART_RATE_METER;
+                     rollOver                        = 65536;  // 256^2
                      additionalData2                 = hex( payLoad[ 1 ] );                 // Manufacturer Specific Data;
                      additionalData3                 = hex( payLoad[ 3 ], payLoad[ 2 ] );   // Previous Heart Beat Event Time
-                     rollOver                        = 65536;  // 256^2
                      additionalData1                 = getDeltaInt( rollOverHappened, sensorID, rollOver, previousHeartRateTable, additionalData3 );
                      additionalDoubleData1           = heartBeatTimeTable[ sensorID ] + ( ( double ) additionalData1 ) / 1024.0;
+                     additionalData3                 = 0;
                      heartBeatTimeTable[ sensorID ]  = additionalDoubleData1;
                      if ( diagnostics )
                      {
@@ -350,7 +352,8 @@ amDeviceType antHRMProcessing::processHRMSensorSemiCooked
                     appendDiagnosticsLine( "Delta Heart Beat Count", deltaHeartBeatCount );
                 }
 
-                switch ( dataPage & 0x0F )
+                int dataPageMod128 = dataPage & 0x0F;
+                switch ( dataPageMod128 )
                 {
                     case  0: // - - Page 0: No Additional Data - - - - - - - - - - - - - - -
                              result = HEART_RATE_METER;
@@ -401,10 +404,10 @@ amDeviceType antHRMProcessing::processHRMSensorSemiCooked
                     case  4: // - - Page 4: Previous Heartbeat Time - - - - - - - - - - - - -
                              if ( nbWords > 8 )
                              {
-                                 result                     = HEART_RATE_METER;
-                                 additionalData2            = ( unsigned int ) strToInt( words[ counter++ ] ); // manufacturerSpecificData;
-                                 additionalData1            = ( unsigned int ) strToInt( words[ counter++ ] ); // deltaPrevHeartBeatEventTime;
-                                 additionalDoubleData1      = heartBeatTimeTable[ sensorID ] + ( ( double ) additionalData1 ) / 1024.0;
+                                 result                         = HEART_RATE_METER;
+                                 additionalData1                = ( unsigned int ) strToInt( words[ counter++ ] ); // deltaPrevHeartBeatEventTime;
+                                 additionalData2                = ( unsigned int ) strToInt( words[ counter++ ] ); // manufacturerSpecificData;
+                                 additionalDoubleData1          = heartBeatTimeTable[ sensorID ] + ( ( double ) additionalData1 ) / 1024.0;
                                  heartBeatTimeTable[ sensorID ] = additionalDoubleData1;
                                  if ( diagnostics )
                                  {
@@ -426,7 +429,7 @@ amDeviceType antHRMProcessing::processHRMSensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );
@@ -645,6 +648,7 @@ void antHRMProcessing::createHRMResultString
     double       additionalDoubleData1
 )
 {
+    int dataPageMod128 = dataPage & 0x0F;
     if ( outputAsJSON )
     {
         appendJSONItem( "heart rate", heartRate );
@@ -659,7 +663,7 @@ void antHRMProcessing::createHRMResultString
             appendJSONItem( "total heart beat count",      totalHeartBeatCount );
         }
         appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        if ( ( dataPage & 0x0F ) == 1 )
+        if ( dataPageMod128 == 1 )
         {
             if ( semiCookedOut )
             {
@@ -670,18 +674,18 @@ void antHRMProcessing::createHRMResultString
                 appendJSONItem( "operating time", 2 * additionalData1 );
             }
         }
-        else if ( ( dataPage & 0x0F ) == 2 )
+        else if ( dataPageMod128 == 2 )
         {
             appendJSONItem( C_MANUFACTURER_JSON,  additionalData1 );
             appendJSONItem( C_SERIAL_NUMBER_JSON, additionalData2 );
         }
-        else if ( ( dataPage & 0x0F ) == 3 )
+        else if ( dataPageMod128 == 3 )
         {
             appendJSONItem( C_MANUFACTURER_JSON,      additionalData1 );
             appendJSONItem( C_HARDWARE_REVISION_JSON, additionalData2 );
             appendJSONItem( C_MODEL_NUMBER_JSON,      additionalData3 );
         }
-        else if ( ( dataPage & 0x0F ) == 4 )
+        else if ( dataPageMod128 == 4 )
         {
             if ( semiCookedOut )
             {
@@ -703,13 +707,13 @@ void antHRMProcessing::createHRMResultString
             appendOutput( deltaHeartBeatCount );
             appendOutput( dataPage );
 
-            if ( ( ( dataPage & 0x0F ) == 1 ) || ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) || ( ( dataPage & 0x0F ) == 4 ) )
+            if ( ( dataPageMod128 == 1 ) || ( dataPageMod128 == 2 ) || ( dataPageMod128 == 3 ) || ( dataPageMod128 == 4 ) )
             {
                 appendOutput( additionalData1 ); //  deltaOperatingTime (1) / manufacturerID (2) / hwVersion (3) // deltaPrevHeartBeatEventTime (4)
-                if ( ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) || ( ( dataPage & 0x0F ) == 4 ) )
+                if ( ( dataPageMod128 == 2 ) || ( dataPageMod128 == 3 ) || ( dataPageMod128 == 4 ) )
                 {
                     appendOutput( additionalData2 ); //  serialNumber (2) / swVersion (3) / manufacturerSpecificData (4)
-                    if ( ( dataPage & 0x0F ) == 3 )
+                    if ( dataPageMod128 == 3 )
                     {
                         appendOutput( additionalData3 ); //  modelNumber (3)
                     }
@@ -722,20 +726,20 @@ void antHRMProcessing::createHRMResultString
             appendOutput( totalHeartBeatCount );
             appendOutput( totalHeartBeatEventTime, 3 );
             appendOutput( dataPage );
-            if ( ( dataPage & 0x0F ) == 1 )
+            if ( dataPageMod128 == 1 )
             {
                 appendOutput( 2 * additionalData1 );                         // operatingTimeSeconds
             }
-            else if ( ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
+            else if ( ( dataPageMod128 == 2 ) || ( dataPageMod128 == 3 ) )
             {
                 appendOutput( additionalData1 );                             //  manufacturerID (2) / hwVersion (3)
                 appendOutput( additionalData2 );                             //  serialNumber (2)   / swVersion (3)
-                if ( ( dataPage & 0x0F ) == 3 )
+                if ( dataPageMod128 == 3 )
                 {
                     appendOutput( additionalData3 );                         //  modelNumber (3)
                 }
             }
-            else if ( ( dataPage & 0x0F ) == 4 )
+            else if ( dataPageMod128 == 4 )
             {
                 appendOutput( additionalDoubleData1, getTimePrecision() );   //  prevHeartBeatEventTime
                 appendOutput( additionalData2 );                             //  manufacturerSpecificData

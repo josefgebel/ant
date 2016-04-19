@@ -84,25 +84,25 @@ unsigned int antCadenceOnlyProcessing::splitFormat137_CAD7A
     unsigned int  nbWords = inWords.split( inputBuffer );
 
     // Convert Version 1.37:
-    //     <sensor_id>  <time_stamp>    <S>   <dataPage>          <deltaEventTime>    <deltaRevCount>   ...
+    //     <sensor_id>  <time_stamp>    <S>   <dataPage>          <deltaEventTime>    <deltaRevolutionCount>   ...
     // to Version 2.0:
-    //     <sensor_id>  <time_stamp>    <S>   <deltaEventTime>    <deltaRevCount>     <dataPage>        ...
+    //     <sensor_id>  <time_stamp>    <S>   <deltaEventTime>    <deltaRevolutionCount>     <dataPage>        ...
 
     if ( nbWords > 5 )
     {
         unsigned int counter = 0;
         std::string  dataPage;
         std::string  deltaEventTime;
-        std::string  deltaRevCount;
+        std::string  deltaRevolutionCount;
 
-        outWords.push_back( inWords[ counter++ ] );       // Device ID
-        outWords.push_back( inWords[ counter++ ] );       // Time Stamp
-        outWords.push_back( inWords[ counter++ ] );       // Semi-cooked Symbol
-        dataPage       = inWords[ counter++ ];            // Data Page
-        deltaEventTime = inWords[ counter++ ];            // Delta Event Time
-        deltaRevCount  = inWords[ counter++ ];            // Delta Revolution Count
+        outWords.push_back( inWords[ counter++ ] );             // Device ID
+        outWords.push_back( inWords[ counter++ ] );             // Time Stamp
+        outWords.push_back( inWords[ counter++ ] );             // Semi-cooked Symbol
+        dataPage             = inWords[ counter++ ];            // Data Page
+        deltaEventTime       = inWords[ counter++ ];            // Delta Event Time
+        deltaRevolutionCount = inWords[ counter++ ];            // Delta Revolution Count
         outWords.push_back( deltaEventTime );
-        outWords.push_back( deltaRevCount );
+        outWords.push_back( deltaRevolutionCount );
         outWords.push_back( dataPage );
         while ( counter < nbWords )
         {
@@ -136,20 +136,20 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 )
 {
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    amDeviceType result                            = OTHER_DEVICE;
-    std::string      sensorID                      = std::string( C_CAD_DEVICE_HEAD ) + deviceIDNo;
-    unsigned int dataPage                          = 0;
-    unsigned int eventTime                         = 0;
-    unsigned int revCount                          = 0;
-    unsigned int deltaRevCount                     = 0;
-    unsigned int deltaEventTime                    = 0;
-    unsigned int additionalData1                   = 0;
-    unsigned int additionalData2                   = 0;
-    unsigned int additionalData3                   = 0;
-    unsigned int rollOver                          = 0;
-    bool         rollOverHappened                  = false;
-    bool         commonPage                        = false;
-    bool         outputPageNo                      = true;
+    amDeviceType result               = OTHER_DEVICE;
+    std::string      sensorID         = std::string( C_CAD_DEVICE_HEAD ) + deviceIDNo;
+    unsigned int dataPage             = 0;
+    unsigned int eventTime            = 0;
+    unsigned int revCount             = 0;
+    unsigned int deltaRevolutionCount = 0;
+    unsigned int deltaEventTime       = 0;
+    unsigned int additionalData1      = 0;
+    unsigned int additionalData2      = 0;
+    unsigned int additionalData3      = 0;
+    unsigned int rollOver             = 0;
+    bool         rollOverHappened     = false;
+    bool         commonPage           = false;
+    bool         outputPageNo         = true;
 
     if ( isRegisteredDevice( sensorID ) )
     {
@@ -189,9 +189,9 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cumulated Wheel Count
-        revCount      = hex( payLoad[ 7 ], payLoad[ 6 ] );
-        rollOver      = 65536;  // 256^2
-        deltaRevCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, revCount );
+        revCount             = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        rollOver             = 65536;  // 256^2
+        deltaRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, revCount );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Cumulative Cadence Revolution Count", payLoad[ 7 ], payLoad[ 6 ], revCount );
@@ -200,7 +200,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
             {
                 sprintf( auxBuffer, " (Rollover [%d] occurred)", rollOver );
             }
-            appendDiagnosticsLine( "Delta Cumulative Cadence Revolution Count", deltaRevCount, auxBuffer );
+            appendDiagnosticsLine( "Delta Cumulative Cadence Revolution Count", deltaRevolutionCount, auxBuffer );
             *auxBuffer = 0;
         }
 
@@ -282,7 +282,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
                 (
                     cadence,
                     dataPage,
-                    deltaRevCount,
+                    deltaRevolutionCount,
                     deltaEventTime,
                     additionalData1,
                     additionalData2,
@@ -295,7 +295,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
             }
             else
             {
-                createCadenceResultString( cadence, dataPage, deltaRevCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
+                createCadenceResultString( cadence, dataPage, deltaRevolutionCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
             }
             setCadence( sensorID, cadence );
         }
@@ -332,18 +332,18 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
     amDeviceType result = OTHER_DEVICE;
     if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
     {
-        unsigned int  nbWords         = 0;
-        unsigned int  counter         = 0;
-        unsigned int  startCounter    = 0;
-        unsigned int  dataPage        = 0;
-        unsigned int  deltaRevCount   = 0;
-        unsigned int  deltaEventTime  = 0;
-        unsigned int  additionalData1 = 0;
-        unsigned int  additionalData2 = 0;
-        unsigned int  additionalData3 = 0;
-        bool          commonPage      = false;
-        bool          outputPageNo    = true;
-        std::string   curVersion      = b2tVersion;
+        unsigned int  nbWords              = 0;
+        unsigned int  counter              = 0;
+        unsigned int  startCounter         = 0;
+        unsigned int  dataPage             = 0;
+        unsigned int  deltaRevolutionCount = 0;
+        unsigned int  deltaEventTime       = 0;
+        unsigned int  additionalData1      = 0;
+        unsigned int  additionalData2      = 0;
+        unsigned int  additionalData3      = 0;
+        bool          commonPage           = false;
+        bool          outputPageNo         = true;
+        std::string   curVersion           = b2tVersion;
         std::string   sensorID;
         std::string   semiCookedString;
         std::string   timeStampBuffer;
@@ -371,14 +371,14 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
             }
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isCadenceOnlySensor( sensorID ) )
             {
-                startCounter   = counter;
-                deltaRevCount  = ( unsigned int ) strToInt( words[ counter++ ] );                         // 3
-                deltaEventTime = ( unsigned int ) strToInt( words[ counter++ ] );                         // 4
-                dataPage       = ( unsigned int ) strToInt( words[ counter++ ] );                         // 5
+                startCounter         = counter;
+                deltaRevolutionCount = ( unsigned int ) strToInt( words[ counter++ ] );                         // 3
+                deltaEventTime       = ( unsigned int ) strToInt( words[ counter++ ] );                         // 4
+                dataPage             = ( unsigned int ) strToInt( words[ counter++ ] );                         // 5
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
-                    appendDiagnosticsLine( "Delta Revolution Count", deltaRevCount );
+                    appendDiagnosticsLine( "Delta Revolution Count", deltaRevolutionCount );
                     appendDiagnosticsLine( "Delta Event Time", deltaEventTime );
                 }
 
@@ -442,7 +442,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter++ ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );
@@ -470,7 +470,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
                     (
                         cadence,
                         dataPage,
-                        deltaRevCount,
+                        deltaRevolutionCount,
                         deltaEventTime,
                         additionalData1,
                         additionalData2,
@@ -483,7 +483,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
                 }
                 else
                 {
-                    createCadenceResultString( cadence, dataPage, deltaRevCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
+                    createCadenceResultString( cadence, dataPage, deltaRevolutionCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
                 }
                 setCadence( sensorID, cadence );
             }
@@ -707,8 +707,8 @@ void antCadenceOnlyProcessing::createCadenceResultString
     {
         if ( semiCookedOut )
         {
-            appendOutput( deltaEventTime );
             appendOutput( deltaRevolutionCount );
+            appendOutput( deltaEventTime );
             appendOutput( dataPage );
 
             if ( ( ( dataPage & 0x0F ) == 1 ) || ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
@@ -769,8 +769,8 @@ void antCadenceOnlyProcessing::createCadenceResultString
     {
         if ( semiCookedOut )
         {
-            appendJSONItem( "delta event time",       deltaEventTime );
             appendJSONItem( "delta revolution count", deltaRevolutionCount );
+            appendJSONItem( "delta event time",       deltaEventTime );
         }
         else
         {
@@ -810,8 +810,8 @@ void antCadenceOnlyProcessing::createCadenceResultString
     {
         if ( semiCookedOut )
         {
-            appendOutput( deltaEventTime );
             appendOutput( deltaRevolutionCount );
+            appendOutput( deltaEventTime );
             appendOutput( dataPage );
             if ( ( ( dataPage & 0x0F ) == 1 ) || ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
             {

@@ -826,13 +826,12 @@ bool antPowerProcessing::createB01ResultString
                 // Take care of old format first...
                 if ( nbWords > 5 )
                 {
-                    result = POWER_METER;
+                    result = true;
                     if ( nbWords > 6 )
                     {
                         if ( isInteger( words[ counter ] ) )
                         {
                             additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                            counter++;
                             additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );
                         }
                         else
@@ -859,7 +858,7 @@ bool antPowerProcessing::createB01ResultString
                 // Old format == New format
                 if ( nbWords > 5 )
                 {
-                    result         = POWER_METER;
+                    result          = true;
                     additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
                     additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 5
                     if ( diagnostics )
@@ -871,13 +870,13 @@ bool antPowerProcessing::createB01ResultString
             }
             else if ( calibrationID == C_CALIBRATION_REQUEST_MANUAL_ZERO_ID )                   // 170 = 0xAA
             {
-                result = POWER_METER;
+                result = true;
             }
             else if ( calibrationID == C_CALIBRATION_REQUEST_AUTO_ZERO_ID )                     // 171 = 0xAB
             {
                 if ( nbWords > 4 )
                 {
-                    result          = POWER_METER;
+                    result          = true;
                     additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
                     if ( diagnostics )
                     {
@@ -890,7 +889,7 @@ bool antPowerProcessing::createB01ResultString
             {
                 if ( nbWords > 5 )
                 {
-                    result          = POWER_METER;
+                    result          = true;
                     additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
                     additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 5
                     if ( diagnostics )
@@ -905,7 +904,7 @@ bool antPowerProcessing::createB01ResultString
                       ( calibrationID == C_CUSTOM_CALIBRATION_PARAMETER_UPDATE_ID ) ||              // 188 = 0xBC
                       ( calibrationID == C_CUSTOM_CALIBRATION_PARAMETER_UPDATE_RESPONSE_ID ) )      // 189 = 0xBD
             {
-                result = POWER_METER;
+                result = true;
             }
         }
     }
@@ -914,7 +913,7 @@ bool antPowerProcessing::createB01ResultString
     {
         if ( words.size() > counter )
         {
-            curVersion = words[ counter ];
+            curVersion = words.back();
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Version", curVersion );
@@ -1154,7 +1153,6 @@ amDeviceType antPowerProcessing::processPowerMeterB02SemiCooked
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
-        amDeviceType  result       = OTHER_DEVICE;
         bool          resultCreate = false;
 
         if ( nbWords > 3 )
@@ -3091,7 +3089,6 @@ amDeviceType antPowerProcessing::processPowerMeterB46SemiCooked
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
-        amDeviceType  result       = OTHER_DEVICE;
         bool          resultCreate = false;
 
         if ( nbWords > 3 )
@@ -3164,13 +3161,13 @@ bool antPowerProcessing::createB50ResultString
                 appendDiagnosticsLine( "Hardware Revision", hardwareRevision );
                 appendDiagnosticsLine( "Manufacturer ID", manufacturerID );
             }
+            createOutputHeader( sensorID, timeStampBuffer );
             createCommonResultStringPage80( sensorID, outputPageNo, manufacturerID, hardwareRevision, modelNumber );
         }
     }
 
     if ( result )
     {
-        createOutputHeader( sensorID, timeStampBuffer );
         if ( nbWords > counter )
         {
             curVersion = words[ counter++ ];                          //  6
@@ -3306,13 +3303,13 @@ bool antPowerProcessing::createB51ResultString
                 appendDiagnosticsLine( "Serial Number", serialNumber );
                 appendDiagnosticsLine( "Software Revision", softwareRevision );
             }
+            createOutputHeader( sensorID, timeStampBuffer );
             createCommonResultStringPage81( sensorID, outputPageNo, serialNumber, softwareRevision );
         }
     }
 
     if ( result )
     {
-        createOutputHeader( sensorID, timeStampBuffer );
         if ( nbWords > counter )
         {
             curVersion = words[ counter++ ];                          //  5
@@ -3914,7 +3911,7 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
         std::string   timeStampBuffer;
         std::string   semiCookedString;
 
-        if ( nbWords > 5 )
+        if ( nbWords > 4 )
         {
             sensorID         = words[ counter++ ];                                      //  0
             timeStampBuffer  = words[ counter++ ];                                      //  1
@@ -4034,6 +4031,7 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
                              break;
                  }
              }
+else std::cerr << "NO: " << words << std::endl;
         }
     }
     return result;

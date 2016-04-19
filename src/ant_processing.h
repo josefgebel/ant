@@ -9,7 +9,7 @@ class antProcessing
 
     private:
 
-        int readSemiCookedSingleLineFromStream( std::istream &inStream );
+        int readSemiCookedSingleLineFromStream( std::istream &inStream,   int outSocketID, struct sockaddr_in &outGroupSocket );
         int readAntSingleLineFromStream       ( std::istream &inStream,   int outSocketID, struct sockaddr_in &outGroupSocket );
         int readAntFromStream   ( std::istream &inStream,                 int outSocketID, struct sockaddr_in &outGroupSocket );
         int ant2txtLine         ( const unsigned char *line, int nbBytes, int outSocketID, struct sockaddr_in &outGroupSocket );

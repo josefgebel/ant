@@ -224,8 +224,8 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
             }
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isEnvironmentSensor( sensorID ) )
             {
-                startCounter = counter;
                 dataPage     = ( unsigned int ) strToInt( words[ counter++ ] );    // 3
+                startCounter = counter;
 
                 switch ( dataPage & 0x0F )
                 {
@@ -265,8 +265,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
                                  }
                              }
                              break;
-                    default: counter    = startCounter;
-                             commonPage = true;
+                    default: commonPage = true;
                              result     = ENVIRONMENT_SENSOR;
                              break;
                 }
@@ -277,7 +276,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );

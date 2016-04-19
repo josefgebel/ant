@@ -272,7 +272,7 @@ amDeviceType antAllProcessing::processSensorSemiCooked
                       }
                       break;
             case 'P': // Power Meter or Power Meter Related Message
-                      if ( isPowerSensor( inputBuffer ) )
+                      if ( isPowerMeterRelated( inputBuffer ) )
                       {
                           result = antPowerProcessing::processSensorSemiCooked( inputBuffer );
                       }

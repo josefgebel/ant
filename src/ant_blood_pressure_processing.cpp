@@ -181,7 +181,7 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
         {
             if ( nbWords > counter )
             {
-                curVersion = words[ counter ];
+                curVersion = words.back();
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Version", curVersion );

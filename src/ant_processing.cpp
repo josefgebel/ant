@@ -1050,12 +1050,22 @@ bool antProcessing::createCommonResultStringPage67
 {
     // For now semi-cooked and fully cooked output are the same
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 67;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 67 );
-        }
         appendJSONItem( "status byte 1",   value1 );
         appendJSONItem( "status byte 2",   value2 );
         appendJSONItem( "authentication",  value3 );
@@ -1064,10 +1074,6 @@ bool antProcessing::createCommonResultStringPage67
     }
     else
     {
-        if ( outputPage )
-        {
-            appendOutput( 67 );
-        }
         appendOutput( value1 );
         appendOutput( value2 );
         appendOutput( value3 );
@@ -1092,12 +1098,22 @@ bool antProcessing::createCommonResultStringPage68
 {
     // For now semi-cooked and fully cooked output are the same
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 68;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 68 );
-        }
         appendJSONItem( "command/response id", value1 );
         appendJSONItem( "channel frequency",   value2 );
         appendJSONItem( "channel period",      value3 );
@@ -1105,10 +1121,6 @@ bool antProcessing::createCommonResultStringPage68
     }
     else
     {
-        if ( outputPage )
-        {
-            appendOutput( 68 );
-        }
         appendOutput( value1 );
         appendOutput( value2 );
         appendOutput( value3 );
@@ -1132,13 +1144,22 @@ bool antProcessing::createCommonResultStringPage70
 )
 {
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 70;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 70 );
-        }
-
         if ( !semiCookedOut && ( descriptor1 == 255 ) )
         {
             appendJSONItem( "descriptor byte 1 page", C_NONE_ID );
@@ -1186,10 +1207,6 @@ bool antProcessing::createCommonResultStringPage70
     {
         // Power Meters the page number is already identified by the device type (as PWRB46 - 46 = 0x70)
 
-        if ( outputPage )
-        {
-            appendOutput( 70 );
-        }
         if ( semiCookedOut )
         {
             appendOutput( descriptor1 );
@@ -1257,12 +1274,22 @@ bool antProcessing::createCommonResultStringPage80
 )
 {
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 80;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 80 );
-        }
         appendJSONItem( C_MANUFACTURER_JSON,      manufacturerID );
         appendJSONItem( C_HARDWARE_REVISION_JSON, hardwareRevision );
         appendJSONItem( C_MODEL_NUMBER_JSON,      modelNumber );
@@ -1270,10 +1297,6 @@ bool antProcessing::createCommonResultStringPage80
     else
     {
         // Power Meters the page number is already identified by the device type (as PWRB50 - 50 = 0x80)
-        if ( outputPage )
-        {
-            appendOutput( 80 );
-        }
         appendOutput( manufacturerID );
         appendOutput( hardwareRevision );
         appendOutput( modelNumber );
@@ -1293,13 +1316,23 @@ bool antProcessing::createCommonResultStringPage81
 )
 {
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 81;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
         // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 81 );
-        }
         if ( !semiCookedOut && ( int ( serialNumber ) == -1 ) )
         {
             appendJSONItem( C_SERIAL_NUMBER_JSON, C_NONE_ID );
@@ -1313,10 +1346,6 @@ bool antProcessing::createCommonResultStringPage81
     else
     {
         // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
-        if ( outputPage )
-        {
-            appendOutput( 81 );
-        }
         if ( semiCookedOut || ( ( int ) serialNumber >= 0 ) )
         {
             appendOutput( serialNumber );
@@ -1349,14 +1378,14 @@ bool antProcessing::createCommonResultStringPage82
 
     if ( outputPage )
     {
+        int dataPage = 82;
         if ( outputAsJSON )
         {
-            // Power Meters the page number is already identified by the device type (as PWRB52 - 52 = 0x82)
-            appendJSONItem( C_DATA_PAGE_JSON, 82 );
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
         }
         else
         {
-            appendOutput( 82 );
+            appendOutput( dataPage );
         }
     }
 
@@ -1444,6 +1473,19 @@ bool antProcessing::createCommonResultStringPage83
     char dateString[ C_SMALL_BUFFER_SIZE ] = { 0 };
     char wDayString[ C_SMALL_BUFFER_SIZE ] = { 0 };
 
+    if ( outputPage )
+    {
+        int dataPage = 83;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( !semiCookedOut )
     {
         int year2000 = year + 2000;
@@ -1472,10 +1514,6 @@ bool antProcessing::createCommonResultStringPage83
 
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 83 );
-        }
         if ( semiCookedOut )
         {
             appendJSONItem( "year", year );
@@ -1495,10 +1533,6 @@ bool antProcessing::createCommonResultStringPage83
     }
     else
     {
-        if ( outputPage )
-        {
-            appendOutput( 83 );
-        }
         if ( semiCookedOut )
         {
             appendOutput( seconds );
@@ -1536,12 +1570,22 @@ bool antProcessing::createCommonResultStringPage84
 )
 {
     bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 84;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
     if ( outputAsJSON )
     {
-        if ( outputPage )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, 84 );
-        }
         if ( semiCookedOut )
         {
             appendJSONItem( "sub page 1",   subPage1 );
@@ -1557,10 +1601,6 @@ bool antProcessing::createCommonResultStringPage84
     }
     else
     {
-        if ( outputPage )
-        {
-            appendOutput( 83 );
-        }
         if ( semiCookedOut )
         {
             appendOutput( subPage1 );
@@ -1885,7 +1925,6 @@ bool antProcessing::processCommonPages
                  voltage256         = uChar2UInt( payLoad[ 6 ] ) + ( voltageInt << 8 );
                  status             = ( payLoad[ 7 ] >> 4 ) & 0x07;
                  resolution         = ( payLoad[ 7 ] & 0x80 ) ? 16 : 2;
-
                  if ( diagnostics )
                  {
                      char   auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -1959,8 +1998,9 @@ bool antProcessing::processCommonPagesSemiCooked
     bool                 outputPage
 )
 {
-    bool         result             = false;
-    unsigned int nbWords            = words.size();
+    bool         result  = false;
+    unsigned int nbWords = words.size();
+
     if ( nbWords > 5 )   // 5 is currently the smallest
     {
         bool              dataPageOK         = false;
@@ -2157,8 +2197,8 @@ bool antProcessing::processCommonPagesSemiCooked
                      if ( nbWords > 7 )
                      {
                          subPage1   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         subPage2   = ( unsigned int ) strToInt( words[ counter++ ] );
                          dataField1 = ( unsigned int ) strToInt( words[ counter++ ] );
+                         subPage2   = ( unsigned int ) strToInt( words[ counter++ ] );
                          dataField2 = ( unsigned int ) strToInt( words[ counter++ ] );
                          if ( diagnostics )
                          {
@@ -2361,7 +2401,7 @@ int antProcessing::readAntFromStream
         resetDiagnosticsBuffer();
         if ( semiCookedIn )
         {
-            errorCode = readSemiCookedSingleLineFromStream( inStream );
+            errorCode = readSemiCookedSingleLineFromStream( inStream, outSocketID, outGroupSocket );
         }
         else
         {
@@ -2374,7 +2414,9 @@ int antProcessing::readAntFromStream
 
 int antProcessing::readSemiCookedSingleLineFromStream
 (
-    std::istream &inStream
+    std::istream       &inStream,
+    int                 outSocketID,
+    struct sockaddr_in &outGroupSocket
 )
 {
     char line[ C_BUFFER_SIZE ];
@@ -2392,6 +2434,7 @@ int antProcessing::readSemiCookedSingleLineFromStream
         {
             resultDevice = processSensorSemiCooked( line );
         }
+        errorCode = outputData( outSocketID, outGroupSocket );
     }
 
     if ( inStream.eof() || inStream.fail() )
