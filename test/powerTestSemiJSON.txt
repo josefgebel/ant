@@ -68490,7 +68490,7 @@
    "sensor id": "PWRB01_5552",
    "timestamp": 1728.100000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -68499,7 +68499,7 @@
    "sensor id": "PWRB01_5552",
    "timestamp": 1728.200000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -72773,7 +72773,7 @@
    "sensor id": "PWRB01_5552",
    "timestamp": 1781.700000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -74091,7 +74091,7 @@
    "sensor id": "PWRB01_5552",
    "timestamp": 1795.200000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -75089,7 +75089,7 @@
    "sensor id": "PWRB01_5552",
    "timestamp": 1806.400000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -79420,7 +79420,7 @@
    "sensor id": "PWRB01_28186",
    "timestamp": 1877.700000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }
@@ -79473,7 +79473,7 @@
    "sensor id": "PWRB01_28186",
    "timestamp": 1878.900000,
    "semi-cooked": true,
-   "calibration id": "170",
+   "calibration id": 170,
    "program name": "power_ant2txt",
    "version": "1.0.0"
 }

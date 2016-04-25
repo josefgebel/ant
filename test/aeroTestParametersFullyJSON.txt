@@ -1,0 +1,4797 @@
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.830000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 205.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.485000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.485000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.375000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.375000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.470000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.470000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.970000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 206.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.970000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.375000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.375000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.745000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.745000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.215000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.255000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.255000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.370000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 207.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.370000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.165000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.165000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.030000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.030000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.300000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 208.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.300000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.415000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.415000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.415000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.415000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 209.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.085000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.780000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.780000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.495000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.495000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.525000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.525000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.210000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.210000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 210.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.160000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.845000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.845000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.460000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.460000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.925000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.925000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.685000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 211.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.145000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.145000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.340000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.340000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 212.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.265000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.265000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.075000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.075000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.015000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.015000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.185000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.185000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 213.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.390000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.390000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.560000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.445000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.445000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.885000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.945000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 214.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.215000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.475000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.475000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.360000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.360000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.845000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.400000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.400000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.685000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.685000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 215.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.280000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.280000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.265000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.280000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.120000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.120000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 216.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.340000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.340000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.395000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.505000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.515000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.515000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.630000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.630000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.560000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.330000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 217.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.330000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.200000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.200000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.545000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.545000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.400000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 218.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.345000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.345000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.135000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.135000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.395000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.395000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.575000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.575000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 219.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.860000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.860000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.170000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.170000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.185000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.185000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.105000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.105000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 220.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.985000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.985000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.925000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.925000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.285000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.520000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.670000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 221.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.670000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.455000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.455000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.210000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.155000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.155000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.595000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.595000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.425000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 222.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.425000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.495000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.495000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.470000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.815000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.815000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 223.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.880000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.880000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.625000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.625000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.805000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.805000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.015000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.015000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.105000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.200000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 224.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.120000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.030000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.030000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.770000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.770000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.425000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.425000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 225.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.480000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.660000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.660000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.665000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.665000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.705000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.705000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.570000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.570000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.390000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 226.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.390000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.255000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.255000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.110000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.110000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.615000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.615000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.965000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 227.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.410000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.410000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.465000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.465000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.335000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.765000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 228.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.765000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.365000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.845000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.845000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.275000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.810000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 229.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.115000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.080000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.080000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.130000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.130000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.065000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.065000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.045000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.045000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.850000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 230.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.850000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.410000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.410000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.720000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 231.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.720000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.690000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.690000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.685000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.685000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.560000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.560000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.490000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 232.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.580000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.580000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.175000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.175000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.985000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.985000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 233.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.245000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.430000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 12.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.780000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.780000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.345000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 11.345000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.860000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.860000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 234.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 10.205000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 9.555000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.775000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 8.775000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.010000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 7.010000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 6.105000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.085000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 5.085000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 235.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 4.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.920000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.875000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.875000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.740000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.740000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.320000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.320000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 236.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.535000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -2.585000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.695000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.800000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.800000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.660000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.660000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.470000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 237.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.470000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.275000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -9.275000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.000000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.000000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.160000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.160000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 238.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.975000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.265000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.265000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.315000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.315000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -12.090000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -11.350000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 239.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.215000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -10.215000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -8.790000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.940000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.940000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.025000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -7.025000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.050000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -6.050000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 240.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.100000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -5.100000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.035000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -4.035000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.010000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -3.010000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.815000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.600000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -1.815000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.700000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.755000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.800000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": -0.755000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 241.900000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.380000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.000000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 0.380000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.100000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 1.440000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.200000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.300000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 2.645000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.400000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.675000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "AERO_2999",
+   "timestamp": 242.500000,
+   "semi-cooked": false,
+   "air speed": nan,
+   "yaw angle": 3.675000,
+   "calibration air density": 0.000000,
+   "air speed multiplier": 0.000000,
+   "current air density": 0.000000,
+   "program name": "aero_ant2txt",
+   "version": "1.0.0"
+}
+

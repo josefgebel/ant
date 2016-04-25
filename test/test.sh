@@ -8,12 +8,16 @@ DATA_DIRECTORY=test
 SEMICOOKED_OUT=0
 SEMICOOKED_IN=0
 VERBOSE=0
-JSON=
 JSON_ARG=
+JSON=
 DEVICE=ALL
 RUN=1
 TEST_ALL=0
 MAX_COUNTER=1
+DEVICE_FILE_ARG=
+DEVICE_FILE="${DATA_DIRECTORY}/deviceIDs"
+PARAMETERS=""
+HAS_PARAMETERS=
 
 ${DELETE} "${DATA_DIRECTORY}/*.txt.tmp" "${DATA_DIRECTORY}/*.txt.diff" 2>/dev/null
 
@@ -22,6 +26,9 @@ do
 	case $1 in  
 		-A | A)
 			TEST_ALL=1
+			;;
+		-d | d)
+			DEVICE_FILE_ARG=" -d ${DEVICE_FILE}"
 			;;
 		-D | D)
 			shift
@@ -75,9 +82,11 @@ if [ "${RUN}" = "1" ]; then
 	if [ "${DEVICE}" = "ALL" ]; then
 		EXECUTABLE=bridge2txt
 		OUTPUT_FILE_ROOT=allTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "AERO" ]; then
 		EXECUTABLE=aero_ant2txt
 		OUTPUT_FILE_ROOT=aeroTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "AUDIO" ]; then
 		EXECUTABLE=audio_ant2txt
 		OUTPUT_FILE_ROOT=audioTest
@@ -87,6 +96,7 @@ if [ "${RUN}" = "1" ]; then
 	elif [ "${DEVICE}" = "CAD" ]; then
 		EXECUTABLE=cadence_only_ant2txt
 		OUTPUT_FILE_ROOT=cadTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "ENV" ]; then
 		EXECUTABLE=environment_ant2txt
 		OUTPUT_FILE_ROOT=envTest
@@ -99,12 +109,15 @@ if [ "${RUN}" = "1" ]; then
 	elif [ "${DEVICE}" = "POWER" ]; then
 		EXECUTABLE=power_ant2txt
 		OUTPUT_FILE_ROOT=powerTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "SPB7" ]; then
 		EXECUTABLE=speed_only_ant2txt
 		OUTPUT_FILE_ROOT=speedOnlyTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "SPCAD" ]; then
 		EXECUTABLE=spcad_ant2txt
 		OUTPUT_FILE_ROOT=spcadTest
+		HAS_PARAMETERS=1
 	elif [ "${DEVICE}" = "STRIDE" ]; then
 		EXECUTABLE=stride_speed_dist_ant2txt
 		OUTPUT_FILE_ROOT=strideTest
@@ -118,44 +131,60 @@ if [ "${RUN}" = "1" ]; then
 fi
 
 if [ "${TEST_ALL}" = "1" ]; then
-	MAX_COUNTER=6
+	MAX_COUNTER=10
 	SEMI_ARG=
-	JSON=
+	DEVICE_FILE_ARG=
+	JSON_ARG=
 fi
 
 if [ "${RUN}" = "1" ]; then
 
 	while [ "$COUNTER" != "$MAX_COUNTER" ]; do
 
-		if [ "${SEMI_ARG}" = " -s" ]; then
-			INPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Semi.txt"
-			OUTPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.txt"
-			OUTPUT_FILE_TMP="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.tmp"
-			OUTPUT_FILE_DIFF="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.diff"
-			TEST_NAME="Semi-In"
-		elif [ "${SEMI_ARG}" = " -S" ]; then
+		if [ "${DEVICE_FILE_ARG}" = "" ]; then
+			PARAMETERS=""
+		else
+			PARAMETERS="Parameter"
+		fi
+
+		if [ "${JSON_ARG}" = "" ]; then
+			JSON=""
+		else
+			JSON="JSON"
+		fi
+
+		if [ "${SEMI_ARG}" = " -S" ]; then
 			INPUT_FILE="${DATA_DIRECTORY}/${ANT_FILE}"
 			OUTPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Semi${JSON}.txt"
 			OUTPUT_FILE_TMP="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Semi${JSON}.tmp"
 			OUTPUT_FILE_DIFF="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Semi${JSON}.diff"
 			TEST_NAME="Semi-Out"
+		elif [ "${SEMI_ARG}" = " -s" ]; then
+			INPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Semi.txt"
+			OUTPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.txt"
+			OUTPUT_FILE_TMP="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.tmp"
+			OUTPUT_FILE_DIFF="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.diff"
+			TEST_NAME="Semi-In"
 		else
 			INPUT_FILE="${DATA_DIRECTORY}/${ANT_FILE}"
-			OUTPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.txt"
-			OUTPUT_FILE_TMP="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.tmp"
-			OUTPUT_FILE_DIFF="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}Fully${JSON}.diff"
+			OUTPUT_FILE="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.txt"
+			OUTPUT_FILE_TMP="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.tmp"
+			OUTPUT_FILE_DIFF="${DATA_DIRECTORY}/${OUTPUT_FILE_ROOT}${PARAMETERS}Fully${JSON}.diff"
 			TEST_NAME="Fully"
 		fi
 
-		if [ "${JSON}" = "JSON" ]; then
-			TEST_NAME="${TEST_NAME} JSON"
+		if [ "${PARAMETERS}" != "" ]; then
+			TEST_NAME="${TEST_NAME}-${PARAMETERS}"
+		fi
+		if [ "${JSON}" != "" ]; then
+			TEST_NAME="${TEST_NAME}-${JSON}"
 		fi
 
 		if [ "${VERBOSE}" = "1" ] ; then
-			echo "bin/${EXECUTABLE}${SEMI_ARG}${JSON_ARG} -x -f \"${INPUT_FILE}\" > \"${OUTPUT_FILE_TMP}\""
+			echo "bin/${EXECUTABLE}${SEMI_ARG}${JSON_ARG}${DEVICE_FILE_ARG} -x -f \"${INPUT_FILE}\" > \"${OUTPUT_FILE_TMP}\""
 			echo "${DIFF} \"${OUTPUT_FILE}\" \"${OUTPUT_FILE_TMP}\""
 		else
-			bin/${EXECUTABLE}${SEMI_ARG}${JSON_ARG} -x -f "${INPUT_FILE}" > "${OUTPUT_FILE_TMP}"
+			bin/${EXECUTABLE}${SEMI_ARG}${JSON_ARG}${DEVICE_FILE_ARG} -x -f "${INPUT_FILE}" > "${OUTPUT_FILE_TMP}"
 			${DIFF} "${OUTPUT_FILE}" "${OUTPUT_FILE_TMP}" > "${OUTPUT_FILE_DIFF}"
 
 			if [ "$?" = "0" ]; then
@@ -163,7 +192,7 @@ if [ "${RUN}" = "1" ]; then
 				${DELETE} "${OUTPUT_FILE_TMP}"
 				${DELETE} "${OUTPUT_FILE_DIFF}"
 			else
-				RESULT="Fail. See files \"${OUTPUT_FILE}\", \"${OUTPUT_FILE_TMP}\" and \"${OUTPUT_FILE_DIFF}\"."
+				RESULT="Fail. See files \"${OUTPUT_FILE}\" \"${OUTPUT_FILE_TMP}\" \"${OUTPUT_FILE_DIFF}\""
 			fi
 
 			echo "Test ${TEST_NAME} ${DEVICE} Result: ${RESULT}"
@@ -172,16 +201,44 @@ if [ "${RUN}" = "1" ]; then
 		let COUNTER=COUNTER+1
 		if [ "$COUNTER" = 1 ]; then
 			SEMI_ARG=" -s"
+			DEVICE_FILE_ARG=
+			JSON_ARG=
 		elif [ "$COUNTER" = 2 ]; then
 			SEMI_ARG=" -S"
+			DEVICE_FILE_ARG=
+			JSON_ARG=
 		elif [ "$COUNTER" = 3 ]; then
 			SEMI_ARG=
-			JSON="JSON"
+			DEVICE_FILE_ARG=
 			JSON_ARG=" -J"
 		elif [ "$COUNTER" = 4 ]; then
 			SEMI_ARG=" -s"
+			DEVICE_FILE_ARG=
+			JSON_ARG=" -J"
 		elif [ "$COUNTER" = 5 ]; then
 			SEMI_ARG=" -S"
+			DEVICE_FILE_ARG=
+			JSON_ARG=" -J"
+		elif [ "$COUNTER" = 6 ]; then
+			if [ "${HAS_PARAMETERS}" = "1" ]; then
+				SEMI_ARG=
+				DEVICE_FILE_ARG=" -d ${DEVICE_FILE}"
+				JSON_ARG=
+			else
+				let COUNTER=MAX_COUNTER+1
+			fi
+		elif [ "$COUNTER" = 7 ]; then
+			SEMI_ARG=" -s"
+			DEVICE_FILE_ARG=" -d ${DEVICE_FILE}"
+			JSON_ARG=
+		elif [ "$COUNTER" = 8 ]; then
+			SEMI_ARG=
+			DEVICE_FILE_ARG=" -d ${DEVICE_FILE}"
+			JSON_ARG=" -J"
+		elif [ "$COUNTER" = 9 ]; then
+			SEMI_ARG=" -s"
+			DEVICE_FILE_ARG=" -d ${DEVICE_FILE}"
+			JSON_ARG=" -J"
 		fi
 	done
 fi

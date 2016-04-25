@@ -1,0 +1,8381 @@
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 141.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 142.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 143.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 144.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 145.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 146.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 130,
+   "manufacturer id": 123,
+   "serial number": 12345,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 130,
+   "manufacturer id": 123,
+   "serial number": 12345,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 147.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 148.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 149.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 150.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 151.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 152.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 153.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 154.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 155.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 156.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 157.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 158.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 159.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 3,
+   "hardware revision": 1,
+   "software revision": 1,
+   "model number": 1,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 3,
+   "hardware revision": 1,
+   "software revision": 1,
+   "model number": 1,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 160.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 161.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 162.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 163.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 164.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 165.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 166.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 167.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 168.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 169.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 170.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 171.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 1,
+   "operating time": 48,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 1,
+   "operating time": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 172.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 173.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 174.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 175.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 176.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 177.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 178.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 179.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 180.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 181.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 182.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 183.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 184.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 2,
+   "manufacturer id": 123,
+   "serial number": 12345,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 2,
+   "manufacturer id": 123,
+   "serial number": 12345,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 185.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 186.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 187.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 188.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 189.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 190.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 191.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 192.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 193.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 194.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 195.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 196.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 3,
+   "hardware revision": 1,
+   "software revision": 1,
+   "model number": 1,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 3,
+   "hardware revision": 1,
+   "software revision": 1,
+   "model number": 1,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 197.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 198.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 199.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 200.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 201.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 202.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 203.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.700000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.800000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 128,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 204.900000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.000000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.100000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.200000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.300000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.400000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.500000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+
+{
+   "sensor id": "CAD7A_100",
+   "timestamp": 205.600000,
+   "semi-cooked": false,
+   "cadence": 90,
+   "speed": 0.000000,
+   "wheel circumference": 0.000000,
+   "gear ratio": 0.000000,
+   "data page": 0,
+   "program name": "cadence_only_ant2txt",
+   "version": "1.0.0"
+}
+

@@ -1,0 +1,21 @@
+
+
+bin/readAntFiles -n 1 -w 0 -b | grep AERO
+bin/readAntFiles -n 7 -w 0 -b | grep AERO
+bin/readAntFiles -n 58 -w 0 -b | grep AERO
+
+AERO  1 AERO_2999
+     59 AERO_2114
+
+HRM:  4: 100
+     6,7: 237
+      8: 374
+     29
+
+bin/readAntFiles -n 33 -w 0 -b >>env33
+bin/readAntFiles -n 34 -w 0 -b >>env34
+bin/readAntFiles -n 35 -w 0 -b >>env35
+bin/readAntFiles -n 40 -w 0 -b >>env40
+bin/readAntFiles -n 41 -w 0 -b >>env41
+bin/readAntFiles -n 56 -w 0 -b >>env56
+bin/readAntFiles -n 57 -w 0 -b >>env57
