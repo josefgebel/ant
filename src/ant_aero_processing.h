@@ -1,10 +1,7 @@
 #ifndef __ANT_AERO_PROCESSING_H__
 #define __ANT_AERO_PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
-
-class amSplitString;
 
 class antAeroProcessing : virtual public antProcessing
 {
@@ -18,7 +15,7 @@ class antAeroProcessing : virtual public antProcessing
         double computeYawAngle( int yawAngleSignedRaw );
         double computeAirSpeed( unsigned int airSpeedUnsignedRaw, double calibrationRho, double airSpeedMultiplier, double currentRho );
         double computeAirSpeed( int airSpeedSignedRaw, double calibrationRho, double airSpeedMultiplier, double currentRho );
-        double getCorrectionFactor( const std::string &sensorID );
+        double getCorrectionFactor( const amString &sensorID );
 
 
     protected:
@@ -28,21 +25,21 @@ class antAeroProcessing : virtual public antProcessing
         double airSpeedMultiplierDefault;
         double calibrationRhoDefault;
 
-        std::map<std::string, double> airSpeedMultiplierTable;
-        std::map<std::string, double> rhoCalibrationTable;
+        std::map<amString, double> airSpeedMultiplierTable;
+        std::map<amString, double> rhoCalibrationTable;
 
         double convertAirspeed( int );
         double convertYaw( int, int );
 
-        amDeviceType processAeroSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processAeroSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processAeroSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processAeroSensorSemiCooked( const amString &inputBuffer );
 
-        double getCalibrationRho( const std::string &sensorID );
-        double getAirSpeedMultiplier( const std::string &sensorID );
+        double getCalibrationRho( const amString &sensorID );
+        double getAirSpeedMultiplier( const amString &sensorID );
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendAeroSensor( const std::string &, double = C_CALIBRATION_RHO_DEFAULT, double = C_AIR_SPEED_MULTIPLIER_DEFAULT );
+        bool appendAeroSensor( const amString &, double = C_CALIBRATION_RHO_DEFAULT, double = C_AIR_SPEED_MULTIPLIER_DEFAULT );
 
 
     public:
@@ -50,18 +47,18 @@ class antAeroProcessing : virtual public antProcessing
         antAeroProcessing();
         ~antAeroProcessing() {}
 
-        bool isAeroSensor( const std::string &deviceID );
+        bool isAeroSensor( const amString &deviceID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         void setRho( double value );
         void setRhoDefault( double value ) { rhoDefault = value; }
 
-        bool setCalibrationRho( const std::string &sensorID, double value );
+        bool setCalibrationRho( const amString &sensorID, double value );
         void setCalibrationRhoDefault( double value ) { calibrationRhoDefault = value; }
 
-        bool setAirSpeedMultiplier( const std::string &sensorID, double value );
+        bool setAirSpeedMultiplier( const amString &sensorID, double value );
         void setAirSpeedMultiplierDefault( double value ) { airSpeedMultiplierDefault = value; }
 
         virtual void reset( void );

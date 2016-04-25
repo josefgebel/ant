@@ -1,13 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_speed_only_processing.h"
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -30,24 +23,25 @@ antSpeedOnlyProcessing::antSpeedOnlyProcessing
     antSpeedProcessing()
 {
     reset();
+    currentDeviceType = "SPB7";
     setMaxZeroTime( C_MAX_ZERO_TIME_SPEED );
 }
 
 bool antSpeedOnlyProcessing::isSpeedOnlySensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_SPEED_DEVICE_HEAD ) || startsWith( deviceID, C_SPEED_OBSOLETE_HEAD );
+    bool result = deviceID.startsWith( C_SPEED_DEVICE_HEAD ) || deviceID.startsWith( C_SPEED_OBSOLETE_HEAD );
     return result;
 }
 
 void antSpeedOnlyProcessing::replaceObsoleteHeader
 (
-    std::string &sensorID
+    amString &sensorID
 )
 {
-    if ( startsWith( sensorID, C_SPEED_OBSOLETE_HEAD ) )
+    if ( sensorID.startsWith( C_SPEED_OBSOLETE_HEAD ) )
     {
         sensorID.replace( 0, strlen( C_SPEED_OBSOLETE_HEAD ), C_SPEED_DEVICE_HEAD );
     }
@@ -55,9 +49,9 @@ void antSpeedOnlyProcessing::replaceObsoleteHeader
 
 bool antSpeedOnlyProcessing::appendSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCircumference,
-    double             nbMagnets
+    const amString &sensorID,
+    double          wheelCircumference,
+    double          nbMagnets
 )
 {
     bool result = isSpeedOnlySensor( sensorID );
@@ -65,12 +59,12 @@ bool antSpeedOnlyProcessing::appendSpeedSensor
     {
         result = antSpeedProcessing::appendSpeedSensor( sensorID, wheelCircumference, nbMagnets );
         if ( result )
-        {   
-            if ( !isRegisteredDevice( sensorID ) ) 
-            {   
+        {
+            if ( !isRegisteredDevice( sensorID ) )
+            {
                 registerDevice( sensorID );
-            }   
-        }   
+            }
+        }
     }
     return result;
 }
@@ -83,10 +77,10 @@ bool antSpeedOnlyProcessing::appendSpeedSensor
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -95,10 +89,10 @@ bool antSpeedOnlyProcessing::appendSpeedSensor
 //---------------------------------------------------------------------------------------------------
 amDeviceType antSpeedOnlyProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -113,7 +107,7 @@ amDeviceType antSpeedOnlyProcessing::processSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -123,11 +117,11 @@ amDeviceType antSpeedOnlyProcessing::processSensor
 
 amDeviceType antSpeedOnlyProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isSpeedOnlySensor( inputBuffer ) )
         {
@@ -159,10 +153,9 @@ int antSpeedOnlyProcessing::readDeviceFileStream
     std::ifstream &deviceFileStream
 )
 {
-    int          errorCode  = 0;
     unsigned int nbWords    = 0;
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
 
     char line[ C_BUFFER_SIZE ];
     amSplitString words;
@@ -175,7 +168,7 @@ int antSpeedOnlyProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -200,10 +193,10 @@ int antSpeedOnlyProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -232,9 +225,9 @@ int antSpeedOnlyProcessing::readDeviceFileStream
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -251,7 +244,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
     bool         commonPage                        = false;
     bool         outputPageNo                      = true;
     amDeviceType result                            = OTHER_DEVICE;
-    std::string  sensorID                          = std::string( C_SPEED_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID                          = amString( C_SPEED_DEVICE_HEAD ) + deviceIDNo;
 
     if ( isRegisteredDevice( sensorID ) )
     {
@@ -259,19 +252,19 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
              ( eventCountTable.count   ( sensorID ) == 0 ) ||
              ( operatingTimeTable.count( sensorID ) == 0 ) )
         {
-            eventTimeTable.insert    ( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-            eventCountTable.insert   ( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-            operatingTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-            speedTable.insert        ( std::pair<std::string, double>( sensorID, 0 ) );
+            eventTimeTable.insert    ( std::pair<amString, unsigned int>( sensorID, 0 ) );
+            eventCountTable.insert   ( std::pair<amString, unsigned int>( sensorID, 0 ) );
+            operatingTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
+            speedTable.insert        ( std::pair<amString, double>( sensorID, 0 ) );
         }
 
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
         }
 
-        bikeSpeedEventTime      = hex( payLoad[ 5 ], payLoad[ 4 ] );
+        bikeSpeedEventTime      = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver                = 65536;  // 256^2
         deltaBikeSpeedEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, bikeSpeedEventTime );
         if ( diagnostics )
@@ -285,7 +278,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
             appendDiagnosticsLine( "Delta Bike Speed Event Time", deltaBikeSpeedEventTime, auxBuffer );
         }
 
-        wheelRevolutionCount      = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        wheelRevolutionCount      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver                  = 65536;  // 256^2
         deltaWheelRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, wheelRevolutionCount );
         if ( diagnostics )
@@ -307,7 +300,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  1: // - - Page 1: Operating Time - - - - - - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData2 = hex( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
+                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
                      rollOver        = 16777216;  // 256^3
                      additionalData1 = getDeltaInt( rollOverHappened, sensorID, rollOver, operatingTimeTable, additionalData2 );
                                    // deltaOperatingTime
@@ -327,8 +320,8 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  2: // - - Page 2: Manufacturer Information - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData1 = hex( payLoad[ 1 ] );                // Manufacturer ID
-                     additionalData2 = hex( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
+                     additionalData1 = hex2Int( payLoad[ 1 ] );                // Manufacturer ID
+                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Manufacturer ID", payLoad[ 1 ], additionalData1 );
@@ -338,9 +331,9 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  3: // - - Page 3: Product Information  - - - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData1 = hex( payLoad[ 1 ] );   // H/W Version
-                     additionalData2 = hex( payLoad[ 2 ] );   // S/W Version
-                     additionalData3 = hex( payLoad[ 3 ] );   // Model Number
+                     additionalData1 = hex2Int( payLoad[ 1 ] );   // H/W Version
+                     additionalData2 = hex2Int( payLoad[ 2 ] );   // S/W Version
+                     additionalData3 = hex2Int( payLoad[ 3 ] );   // Model Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Hardware Version", payLoad[ 1 ], additionalData1 );
@@ -396,7 +389,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_SPEED_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -406,12 +399,12 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
 unsigned int antSpeedOnlyProcessing::splitFormat137_SPB7
 (
-    const char    *inputBuffer,
+    const amString &inputBuffer,
     amSplitString &outWords
 )
 {
     unsigned int nbWords = 0;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString inWords;
         nbWords = inWords.split( inputBuffer );
@@ -424,9 +417,9 @@ unsigned int antSpeedOnlyProcessing::splitFormat137_SPB7
         if ( nbWords > 5 )
         {
             unsigned int counter = 0;
-            std::string  dataPage;
-            std::string  deltaEventTime;
-            std::string  deltaRevolutionCount;
+            amString  dataPage;
+            amString  deltaEventTime;
+            amString  deltaRevolutionCount;
 
             outWords.push_back( inWords[ counter++ ] );       // Device ID
             outWords.push_back( inWords[ counter++ ] );       // Time Stamp
@@ -440,7 +433,7 @@ unsigned int antSpeedOnlyProcessing::splitFormat137_SPB7
             outWords.push_back( deltaEventTime );
             outWords.push_back( deltaRevolutionCount );
 
-            if ( ( ( dataPage == "2" ) || ( dataPage == "3" ) ) && ( nbWords > 6 ) && ( inWords[ counter ].find_first_of( "=" ) != std::string::npos ) )
+            if ( ( ( dataPage == "2" ) || ( dataPage == "3" ) ) && ( nbWords > 6 ) && ( inWords[ counter ].find_first_of( "=" ) != amString::npos ) )
             {
                 amSplitString additionalWords;
                 additionalWords.removeAllSeparators();
@@ -479,16 +472,16 @@ unsigned int antSpeedOnlyProcessing::splitFormat137_SPB7
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   curVersion                = b2tVersion;
-        std::string   semiCookedString;
-        std::string   sensorID;
-        std::string   timeStampBuffer;
+        amString      curVersion                = b2tVersion;
+        amString      semiCookedString;
+        amString      sensorID;
+        amString      timeStampBuffer;
         amSplitString words;
         unsigned int  nbWords                   = 0;
         unsigned int  counter                   = 0;
@@ -526,9 +519,9 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isSpeedOnlySensor( sensorID ) )
             {
                 startCounter              = counter;
-                dataPage                  = ( unsigned int ) strToInt( words[ counter++ ] );  // 3
-                deltaBikeSpeedEventTime   = ( unsigned int ) strToInt( words[ counter++ ] );  // 4
-                deltaWheelRevolutionCount = ( unsigned int ) strToInt( words[ counter++ ] );  // 5
+                dataPage                  = words[ counter++ ].toUInt();  // 3
+                deltaBikeSpeedEventTime   = words[ counter++ ].toUInt();  // 4
+                deltaWheelRevolutionCount = words[ counter++ ].toUInt();  // 5
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
@@ -547,7 +540,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
                              if ( nbWords > 6 )
                              {
                                  result          = SPEED_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   // 6 -deltaOperatingTime
+                                 additionalData1 = words[ counter++ ].toUInt();   // 6 -deltaOperatingTime
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Delta Cumulative Operating Time", additionalData1 );
@@ -559,8 +552,8 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
                              if ( nbWords > 7 )
                              {
                                  result          = SPEED_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   // 7 - manufacturerID
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );   // 8 - serialNumber
+                                 additionalData1 = words[ counter++ ].toUInt();   // 7 - manufacturerID
+                                 additionalData2 = words[ counter++ ].toUInt();   // 8 - serialNumber
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Manufacturer ID", additionalData1 );
@@ -573,9 +566,9 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
                              if ( nbWords > 8 )
                              {
                                  result          = SPEED_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   //  9 - hwVersion
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );   // 10 - swVersion
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );   // 11 - modelNumber
+                                 additionalData1 = words[ counter++ ].toUInt();   //  9 - hwVersion
+                                 additionalData2 = words[ counter++ ].toUInt();   // 10 - swVersion
+                                 additionalData3 = words[ counter++ ].toUInt();   // 11 - modelNumber
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Model Number", additionalData1 );

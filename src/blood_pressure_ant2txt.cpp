@@ -1,11 +1,8 @@
-#include <iostream>
-
-#include "b2t_utils.h"
 #include "ant_blood_pressure_processing.h"
 
 const char C_PROGRAM_NAME[]  = "blood_pressure_ant2txt";
 const char C_DEVICE_NAME[]   = "BLDPR";
-const char C_OPTION_STRING[] = "12BDd:f:HhI:JLl:M:m:P:p:RrsST:t:UvVx";
+const char C_OPTION_STRING[] = "12BDd:f:HhI:Jl:M:m:P:p:RrsST:t:UvVx";
 
 int main
 (
@@ -14,20 +11,14 @@ int main
 )
 {
     bool                       running   = true;
-    int                        errorCode = 0;
     antBloodPressureProcessing antProcessor;
 
-    running = antProcessor.processInput( C_PROGRAM_NAME, C_OPTION_STRING, C_DEVICE_NAME, argc, argv );
-
-    errorCode = antProcessor.getErrorCode();
-    if ( running )
+    running = antProcessor.processArguments( C_PROGRAM_NAME, C_OPTION_STRING, C_DEVICE_NAME, argc, argv );
+    if ( running && ( antProcessor.getErrorCode() == 0 ) )
     {
-        errorCode = antProcessor.ant2txt();
+        antProcessor.ant2txt();
     }
-    if ( errorCode != 0 )
-    {
-        outputError( C_PROGRAM_NAME, errorCode, antProcessor.getErrorMessage() );
-    }
-    return errorCode;
+    antProcessor.outputError();
+    return antProcessor.getErrorCode();
 }
 

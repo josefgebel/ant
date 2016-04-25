@@ -1,11 +1,9 @@
 #ifndef __ANT_SPEED_ONLY_PROCESSING_H__
 #define __ANT_SPEED_ONLY_PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
 #include "ant_speed_processing.h"
 
-class amSplitString;
 
 class antSpeedOnlyProcessing : virtual public antProcessing,
                                virtual public antSpeedProcessing
@@ -13,14 +11,14 @@ class antSpeedOnlyProcessing : virtual public antProcessing,
 
     private:
 
-        unsigned int splitFormat137_SPB7( const char *inputBuffer, amSplitString &outWords );
-        void replaceObsoleteHeader( std::string &sensorID );
+        unsigned int splitFormat137_SPB7( const amString &inputBuffer, amSplitString &outWords );
+        void replaceObsoleteHeader( amString &sensorID );
 
 
     protected:
 
-        amDeviceType processBikeSpeedSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processBikeSpeedSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processBikeSpeedSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processBikeSpeedSensorSemiCooked( const amString &inputBuffer );
 
         void createSPB7ResultString
              (
@@ -36,7 +34,7 @@ class antSpeedOnlyProcessing : virtual public antProcessing,
                  unsigned int &zeroTime
              );
 
-        bool appendSpeedSensor( const std::string &sensorID, double wheelCircumference, double nbMagnets );
+        bool appendSpeedSensor( const amString &sensorID, double wheelCircumference, double nbMagnets );
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
 
 
@@ -45,10 +43,10 @@ class antSpeedOnlyProcessing : virtual public antProcessing,
         antSpeedOnlyProcessing();
         ~antSpeedOnlyProcessing() {}
 
-        bool isSpeedOnlySensor( const std::string &sensorID );
+        bool isSpeedOnlySensor( const amString &sensorID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         virtual void reset( void );
 

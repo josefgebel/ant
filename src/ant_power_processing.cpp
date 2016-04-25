@@ -1,13 +1,5 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
 #include "am_split_string.h"
 #include "ant_power_processing.h"
 
@@ -37,6 +29,7 @@ antPowerProcessing::antPowerProcessing
     setMaxZeroTimeB11( C_MAX_ZERO_TIME_POWER_B11 );
     setMaxZeroTimeB12( C_MAX_ZERO_TIME_POWER_B12 );
     setMaxZeroTimeB20( C_MAX_ZERO_TIME_POWER_B20 );
+    currentDeviceType = "POWER";
     reset();
 }
 
@@ -44,10 +37,10 @@ antPowerProcessing::antPowerProcessing
 // Data Page 16  (0x10)
 bool antPowerProcessing::isPowerOnlySensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_POWER_ONLY_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_POWER_ONLY_DEVICE_HEAD );
     return result;
 }
 
@@ -55,10 +48,10 @@ bool antPowerProcessing::isPowerOnlySensor
 // Data Page 17 (0x11)
 bool antPowerProcessing::isWheelTorquePowerSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_WT_POWER_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_WT_POWER_DEVICE_HEAD );
     return result;
 }
 
@@ -66,10 +59,10 @@ bool antPowerProcessing::isWheelTorquePowerSensor
 // Data Page 18 (0x12)
 bool antPowerProcessing::isCrankTorquePowerSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_CT_POWER_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_CT_POWER_DEVICE_HEAD );
     return result;
 }
 
@@ -77,10 +70,10 @@ bool antPowerProcessing::isCrankTorquePowerSensor
 // Data Page 32 (0x20)
 bool antPowerProcessing::isCrankTorqueFrequencyPowerSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_CTF_POWER_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_CTF_POWER_DEVICE_HEAD );
     return result;
 }
 
@@ -88,7 +81,7 @@ bool antPowerProcessing::isCrankTorqueFrequencyPowerSensor
 // Data Page 16, 17, 18 or 32 (0x10, 0x11, 0x12, or 0x20)
 bool antPowerProcessing::isPowerSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
     bool result = isPowerOnlySensor( deviceID ) ||
@@ -102,10 +95,10 @@ bool antPowerProcessing::isPowerSensor
 // Any Data Page
 bool antPowerProcessing::isPowerMeterRelated
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_POWER_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_POWER_DEVICE_HEAD );
     return result;
 }
 
@@ -113,10 +106,10 @@ bool antPowerProcessing::isPowerMeterRelated
 // Data Page 1 (0x01)
 bool antPowerProcessing::isPowerMeterCalibration
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_CALIBRATION_HEAD );
+    bool result = deviceID.startsWith( C_PM_CALIBRATION_HEAD );
     return result;
 }
 
@@ -124,10 +117,10 @@ bool antPowerProcessing::isPowerMeterCalibration
 // Data Page 2 (0x02)
 bool antPowerProcessing::isPowerMeterGetSetParameters
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_GET_SET_PARAM_HEAD );
+    bool result = deviceID.startsWith( C_PM_GET_SET_PARAM_HEAD );
     return result;
 }
 
@@ -135,10 +128,10 @@ bool antPowerProcessing::isPowerMeterGetSetParameters
 // Data Page 3 (0x03)
 bool antPowerProcessing::isPowerMeterMeasurementOutput
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_MEASUREMENT_HEAD );
+    bool result = deviceID.startsWith( C_PM_MEASUREMENT_HEAD );
     return result;
 }
 
@@ -146,10 +139,10 @@ bool antPowerProcessing::isPowerMeterMeasurementOutput
 // Data Page 19 (0x13)
 bool antPowerProcessing::isPowerMeterPedalSmoothness
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_PEDAL_SMOOTH_HEAD );
+    bool result = deviceID.startsWith( C_PM_PEDAL_SMOOTH_HEAD );
     return result;
 }
 
@@ -157,10 +150,10 @@ bool antPowerProcessing::isPowerMeterPedalSmoothness
 // Data Page 70 (0x46)
 bool antPowerProcessing::isPowerMeterRequest
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_REQUEST_HEAD );
+    bool result = deviceID.startsWith( C_PM_REQUEST_HEAD );
     return result;
 }
 
@@ -168,10 +161,10 @@ bool antPowerProcessing::isPowerMeterRequest
 // Data Page 80 (0x50)
 bool antPowerProcessing::isPowerMeterManufacturerInfo
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_MFR_INFO_HEAD );
+    bool result = deviceID.startsWith( C_PM_MFR_INFO_HEAD );
     return result;
 }
 
@@ -179,10 +172,10 @@ bool antPowerProcessing::isPowerMeterManufacturerInfo
 // Data Page 81 (0x51)
 bool antPowerProcessing::isPowerMeterProductInfo
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_PROD_INFO_HEAD );
+    bool result = deviceID.startsWith( C_PM_PROD_INFO_HEAD );
     return result;
 }
 
@@ -190,34 +183,34 @@ bool antPowerProcessing::isPowerMeterProductInfo
 // Data Page 82 (0x52)
 bool antPowerProcessing::isPowerMeterStatusMessage
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_PM_STATUS_MSG_HEAD );
+    bool result = deviceID.startsWith( C_PM_STATUS_MSG_HEAD );
     return result;
 }
 
 bool antPowerProcessing::appendPowerSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isPowerSensor( sensorID );
     if ( result )
-    {   
-        if ( !isRegisteredDevice( sensorID ) ) 
-        {   
+    {
+        if ( !isRegisteredDevice( sensorID ) )
+        {
             registerDevice( sensorID );
-        }   
+        }
     }
     return result;
 }
 
 bool antPowerProcessing::appendPowerSensor
 (
-    const std::string &sensorID,
-    unsigned int       offset,
-    unsigned int       slope_Nm_10Hz
+    const amString &sensorID,
+    unsigned int    offset,
+    unsigned int    slope_Nm_10Hz
 )
 {
     bool result = isCrankTorqueFrequencyPowerSensor( sensorID );
@@ -225,28 +218,28 @@ bool antPowerProcessing::appendPowerSensor
     {
         if ( slope_Nm_10Hz_Table.count( sensorID ) == 0 )
         {
-            slope_Nm_10Hz_Table.insert ( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+            slope_Nm_10Hz_Table.insert ( std::pair<amString, unsigned int>( sensorID, 0 ) );
         }
         slope_Nm_10Hz_Table[ sensorID ] = slope_Nm_10Hz;
 
         if ( offsetTable.count( sensorID ) == 0 )
         {
-            offsetTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+            offsetTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
         }
         offsetTable[ sensorID ] = offset;
 
-        if ( !isRegisteredDevice( sensorID ) ) 
-        {   
+        if ( !isRegisteredDevice( sensorID ) )
+        {
             registerDevice( sensorID );
-        }   
+        }
     }
     return result;
 }
 
 bool antPowerProcessing::appendSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCirumference
+    const amString &sensorID,
+    double          wheelCirumference
 )
 {
     bool result = isWheelTorquePowerSensor( sensorID );
@@ -254,23 +247,24 @@ bool antPowerProcessing::appendSpeedSensor
     {
         if ( wheelCircumferenceTable.count( sensorID ) == 0 )
         {
-            wheelCircumferenceTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+            wheelCircumferenceTable.insert( std::pair<amString, double>( sensorID, 0 ) );
         }
         wheelCircumferenceTable[ sensorID ] = wheelCirumference ;
+        setUseAsSpeedSensor( sensorID, true );
 
-        if ( !isRegisteredDevice( sensorID ) ) 
-        {   
+        if ( !isRegisteredDevice( sensorID ) )
+        {
             registerDevice( sensorID );
-        }   
+        }
     }
     return result;
 }
 
 bool antPowerProcessing::appendPowerSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCirumference,
-    double             gearRatio
+    const amString &sensorID,
+    double          wheelCirumference,
+    double          gearRatio
 )
 {
     bool result = isPowerSensor( sensorID );
@@ -279,10 +273,10 @@ bool antPowerProcessing::appendPowerSpeedSensor
         result = antCadenceSpeedProcessing::appendCadenceSpeedSensor( sensorID, wheelCirumference, gearRatio );
         if ( result )
         {
-            if ( !isRegisteredDevice( sensorID ) ) 
-            {   
+            if ( !isRegisteredDevice( sensorID ) )
+            {
                 registerDevice( sensorID );
-            }   
+            }
         }
     }
     return result;
@@ -290,12 +284,12 @@ bool antPowerProcessing::appendPowerSpeedSensor
 
 double antPowerProcessing::getPower
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( powerTable.count( sensorID ) == 0 )
     {
-        powerTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        powerTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     double power = powerTable[ sensorID ];
     return power;
@@ -303,25 +297,25 @@ double antPowerProcessing::getPower
 
 void antPowerProcessing::setPower
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( powerTable.count( sensorID ) == 0 )
     {
-        powerTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        powerTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     powerTable[ sensorID ] = value;
 }
 
 double antPowerProcessing::getTorque
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( torqueTable.count( sensorID ) == 0 )
     {
-        torqueTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        torqueTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     double torque = torqueTable[ sensorID ];
     return torque;
@@ -329,25 +323,25 @@ double antPowerProcessing::getTorque
 
 void antPowerProcessing::setTorque
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( torqueTable.count( sensorID ) == 0 )
     {
-        torqueTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        torqueTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     torqueTable[ sensorID ] = value;
 }
 
 unsigned int antPowerProcessing::getOffset
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( offsetTable.count( sensorID ) == 0 )
     {
-        offsetTable.insert( std::pair<std::string, unsigned int>( sensorID, offsetDefault ) );
+        offsetTable.insert( std::pair<amString, unsigned int>( sensorID, offsetDefault ) );
     }
     unsigned int offset = offsetTable[ sensorID ];
     return offset;
@@ -355,12 +349,12 @@ unsigned int antPowerProcessing::getOffset
 
 unsigned int antPowerProcessing::getSlope_Nm_10Hz
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( slope_Nm_10Hz_Table.count( sensorID ) == 0 )
     {
-        slope_Nm_10Hz_Table.insert( std::pair<std::string, unsigned int>( sensorID, slopeDefault ) );
+        slope_Nm_10Hz_Table.insert( std::pair<amString, unsigned int>( sensorID, slopeDefault ) );
     }
     unsigned int slope_Nm_10Hz = slope_Nm_10Hz_Table[ sensorID ];
     return slope_Nm_10Hz;
@@ -374,10 +368,10 @@ unsigned int antPowerProcessing::getSlope_Nm_10Hz
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType POWER_METER if successful.
 //        amDeviceType OTHER_DEVICE otherwise (device type ot recognized)
@@ -385,10 +379,10 @@ unsigned int antPowerProcessing::getSlope_Nm_10Hz
 //---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -399,7 +393,7 @@ amDeviceType antPowerProcessing::processSensor
     }
     else if ( outputUnknown )
     {
-        int deviceIDNoAsInt = strToInt( deviceIDNo );
+        int deviceIDNoAsInt = deviceIDNo.toInt();
         createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
     }
     else
@@ -412,11 +406,11 @@ amDeviceType antPowerProcessing::processSensor
 
 amDeviceType antPowerProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         // Cadence-Only Sensor
         if ( isPowerMeterRelated( inputBuffer ) )
@@ -445,9 +439,9 @@ bool antPowerProcessing::evaluateDeviceLine
     unsigned int nbWords = words.size();
     if ( nbWords > 1 )
     {
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
-        if ( isPowerSensor( deviceName ) ) 
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
+        if ( isPowerSensor( deviceName ) )
         {
             double       dArg1  = 0;
             double       dArg2  = 0;
@@ -455,42 +449,36 @@ bool antPowerProcessing::evaluateDeviceLine
             unsigned int uiArg2 = 0;
 
             if ( deviceType == C_POWER_DEVICE_ID )
-            {   
-                if ( isCrankTorqueFrequencyPowerSensor( deviceName ) ) 
-                {   
+            {
+                if ( isCrankTorqueFrequencyPowerSensor( deviceName ) )
+                {
                     uiArg1 = ( unsigned int ) C_OFFSET_DEFAULT;
                     uiArg2 = ( unsigned int ) C_SLOPE_DEFAULT;
-                    if ( nbWords > 2 ) 
-                    {   
-                        uiArg1 = ( unsigned int ) strToInt( words[ 2 ] );
-                        if ( nbWords > 3 ) 
-                        {   
-                            dArg2 = strToDouble( words[ 3 ] );
+                    if ( nbWords > 2 )
+                    {
+                        uiArg1 = words[ 2 ].toUInt();
+                        if ( nbWords > 3 )
+                        {
+                            dArg2 = words[ 3 ].toDouble();
                             if ( dArg2 > 0 )
-                            {   
+                            {
                                dArg2 *= 10;
                                uiArg2 = ( unsigned int ) round( dArg2 );
-                            }   
-                        }   
-                    }   
+                            }
+                        }
+                    }
                     appendPowerSensor( deviceName, uiArg1, uiArg2 );
                 }
                 else if ( isWheelTorquePowerSensor( deviceName ) )
                 {
-                    dArg1 = wheelCircumferenceDefault;
-                    if ( nbWords > 2 )
-                    {
-                        dArg1 = strToDouble( words[ 2 ] );
-                    }
-                    appendSpeedSensor( deviceName, dArg1 );
                     appendPowerSensor( deviceName );
-                }   
+                }
                 else
-                {   
+                {
                     appendPowerSensor( deviceName );
-                }   
+                }
                 result = true;
-            }   
+            }
             else if ( deviceType == C_SPEED_DEVICE_ID )
             {
                 dArg1 = wheelCircumferenceDefault;
@@ -498,7 +486,7 @@ bool antPowerProcessing::evaluateDeviceLine
                 {
                     if ( nbWords > 2 )
                     {
-                        dArg1 = strToDouble( words[ 2 ] );
+                        dArg1 = words[ 2 ].toDouble();
                     }
                     appendSpeedSensor( deviceName, dArg1 );
                 }
@@ -508,11 +496,11 @@ bool antPowerProcessing::evaluateDeviceLine
                     uiArg1 = isCrankTorqueFrequencyPowerSensor( deviceName ) ? 4 : 2;
                     if ( nbWords > uiArg1 )
                     {
-                        dArg1  = strToDouble( words[ uiArg1 ] );
+                        dArg1  = words[ uiArg1 ].toDouble();
                         uiArg2 = isCrankTorqueFrequencyPowerSensor( deviceName ) ? 5 : 3;
                         if ( nbWords > uiArg2 )
                         {
-                            dArg2 = strToDouble( words[ uiArg2 ] );
+                            dArg2 = words[ uiArg2 ].toDouble();
                         }
                     }
                     appendCadenceSpeedSensor( deviceName, dArg1, dArg2 );
@@ -535,11 +523,10 @@ int antPowerProcessing::readDeviceFileStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
     unsigned int nbWords    = 0;
 
     while ( true )
@@ -550,7 +537,7 @@ int antPowerProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -570,10 +557,10 @@ int antPowerProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -620,9 +607,9 @@ const unsigned int C_MAX_DELTA_EVENT_COUNT = 10;
 
 bool antPowerProcessing::isLeftCrankEvent
 (
-    const std::string &sensorID,
-    unsigned int       newValue,
-    unsigned int       rollOver
+    const amString &sensorID,
+    unsigned int    newValue,
+    unsigned int    rollOver
 )
 {
     bool         result           = false;
@@ -681,18 +668,18 @@ bool antPowerProcessing::isLeftCrankEvent
 //-------------------------------------------------------------------------------------------------//
 unsigned int antPowerProcessing::splitFormat137_B01
 (
-    const char    *inputBuffer,
-    amSplitString &outWords
+    const amString &inputBuffer,
+    amSplitString  &outWords
 )
 {
     unsigned int nbWords = 0;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString inWords;
         bool          success    = false;
         unsigned int  counter    = 0;
         unsigned int  subCounter = 0;
-        std::string   calibrationID;
+        amString      calibrationID;
 
         nbWords = inWords.split( inputBuffer );
 
@@ -707,18 +694,18 @@ unsigned int antPowerProcessing::splitFormat137_B01
             outWords.push_back( inWords[ counter++ ] );   // Device ID
             outWords.push_back( inWords[ counter++ ] );   // Time Stamp
             outWords.push_back( inWords[ counter++ ] );   // Semi-cooked Symbol
-            if ( inWords[ counter ].find_first_of( "=" ) != std::string::npos )
-            {
-                nbSubWords = subWords.split( inWords[ counter++ ] );
-                calibrationID = subWords[ subCounter++ ];   // Calibration ID
-            }
-            else
+            if ( inWords[ counter ].contains( "=" ) )
             {
                 calibrationID = inWords[ counter++ ];        // Calibration ID
                 if ( nbWords > counter )
                 {
                     nbSubWords = subWords.split( inWords[ counter++ ] );
                 }
+            }
+            else
+            {
+                nbSubWords = subWords.split( inWords[ counter++ ] );
+                calibrationID = subWords[ subCounter++ ];   // Calibration ID
             }
             outWords.push_back( calibrationID );
 
@@ -792,10 +779,10 @@ bool antPowerProcessing::createB01ResultString
     const amSplitString &words
 )
 {
-    std::string  sensorID;
-    std::string  timeStampBuffer;
-    std::string  semiCookedString;
-    std::string  curVersion      = b2tVersion;
+    amString     sensorID;
+    amString     timeStampBuffer;
+    amString     semiCookedString;
+    amString     curVersion      = b2tVersion;
     bool         result          = false;
     unsigned int nbWords         = words.size();
     unsigned int counter         = 0;
@@ -816,7 +803,7 @@ bool antPowerProcessing::createB01ResultString
         }
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterCalibration( sensorID ) )
         {
-            calibrationID = ( unsigned int ) strToInt( words[ counter++ ] );                          // 3
+            calibrationID = words[ counter++ ].toUInt();                          // 3
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Calibration ID", calibrationID );
@@ -829,21 +816,21 @@ bool antPowerProcessing::createB01ResultString
                     result = true;
                     if ( nbWords > 6 )
                     {
-                        if ( isInteger( words[ counter ] ) )
+                        if ( words[ counter ].isUnsignedInteger() )
                         {
-                            additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                            additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );
+                            additionalData1 = words[ counter++ ].toUInt();
+                            additionalData2 = words[ counter++ ].toUInt();
                         }
                         else
                         {
-                            additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                            additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );
+                            additionalData1 = words[ counter++ ].toUInt();
+                            additionalData2 = words[ counter++ ].toUInt();
                         }
                     }
                     else
                     {
-                        additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                        additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );
+                        additionalData1 = words[ counter++ ].toUInt();
+                        additionalData2 = words[ counter++ ].toUInt();
                     }
 
                     if ( diagnostics )
@@ -859,8 +846,8 @@ bool antPowerProcessing::createB01ResultString
                 if ( nbWords > 5 )
                 {
                     result          = true;
-                    additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
-                    additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 5
+                    additionalData1 = words[ counter++ ].toUInt();                     // 4
+                    additionalData2 = words[ counter++ ].toUInt();                     // 5
                     if ( diagnostics )
                     {
                         appendDiagnosticsLine( "Auto Zero Enable", additionalData1 );
@@ -877,7 +864,7 @@ bool antPowerProcessing::createB01ResultString
                 if ( nbWords > 4 )
                 {
                     result          = true;
-                    additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
+                    additionalData1 = words[ counter++ ].toUInt();                     // 4
                     if ( diagnostics )
                     {
                         appendDiagnosticsLine( "Auto Zero Status", additionalData1 );
@@ -890,8 +877,8 @@ bool antPowerProcessing::createB01ResultString
                 if ( nbWords > 5 )
                 {
                     result          = true;
-                    additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 4
-                    additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                     // 5
+                    additionalData1 = words[ counter++ ].toUInt();                     // 4
+                    additionalData2 = words[ counter++ ].toUInt();                     // 5
                     if ( diagnostics )
                     {
                         appendDiagnosticsLine( "Auto Zero Status", additionalData1 );
@@ -928,19 +915,19 @@ bool antPowerProcessing::createB01ResultString
 
 amDeviceType antPowerProcessing::processPowerMeterB01
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result          = OTHER_DEVICE;
-    std::string  sensorID        = std::string( C_PM_CALIBRATION_HEAD ) + deviceIDNo;
+    amString     sensorID        = amString( C_PM_CALIBRATION_HEAD ) + deviceIDNo;
     unsigned int auxInt          = 0;
     unsigned int calibrationID   = 0;
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
 
-    calibrationID = hex( payLoad[ 1 ] );
+    calibrationID = hex2Int( payLoad[ 1 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "\nCalibration ID", payLoad[ 1 ], calibrationID );
@@ -950,7 +937,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     {
         // Crank Torque Frequency (CTF) Power Sensor defined message
         result          = POWER_METER;
-        additionalData1 = hex( payLoad[ 2 ] );   // CTF Defined ID
+        additionalData1 = hex2Int( payLoad[ 2 ] );   // CTF Defined ID
         if ( diagnostics )
         {
             appendDiagnosticsLine( "CTF Defined ID", payLoad[ 2 ], additionalData1 );
@@ -958,7 +945,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
 
         if ( ( additionalData1 == 1 ) || ( additionalData1 == 2 ) || ( additionalData1 == 3 ) )
         {
-            additionalData2 = hex( payLoad[ 6 ], payLoad[ 7 ] );    // Message Value
+            additionalData2 = hex2Int( payLoad[ 6 ], payLoad[ 7 ] );    // Message Value
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Message Value", payLoad[ 7 ], payLoad[ 6 ], additionalData2 );
@@ -966,7 +953,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
         }
         else if ( additionalData1 == 172 )
         {
-            additionalData2 = hex( payLoad[ 3 ] );   // CTF Acknowledge Message
+            additionalData2 = hex2Int( payLoad[ 3 ] );   // CTF Acknowledge Message
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "CTF Acknowledge Message", payLoad[ 3 ], additionalData2 );
@@ -976,7 +963,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     else if ( calibrationID == C_AUTO_ZERO_SUPPORT_MESSAGE_ID )                            //  18 = 0x12
     {
         result          = POWER_METER;
-        auxInt          = hex( payLoad[ 2 ] );
+        auxInt          = hex2Int( payLoad[ 2 ] );
         additionalData1 = auxInt & 1;     // Auto Zero Enable
         additionalData2 = auxInt & 2;     // Auto Zero Status
         if ( diagnostics )
@@ -996,7 +983,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     else if ( calibrationID == C_CALIBRATION_REQUEST_AUTO_ZERO_ID )                        // 171 = 0xAB
     {
         result          = POWER_METER;
-        additionalData1 = hex( payLoad[ 2 ] );    // Auto Zero Status
+        additionalData1 = hex2Int( payLoad[ 2 ] );    // Auto Zero Status
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Auto Zero Status", payLoad[ 2 ], additionalData1 );
@@ -1006,13 +993,13 @@ amDeviceType antPowerProcessing::processPowerMeterB01
               ( calibrationID == C_CALIBRATION_RESPONSE_MANUAL_ZERO_FAIL_ID ) )             // 175 = 0xAF
     {
         result          = POWER_METER;
-        additionalData1 = hex( payLoad[ 2 ] );                  // Auto Zero Status
-        additionalData2 = hex( payLoad[ 7 ], payLoad[ 6 ] );    // Message Value
+        additionalData1 = hex2Int( payLoad[ 2 ] );                  // Auto Zero Status
+        additionalData2 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );    // Message Value
         if ( diagnostics )
         {
             char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
             appendDiagnosticsLine( "Auto Zero Status", payLoad[ 2 ], additionalData1 );
-            int messageValue = negateBinaryInt( additionalData2, 16 );
+            int messageValue = NEGATE_BINARY_INT( additionalData2, 16 );
             sprintf( auxBuffer, "(signed: %d)", messageValue );
             appendDiagnosticsLine( "Message Value", payLoad[ 7 ], payLoad[ 6 ], additionalData2, auxBuffer );
         }
@@ -1039,11 +1026,11 @@ amDeviceType antPowerProcessing::processPowerMeterB01
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB01SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         bool          resultCreate = false;
         unsigned int  nbWords      = 0;
@@ -1094,13 +1081,13 @@ amDeviceType antPowerProcessing::processPowerMeterB01SemiCooked
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB02
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result          = OTHER_DEVICE;
-    std::string  sensorID        = std::string( C_PM_GET_SET_PARAM_HEAD ) + deviceIDNo;
+    amString     sensorID        = amString( C_PM_GET_SET_PARAM_HEAD ) + deviceIDNo;
     unsigned int subPageNumber   = 0;
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
@@ -1112,7 +1099,7 @@ amDeviceType antPowerProcessing::processPowerMeterB02
     //   1   Subpage Number
     //   2-7 Subpage Defined Data
 
-    subPageNumber = hex( payLoad[ 1 ] );
+    subPageNumber = hex2Int( payLoad[ 1 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "Sub Page Number", payLoad[ 2 ], subPageNumber );
@@ -1122,9 +1109,9 @@ amDeviceType antPowerProcessing::processPowerMeterB02
     {
         // Crank Parameters
         result          = POWER_METER;
-        additionalData1 = hex( payLoad[ 4 ] );
-        additionalData2 = hex( payLoad[ 5 ] );
-        additionalData3 = hex( payLoad[ 6 ] );
+        additionalData1 = hex2Int( payLoad[ 4 ] );
+        additionalData2 = hex2Int( payLoad[ 5 ] );
+        additionalData3 = hex2Int( payLoad[ 6 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Crank Length (int)", payLoad[ 4 ], additionalData1 );
@@ -1145,11 +1132,11 @@ amDeviceType antPowerProcessing::processPowerMeterB02
 
 amDeviceType antPowerProcessing::processPowerMeterB02SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -1189,10 +1176,10 @@ bool antPowerProcessing::createB02ResultString
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
     unsigned int additionalData3 = 0;
-    std::string  curVersion      = b2tVersion;
-    std::string  sensorID;
-    std::string  timeStampBuffer;
-    std::string  semiCookedString;
+    amString     curVersion      = b2tVersion;
+    amString     sensorID;
+    amString     timeStampBuffer;
+    amString     semiCookedString;
 
     if ( nbWords > 3 )
     {
@@ -1207,7 +1194,7 @@ bool antPowerProcessing::createB02ResultString
         }
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterGetSetParameters( sensorID ) )
         {
-            subPageNumber = ( unsigned int ) strToInt( words[ counter++ ] );                         // 3
+            subPageNumber = words[ counter++ ].toUInt();                         // 3
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Sub Page Number", subPageNumber );
@@ -1229,9 +1216,9 @@ bool antPowerProcessing::createB02ResultString
                 if ( nbWords > 6 )
                 {
                     result          = true;
-                    additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );            // 4 Crank Length (int)
-                    additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );            // 5 Sensor Status
-                    additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );            // 6 Sensor Capabilities
+                    additionalData1 = words[ counter++ ].toUInt();            // 4 Crank Length (int)
+                    additionalData2 = words[ counter++ ].toUInt();            // 5 Sensor Status
+                    additionalData3 = words[ counter++ ].toUInt();            // 6 Sensor Capabilities
                     if ( diagnostics )
                     {
                         appendDiagnosticsLine( "Crank Length (int)", additionalData1 );
@@ -1278,9 +1265,9 @@ bool antPowerProcessing::createB02ResultString
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antPowerProcessing::processPowerMeterB03
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     unsigned int nbDataTypes      = 0;
@@ -1293,12 +1280,12 @@ amDeviceType antPowerProcessing::processPowerMeterB03
     bool         rollOverHappened = false;
     double       timeStampDbl     = 0;
     amDeviceType result           = OTHER_DEVICE;
-    std::string  sensorID                          = std::string( C_PM_MEASUREMENT_HEAD ) + deviceIDNo;
+    amString     sensorID         = amString( C_PM_MEASUREMENT_HEAD ) + deviceIDNo;
 
     if ( totalTimeTable.count( sensorID ) == 0 )
     {
-        totalTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-        eventTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+        totalTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
+        eventTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
     }
 
     // ---------------------------------------------------------------
@@ -1313,26 +1300,26 @@ amDeviceType antPowerProcessing::processPowerMeterB03
     //   6   Measurement Value LSB   \      Range:
     //   7   Measurement Value MSB   / -32768 to 32767
 
-    nbDataTypes                 = hex( payLoad[ 1 ] ) & 0x07;
-    dataType                    = hex( payLoad[ 2 ] );
-    scaleFactor                 = hex( payLoad[ 3 ] );
-    timeStampInt                = hex( payLoad[ 5 ], payLoad[ 4 ] );
+    nbDataTypes                 = hex2Int( payLoad[ 1 ] ) & 0x07;
+    dataType                    = hex2Int( payLoad[ 2 ] );
+    scaleFactor                 = hex2Int( payLoad[ 3 ] );
+    timeStampInt                = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
     rollOver                    = ( 1 << 16 );  // 2^16 = 256^2
     deltaEventTime              = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, timeStampInt );
     timeStampDbl                = totalTimeTable[ sensorID ];
     timeStampDbl               += ( double ) deltaEventTime / 2048.0;
     totalTimeTable[ sensorID ]  = timeStampDbl;
-    value                       = hex( payLoad[ 7 ], payLoad[ 6 ] );
+    value                       = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
     if ( diagnostics )
     {
         char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
         appendDiagnosticsLine( "Number of Data Types", payLoad[ 1 ], nbDataTypes, " (Lower 4 Bits)" );
         appendDiagnosticsLine( "Data Type", payLoad[ 2 ], dataType );
-        int scaleFactorSigned = negateBinaryInt( scaleFactor, 8 );
+        int scaleFactorSigned = NEGATE_BINARY_INT( scaleFactor, 8 );
         sprintf( auxBuffer, "(signed %d)", scaleFactorSigned );
         appendDiagnosticsLine( "Scale Factor", payLoad[ 3 ], scaleFactor, auxBuffer );
         appendDiagnosticsLine( "Time Stamp (int)", payLoad[ 5 ], payLoad[ 4 ], timeStampInt );
-        int valueSigned = negateBinaryInt( value, 16 );
+        int valueSigned = NEGATE_BINARY_INT( value, 16 );
         sprintf( auxBuffer, "(signed %d)", valueSigned );
         appendDiagnosticsLine( "Value", payLoad[ 5 ], payLoad[ 4 ], value, auxBuffer );
     }
@@ -1348,11 +1335,11 @@ amDeviceType antPowerProcessing::processPowerMeterB03
 
 amDeviceType antPowerProcessing::processPowerMeterB03SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -1394,10 +1381,10 @@ bool antPowerProcessing::createB03ResultString
     unsigned int additionalData4                   = 0;
     unsigned int additionalData5                   = 0;
     double       additionalDoubleData              = 0;
-    std::string  curVersion                        = b2tVersion;
-    std::string  sensorID;
-    std::string  timeStampBuffer;
-    std::string  semiCookedString;
+    amString     curVersion                        = b2tVersion;
+    amString     sensorID;
+    amString     timeStampBuffer;
+    amString     semiCookedString;
 
     if ( nbWords > 7 )
     {
@@ -1414,15 +1401,15 @@ bool antPowerProcessing::createB03ResultString
         {
             if ( totalTimeTable.count( sensorID ) == 0 )
             {
-                totalTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-                eventTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+                totalTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
+                eventTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
             }
             result                      = true;
-            additionalData1             = ( unsigned int ) strToInt( words[ counter++ ] );          // 3 Number of Data Types
-            additionalData2             = ( unsigned int ) strToInt( words[ counter++ ] );          // 4 Data Type
-            additionalData3             = ( unsigned int ) strToInt( words[ counter++ ] );          // 5 Scale Factor
-            additionalData4             = ( unsigned int ) strToInt( words[ counter++ ] );          // 6 Delta Event Time
-            additionalData5             = ( unsigned int ) strToInt( words[ counter++ ] );          // 7 Value,
+            additionalData1             = words[ counter++ ].toUInt();          // 3 Number of Data Types
+            additionalData2             = words[ counter++ ].toUInt();          // 4 Data Type
+            additionalData3             = words[ counter++ ].toUInt();          // 5 Scale Factor
+            additionalData4             = words[ counter++ ].toUInt();          // 6 Delta Event Time
+            additionalData5             = words[ counter++ ].toUInt();          // 7 Value,
             additionalDoubleData        = totalTimeTable[ sensorID ];
             additionalDoubleData       += ( double ) additionalData4 / 2048.0;
             totalTimeTable[ sensorID ]  = additionalDoubleData;
@@ -1466,13 +1453,13 @@ bool antPowerProcessing::createB03ResultString
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antPowerProcessing::processPowerMeterB10
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result                = OTHER_DEVICE;
-    std::string  sensorID              = std::string( C_POWER_ONLY_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID              = amString( C_POWER_ONLY_DEVICE_HEAD ) + deviceIDNo;
     unsigned int eventCount            = 0;
     unsigned int pedalPower            = 0;
     unsigned int instantaneousCadence  = 0;
@@ -1496,8 +1483,8 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount       = hex( payLoad[ 1 ] );
-        accumulatedPower = hex( payLoad[ 5 ], payLoad[ 4 ] );
+        eventCount       = hex2Int( payLoad[ 1 ] );
+        accumulatedPower = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver         = 256;
         if ( isLeftCrankEvent( sensorID, eventCount, rollOver ) )
         {
@@ -1543,7 +1530,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Pedal Power
-        pedalPower = hex( payLoad[ 2 ] );
+        pedalPower = hex2Int( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Pedal Power", payLoad[ 2 ], pedalPower );
@@ -1552,7 +1539,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex( payLoad[ 3 ] );
+        instantaneousCadence = hex2Int( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -1561,7 +1548,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Power
-        instantaneousPower = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        instantaneousPower = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Power", payLoad[ 7 ], payLoad[ 6 ], instantaneousPower );
@@ -1570,51 +1557,43 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
     if ( result == POWER_METER )
     {
-        double       power         = getPower( sensorID );
-        unsigned int cadence       = getCadence( sensorID );
-        unsigned int zeroTimeCount = getZeroTimeCount( sensorID );
+        double       power              = getPower( sensorID );
+        double       speed              = 0;
+        double       wheelCircumference = 0;
+        double       gearRatio          = getNbMagnets( sensorID );
+        unsigned int cadence            = getCadence( sensorID );
+        unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
 
         createOutputHeader( sensorID, timeStampBuffer );
         if ( isUsedAsSpeedSensor( sensorID ) )
         {
-            double speed              = getSpeed( sensorID );
-            double wheelCircumference = getWheelCircumference( sensorID );
-            double gearRatio          = getNbMagnets( sensorID );
+            speed              = getSpeed( sensorID );
+            wheelCircumference = getWheelCircumference( sensorID );
+            gearRatio          = getNbMagnets( sensorID );
+        }
 
-            createPWRB10ResultString
-            (
-                power,
-                cadence,
-                speed,
-                zeroTimeCount,
-                eventCount,
-                deltaEventCount,
-                deltaAccumulatedPower,
-                instantaneousPower,
-                instantaneousCadence,
-                pedalPower,
-                wheelCircumference,
-                gearRatio
-            );
-            setSpeed( sensorID, speed );
-        }
-        else
-        {
-            createPWRB10ResultString
-            (
-                power,
-                cadence,
-                zeroTimeCount,
-                eventCount,
-                deltaEventCount,
-                deltaAccumulatedPower,
-                instantaneousPower,
-                instantaneousCadence,
-                pedalPower
-            );
-        }
+        createPWRB10ResultString
+        (
+            power,
+            cadence,
+            zeroTimeCount,
+            eventCount,
+            deltaEventCount,
+            deltaAccumulatedPower,
+            instantaneousPower,
+            instantaneousCadence,
+            pedalPower,
+            isUsedAsSpeedSensor( sensorID ),
+            speed,
+            wheelCircumference,
+            gearRatio
+        );
         appendOutputFooter( b2tVersion );
 
+        if ( isUsedAsSpeedSensor( sensorID ) )
+        {
+            setSpeed( sensorID, speed );
+        }
         setPower( sensorID,   power );
         setCadence( sensorID, cadence );
         setZeroTimeCount( sensorID, zeroTimeCount );
@@ -1634,16 +1613,16 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
 (
-    const char  *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   sensorID;
-        std::string   timeStampBuffer;
-        std::string   semiCookedString;
-        std::string   curVersion            = b2tVersion;
+        amString      sensorID;
+        amString      timeStampBuffer;
+        amString      semiCookedString;
+        amString      curVersion            = b2tVersion;
         amSplitString words;
         unsigned int  nbWords               = words.split( inputBuffer );
         unsigned int  eventCount            = 0;
@@ -1668,14 +1647,14 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerOnlySensor( sensorID ) )
             {
                 result                = POWER_METER;
-                deltaEventCount       = ( unsigned int ) strToInt( words[ counter++ ] );            // 3
-                deltaAccumulatedPower = ( unsigned int ) strToInt( words[ counter++ ] );            // 4
-                instantaneousPower    = ( unsigned int ) strToInt( words[ counter++ ] );            // 5
-                instantaneousCadence  = ( unsigned int ) strToInt( words[ counter++ ] );            // 6
-                pedalPower            = ( unsigned int ) strToInt( words[ counter++ ] );            // 7
-                if ( ( nbWords > 8 ) && isInteger( words[ counter ] ) )
+                deltaEventCount       = words[ counter++ ].toUInt();            // 3
+                deltaAccumulatedPower = words[ counter++ ].toUInt();            // 4
+                instantaneousPower    = words[ counter++ ].toUInt();            // 5
+                instantaneousCadence  = words[ counter++ ].toUInt();            // 6
+                pedalPower            = words[ counter++ ].toUInt();            // 7
+                if ( ( nbWords > 8 ) && words[ counter ].isUnsignedInteger() )
                 {
-                    eventCount        = ( unsigned int ) strToInt( words[ counter++ ] );            // 8
+                    eventCount        = words[ counter++ ].toUInt();            // 8
                 }
                 if ( diagnostics )
                 {
@@ -1696,9 +1675,12 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
 
         if ( result == POWER_METER )
         {
-            double       power         = getPower( sensorID );
-            unsigned int cadence       = getCadence( sensorID );
-            unsigned int zeroTimeCount = getZeroTimeCount( sensorID );
+            double       power              = getPower( sensorID );
+            unsigned int cadence            = getCadence( sensorID );
+            unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
+            double       speed              = 0;
+            double       wheelCircumference = 0;
+            double       gearRatio          = 0;
 
             if ( nbWords > counter )
             {
@@ -1708,48 +1690,37 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
                     appendDiagnosticsLine( "Version", curVersion );
                 }
             }
-            createOutputHeader( sensorID, timeStampBuffer );
 
             if ( isUsedAsSpeedSensor( sensorID ) )
             {
-                double speed              = getSpeed( sensorID );
-                double wheelCircumference = getWheelCircumference( sensorID );
-                double gearRatio          = getNbMagnets( sensorID );
+                speed              = getSpeed( sensorID );
+                wheelCircumference = getWheelCircumference( sensorID );
+                gearRatio          = getNbMagnets( sensorID );
+            }
 
-                createPWRB10ResultString
-                (
-                    power,
-                    cadence,
-                    speed,
-                    zeroTimeCount,
-                    eventCount,
-                    deltaEventCount,
-                    deltaAccumulatedPower,
-                    instantaneousPower,
-                    instantaneousCadence,
-                    pedalPower,
-                    wheelCircumference,
-                    gearRatio
-                );
-                setSpeed( sensorID, speed );
-            }
-            else
-            {
-                createPWRB10ResultString
-                (
-                    power,
-                    cadence,
-                    zeroTimeCount,
-                    eventCount,
-                    deltaEventCount,
-                    deltaAccumulatedPower,
-                    instantaneousPower,
-                    instantaneousCadence,
-                    pedalPower
-                );
-            }
+            createOutputHeader( sensorID, timeStampBuffer );
+            createPWRB10ResultString
+            (
+                power,
+                cadence,
+                zeroTimeCount,
+                eventCount,
+                deltaEventCount,
+                deltaAccumulatedPower,
+                instantaneousPower,
+                instantaneousCadence,
+                pedalPower,
+                isUsedAsSpeedSensor( sensorID ),
+                speed,
+                wheelCircumference,
+                gearRatio
+            );
             appendOutputFooter( curVersion );
 
+            if ( isUsedAsSpeedSensor( sensorID ) )
+            {
+                setSpeed( sensorID, speed );
+            }
             setPower  ( sensorID, power );
             setCadence( sensorID, cadence );
             setZeroTimeCount( sensorID, zeroTimeCount );
@@ -1791,13 +1762,13 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB11
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result                 = OTHER_DEVICE;
-    std::string  sensorID               = std::string( C_WT_POWER_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID               = amString( C_WT_POWER_DEVICE_HEAD ) + deviceIDNo;
     unsigned int eventCount             = 0;
     unsigned int wheelTicks             = 0;
     unsigned int instantaneousCadence   = 0;
@@ -1821,7 +1792,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount      = hex( payLoad[ 1 ] );
+        eventCount      = hex2Int( payLoad[ 1 ] );
         rollOver        = 256;
         deltaEventCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, eventCount );
         if ( diagnostics )
@@ -1845,7 +1816,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Wheel Ticks
-        wheelTicks = hex( payLoad[ 2 ] );
+        wheelTicks = hex2Int( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Wheel Ticks", payLoad[ 2 ], wheelTicks );
@@ -1853,7 +1824,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex( payLoad[ 3 ] );
+        instantaneousCadence = hex2Int( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -1861,7 +1832,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Power
-        accumWheelPeriod = hex( payLoad[ 5 ], payLoad[ 4 ] );
+        accumWheelPeriod = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver         = 65536;  // 256^2
         deltaWheelPeriod = getDeltaInt( rollOverHappened, sensorID, rollOver, crankOrWheelPeriodTable, accumWheelPeriod );
         if ( diagnostics )
@@ -1878,7 +1849,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Torque
-        accumulatedTorque      = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        accumulatedTorque      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver               = 65536;  // 256^2
         deltaAccumulatedTorque = getDeltaInt( rollOverHappened, sensorID, rollOver, accumulatedTorqueTable, accumulatedTorque );
         if ( diagnostics )
@@ -1896,11 +1867,16 @@ amDeviceType antPowerProcessing::processPowerMeterB11
     if ( result == POWER_METER )
     {
         double       power              = getPower( sensorID );
-        double       speed              = getSpeed( sensorID );
         unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
         unsigned int cadence            = getCadence( sensorID );
         double       torque             = getTorque( sensorID );
-        double       wheelCircumference = getWheelCircumference( sensorID );
+        double       speed              = 0;
+        double       wheelCircumference = 0;
+        if ( isUsedAsSpeedSensor( sensorID ) )
+        {
+            speed                       = getSpeed( sensorID );
+            wheelCircumference          = getWheelCircumference( sensorID );
+        }
 
         createOutputHeader( sensorID, timeStampBuffer );
         createPWRB11ResultString
@@ -1908,22 +1884,26 @@ amDeviceType antPowerProcessing::processPowerMeterB11
             power,
             cadence,
             torque,
-            speed,
             zeroTimeCount,
             deltaEventCount,
             deltaWheelPeriod,
             deltaAccumulatedTorque,
             instantaneousCadence,
             wheelTicks,
+            isUsedAsSpeedSensor( sensorID ),
+            speed,
             wheelCircumference
         );
         appendOutputFooter( b2tVersion );
 
         setPower  ( sensorID, power );
         setTorque ( sensorID, torque );
-        setSpeed  ( sensorID, speed );
         setCadence( sensorID, cadence );
         setZeroTimeCount( sensorID, zeroTimeCount );
+        if ( isUsedAsSpeedSensor( sensorID ) )
+        {
+            setSpeed( sensorID, speed );
+        }
     }
 
     return result;
@@ -1940,11 +1920,11 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords                = words.split( inputBuffer );
@@ -1954,10 +1934,10 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
         unsigned int  instantaneousCadence   = 0;
         unsigned int  wheelTicks             = 0;
         unsigned int  counter                = 0;
-        std::string   curVersion             = b2tVersion;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
-        std::string   sensorID;
+        amString      curVersion             = b2tVersion;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
+        amString      sensorID;
 
         if ( nbWords > 7 )
         {
@@ -1973,11 +1953,11 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isWheelTorquePowerSensor( sensorID ) )
             {
                 result                 = POWER_METER;
-                deltaEventCount        = ( unsigned int ) strToInt( words[ counter++ ] );      // 3
-                deltaWheelPeriod       = ( unsigned int ) strToInt( words[ counter++ ] );      // 4
-                deltaAccumulatedTorque = ( unsigned int ) strToInt( words[ counter++ ] );      // 5
-                instantaneousCadence   = ( unsigned int ) strToInt( words[ counter++ ] );      // 6
-                wheelTicks             = ( unsigned int ) strToInt( words[ counter++ ] );      // 7
+                deltaEventCount        = words[ counter++ ].toUInt();      // 3
+                deltaWheelPeriod       = words[ counter++ ].toUInt();      // 4
+                deltaAccumulatedTorque = words[ counter++ ].toUInt();      // 5
+                instantaneousCadence   = words[ counter++ ].toUInt();      // 6
+                wheelTicks             = words[ counter++ ].toUInt();      // 7
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Delta Event Count", deltaEventCount );
@@ -1997,11 +1977,16 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
         if ( result == POWER_METER )
         {
             double       power              = getPower( sensorID );
-            double       speed              = getSpeed( sensorID );
             unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
             unsigned int cadence            = getCadence( sensorID );
             double       torque             = getTorque( sensorID );
-            double       wheelCircumference = getWheelCircumference( sensorID );
+            double       speed              = 0;
+            double       wheelCircumference = 0;
+            if ( isUsedAsSpeedSensor( sensorID ) )
+            {
+                speed                       = getSpeed( sensorID );
+                wheelCircumference          = getWheelCircumference( sensorID );
+            }
 
             if ( nbWords > counter )
             {
@@ -2018,22 +2003,26 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
                 power,
                 cadence,
                 torque,
-                speed,
                 zeroTimeCount,
                 deltaEventCount,
                 deltaWheelPeriod,
                 deltaAccumulatedTorque,
                 instantaneousCadence,
                 wheelTicks,
+                isUsedAsSpeedSensor( sensorID ),
+                speed,
                 wheelCircumference
             );
             appendOutputFooter( curVersion );
 
             setPower  ( sensorID, power );
             setTorque ( sensorID, torque );
-            setSpeed  ( sensorID, speed );
             setCadence( sensorID, cadence );
             setZeroTimeCount( sensorID, zeroTimeCount );
+            if ( isUsedAsSpeedSensor( sensorID ) )
+            {
+                setSpeed( sensorID, speed );
+            }
         }
 
         if ( result == OTHER_DEVICE )
@@ -2072,13 +2061,13 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB12
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result                 = OTHER_DEVICE;
-    std::string  sensorID               = std::string( C_CT_POWER_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID               = amString( C_CT_POWER_DEVICE_HEAD ) + deviceIDNo;
     unsigned int eventCount             = 0;
     unsigned int crankTicks             = 0;
     unsigned int instantaneousCadence   = 0;
@@ -2105,9 +2094,9 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount        = hex( payLoad[ 1 ] );
-        crankPeriod       = hex( payLoad[ 5 ], payLoad[ 4 ] );
-        accumulatedTorque = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        eventCount        = hex2Int( payLoad[ 1 ] );
+        crankPeriod       = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        accumulatedTorque = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver          = 256;
         if ( isLeftCrankEvent( sensorID, eventCount, rollOver ) )
         {
@@ -2206,7 +2195,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Crank Ticks
-        crankTicks = hex( payLoad[ 2 ] );
+        crankTicks = hex2Int( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Crank Ticks", payLoad[ 2 ], crankTicks );
@@ -2215,7 +2204,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex( payLoad[ 3 ] );
+        instantaneousCadence = hex2Int( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -2224,53 +2213,44 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
     if ( result == POWER_METER )
     {
-        double       power         = getPower( sensorID );
-        unsigned int cadence       = getCadence( sensorID );
-        unsigned int zeroTimeCount = getZeroTimeCount( sensorID );
-        double       torque        = getTorque( sensorID );
+        double       power              = getPower( sensorID );
+        unsigned int cadence            = getCadence( sensorID );
+        unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
+        double       torque             = getTorque( sensorID );
+        double       speed              = 0;
+        double       wheelCircumference = 0;
+        double       gearRatio          = 0;
 
-        createOutputHeader( sensorID, timeStampBuffer );
         if ( isUsedAsSpeedSensor( sensorID ) )
         {
-            double speed              = getSpeed( sensorID );
-            double wheelCircumference = getWheelCircumference( sensorID );
-            double gearRatio          = getNbMagnets( sensorID );
+            speed              = getSpeed( sensorID );
+            wheelCircumference = getWheelCircumference( sensorID );
+            gearRatio          = getNbMagnets( sensorID );
+        }
 
-            createPWRB12ResultString
-            (
-                power,
-                cadence,
-                torque,
-                speed,
-                zeroTimeCount,
-                eventCount,
-                deltaEventCount,
-                deltaCrankPeriod,
-                deltaAccumulatedTorque,
-                instantaneousCadence,
-                crankTicks,
-                wheelCircumference,
-                gearRatio
-            );
+        createOutputHeader( sensorID, timeStampBuffer );
+        createPWRB12ResultString
+        (
+            power,
+            cadence,
+            torque,
+            zeroTimeCount,
+            eventCount,
+            deltaEventCount,
+            deltaCrankPeriod,
+            deltaAccumulatedTorque,
+            instantaneousCadence,
+            crankTicks,
+            isUsedAsSpeedSensor( sensorID ),
+            speed,
+            wheelCircumference,
+            gearRatio
+        );
+        appendOutputFooter( b2tVersion );
+        if ( isUsedAsSpeedSensor( sensorID ) )
+        {
             setSpeed( sensorID, speed );
         }
-        else
-        {
-            createPWRB12ResultString
-            (
-                power,
-                cadence,
-                torque,
-                zeroTimeCount,
-                eventCount,
-                deltaEventCount,
-                deltaCrankPeriod,
-                deltaAccumulatedTorque,
-                instantaneousCadence,
-                crankTicks
-            );
-        }
-        appendOutputFooter( b2tVersion );
 
         setPower  ( sensorID, power );
         setTorque ( sensorID, torque );
@@ -2283,18 +2263,18 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
 amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords                = words.split( inputBuffer );
-        std::string   sensorID;
-        std::string   curVersion             = b2tVersion;
-        std::string   timeStampBuffer;
-        std::string   semiCookedString;
+        amString      sensorID;
+        amString      curVersion             = b2tVersion;
+        amString      timeStampBuffer;
+        amString      semiCookedString;
         unsigned int  counter                = 0;
         unsigned int  eventCount             = 0;
         unsigned int  deltaEventCount        = 0;
@@ -2319,14 +2299,14 @@ amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
                 // -----------------------------------------
                 // Create output string
                 result                 = POWER_METER;
-                deltaEventCount        = ( unsigned int ) strToInt( words[ counter++ ] );        // 3
-                deltaCrankPeriod       = ( unsigned int ) strToInt( words[ counter++ ] );        // 4
-                deltaAccumulatedTorque = ( unsigned int ) strToInt( words[ counter++ ] );        // 5
-                instantaneousCadence   = ( unsigned int ) strToInt( words[ counter++ ] );        // 6
-                crankTicks             = ( unsigned int ) strToInt( words[ counter++ ] );        // 7
-                if ( ( nbWords > 8 ) && isInteger( words[ counter ] ) )
+                deltaEventCount        = words[ counter++ ].toUInt();        // 3
+                deltaCrankPeriod       = words[ counter++ ].toUInt();        // 4
+                deltaAccumulatedTorque = words[ counter++ ].toUInt();        // 5
+                instantaneousCadence   = words[ counter++ ].toUInt();        // 6
+                crankTicks             = words[ counter++ ].toUInt();        // 7
+                if ( ( nbWords > 8 ) && words[ counter ].isUnsignedInteger() )
                 {
-                    eventCount         = ( unsigned int ) strToInt( words[ counter++ ] );        // 8
+                    eventCount         = words[ counter++ ].toUInt();        // 8
                 }
                 if ( diagnostics )
                 {
@@ -2347,10 +2327,13 @@ amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
 
         if ( result == POWER_METER )
         {
-            double       power         = getPower( sensorID );
-            unsigned int zeroTimeCount = getZeroTimeCount( sensorID );
-            unsigned int cadence       = getCadence( sensorID );
-            double       torque        = getTorque( sensorID );
+            double       power              = getPower( sensorID );
+            unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
+            unsigned int cadence            = getCadence( sensorID );
+            double       torque             = getTorque( sensorID );
+            double       speed              = 0;
+            double       wheelCircumference = 0;
+            double       gearRatio          = 0;
 
             if ( nbWords > counter )
             {
@@ -2361,48 +2344,36 @@ amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
                 }
             }
 
-            createOutputHeader( sensorID, timeStampBuffer );
             if ( isUsedAsSpeedSensor( sensorID ) )
             {
-                double speed              = getSpeed( sensorID );
-                double wheelCircumference = getWheelCircumference( sensorID );
-                double gearRatio          = getNbMagnets( sensorID );
+                speed              = getSpeed( sensorID );
+                wheelCircumference = getWheelCircumference( sensorID );
+                gearRatio          = getNbMagnets( sensorID );
+            }
 
-                createPWRB12ResultString
-                (
-                    power,
-                    cadence,
-                    torque,
-                    speed,
-                    zeroTimeCount,
-                    eventCount,
-                    deltaEventCount,
-                    deltaCrankPeriod,
-                    deltaAccumulatedTorque,
-                    instantaneousCadence,
-                    crankTicks,
-                    wheelCircumference,
-                    gearRatio
-                );
+            createOutputHeader( sensorID, timeStampBuffer );
+            createPWRB12ResultString
+            (
+                power,
+                cadence,
+                torque,
+                zeroTimeCount,
+                eventCount,
+                deltaEventCount,
+                deltaCrankPeriod,
+                deltaAccumulatedTorque,
+                instantaneousCadence,
+                crankTicks,
+                isUsedAsSpeedSensor( sensorID ),
+                speed,
+                wheelCircumference,
+                gearRatio
+            );
+            appendOutputFooter( curVersion );
+            if ( isUsedAsSpeedSensor( sensorID ) )
+            {
                 setSpeed( sensorID, speed );
             }
-            else
-            {
-                createPWRB12ResultString
-                (
-                    power,
-                    cadence,
-                    torque,
-                    zeroTimeCount,
-                    eventCount,
-                    deltaEventCount,
-                    deltaCrankPeriod,
-                    deltaAccumulatedTorque,
-                    instantaneousCadence,
-                    crankTicks
-                );
-            }
-            appendOutputFooter( curVersion );
 
             setPower  ( sensorID, power );
             setTorque ( sensorID, torque );
@@ -2446,10 +2417,10 @@ bool antPowerProcessing::createB13ResultString
     unsigned int rawRightPedalSmoothness     = 0;
     unsigned int deltaEventCount             = 0;
     unsigned int totalEventCount             = 0;
-    std::string  curVersion                  = b2tVersion;
-    std::string  sensorID;
-    std::string  timeStampBuffer;
-    std::string  semiCookedString;
+    amString     curVersion                  = b2tVersion;
+    amString     sensorID;
+    amString     timeStampBuffer;
+    amString     semiCookedString;
 
     if ( nbWords > 7 )
     {
@@ -2465,14 +2436,14 @@ bool antPowerProcessing::createB13ResultString
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterPedalSmoothness( sensorID ) )
         {
             result                      = true;
-            rawLeftTorqueEffectiveness  = ( unsigned int ) strToInt( words[ counter++ ] );     //  3
-            rawRightTorqueEffectiveness = ( unsigned int ) strToInt( words[ counter++ ] );     //  4
-            rawLeftPedalSmoothness      = ( unsigned int ) strToInt( words[ counter++ ] );     //  5
-            rawRightPedalSmoothness     = ( unsigned int ) strToInt( words[ counter++ ] );     //  6
-            if ( isInteger( words[ counter ] ) )
+            rawLeftTorqueEffectiveness  = words[ counter++ ].toUInt();     //  3
+            rawRightTorqueEffectiveness = words[ counter++ ].toUInt();     //  4
+            rawLeftPedalSmoothness      = words[ counter++ ].toUInt();     //  5
+            rawRightPedalSmoothness     = words[ counter++ ].toUInt();     //  6
+            if ( words[ counter ].isUnsignedInteger() )
             {
                 // Previous Format did not have deltaEventCount as 7th output item (bridge2txt s/w version instead)
-                deltaEventCount = ( unsigned int ) strToInt( words[ counter++ ] );     //  7
+                deltaEventCount         = words[ counter++ ].toUInt();     //  7
             }
             totalEventCount             = totalCountTable[ sensorID ] + deltaEventCount;
             totalCountTable[ sensorID ] = totalEventCount;
@@ -2516,13 +2487,13 @@ bool antPowerProcessing::createB13ResultString
 
 amDeviceType antPowerProcessing::processPowerMeterB13
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result                      = POWER_METER;
-    std::string  sensorID                    = std::string( C_PM_PEDAL_SMOOTH_HEAD ) + deviceIDNo;
+    amString     sensorID                    = amString( C_PM_PEDAL_SMOOTH_HEAD ) + deviceIDNo;
     unsigned int eventCount                  = 0;
     unsigned int rawLeftTorqueEffectiveness  = 0;
     unsigned int rawRightTorqueEffectiveness = 0;
@@ -2540,11 +2511,11 @@ amDeviceType antPowerProcessing::processPowerMeterB13
         appendPowerSensor( sensorID );
     }
 
-    eventCount                  = hex( payLoad[ 1 ] );
-    rawLeftTorqueEffectiveness  = hex( payLoad[ 2 ] );
-    rawRightTorqueEffectiveness = hex( payLoad[ 3 ] );
-    rawLeftPedalSmoothness      = hex( payLoad[ 4 ] );
-    rawRightPedalSmoothness     = hex( payLoad[ 5 ] );
+    eventCount                  = hex2Int( payLoad[ 1 ] );
+    rawLeftTorqueEffectiveness  = hex2Int( payLoad[ 2 ] );
+    rawRightTorqueEffectiveness = hex2Int( payLoad[ 3 ] );
+    rawLeftPedalSmoothness      = hex2Int( payLoad[ 4 ] );
+    rawRightPedalSmoothness     = hex2Int( payLoad[ 5 ] );
 
     // - - - - - - - - - - - - - - - -
     // Event Count
@@ -2607,11 +2578,11 @@ amDeviceType antPowerProcessing::processPowerMeterB13
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB13SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -2650,13 +2621,13 @@ amDeviceType antPowerProcessing::processPowerMeterB13SemiCooked
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antPowerProcessing::processPowerMeterB20
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result               = OTHER_DEVICE;
-    std::string  sensorID             = std::string( C_CTF_POWER_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID             = amString( C_CTF_POWER_DEVICE_HEAD ) + deviceIDNo;
     unsigned int deltaTimeStamp       = 0;
     unsigned int deltaEventCount      = 0;
     unsigned int deltaTorqueTicks     = 0;
@@ -2674,7 +2645,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount      = hex( payLoad[ 1 ] );
+        eventCount      = hex2Int( payLoad[ 1 ] );
         rollOver        = 256;
         deltaEventCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, eventCount );
         if ( diagnostics )
@@ -2699,7 +2670,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Factory Slope (Nm/10Hz)
-        factorySlope_Nm_10Hz = hex( payLoad[ 2 ], payLoad[ 3 ] );
+        factorySlope_Nm_10Hz = hex2Int( payLoad[ 2 ], payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Factory Slope", payLoad[ 2 ], payLoad[ 3 ], factorySlope_Nm_10Hz, " (Nm/10Hz)" );
@@ -2708,7 +2679,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Time Stamp
-        timeStamp      = hex( payLoad[ 4 ], payLoad[ 5 ] );
+        timeStamp      = hex2Int( payLoad[ 4 ], payLoad[ 5 ] );
         rollOver       = 65536;  // 256^2
         deltaTimeStamp = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, timeStamp );
         if ( diagnostics )
@@ -2725,7 +2696,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Torque Ticks
-        torqueTicks      = hex( payLoad[ 6 ], payLoad[ 7 ] );
+        torqueTicks      = hex2Int( payLoad[ 6 ], payLoad[ 7 ] );
         rollOver         = 65536;  // 256^2
         deltaTorqueTicks = getDeltaInt( rollOverHappened, sensorID, rollOver, accumulatedTorqueTable, torqueTicks );
         if ( diagnostics )
@@ -2742,54 +2713,47 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
     if ( result == POWER_METER )
     {
-        double       power            = getPower( sensorID );
-        unsigned int cadence          = getCadence( sensorID );
-        double       torque           = getTorque( sensorID );
-        unsigned int zeroTimeCount    = getZeroTimeCount( sensorID );
-        unsigned int powerMeterOffset = getOffset( sensorID );
-        unsigned int userDefinedSlope = getSlope_Nm_10Hz( sensorID );
+        double       power              = getPower( sensorID );
+        unsigned int cadence            = getCadence( sensorID );
+        double       torque             = getTorque( sensorID );
+        unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
+        unsigned int powerMeterOffset   = getOffset( sensorID );
+        unsigned int userDefinedSlope   = getSlope_Nm_10Hz( sensorID );
+        double       speed              = 0;
+        double       wheelCircumference = 0;
+        double       gearRatio          = 0;
 
         createOutputHeader( sensorID, timeStampBuffer );
         if ( isUsedAsSpeedSensor( sensorID ) )
         {
-            double speed              = getSpeed( sensorID );
-            double wheelCircumference = getWheelCircumference( sensorID );
-            double gearRatio          = getNbMagnets( sensorID );
+            speed              = getSpeed( sensorID );
+            wheelCircumference = getWheelCircumference( sensorID );
+            gearRatio          = getNbMagnets( sensorID );
+        }
 
-            createPWRB20ResultString
-            (
-                power,
-                cadence,
-                torque,
-                speed,
-                zeroTimeCount,
-                deltaEventCount,
-                deltaTimeStamp,
-                deltaTorqueTicks,
-                factorySlope_Nm_10Hz,
-                powerMeterOffset,
-                userDefinedSlope,
-                wheelCircumference,
-                gearRatio
-            );
+        createPWRB20ResultString
+        (
+            power,
+            cadence,
+            torque,
+            zeroTimeCount,
+            deltaEventCount,
+            deltaTimeStamp,
+            deltaTorqueTicks,
+            factorySlope_Nm_10Hz,
+            powerMeterOffset,
+            userDefinedSlope,
+            isUsedAsSpeedSensor( sensorID ),
+            speed,
+            wheelCircumference,
+            gearRatio
+        );
+
+        if ( isUsedAsSpeedSensor( sensorID ) )
+        {
             setSpeed( sensorID, speed );
         }
-        else
-        {
-            createPWRB20ResultString
-            (
-                power,
-                cadence,
-                torque,
-                zeroTimeCount,
-                deltaEventCount,
-                deltaTimeStamp,
-                deltaTorqueTicks,
-                factorySlope_Nm_10Hz,
-                powerMeterOffset,
-                userDefinedSlope
-            );
-        }
+
         appendOutputFooter( b2tVersion );
 
         setPower  ( sensorID, power );
@@ -2812,18 +2776,18 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords              = words.split( inputBuffer );
-        std::string   sensorID;
-        std::string   timeStampBuffer;
-        std::string   curVersion           = b2tVersion;
-        std::string   semiCookedString;
+        amString      sensorID;
+        amString      timeStampBuffer;
+        amString      curVersion           = b2tVersion;
+        amString      semiCookedString;
         unsigned int  deltaEventCount      = 0;
         unsigned int  deltaTimeStamp       = 0;
         unsigned int  deltaTorqueTicks     = 0;
@@ -2844,10 +2808,10 @@ amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isCrankTorqueFrequencyPowerSensor( sensorID ) )
             {
                 result               = POWER_METER;
-                deltaEventCount      = ( unsigned int ) strToInt( words[ counter++ ] );      // 3
-                deltaTimeStamp       = ( unsigned int ) strToInt( words[ counter++ ] );      // 4
-                deltaTorqueTicks     = ( unsigned int ) strToInt( words[ counter++ ] );      // 5
-                factorySlope_Nm_10Hz = ( unsigned int ) strToInt( words[ counter++ ] );      // 6
+                deltaEventCount      = words[ counter++ ].toUInt();      // 3
+                deltaTimeStamp       = words[ counter++ ].toUInt();      // 4
+                deltaTorqueTicks     = words[ counter++ ].toUInt();      // 5
+                factorySlope_Nm_10Hz = words[ counter++ ].toUInt();      // 6
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Delta Event Count", deltaEventCount );
@@ -2865,12 +2829,15 @@ amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
 
         if ( result == POWER_METER )
         {
-            double       power            = getPower( sensorID );
-            unsigned int cadence          = getCadence( sensorID );
-            unsigned int zeroTimeCount    = getZeroTimeCount( sensorID );
-            double       torque           = getTorque( sensorID );
-            unsigned int powerMeterOffset = getOffset( sensorID );
-            unsigned int userDefinedSlope = getSlope_Nm_10Hz( sensorID );
+            double       power              = getPower( sensorID );
+            unsigned int cadence            = getCadence( sensorID );
+            unsigned int zeroTimeCount      = getZeroTimeCount( sensorID );
+            double       torque             = getTorque( sensorID );
+            unsigned int powerMeterOffset   = getOffset( sensorID );
+            unsigned int userDefinedSlope   = getSlope_Nm_10Hz( sensorID );
+            double       speed              = 0;
+            double       wheelCircumference = 0;
+            double       gearRatio          = 0;
 
             if ( nbWords > counter )
             {
@@ -2881,48 +2848,37 @@ amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
                 }
             }
 
-            createOutputHeader( sensorID, timeStampBuffer );
             if ( isUsedAsSpeedSensor( sensorID ) )
             {
-                double speed              = getSpeed( sensorID );
-                double wheelCircumference = getWheelCircumference( sensorID );
-                double gearRatio          = getNbMagnets( sensorID );
+                speed              = getSpeed( sensorID );
+                wheelCircumference = getWheelCircumference( sensorID );
+                gearRatio          = getNbMagnets( sensorID );
+            }
 
-                createPWRB20ResultString
-                (
-                    power,
-                    cadence,
-                    torque,
-                    speed,
-                    zeroTimeCount,
-                    deltaEventCount,
-                    deltaTimeStamp,
-                    deltaTorqueTicks,
-                    factorySlope_Nm_10Hz,
-                    powerMeterOffset,
-                    userDefinedSlope,
-                    wheelCircumference,
-                    gearRatio
-                );
+            createOutputHeader( sensorID, timeStampBuffer );
+            createPWRB20ResultString
+            (
+                power,
+                cadence,
+                torque,
+                zeroTimeCount,
+                deltaEventCount,
+                deltaTimeStamp,
+                deltaTorqueTicks,
+                factorySlope_Nm_10Hz,
+                powerMeterOffset,
+                userDefinedSlope,
+                isUsedAsSpeedSensor( sensorID ),
+                speed,
+                wheelCircumference,
+                gearRatio
+            );
+            appendOutputFooter( curVersion );
+
+            if ( isUsedAsSpeedSensor( sensorID ) )
+            {
                 setSpeed( sensorID, speed );
             }
-            else
-            {
-                createPWRB20ResultString
-                (
-                    power,
-                    cadence,
-                    torque,
-                    zeroTimeCount,
-                    deltaEventCount,
-                    deltaTimeStamp,
-                    deltaTorqueTicks,
-                    factorySlope_Nm_10Hz,
-                    powerMeterOffset,
-                    userDefinedSlope
-                );
-            }
-            appendOutputFooter( curVersion );
 
             setPower  ( sensorID, power );
             setTorque ( sensorID, torque );
@@ -2965,10 +2921,10 @@ bool antPowerProcessing::createB46ResultString
     unsigned int requestedResponse = 0;
     unsigned int requestedPageNo   = 0;
     unsigned int commandType       = 0;
-    std::string  curVersion        = b2tVersion;
-    std::string  sensorID;
-    std::string  timeStampBuffer;
-    std::string  semiCookedString;
+    amString     curVersion        = b2tVersion;
+    amString     sensorID;
+    amString     timeStampBuffer;
+    amString     semiCookedString;
     bool         outputPageNo      = false;  // The page number is already mentioned in the meassage header (PWBR46)
 
     if ( nbWords > 7 )
@@ -2986,11 +2942,11 @@ bool antPowerProcessing::createB46ResultString
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterRequest( sensorID ) )
         {
             result            = true;
-            descriptor1       = ( unsigned int ) strToInt( words[ counter++ ] );               //  3
-            descriptor2       = ( unsigned int ) strToInt( words[ counter++ ] );               //  4
-            requestedResponse = ( unsigned int ) strToInt( words[ counter++ ] );               //  5
-            requestedPageNo   = ( unsigned int ) strToInt( words[ counter++ ] );               //  6
-            commandType       = ( unsigned int ) strToInt( words[ counter++ ] );               //  7
+            descriptor1       = words[ counter++ ].toUInt();               //  3
+            descriptor2       = words[ counter++ ].toUInt();               //  4
+            requestedResponse = words[ counter++ ].toUInt();               //  5
+            requestedPageNo   = words[ counter++ ].toUInt();               //  6
+            commandType       = words[ counter++ ].toUInt();               //  7
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Descriptor Byte 1", descriptor1 );
@@ -3028,18 +2984,18 @@ bool antPowerProcessing::createB46ResultString
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB46
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result            = POWER_METER;
-    std::string  sensorID          = std::string( C_PM_REQUEST_HEAD ) + deviceIDNo;
-    unsigned int descriptor1       = hex( payLoad[ 3 ] );
-    unsigned int descriptor2       = hex( payLoad[ 4 ] );
-    unsigned int requestedResponse = hex( payLoad[ 5 ] );
-    unsigned int requestedPageNo   = hex( payLoad[ 6 ] );
-    unsigned int commandType       = hex( payLoad[ 7 ] );
+    amString     sensorID          = amString( C_PM_REQUEST_HEAD ) + deviceIDNo;
+    unsigned int descriptor1       = hex2Int( payLoad[ 3 ] );
+    unsigned int descriptor2       = hex2Int( payLoad[ 4 ] );
+    unsigned int requestedResponse = hex2Int( payLoad[ 5 ] );
+    unsigned int requestedPageNo   = hex2Int( payLoad[ 6 ] );
+    unsigned int commandType       = hex2Int( payLoad[ 7 ] );
     bool         outputPageNo      = false;  // The page number is already mentioned in the meassage header (PWBR46)
 
     // ---------------------------------------------------------------
@@ -3081,11 +3037,11 @@ amDeviceType antPowerProcessing::processPowerMeterB46
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB46SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -3126,10 +3082,10 @@ bool antPowerProcessing::createB50ResultString
     const amSplitString &words
 )
 {
-    std::string  sensorID;
-    std::string  semiCookedString;
-    std::string  timeStampBuffer;
-    std::string  curVersion       = b2tVersion;
+    amString     sensorID;
+    amString     semiCookedString;
+    amString     timeStampBuffer;
+    amString     curVersion       = b2tVersion;
     bool         result           = false;
     unsigned int nbWords          = words.size();
     unsigned int counter          = 0;
@@ -3152,9 +3108,9 @@ bool antPowerProcessing::createB50ResultString
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterManufacturerInfo( sensorID ) )
         {
             result           = true;
-            manufacturerID   = ( unsigned int ) strToInt( words[ counter++ ] );    // 3
-            hardwareRevision = ( unsigned int ) strToInt( words[ counter++ ] );    // 4
-            modelNumber      = ( unsigned int ) strToInt( words[ counter++ ] );    // 5
+            manufacturerID   = words[ counter++ ].toUInt();    // 3
+            hardwareRevision = words[ counter++ ].toUInt();    // 4
+            modelNumber      = words[ counter++ ].toUInt();    // 5
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Model Number", modelNumber );
@@ -3196,16 +3152,16 @@ bool antPowerProcessing::createB50ResultString
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB50
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result           = POWER_METER;
-    unsigned int hardwareRevision = hex( payLoad[ 3 ] );
-    unsigned int manufacturerID   = hex( payLoad[ 5 ], payLoad[ 4 ] );
-    unsigned int modelNumber      = hex( payLoad[ 7 ], payLoad[ 6 ] );
-    std::string  sensorID         = std::string( C_PM_MFR_INFO_HEAD ) + deviceIDNo;
+    unsigned int hardwareRevision = hex2Int( payLoad[ 3 ] );
+    unsigned int manufacturerID   = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+    unsigned int modelNumber      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+    amString     sensorID         = amString( C_PM_MFR_INFO_HEAD ) + deviceIDNo;
     bool         outputPageNo     = false;  // The page number is already mentioned in the meassage header (PWBR50)
 
     if ( diagnostics )
@@ -3225,11 +3181,11 @@ amDeviceType antPowerProcessing::processPowerMeterB50
 
 amDeviceType antPowerProcessing::processPowerMeterB50SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -3271,10 +3227,10 @@ bool antPowerProcessing::createB51ResultString
     const amSplitString &words
 )
 {
-    std::string  sensorID;
-    std::string  semiCookedString;
-    std::string  timeStampBuffer;
-    std::string  curVersion       = b2tVersion;
+    amString     sensorID;
+    amString     semiCookedString;
+    amString     timeStampBuffer;
+    amString     curVersion       = b2tVersion;
     bool         result           = false;
     unsigned int nbWords          = words.size();
     unsigned int counter          = 0;
@@ -3296,8 +3252,8 @@ bool antPowerProcessing::createB51ResultString
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterProductInfo( sensorID ) )
         {
             result           = true;
-            serialNumber     = ( unsigned int ) strToInt( words[ counter++ ] );    // 3
-            softwareRevision = ( unsigned int ) strToInt( words[ counter++ ] );    // 4
+            serialNumber     = words[ counter++ ].toUInt();    // 3
+            softwareRevision = words[ counter++ ].toUInt();    // 4
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Serial Number", serialNumber );
@@ -3333,9 +3289,9 @@ bool antPowerProcessing::createB51ResultString
 //     "PWRB51_<device_ID> <seconds> payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ], <serialNumber>"
 //
 // Parameters:
-//    const std::string &deviceIDNo        IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    const amString &deviceIDNo        IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // The output string has the form
 // If semiCookedOut == true
@@ -3349,15 +3305,15 @@ bool antPowerProcessing::createB51ResultString
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB51
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result           = POWER_METER;
-    std::string  sensorID         = std::string( C_PM_PROD_INFO_HEAD ) + deviceIDNo;
-    unsigned int serialNumber     = hex( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
-    unsigned int softwareRevision = hex( payLoad[ 3 ] );
+    amString     sensorID         = amString( C_PM_PROD_INFO_HEAD ) + deviceIDNo;
+    unsigned int serialNumber     = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
+    unsigned int softwareRevision = hex2Int( payLoad[ 3 ] );
     bool         outputPageNo     = false;  // The page number is already mentioned in the meassage header (PWBR51)
 
     if ( diagnostics )
@@ -3384,11 +3340,11 @@ amDeviceType antPowerProcessing::processPowerMeterB51
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB51SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
@@ -3429,10 +3385,10 @@ bool antPowerProcessing::createB52ResultString
     const amSplitString &words
 )
 {
-    std::string  timeStampBuffer;
-    std::string  sensorID;
-    std::string  semiCookedString;
-    std::string  curVersion         = b2tVersion;
+    amString     timeStampBuffer;
+    amString     sensorID;
+    amString     semiCookedString;
+    amString     curVersion         = b2tVersion;
     bool         result             = false;
     unsigned int nbWords            = words.size();
     unsigned int nbBatteries        = 0;
@@ -3459,10 +3415,10 @@ bool antPowerProcessing::createB52ResultString
         if ( ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterStatusMessage( sensorID ) )
         {
             result             = true;
-            voltage256         = ( unsigned int ) strToInt( words[ counter++ ] );          // 3
-            status             = ( unsigned int ) strToInt( words[ counter++ ] );          // 4
-            deltaOperatingTime = ( unsigned int ) strToInt( words[ counter++ ] );          // 5
-            resolution         = ( unsigned int ) strToInt( words[ counter++ ] );          // 6
+            voltage256         = words[ counter++ ].toUInt();          // 3
+            status             = words[ counter++ ].toUInt();          // 4
+            deltaOperatingTime = words[ counter++ ].toUInt();          // 5
+            resolution         = words[ counter++ ].toUInt();          // 6
 
             if ( diagnostics )
             {
@@ -3474,8 +3430,8 @@ bool antPowerProcessing::createB52ResultString
             if ( nbWords >= 10 )
             {
                 bool reassign = false;
-                nbBatteries   = ( unsigned int ) strToInt( words[ counter++ ] );                     // 7
-                batteryID     = ( unsigned int ) strToInt( words[ counter++ ] );                     // 8
+                nbBatteries   = words[ counter++ ].toUInt();                     // 7
+                batteryID     = words[ counter++ ].toUInt();                     // 8
                 if ( ( voltage256 == 0 ) && ( status == 0 ) && ( nbBatteries != 0 ) && ( batteryID != 0 ) )
                 {
                     reassign = true;
@@ -3547,12 +3503,12 @@ bool antPowerProcessing::createB52ResultString
 
 unsigned int antPowerProcessing::splitFormat137_B52
 (
-    const char    *inputBuffer,
-    amSplitString &outWords
+    const amString &inputBuffer,
+    amSplitString  &outWords
 )
 {
     unsigned int nbWords = 0;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString inWords;
         nbWords = inWords.split( inputBuffer );
@@ -3565,7 +3521,7 @@ unsigned int antPowerProcessing::splitFormat137_B52
             //  B  PWRB52_54330   1394849709.243736   S     0       0       760        3         1199         2      1.34.484-g23b5005
             //     <sensor_id>       <time_stamp>    <S>  <nb_b>  <b_id>  <v_256>  <status>   <oper_time> <resol>      <version>
 
-            std::string  sensorID;
+            amString     sensorID;
             unsigned int counter            = 0;
             unsigned int operatingTime      = 0;
             unsigned int deltaOperatingTime = 0;
@@ -3579,15 +3535,15 @@ unsigned int antPowerProcessing::splitFormat137_B52
             if ( nbWords >= 10 )
             {
                 // Case B
-                nbBatteries = ( unsigned int ) strToInt( inWords[ counter++ ] );         // Nb Batteries
-                batteryID   = ( unsigned int ) strToInt( inWords[ counter++ ] );         // Battery ID
+                nbBatteries = inWords[ counter++ ].toUInt();               // Nb Batteries
+                batteryID   = inWords[ counter++ ].toUInt();               // Battery ID
             }
             outWords.push_back( inWords[ counter++ ] );                    // Voltage256
             outWords.push_back( inWords[ counter++ ] );                    // Status
-            operatingTime = ( unsigned int ) strToInt( inWords[ counter++ ] );           // Accumulative Operating Time
+            operatingTime   = inWords[ counter++ ].toUInt();               // Accumulative Operating Time
             if ( operatingTimeTable.count( sensorID ) == 0 )               //     must be converted to Delta Operating Time
             {
-                operatingTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+                operatingTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
             }
             deltaOperatingTime = operatingTime - operatingTimeTable[ sensorID ];
             operatingTimeTable[ sensorID ] = operatingTime;
@@ -3612,9 +3568,9 @@ unsigned int antPowerProcessing::splitFormat137_B52
 //     "PWRB52_<device_ID> <seconds> <battery_status> <voltage>"
 //
 // Parameters:
-//    const std::string &deviceIDNo        IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char          payLoad[]         IN   Array of bytes with the data to be converted.
+//    const amString &deviceIDNo        IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // The output string has the form
 // If semiCookedOut == true
@@ -3628,9 +3584,9 @@ unsigned int antPowerProcessing::splitFormat137_B52
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB52
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     unsigned int deltaOperatingTime = 0;
@@ -3643,7 +3599,7 @@ amDeviceType antPowerProcessing::processPowerMeterB52
     unsigned int resolution         = 0;
     unsigned int rollOver           = 0;
     amDeviceType result             = POWER_METER;
-    std::string  sensorID           = std::string( C_PM_STATUS_MSG_HEAD ) + deviceIDNo;
+    amString     sensorID           = amString( C_PM_STATUS_MSG_HEAD ) + deviceIDNo;
     bool         rollOverHappened   = false;
     bool         commonPage         = false;
     bool         outputPageNo       = false;  // The page number is already mentioned in the meassage header (PWBR52)
@@ -3656,8 +3612,8 @@ amDeviceType antPowerProcessing::processPowerMeterB52
     //         Set to 0xFF if not used.
     if ( ( totalTimeTable.count( sensorID ) == 0 ) && ( eventTimeTable.count( sensorID ) == 0 ) )
     {
-        operatingTimeTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
-        eventTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+        operatingTimeTable.insert( std::pair<amString, double>( sensorID, 0 ) );
+        eventTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
     }
 
     if ( payLoad[ 2 ] != 0xFF )
@@ -3672,8 +3628,8 @@ amDeviceType antPowerProcessing::processPowerMeterB52
     }
 
 
-    voltage256  = hex( payLoad[ 6 ] );
-    voltageInt  = hex( payLoad[ 7 ] ) & 0x0F;
+    voltage256  = hex2Int( payLoad[ 6 ] );
+    voltageInt  = hex2Int( payLoad[ 7 ] ) & 0x0F;
     voltage256 += voltageInt * 256;
     if ( diagnostics )
     {
@@ -3692,7 +3648,7 @@ amDeviceType antPowerProcessing::processPowerMeterB52
 
 
     resolution        = ( payLoad[ 7 ] & 128 ) ? 16 : 2;
-    operatingTime     = hex( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
+    operatingTime     = hex2Int( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
     rollOver          = 16777216;  // 256^3
     deltaOperatingTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, operatingTime );
     if ( diagnostics )
@@ -3734,11 +3690,11 @@ amDeviceType antPowerProcessing::processPowerMeterB52
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antPowerProcessing::processPowerMeterB52SemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         bool          resultCreate = false;
         unsigned int  nbWords      = 0;
@@ -3787,9 +3743,9 @@ amDeviceType antPowerProcessing::processPowerMeterB52SemiCooked
 // and put the result string into the outBuffer.
 //
 // Parameters:
-//    const std::string &deviceIDNo        IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    const amString &deviceIDNo        IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType POWER_METER if successful.
 //        amDeviceType OTHER_DEVICE otherwise (device type ot recognized)
@@ -3799,19 +3755,19 @@ amDeviceType antPowerProcessing::processPowerMeterB52SemiCooked
 // -------------------------------------------------------------------------------------------------//
 amDeviceType antPowerProcessing::processPowerMeter
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     unsigned int dataPage           = 0;
     amDeviceType result             = OTHER_DEVICE;
     bool         commonPage         = false;
     bool         outputPageNo       = false;
-    std::string  sensorID;
+    amString     sensorID;
     char         auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
 
-    dataPage = hex( payLoad[ 0 ] );
+    dataPage = hex2Int( payLoad[ 0 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -3868,7 +3824,7 @@ amDeviceType antPowerProcessing::processPowerMeter
                  result = processPowerMeterB52( deviceIDNo, timeStampBuffer, payLoad );
                  break;
         default: sprintf( auxBuffer, "%2X_", payLoad[ 0 ] );
-                 sensorID = std::string( C_POWER_DEVICE_HEAD ) + auxBuffer + deviceIDNo;
+                 sensorID = amString( C_POWER_DEVICE_HEAD ) + auxBuffer + deviceIDNo;
                  createOutputHeader( sensorID, timeStampBuffer );
                  commonPage = processCommonPages( sensorID, payLoad, outputPageNo );
                  if ( commonPage )
@@ -3881,7 +3837,7 @@ amDeviceType antPowerProcessing::processPowerMeter
                      resetOutBuffer();
                      if ( outputUnknown )
                      {
-                         int deviceIDNoAsInt = strToInt( deviceIDNo );
+                         int deviceIDNoAsInt = deviceIDNo.toInt();
                          createUnknownDeviceTypeString( C_POWER_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
                      }
                  }
@@ -3893,11 +3849,11 @@ amDeviceType antPowerProcessing::processPowerMeter
 
 amDeviceType antPowerProcessing::processPowerMeterSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         char          auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
         amSplitString words;
@@ -3907,9 +3863,9 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
         unsigned int  startCounter       = 0;
         bool          commonPage         = false;
         bool          outputPageNo       = false;
-        std::string   sensorID;
-        std::string   timeStampBuffer;
-        std::string   semiCookedString;
+        amString      sensorID;
+        amString      timeStampBuffer;
+        amString      semiCookedString;
 
         if ( nbWords > 4 )
         {
@@ -4031,7 +3987,6 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
                              break;
                  }
              }
-else std::cerr << "NO: " << words << std::endl;
         }
     }
     return result;
@@ -4101,16 +4056,12 @@ void antPowerProcessing::createPMCalibrationResultString016
             if ( ctfDefinedID == 172 )
             {
                 appendOutput( C_CTF_CALIBRATION_RESPONSE );
-                appendOutput( ( messageValue == 1 ) ? C_ZERO_OFFSET   : (
-                              ( messageValue == 2 ) ? C_SLOPE         : (
-                              ( messageValue == 3 ) ? C_SERIAL_NUMBER : C_UNKNOWN ) ) );
+                appendOutput4Way( messageValue, C_UNKNOWN, C_ZERO_OFFSET, C_SLOPE, C_SERIAL_NUMBER );
             }
             else
             {
                 appendOutput( C_CTF_CALIBRATION_REQUEST );
-                appendOutput( ( ctfDefinedID == 1 ) ? C_ZERO_OFFSET   : (
-                              ( ctfDefinedID == 2 ) ? C_SLOPE         : (
-                              ( ctfDefinedID == 3 ) ? C_SERIAL_NUMBER : C_UNKNOWN ) ) );
+                appendOutput4Way( ctfDefinedID, C_UNKNOWN, C_ZERO_OFFSET, C_SLOPE, C_SERIAL_NUMBER );
                 appendOutput( messageValue );
             }
         }
@@ -4134,8 +4085,8 @@ void antPowerProcessing::createPMCalibrationResultString018
         else
         {
             appendJSONItem( "calibration id", "auto zero support" );
-            appendJSONItem( "auto zero enable", autoZeroEnable ? "supported" : "not supported");
-            appendJSONItem( "auto zero status", autoZeroStatus ? C_ON_JSON   : C_OFF_JSON );
+            appendJSONItemConditional( "auto zero enable", autoZeroEnable, "supported", "not supported" );
+            appendJSONItemConditional( "auto zero status", autoZeroStatus, C_ON_JSON,   C_OFF_JSON );
         }
     }
     else
@@ -4149,9 +4100,9 @@ void antPowerProcessing::createPMCalibrationResultString018
         else
         {
             appendOutput( C_AUTO_ZERO_ENABLE );
-            appendOutput( autoZeroEnable ? C_SUPPORTED_ID : C_NOT_SUPPORTED_ID );
+            appendOutputConditional( autoZeroEnable, C_SUPPORTED_ID, C_NOT_SUPPORTED_ID );
             appendOutput( C_AUTO_ZERO_STATUS );
-            appendOutput( autoZeroStatus ? C_ON : C_OFF );
+            appendOutputConditional( autoZeroStatus, C_ON, C_OFF );
         }
     }
 }
@@ -4163,11 +4114,11 @@ void antPowerProcessing::createPMCalibrationResultString170
 {
     if ( outputAsJSON )
     {
-        appendJSONItem( "calibration id", semiCookedOut ? "170" : "calibration request" );
+        appendJSONItemConditional( "calibration id", semiCookedOut, 170, "calibration request" );
     }
     else
     {
-        appendOutput( semiCookedOut ? "170" : C_CALIBRATION_REQUEST_MANUAL_ZERO );
+        appendOutputConditional( semiCookedOut, 170, C_CALIBRATION_REQUEST_MANUAL_ZERO );
     }
 }
 
@@ -4186,7 +4137,7 @@ void antPowerProcessing::createPMCalibrationResultString171
         else
         {
             appendJSONItem( "calibration request", "auto zero configuration" );
-            appendJSONItem( "auto zero", ( autoZeroStatus == 0 ) ? "off" : ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
+            appendJSONItemConditional( "auto zero", autoZeroStatus == 0, "off", ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
         }
     }
     else
@@ -4200,7 +4151,7 @@ void antPowerProcessing::createPMCalibrationResultString171
         {
             appendOutput( C_CALIBRATION_REQUEST_AUTO_ZERO );
             appendOutput( C_AUTO_ZERO );
-            appendOutput( ( autoZeroStatus == 0 ) ? C_OFF : ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
+            appendOutputConditional( autoZeroStatus == 0, C_OFF, ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
         }
     }
 }
@@ -4221,7 +4172,7 @@ void antPowerProcessing::createPMCalibrationResultString172
         else
         {
             appendJSONItem( "manual zero", "success" );
-            appendJSONItem( "auto zero", ( autoZeroStatus == 0 ) ? "off" : ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
+            appendJSONItemConditional( "auto zero", autoZeroStatus == 0, "off", ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
             appendJSONItem( "value", messageValue );
         }
     }
@@ -4237,7 +4188,7 @@ void antPowerProcessing::createPMCalibrationResultString172
         {
             appendOutput( C_CALIBRATION_RESPONSE_MANUAL_ZERO_SUCCESS );
             appendOutput( C_AUTO_ZERO );
-            appendOutput( ( autoZeroStatus == 0 ) ? C_OFF : ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
+            appendOutputConditional( autoZeroStatus == 0, C_OFF, ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
             appendOutput( messageValue );
         }
     }
@@ -4259,7 +4210,7 @@ void antPowerProcessing::createPMCalibrationResultString175
         else
         {
             appendJSONItem( "manual zero", "fail" );
-            appendJSONItem( "auto zero", ( autoZeroStatus == 0 ) ? "off" : ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
+            appendJSONItemConditional( "auto zero", autoZeroStatus == 0, "off", ( ( autoZeroStatus == 1 ) ? "on" : "not supported" ) );
             appendJSONItem( "value", messageValue );
         }
     }
@@ -4275,7 +4226,7 @@ void antPowerProcessing::createPMCalibrationResultString175
         {
             appendOutput( C_CALIBRATION_RESPONSE_MANUAL_ZERO_FAILED );
             appendOutput( C_AUTO_ZERO );
-            appendOutput( ( autoZeroStatus == 0 ) ? C_OFF : ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
+            appendOutputConditional( autoZeroStatus == 0, C_OFF, ( ( autoZeroStatus == 1 ) ? C_ON : C_NOT_SUPPORTED_ID ) );
             appendOutput( messageValue );
         }
     }
@@ -4288,11 +4239,11 @@ void antPowerProcessing::createPMCalibrationResultString186
 {
     if ( outputAsJSON )
     {
-        appendJSONItem( "calibration id", semiCookedOut ? "186" : "custom calibration parameter request" );
+        appendJSONItemConditional( "calibration id", semiCookedOut, 186, "custom calibration parameter request" );
     }
     else
     {
-        appendOutput( semiCookedOut ? "186" : C_CUSTOM_CALIBRATION_PARAMETER_REQUEST );
+        appendOutputConditional( semiCookedOut, 186, C_CUSTOM_CALIBRATION_PARAMETER_REQUEST );
     }
 }
 
@@ -4303,11 +4254,11 @@ void antPowerProcessing::createPMCalibrationResultString187
 {
     if ( outputAsJSON )
     {
-        appendJSONItem( "calibration id", semiCookedOut ? "187" : "custom calibration parameter response" );
+        appendJSONItemConditional( "calibration id", semiCookedOut, 187, "custom calibration parameter response" );
     }
     else
     {
-        appendOutput( semiCookedOut ? "187" : C_CUSTOM_CALIBRATION_PARAMETER_RESPONSE );
+        appendOutputConditional( semiCookedOut, 187, C_CUSTOM_CALIBRATION_PARAMETER_RESPONSE );
     }
 }
 
@@ -4318,11 +4269,11 @@ void antPowerProcessing::createPMCalibrationResultString188
 {
     if ( outputAsJSON )
     {
-        appendJSONItem( "calibration id", semiCookedOut ? "188" : "custom calibration parameter update" );
+        appendJSONItemConditional( "calibration id", semiCookedOut, 188, "custom calibration parameter update" );
     }
     else
     {
-        appendOutput( semiCookedOut ? "188" : C_CUSTOM_CALIBRATION_PARAMETER_UPDATE );
+        appendOutputConditional( semiCookedOut, 188, C_CUSTOM_CALIBRATION_PARAMETER_UPDATE );
     }
 }
 
@@ -4333,11 +4284,11 @@ void antPowerProcessing::createPMCalibrationResultString189
 {
     if ( outputAsJSON )
     {
-        appendJSONItem( "calibration id", semiCookedOut ? "189" : "custom calibration parameter update response" );
+        appendJSONItemConditional( "calibration id", semiCookedOut, 189, "custom calibration parameter update response" );
     }
     else
     {
-        appendOutput( semiCookedOut ? "189" : C_CUSTOM_CALIBRATION_PARAMETER_UPDATE_RESPONSE );
+        appendOutputConditional( semiCookedOut, 189, C_CUSTOM_CALIBRATION_PARAMETER_UPDATE_RESPONSE );
     }
 }
 
@@ -4435,24 +4386,11 @@ void antPowerProcessing::createPWRB02ResultString
                     appendJSONItem( "crank length", crankLength, 1 );   // <xyz>.0  or  <xyz>.5
                 }
 
-                appendJSONItem( "sw mismatch", ( crankLengthStatus == 0 ) ? C_UNDEFINED_JSON : (
-                                               ( crankLengthStatus == 1 ) ? "default length" : (
-                                               ( crankLengthStatus == 2 ) ? "manually set"   : "automatically set" ) ) );
-
-                appendJSONItem( "sw mismatch", ( sensorSWMismatchStatus == 0 ) ? C_UNDEFINED_JSON     : (
-                                               ( sensorSWMismatchStatus == 1 ) ? "right sensor older" : (
-                                               ( sensorSWMismatchStatus == 2 ) ? "left sensor older"  : C_NONE_JSON ) ) );
-
-
-                appendJSONItem( "sensor availabilty", ( sensorAvailabiltyStatus == 0 ) ? C_UNDEFINED_JSON : (
-                                                      ( sensorAvailabiltyStatus == 1 ) ? "left present"   : (
-                                                      ( sensorAvailabiltyStatus == 2 ) ? "right present"  : "both present" ) ) );
-
-                appendJSONItem( "custom calibration", ( customCalibrationStatus == 0 ) ? C_UNDEFINED_JSON : (
-                                                      ( customCalibrationStatus == 1 ) ? "not required"   : (
-                                                      ( customCalibrationStatus == 2 ) ? "required"       : C_UNKNOWN_JSON ) ) );
-
-                appendJSONItem( "determine crank length", autoCrankLength ? "automatically" : "manually" );
+                appendJSONItem4Way( "crank length set",   crankLengthStatus,       C_UNDEFINED_JSON, "default length",     "manually set",      "automatically set" );
+                appendJSONItem4Way( "sw mismatch",        sensorSWMismatchStatus,  C_UNDEFINED_JSON, "right sensor older", "left sensor older", C_NONE_JSON );
+                appendJSONItem4Way( "sensor availabilty", sensorAvailabiltyStatus, C_UNDEFINED_JSON, "left present",       "right present",     "both present" );
+                appendJSONItem4Way( "custom calibration", customCalibrationStatus, C_UNDEFINED_JSON, "not required",       "required",          C_UNKNOWN_JSON );
+                appendJSONItemConditional( "determine crank length", autoCrankLength, "automatically", "manually" );
             }
             else
             {
@@ -4467,27 +4405,19 @@ void antPowerProcessing::createPWRB02ResultString
                 }
 
                 appendOutput( C_CRANK_LENGTH_USED );
-                appendOutput( ( crankLengthStatus == 0 ) ? C_INVALID        : (
-                              ( crankLengthStatus == 1 ) ? "DEFAULT_LENGTH" : (
-                              ( crankLengthStatus == 2 ) ? "MANUALLY_SET"   : "AUTOMATICALLY_SET" ) ) );
+                appendOutput4Way( crankLengthStatus, C_INVALID, "DEFAULT_LENGTH", "MANUALLY_SET", "AUTOMATICALLY_SET" );
 
                 appendOutput( C_SW_MISMATCH );
-                appendOutput( ( sensorSWMismatchStatus == 0 ) ? C_UNDEFINED          : (
-                              ( sensorSWMismatchStatus == 1 ) ? "RIGHT_SENSOR_OLDER" : (
-                              ( sensorSWMismatchStatus == 2 ) ? "LEFT_SENSOR_OLDER"  : C_NONE_ID ) ) );
+                appendOutput4Way( sensorSWMismatchStatus, C_UNDEFINED, "RIGHT_SENSOR_OLDER", "LEFT_SENSOR_OLDER", C_NONE_ID );
 
                 appendOutput( C_SENSOR_AVAILABILTY );
-                appendOutput( ( sensorAvailabiltyStatus == 0 ) ? C_UNDEFINED     : (
-                              ( sensorAvailabiltyStatus == 1 ) ? "RIGHT_PRESENT" : (
-                              ( sensorAvailabiltyStatus == 2 ) ? "LEFT_PRESENT"  : "BOTH_PRESENT" ) ) );
+                appendOutput4Way( sensorAvailabiltyStatus, C_UNDEFINED, "RIGHT_PRESENT", "LEFT_PRESENT", "BOTH_PRESENT" );
 
                 appendOutput( C_CUSTOM_CALIBRATION );
-                appendOutput( ( customCalibrationStatus == 0 ) ? C_UNDEFINED    : (
-                              ( customCalibrationStatus == 1 ) ? "NOT_REQUIRED" : (
-                              ( customCalibrationStatus == 2 ) ? "REQUIRED"     : C_UNKNOWN ) ) );
+                appendOutput4Way( customCalibrationStatus, C_UNDEFINED, "NOT_REQUIRED", "REQUIRED", C_UNKNOWN );
 
                 appendOutput( "DETERMINE_CRANK_LENGTH" );
-                appendOutput( autoCrankLength ? "AUTOMATICALLY" : "MANUALLY" );
+                appendOutputConditional( autoCrankLength, "AUTOMATICALLY", "MANUALLY" );
             }
         }
     }
@@ -4524,8 +4454,8 @@ void antPowerProcessing::createPWRB03ResultString
     }
     else
     {
-        int    scaleFactor = negateBinaryInt( additionalData3,  8 );
-        int    value       = negateBinaryInt( additionalData5, 16 );
+        int    scaleFactor = NEGATE_BINARY_INT( additionalData3,  8 );
+        int    value       = NEGATE_BINARY_INT( additionalData5, 16 );
         double finalValue  = scaleValue( value, scaleFactor );
         if ( outputAsJSON )
         {
@@ -4688,114 +4618,9 @@ void antPowerProcessing::createPWRB10ResultString
     unsigned int  deltaAccumulatedPower,
     unsigned int  instantaneousPower,
     unsigned int  instantaneousCadence,
-    unsigned int  pedalPower
-)
-{
-    if ( semiCookedOut )
-    {
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "event count",             eventCount );
-            appendJSONItem( "delta event count",       deltaEventCount );
-            appendJSONItem( "delta accumulated power", deltaAccumulatedPower );
-            appendJSONItem( "instantaneous power",     instantaneousPower );
-            appendJSONItem( "instantaneous cadence",   instantaneousCadence );
-            appendJSONItem( "pedal power",             pedalPower );
-        }
-        else
-        {
-            appendOutput( deltaEventCount );
-            appendOutput( deltaAccumulatedPower );
-            appendOutput( instantaneousPower );
-            appendOutput( instantaneousCadence );
-            appendOutput( pedalPower );
-            appendOutput( eventCount );
-        }
-    }
-    else
-    {
-        int  pedalPowerContribution = 0;
-        bool rightPedal             = false;
-
-        cadence = instantaneousCadence;
-        if ( deltaEventCount == 0 )
-        {
-            ++zeroTimeCount;
-            if ( zeroTimeCount > maxZeroTimeB10 )
-            {
-                power = 0;
-            }
-        }
-        else
-        {
-            power = ( double ) deltaAccumulatedPower / ( double ) deltaEventCount;
-            zeroTimeCount = 0;
-
-            // pedalPower: Bit 0 - 6: Pedal Power value (in %)
-            //             Bit 7 = 0: Unknown Pedal Power Contribution
-            //                     1: Right Pedal Power Contribution
-            if ( pedalPower == 0xFF )
-            {
-                pedalPowerContribution = -1;
-            }
-            else if ( pedalPower & 0x80 )
-            {
-                pedalPowerContribution = ( int ) ( pedalPower & 0x7F );
-                rightPedal             = true;
-            }
-            else
-            {
-                pedalPowerContribution = ( int ) pedalPower;
-                rightPedal             = false;
-            }
-        }
-
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "event count", eventCount );
-            appendJSONItem( "power",       power, getValuePrecision() );
-            appendJSONItem( "cadence",     cadence );
-            if ( pedalPowerContribution < 0 )
-            {
-                appendJSONItem( "pedal contribution percentage", C_UNKNOWN_JSON );
-                appendJSONItem( "contributing pedal", C_UNKNOWN_JSON );
-            }
-            else
-            {
-                appendJSONItem( "pedal contribution percentage", pedalPowerContribution );
-                appendJSONItem( "contributing pedal", rightPedal ? "right" : C_UNKNOWN_JSON );
-            }
-        }
-        else
-        {
-            appendOutput( power, getValuePrecision() );
-            appendOutput( cadence );
-            if ( pedalPowerContribution < 0 )
-            {
-                appendOutput( "NO_PEDAL_POWER_CONTRIBUTION" );
-            }
-            else
-            {
-                appendOutput( pedalPowerContribution, "\%" );
-                appendOutput( rightPedal ? C_RIGHT_PEDAL : C_UNKNOWN_PEDAL );
-            }
-            appendOutput( eventCount );
-        }
-    }
-}
-
-void antPowerProcessing::createPWRB10ResultString
-(
-    double       &power,
-    unsigned int &cadence,
-    double       &speed,
-    unsigned int &zeroTimeCount,
-    unsigned int  eventCount,
-    unsigned int  deltaEventCount,
-    unsigned int  deltaAccumulatedPower,
-    unsigned int  instantaneousPower,
-    unsigned int  instantaneousCadence,
     unsigned int  pedalPower,
+    bool          isMakeshiftSpeedSensor,
+    double       &speed,
     double        wheelCircumference,
     double        gearRatio
 )
@@ -4841,25 +4666,28 @@ void antPowerProcessing::createPWRB10ResultString
             zeroTimeCount = 0;
             if ( zeroTimeCount > maxZeroTimeB10 )
             power = ( double ) deltaAccumulatedPower / ( double ) deltaEventCount;
-            speed = ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) ) ? wheelCircumference * cadence * gearRatio / 60.0 : 0;
+            if ( isMakeshiftSpeedSensor )
+            {
+                speed = ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) ) ? wheelCircumference * cadence * gearRatio / 60.0 : 0;
+            }
+        }
 
-            // pedalPower: Bit 0 - 6: Pedal Power value (in %)
-            //             Bit 7 = 0: Unknown Pedal Power Contribution
-            //                     1: Right Pedal Power Contribution
-            if ( pedalPower == 0xFF )
-            {
-                pedalPowerContribution = -1;
-            }
-            else if ( pedalPower & 0x80 )
-            {
-                pedalPowerContribution = ( int ) ( pedalPower & 0x7F );
-                rightPedal             = true;
-            }
-            else
-            {
-                pedalPowerContribution = ( int ) pedalPower;
-                rightPedal             = false;
-            }
+        // pedalPower: Bit 0 - 6: Pedal Power value (in %)
+        //             Bit 7 = 0: Unknown Pedal Power Contribution
+        //                     1: Right Pedal Power Contribution
+        if ( pedalPower == 0xFF )
+        {
+            pedalPowerContribution = -1;
+        }
+        else if ( pedalPower & 0x80 )
+        {
+            pedalPowerContribution = ( int ) ( pedalPower & 0x7F );
+            rightPedal             = true;
+        }
+        else
+        {
+            pedalPowerContribution = ( int ) pedalPower;
+            rightPedal             = false;
         }
 
         if ( outputAsJSON )
@@ -4867,40 +4695,28 @@ void antPowerProcessing::createPWRB10ResultString
             appendJSONItem( "event count", eventCount );
             appendJSONItem( "power",       power,              getValuePrecision() );
             appendJSONItem( "cadence",     cadence );
-            if ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) )
+            if ( isMakeshiftSpeedSensor )
             {
                 appendJSONItem( "speed",               speed,              getValuePrecision() );
                 appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
                 appendJSONItem( "gear ratio",          gearRatio,          getValuePrecision() );
             }
-            if ( pedalPowerContribution < 0 )
-            {
-                appendJSONItem( "pedal contribution percentage", C_UNKNOWN_JSON );
-                appendJSONItem( "contributing pedal", C_UNKNOWN_JSON );
-            }
-            else
-            {
-                appendJSONItem( "pedal contribution percentage", pedalPowerContribution );
-                appendJSONItem( "contributing pedal", rightPedal ? "right" : C_UNKNOWN_JSON );
-            }
+            appendJSONItemConditional( "pedal contribution percentage", pedalPowerContribution >= 0, pedalPowerContribution, C_UNKNOWN_JSON );
+            appendJSONItemConditional( "contributing pedal", ( pedalPowerContribution >= 0 ) && rightPedal, "right", C_UNKNOWN_JSON );
         }
         else
         {
             appendOutput( power, getValuePrecision() );
             appendOutput( cadence );
-            appendOutput( speed, getValuePrecision() );
-            appendOutput( wheelCircumference, getValuePrecision() );
-            appendOutput( gearRatio, getValuePrecision() );
-            if ( pedalPowerContribution < 0 )
-            {
-                appendOutput( "NO_PEDAL_POWER_CONTRIBUTION" );
-            }
-            else
-            {
-                appendOutput( pedalPowerContribution, "\%" );
-                appendOutput( rightPedal ? C_RIGHT_PEDAL : C_UNKNOWN_PEDAL );
-            }
+            appendOutputConditional( pedalPowerContribution >= 0, pedalPowerContribution, "NO_PEDAL_POWER_CONTRIBUTION" );
+            appendOutputConditional( rightPedal, C_RIGHT_PEDAL, C_UNKNOWN_PEDAL );
             appendOutput( eventCount );
+            if ( isMakeshiftSpeedSensor )
+            {
+                appendOutput( speed, getValuePrecision() );
+                appendOutput( wheelCircumference, getValuePrecision() );
+                appendOutput( gearRatio, getValuePrecision() );
+            }
         }
     }
 }
@@ -4910,13 +4726,14 @@ void antPowerProcessing::createPWRB11ResultString
     double       &power,
     unsigned int &cadence,
     double       &torque,
-    double       &speed,
     unsigned int &zeroTimeCount,
     unsigned int  deltaEventCount,
     unsigned int  deltaWheelPeriod,
     unsigned int  deltaAccumulatedTorque,
     unsigned int  instantaneousCadence,
     unsigned int  wheelTicks,
+    bool          isSpeedSensor,
+    double       &speed,
     double        wheelCircumference
 )
 {
@@ -4964,8 +4781,11 @@ void antPowerProcessing::createPWRB11ResultString
             if ( deltaWheelPeriod != 0 )
             {
                 double angularVel = 2048.0 * ( double ) deltaEventCount / ( ( double ) deltaWheelPeriod );
-                speed             = wheelCircumference * angularVel;
                 power             = torque * angularVel * C_TWO_PI;
+                if ( isSpeedSensor )
+                {
+                    speed         = wheelCircumference * angularVel;
+                }
             }
         }
 
@@ -4973,19 +4793,25 @@ void antPowerProcessing::createPWRB11ResultString
         {
             appendJSONItem( "power",               power,              getValuePrecision() );
             appendJSONItem( "cadence",             cadence );
-            appendJSONItem( "speed",               speed,              getValuePrecision() );
             appendJSONItem( "torque",              torque,             getValuePrecision() );
             appendJSONItem( "wheel ticks",         wheelTicks );
-            appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
+            if ( isSpeedSensor )
+            {
+                appendJSONItem( "speed",               speed,              getValuePrecision() );
+                appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
+            }
         }
         else
         {
             appendOutput( power, getValuePrecision() );
             appendOutput( cadence );
-            appendOutput( speed, getValuePrecision() );
             appendOutput( torque, getValuePrecision() );
             appendOutput( wheelTicks );
-            appendOutput( wheelCircumference, getValuePrecision() );
+            if ( isSpeedSensor )
+            {
+                appendOutput( speed, getValuePrecision() );
+                appendOutput( wheelCircumference, getValuePrecision() );
+            }
         }
     }
 }
@@ -4995,92 +4821,6 @@ void antPowerProcessing::createPWRB12ResultString
     double       &power,
     unsigned int &cadence,
     double       &torque,
-    unsigned int &zeroTimeCount,
-    unsigned int  eventCount,
-    unsigned int  deltaEventCount,
-    unsigned int  deltaCrankPeriod,
-    unsigned int  deltaAccumulatedTorque,
-    unsigned int  instantaneousCadence,
-    unsigned int  crankTicks
-)
-{
-    if ( semiCookedOut )
-    {
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "event count",              eventCount );
-            appendJSONItem( "delta event count",        deltaEventCount );
-            appendJSONItem( "delta crank period",       deltaCrankPeriod );
-            appendJSONItem( "delta accumulated torque", deltaAccumulatedTorque );
-            appendJSONItem( "instantaneous cadence",    instantaneousCadence );
-            appendJSONItem( "crank ticks",              crankTicks );
-        }
-        else
-        {
-            appendOutput( deltaEventCount );
-            appendOutput( deltaCrankPeriod );
-            appendOutput( deltaAccumulatedTorque );
-            appendOutput( instantaneousCadence );
-            appendOutput( crankTicks );
-            appendOutput( eventCount );
-        }
-    }
-    else
-    {
-        if ( deltaEventCount == 0 )
-        {
-            ++zeroTimeCount;
-            if ( zeroTimeCount > maxZeroTimeB12 )
-            {
-                cadence = 0;
-                power   = 0;
-                torque  = 0;
-            }
-        }
-        else
-        {
-            double cadenceAsDouble = ( double ) cadence;
-
-            zeroTimeCount = 0;
-            torque = ( double ) deltaAccumulatedTorque / ( 32.0 * ( double ) deltaEventCount );
-
-            // Compute power
-            if ( deltaCrankPeriod != 0 )
-            {
-                cadenceAsDouble   = ( double ) deltaEventCount / ( ( double ) deltaCrankPeriod / 2048.0 );
-                double angularVel = C_TWO_PI * cadenceAsDouble;
-                cadenceAsDouble  *= 60.0;
-                cadence           = ( unsigned int ) round( cadenceAsDouble );
-                power             = torque * angularVel;
-            }
-        }
-
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "event count",           eventCount );
-            appendJSONItem( "power",                 power,              getValuePrecision() );
-            appendJSONItem( "cadence",               cadence );
-            appendJSONItem( "instantaneous cadence", instantaneousCadence );
-            appendJSONItem( "torque",                torque,             getValuePrecision() );
-            appendJSONItem( "crank ticks",           crankTicks );
-        }
-        else
-        {
-            appendOutput( power, getValuePrecision() );
-            appendOutput( cadence );
-            appendOutput( torque, getValuePrecision() );
-            appendOutput( crankTicks );
-            appendOutput( eventCount );
-        }
-    }
-}
-
-void antPowerProcessing::createPWRB12ResultString
-(
-    double       &power,
-    unsigned int &cadence,
-    double       &torque,
-    double       &speed,
     unsigned int &zeroTimeCount,
     unsigned int  eventCount,
     unsigned int  deltaEventCount,
@@ -5088,6 +4828,8 @@ void antPowerProcessing::createPWRB12ResultString
     unsigned int  deltaAccumulatedTorque,
     unsigned int  instantaneousCadence,
     unsigned int  crankTicks,
+    bool          isMakeshiftSpeedSensor,
+    double       &speed,
     double        wheelCircumference,
     double        gearRatio
 )
@@ -5141,8 +4883,11 @@ void antPowerProcessing::createPWRB12ResultString
                 cadenceAsDouble  *= 60.0;
                 cadence           = ( unsigned int ) round( cadenceAsDouble );
                 power             = torque * angularVel;
-                speed             = ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) ) ?
-                                    wheelCircumference * cadenceAsDouble * gearRatio / 60.0 : 0;
+                if ( isMakeshiftSpeedSensor )
+                {
+                    speed             = ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) ) ?
+                                        wheelCircumference * cadenceAsDouble * gearRatio / 60.0 : 0;
+                }
             }
         }
 
@@ -5154,7 +4899,7 @@ void antPowerProcessing::createPWRB12ResultString
             appendJSONItem( "instantaneous cadence", instantaneousCadence );
             appendJSONItem( "torque",                torque,             getValuePrecision() );
             appendJSONItem( "crank ticks",           crankTicks );
-            if ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) )
+            if ( isMakeshiftSpeedSensor )
             {
                 appendJSONItem( "speed",               speed,              getValuePrecision() );
                 appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
@@ -5165,12 +4910,15 @@ void antPowerProcessing::createPWRB12ResultString
         {
             appendOutput( power,              getValuePrecision() );
             appendOutput( cadence );
-            appendOutput( speed,              getValuePrecision() );
             appendOutput( torque,             getValuePrecision() );
             appendOutput( crankTicks );
-            appendOutput( wheelCircumference, getValuePrecision() );
-            appendOutput( gearRatio,          getValuePrecision() );
             appendOutput( eventCount );
+            if ( isMakeshiftSpeedSensor )
+            {
+                appendOutput( speed,              getValuePrecision() );
+                appendOutput( wheelCircumference, getValuePrecision() );
+                appendOutput( gearRatio,          getValuePrecision() );
+            }
         }
     }
 }
@@ -5340,125 +5088,9 @@ void antPowerProcessing::createPWRB20ResultString
     unsigned int  deltaTorqueTicks,
     unsigned int  factorySlope_Nm_10Hz,
     unsigned int  powerMeterOffset,
-    unsigned int  userDefinedSlope_Nm_10Hz
-)
-{
-    if ( semiCookedOut )
-    {
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "delta event count",       deltaEventCount );
-            appendJSONItem( "delta time stamp",        deltaTimeStamp );
-            appendJSONItem( "delta torque ticks",      deltaTorqueTicks );
-            appendJSONItem( "factory slope times ten", factorySlope_Nm_10Hz );
-        }
-        else
-        {
-            appendOutput( deltaEventCount );
-            appendOutput( deltaTimeStamp );
-            appendOutput( deltaTorqueTicks );
-            appendOutput( factorySlope_Nm_10Hz );
-        }
-    }
-    else
-    {
-        unsigned int powerMeterSlope_Nm_10Hz = ( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT ) ? factorySlope_Nm_10Hz : userDefinedSlope_Nm_10Hz;
-
-        if ( deltaTimeStamp == 0 )
-        {
-            ++zeroTimeCount;
-            if ( zeroTimeCount > maxZeroTimeB20 )
-            {
-                power   = 0;
-                torque  = 0;
-                cadence = 0;
-            }
-        }
-        else
-        {
-            zeroTimeCount = 0;
-            if ( deltaEventCount != 0 )
-            {
-                double newCadence    = ( double ) cadence;
-                double elapsedTime   = ( double ) deltaTimeStamp / 2000.0;
-                double cadencePeriod = elapsedTime / ( double ) deltaEventCount;
-
-                if ( cadencePeriod != 0 )
-                {
-                    newCadence = 60.0 / cadencePeriod;
-                }
-
-                if ( ( deltaTorqueTicks > 0 ) && ( cadencePeriod > 0 ) && ( powerMeterSlope_Nm_10Hz != 0 ) )
-                {
-                    double rawTorqueFrequency = ( ( double ) deltaTorqueTicks / elapsedTime );
-                    double torqueFrequency    = rawTorqueFrequency - ( double ) powerMeterOffset;
-                    double newTorque          = 10.0 * torqueFrequency / ( double ) powerMeterSlope_Nm_10Hz;
-                    double newPower           = newTorque * C_TWO_PI / cadencePeriod;
-
-                    if ( ( newPower   >= C_MIN_POWER_VALUE ) && ( newPower   <= C_MAX_POWER_VALUE ) &&
-                         ( newCadence >= C_MIN_CADENCE     ) && ( newCadence <= C_MAX_CADENCE     ) )
-                    {
-                        power   = newPower;
-                        torque  = newTorque;
-                        cadence = ( unsigned int ) round( newCadence );
-                    }
-                    // Else: This is a spike. Use the previous value
-                }
-                else
-                {
-                    power  = 0;
-                    torque = 0;
-                }
-            }
-        }
-
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "power",               power,              getValuePrecision() );
-            appendJSONItem( "cadence",             cadence );
-            appendJSONItem( "torque",              torque,             getValuePrecision() );
-            appendJSONItem( "power meter offset",  powerMeterOffset );
-            appendJSONItem( "power meter slope",   powerMeterSlope_Nm_10Hz / 10.0, 1 );
-            if ( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT )
-            {
-                appendJSONItem( "user defined slope", "use factory settings" );
-            }
-            else
-            {
-                appendJSONItem( "user defined slope", userDefinedSlope_Nm_10Hz / 10.0, 1 );
-            }
-            appendJSONItem( "factory slope",       factorySlope_Nm_10Hz / 10.0, 1 );
-        }
-        else
-        {
-            appendOutput( power, getValuePrecision() );
-            appendOutput( cadence );
-            appendOutput( torque, getValuePrecision() );
-            appendOutput( powerMeterOffset );
-            appendOutput( powerMeterSlope_Nm_10Hz / 10.0, 1 );
-            if ( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT )
-            {
-                appendOutput( "FACTORY_SLOPE" );
-                appendOutput( userDefinedSlope_Nm_10Hz / 10.0, 1 );
-            }
-            appendOutput( factorySlope_Nm_10Hz / 10.0, 1 );
-        }
-    }
-}
-
-void antPowerProcessing::createPWRB20ResultString
-(
-    double       &power,
-    unsigned int &cadence,
-    double       &torque,
-    double       &speed,
-    unsigned int &zeroTimeCount,
-    unsigned int  deltaEventCount,
-    unsigned int  deltaTimeStamp,
-    unsigned int  deltaTorqueTicks,
-    unsigned int  factorySlope_Nm_10Hz,
-    unsigned int  powerMeterOffset,
     unsigned int  userDefinedSlope_Nm_10Hz,
+    bool          isMakeshiftSpeedSensor,
+    double       &speed,
     double        wheelCircumference,
     double        gearRatio
 )
@@ -5530,7 +5162,10 @@ void antPowerProcessing::createPWRB20ResultString
                     power  = 0;
                     torque = 0;
                 }
-                speed = antCadenceSpeedProcessing::computeSpeed( newCadence, wheelCircumference, gearRatio );
+                if ( isMakeshiftSpeedSensor )
+                {
+                    speed = antCadenceSpeedProcessing::computeSpeed( newCadence, wheelCircumference, gearRatio );
+                }
             }
         }
 
@@ -5541,16 +5176,8 @@ void antPowerProcessing::createPWRB20ResultString
             appendJSONItem( "torque",              torque,             getValuePrecision() );
             appendJSONItem( "power meter offset",  powerMeterOffset );
             appendJSONItem( "power meter slope",   powerMeterSlope_Nm_10Hz / 10.0, 1 );
-            if ( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT )
-            {
-                appendJSONItem( "user defined slope", "use factory settings" );
-            }
-            else
-            {
-                appendJSONItem( "user defined slope", userDefinedSlope_Nm_10Hz / 10.0, 1 );
-            }
-            appendJSONItem( "factory slope",       factorySlope_Nm_10Hz / 10.0, 1 );
-            if ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) )
+            appendJSONItemConditional( "slope used", userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT, "factory slope", "user-defined slope" );
+            if ( isMakeshiftSpeedSensor )
             {
                 appendJSONItem( "speed",               speed,              getValuePrecision() );
                 appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
@@ -5561,21 +5188,56 @@ void antPowerProcessing::createPWRB20ResultString
         {
             appendOutput( power,                          getValuePrecision() );
             appendOutput( cadence );
-            appendOutput( speed,                          getValuePrecision() );
             appendOutput( powerMeterOffset );
             appendOutput( powerMeterSlope_Nm_10Hz / 10.0, 1 );
-            appendOutput( wheelCircumference,             getValuePrecision() );
-            appendOutput( gearRatio,                      getValuePrecision() );
-            if ( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT )
+            appendOutputConditional( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT, "FACTORY_SLOPE", "USER_DEFINED_SLOPE" );
+            if ( isMakeshiftSpeedSensor )
             {
-                appendOutput( "FACTORY_SLOPE" );
+                appendOutput( speed,                      getValuePrecision() );
+                appendOutput( wheelCircumference,         getValuePrecision() );
+                appendOutput( gearRatio,                  getValuePrecision() );
             }
-            else
-            {
-                appendOutput( userDefinedSlope_Nm_10Hz / 10.0, 1 );
-            }
-            appendOutput( factorySlope_Nm_10Hz / 10.0, 1 );
         }
     }
 }
+
+double antPowerProcessing::scaleValue
+(
+    int value,
+    int scaleFactor
+)
+{
+    double result = 0;
+
+    if ( scaleFactor >= 0 ) 
+    {   
+        result = ( double ) value;
+        if ( scaleFactor > 0 ) 
+        {   
+            result *= pow( 2.0, scaleFactor );
+        }   
+    }   
+    else
+    {   
+        double resultFraction = 0;
+        int    nbBits         = -scaleFactor;
+        int    intValue       = ( value >> nbBits );
+        int    fractionValue  = ( value - ( intValue << nbBits ) );
+
+        result = ( double ) intValue;
+        while ( fractionValue )
+        {   
+            if ( fractionValue & 1 ) 
+            {   
+                ++resultFraction;
+            }   
+            resultFraction /= 2.0;
+            fractionValue >>= 1;
+        }   
+        result += resultFraction;
+    }   
+
+    return result;
+}
+
 

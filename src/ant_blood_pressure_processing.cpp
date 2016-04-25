@@ -1,9 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-#include <iostream>
-#include <fstream>
-
-#include "b2t_utils.h"
-
+// Local Libraries
+#include "am_split_string.h"
 #include "ant_blood_pressure_processing.h"
 
 
@@ -25,20 +22,30 @@ antBloodPressureProcessing::antBloodPressureProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "BLOOD";
+    reset();
+}
+
+void antBloodPressureProcessing::reset
+(
+    void
+)
+{
+    antProcessing::reset();
 }
 
 bool antBloodPressureProcessing::isBloodPressureSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_BLDPR_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_BLDPR_DEVICE_HEAD );
     return result;
 }
 
 bool antBloodPressureProcessing::appendBloodPressureSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isBloodPressureSensor( sensorID );
@@ -65,20 +72,20 @@ bool antBloodPressureProcessing::appendBloodPressureSensor
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antBloodPressureProcessing::processBloodPressureSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result       = OTHER_DEVICE;
-    std::string  sensorID     = std::string( C_BLDPR_DEVICE_HEAD ) + deviceIDNo;
+    amString  sensorID        = amString( C_BLDPR_DEVICE_HEAD ) + deviceIDNo;
     unsigned int dataPage     = 0;
     bool         commonPage   = false;
     bool         outputPageNo = true;
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -117,7 +124,7 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_BLDPR_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -127,16 +134,16 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensor
 
 amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   sensorID;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
-        std::string   curVersion   = b2tVersion;
+        amString      sensorID;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
+        amString      curVersion   = b2tVersion;
         amSplitString words;
         unsigned int  nbWords      = words.split( inputBuffer );
         unsigned int  startCounter = 0;
@@ -159,7 +166,7 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isBloodPressureSensor( sensorID ) )
             {
                 startCounter = counter;
-                dataPage     = ( unsigned int ) strToInt( words[ counter++ ] );       //  3
+                dataPage     = words[ counter++ ].toUInt();            //  3
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
@@ -224,10 +231,10 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
 // the result string into the resultBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -236,10 +243,10 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antBloodPressureProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -253,7 +260,7 @@ amDeviceType antBloodPressureProcessing::processSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -263,12 +270,12 @@ amDeviceType antBloodPressureProcessing::processSensor
 
 amDeviceType antBloodPressureProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isBloodPressureSensor( inputBuffer ) )
         {
@@ -301,15 +308,15 @@ bool antBloodPressureProcessing::evaluateDeviceLine
 {
     bool         result  = false;
     unsigned int nbWords = words.size();
-    if ( nbWords > 2 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 2 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_BLOOD_PRESSURE_DEVICE_ID ) && isBloodPressureSensor( deviceName ) )
-        {   
+        {
             result = appendBloodPressureSensor( deviceName );
-        }   
-    }   
+        }
+    }
     return result;
 }
 
@@ -318,13 +325,11 @@ int antBloodPressureProcessing::readDeviceFileStream
     std::ifstream &deviceFileStream
 )
 {
-    char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
+    char          line[ C_BUFFER_SIZE ];
     amSplitString words;
-
-    std::string  deviceType = "";
-    std::string  deviceName = "";
-    unsigned int nbWords    = 0;
+    amString      deviceType = "";
+    amString      deviceName = "";
+    unsigned int  nbWords    = 0;
 
     while ( true )
     {
@@ -334,7 +339,7 @@ int antBloodPressureProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -354,10 +359,10 @@ int antBloodPressureProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {

@@ -111,11 +111,11 @@ class antProcessing
         bool isLeftCrankEvent( const QString &sensorID, unsigned int newValue, unsigned int rollOver );
 #       endif // __SINGLE_LEG__
 
-        bool isSemiCookedFormat137( const char *inputBuffer );
-        unsigned int splitFormat137_SPB7 ( const char *inputBuffer, amSplitString &outWords );
-        unsigned int splitFormat137_CAD7A( const char *inputBuffer, amSplitString &outWords );
-        unsigned int splitFormat137_B01( const char *inputBuffer, amSplitString &outWords );
-        unsigned int splitFormat137_B52( const char *inputBuffer, amSplitString &outWords );
+        bool isSemiCookedFormat137( const std::string &inputBuffer );
+        unsigned int splitFormat137_SPB7 ( const std::string &inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_CAD7A( const std::string &inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_B01( const std::string &inputBuffer, amSplitString &outWords );
+        unsigned int splitFormat137_B52( const std::string &inputBuffer, amSplitString &outWords );
         bool createB01ResultString
              (
                  char                *resultBuffer,
@@ -458,7 +458,7 @@ class antProcessing
                      (
                          char       *resultBuffer,
                          char       *diagnosticsBuffer,
-                         const char *inputBuffer,
+                         const std::string &inputBuffer,
                          bool        outputSemiCooked,
                          bool        outputAsJSON,
                          bool        diagnostics
@@ -467,7 +467,7 @@ class antProcessing
                      (   
                          char       *resultBuffer,
                          char       *diagnosticsBuffer,
-                         const char *inputBuffer,
+                         const std::string &inputBuffer,
                          bool        semiCookedOut = false,
                          bool        outputAsJSON  = false,
                          bool        diagnostics   = false
@@ -476,7 +476,7 @@ class antProcessing
                      (
                          char       *resultBuffer,
                          char       *diagnosticsBuffer,
-                         const char *inputBuffer,
+                         const std::string &inputBuffer,
                          bool        semiCookedOut = false,
                          bool        outputAsJSON  = false,
                          bool        diagnostics   = false
@@ -485,7 +485,7 @@ class antProcessing
                      (
                          char       *resultBuffer,
                          char       *diagnosticsBuffer,
-                         const char *inputBuffer,
+                         const std::string &inputBuffer,
                          bool        semiCookedOut = false,
                          bool        outputAsJSON  = false,
                          bool        diagnostics   = false

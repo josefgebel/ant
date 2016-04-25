@@ -1,14 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
-
+#include "am_split_string.h"
 #include "ant_cadence_only_processing.h"
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -30,21 +22,22 @@ antCadenceOnlyProcessing::antCadenceOnlyProcessing
 ) : antProcessing(),
     antCadenceSpeedProcessing()
 {
+    currentDeviceType = "CAD7A";
     reset();
 }
 
 bool antCadenceOnlyProcessing::isCadenceOnlySensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_CAD_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_CAD_DEVICE_HEAD );
     return result;
 }
 
 bool antCadenceOnlyProcessing::appendCadenceOnlySensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isCadenceOnlySensor( sensorID );
@@ -76,8 +69,8 @@ bool antCadenceOnlyProcessing::appendCadenceOnlySensor
 
 unsigned int antCadenceOnlyProcessing::splitFormat137_CAD7A
 (
-    const char    *inputBuffer,
-    amSplitString &outWords
+    const amString &inputBuffer,
+    amSplitString  &outWords
 )
 {
     amSplitString inWords;
@@ -91,9 +84,9 @@ unsigned int antCadenceOnlyProcessing::splitFormat137_CAD7A
     if ( nbWords > 5 )
     {
         unsigned int counter = 0;
-        std::string  dataPage;
-        std::string  deltaEventTime;
-        std::string  deltaRevolutionCount;
+        amString     dataPage;
+        amString     deltaEventTime;
+        amString     deltaRevolutionCount;
 
         outWords.push_back( inWords[ counter++ ] );             // Device ID
         outWords.push_back( inWords[ counter++ ] );             // Time Stamp
@@ -130,14 +123,14 @@ unsigned int antCadenceOnlyProcessing::splitFormat137_CAD7A
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
     amDeviceType result               = OTHER_DEVICE;
-    std::string      sensorID         = std::string( C_CAD_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID             = amString( C_CAD_DEVICE_HEAD ) + deviceIDNo;
     unsigned int dataPage             = 0;
     unsigned int eventTime            = 0;
     unsigned int revCount             = 0;
@@ -157,14 +150,14 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
              ( eventCountTable.count   ( sensorID ) == 0 ) ||
              ( operatingTimeTable.count( sensorID ) == 0 ) )
         {
-            eventTimeTable.insert    ( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-            eventCountTable.insert   ( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-            operatingTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+            eventTimeTable.insert    ( std::pair<amString, unsigned int>( sensorID, 0 ) );
+            eventCountTable.insert   ( std::pair<amString, unsigned int>( sensorID, 0 ) );
+            operatingTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
         }
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Data Page
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -172,7 +165,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Event Time
-        eventTime      = hex( payLoad[ 5 ], payLoad[ 4 ] );
+        eventTime      = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver       = 65536;  // 256^2
         deltaEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, eventTime );
         if ( diagnostics )
@@ -189,7 +182,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cumulated Wheel Count
-        revCount             = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        revCount             = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver             = 65536;  // 256^2
         deltaRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, revCount );
         if ( diagnostics )
@@ -212,7 +205,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 
             case  1: // - - Page 1: Operating Time - - - - - - - - - - - - - - - - -
                      result          = CADENCE_SENSOR;
-                     additionalData2 = hex( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
+                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
                      rollOver        = 16777216;  // 256^3
                      additionalData1 = getDeltaInt( rollOverHappened, sensorID, rollOver, operatingTimeTable, additionalData2 );
                                        // deltaOperatingTime
@@ -231,8 +224,8 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
                      break;
             case  2: // - - Page 2: Manufacturer Information - - - - - - - - - - - -
                      result          = CADENCE_SENSOR;
-                     additionalData1 = hex( payLoad[ 1 ] );                // Manufacturer ID
-                     additionalData2 = hex( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
+                     additionalData1 = hex2Int( payLoad[ 1 ] );                // Manufacturer ID
+                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Manufacturer ID", payLoad[ 1 ], additionalData1 );
@@ -242,9 +235,9 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 
             case  3: // - - Page 3: Product Information  - - - - - - - - - - - - - -
                      result          = CADENCE_SENSOR;
-                     additionalData1 = hex( payLoad[ 1 ] );   // H/W Version
-                     additionalData2 = hex( payLoad[ 2 ] );   // S/W Version
-                     additionalData3 = hex( payLoad[ 3 ] );   // Model Number
+                     additionalData1 = hex2Int( payLoad[ 1 ] );   // H/W Version
+                     additionalData2 = hex2Int( payLoad[ 2 ] );   // S/W Version
+                     additionalData3 = hex2Int( payLoad[ 3 ] );   // Model Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Hardware Version", payLoad[ 1 ], additionalData1 );
@@ -272,30 +265,33 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
         }
         else
         {
-            unsigned int cadence = getCadence( sensorID );
+            double       wheelCircumference = 0;
+            double       gearRatio          = 0;
+            double       speed              = 0;
+            unsigned int cadence            = getCadence( sensorID );
             if ( isUsedAsSpeedSensor( sensorID ) )
             {
-                double wheelCircumference = getWheelCircumference( sensorID );
-                double gearRatio          = getNbMagnets( sensorID );
-                double speed              = getSpeed( sensorID );
-                createCadenceResultString
-                (
-                    cadence,
-                    dataPage,
-                    deltaRevolutionCount,
-                    deltaEventTime,
-                    additionalData1,
-                    additionalData2,
-                    additionalData3,
-                    speed,
-                    wheelCircumference,
-                    gearRatio
-                );
-                setSpeed( sensorID, speed );
+                wheelCircumference = getWheelCircumference( sensorID );
+                gearRatio          = getNbMagnets( sensorID );
+                speed              = getSpeed( sensorID );
             }
-            else
+            createCadenceResultString
+            (
+                cadence,
+                dataPage,
+                deltaRevolutionCount,
+                deltaEventTime,
+                additionalData1,
+                additionalData2,
+                additionalData3,
+                isUsedAsSpeedSensor( sensorID ),
+                speed,
+                wheelCircumference,
+                gearRatio
+            );
+            if ( isUsedAsSpeedSensor( sensorID ) )
             {
-                createCadenceResultString( cadence, dataPage, deltaRevolutionCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
+                setSpeed( sensorID, speed );
             }
             setCadence( sensorID, cadence );
         }
@@ -307,7 +303,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_CAD_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -326,11 +322,11 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         unsigned int  nbWords              = 0;
         unsigned int  counter              = 0;
@@ -343,10 +339,10 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
         unsigned int  additionalData3      = 0;
         bool          commonPage           = false;
         bool          outputPageNo         = true;
-        std::string   curVersion           = b2tVersion;
-        std::string   sensorID;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
+        amString      curVersion           = b2tVersion;
+        amString      sensorID;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
         amSplitString words;
 
         if ( isSemiCookedFormat137( inputBuffer ) )
@@ -372,9 +368,9 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isCadenceOnlySensor( sensorID ) )
             {
                 startCounter         = counter;
-                deltaRevolutionCount = ( unsigned int ) strToInt( words[ counter++ ] );                         // 3
-                deltaEventTime       = ( unsigned int ) strToInt( words[ counter++ ] );                         // 4
-                dataPage             = ( unsigned int ) strToInt( words[ counter++ ] );                         // 5
+                deltaRevolutionCount = words[ counter++ ].toUInt();                         // 3
+                deltaEventTime       = words[ counter++ ].toUInt();                         // 4
+                dataPage             = words[ counter++ ].toUInt();                         // 5
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
@@ -392,7 +388,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
                              if ( nbWords > 6 )
                              {
                                  result          = CADENCE_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   // deltaOperatingTime
+                                 additionalData1 = words[ counter++ ].toUInt();   // deltaOperatingTime
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Delta Cumulative Operating Time", additionalData1 );
@@ -404,8 +400,8 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
                              if ( nbWords > 7 )
                              {
                                  result          = CADENCE_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   // manufacturerID
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );   // serialNumber
+                                 additionalData1 = words[ counter++ ].toUInt();   // manufacturerID
+                                 additionalData2 = words[ counter++ ].toUInt();   // serialNumber
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Manufacturer ID", additionalData1 );
@@ -418,9 +414,9 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
                              if ( nbWords > 8 )
                              {
                                  result          = CADENCE_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );   // hwVersion
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );   // swVersion
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );   // modelNumber
+                                 additionalData1 = words[ counter++ ].toUInt();   // hwVersion
+                                 additionalData2 = words[ counter++ ].toUInt();   // swVersion
+                                 additionalData3 = words[ counter++ ].toUInt();   // modelNumber
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Model Number", additionalData1 );
@@ -460,30 +456,33 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
             }
             else
             {
-                unsigned int cadence = getCadence( sensorID );
+                double       wheelCircumference = 0;
+                double       gearRatio          = 0;
+                double       speed              = 0;
+                unsigned int cadence            = getCadence( sensorID );
                 if ( isUsedAsSpeedSensor( sensorID ) )
                 {
-                    double wheelCircumference = getWheelCircumference( sensorID );
-                    double gearRatio          = getNbMagnets( sensorID );
-                    double speed              = getSpeed( sensorID );
-                    createCadenceResultString
-                    (
-                        cadence,
-                        dataPage,
-                        deltaRevolutionCount,
-                        deltaEventTime,
-                        additionalData1,
-                        additionalData2,
-                        additionalData3,
-                        speed,
-                        wheelCircumference,
-                        gearRatio
-                    );
-                    setSpeed( sensorID, speed );
+                    wheelCircumference = getWheelCircumference( sensorID );
+                    gearRatio          = getNbMagnets( sensorID );
+                    speed              = getSpeed( sensorID );
                 }
-                else
+                createCadenceResultString
+                (
+                    cadence,
+                    dataPage,
+                    deltaRevolutionCount,
+                    deltaEventTime,
+                    additionalData1,
+                    additionalData2,
+                    additionalData3,
+                    isUsedAsSpeedSensor( sensorID ),
+                    speed,
+                    wheelCircumference,
+                    gearRatio
+                );
+                if ( isUsedAsSpeedSensor( sensorID ) )
                 {
-                    createCadenceResultString( cadence, dataPage, deltaRevolutionCount, deltaEventTime, additionalData1, additionalData2, additionalData3 );
+                    setSpeed( sensorID, speed );
                 }
                 setCadence( sensorID, cadence );
             }
@@ -511,10 +510,10 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
 // the result string into the resultBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -523,10 +522,10 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antCadenceOnlyProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -537,7 +536,7 @@ amDeviceType antCadenceOnlyProcessing::processSensor
     }
     else if ( outputUnknown )
     {
-        int deviceIDNoAsInt = strToInt( deviceIDNo );
+        int deviceIDNoAsInt = deviceIDNo.toInt();
         createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
     }
     else
@@ -550,11 +549,11 @@ amDeviceType antCadenceOnlyProcessing::processSensor
 
 amDeviceType antCadenceOnlyProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         // Cadence-Only Sensor
         if ( isCadenceOnlySensor( inputBuffer ) )
@@ -580,11 +579,10 @@ int antCadenceOnlyProcessing::readDeviceFileStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
     unsigned int nbWords    = 0;
 
     while ( true )
@@ -595,7 +593,7 @@ int antCadenceOnlyProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -615,10 +613,10 @@ int antCadenceOnlyProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -660,100 +658,8 @@ void antCadenceOnlyProcessing::createCadenceResultString
     unsigned int  deltaEventTime,
     unsigned int  additionalData1,
     unsigned int  additionalData2,
-    unsigned int  additionalData3
-)
-{
-    if ( !semiCookedOut )
-    {
-        cadence = computeCadence( cadence, deltaRevolutionCount, deltaEventTime );
-    }
-
-    if ( outputAsJSON )
-    {
-        if ( semiCookedOut )
-        {
-            appendJSONItem( "delta event time",       deltaEventTime );
-            appendJSONItem( "delta revolution count", deltaRevolutionCount );
-        }
-        else
-        {
-            appendJSONItem( C_CADENCE_JSON, cadence );
-        }
-        appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        if ( ( dataPage & 0x0F ) == 1 )
-        {
-            if ( semiCookedOut )
-            {
-                appendJSONItem( "delta operating time", additionalData1 );
-            }
-            else
-            {
-                appendJSONItem( "operating time", 2 * additionalData1 );
-            }
-        }
-        else if ( ( dataPage & 0x0F ) == 2 )
-        {
-            appendJSONItem( C_MANUFACTURER_JSON,  additionalData1 );
-            appendJSONItem( C_SERIAL_NUMBER_JSON, additionalData2 );
-        }
-        else if ( ( dataPage & 0x0F ) == 3 )
-        {
-            appendJSONItem( C_HARDWARE_REVISION_JSON, additionalData1 );
-            appendJSONItem( C_SOFTWARE_REVISION_JSON, additionalData2 );
-            appendJSONItem( C_MODEL_NUMBER_JSON,      additionalData3 );
-        }
-    }
-    else
-    {
-        if ( semiCookedOut )
-        {
-            appendOutput( deltaRevolutionCount );
-            appendOutput( deltaEventTime );
-            appendOutput( dataPage );
-
-            if ( ( ( dataPage & 0x0F ) == 1 ) || ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
-            {
-                appendOutput( additionalData1 );             // deltaOperatingTime (1) / manufacturerID (2) / hwVersion (3)
-                if ( ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
-                {
-                     appendOutput( additionalData2 );        // serialNumber (2) / swVersion (3)
-                     if ( ( dataPage & 0x0F ) == 3 )
-                     {
-                          appendOutput( additionalData3 );   // modelNumber (3)
-                    }
-                }
-            }
-        }
-        else
-        {
-            appendOutput( cadence );
-            appendOutput( dataPage );
-            if ( ( dataPage & 0x0F ) == 1 )
-            {
-                appendOutput( 2 * additionalData1, "s" );    // operatingTimeSeconds
-            }
-            else if ( ( ( dataPage & 0x0F ) == 2 ) || ( ( dataPage & 0x0F ) == 3 ) )
-            {
-                appendOutput( additionalData1 );             // manufacturerID (2) / hwVersion (3)
-                appendOutput( additionalData2 );             // serialNumber (2)   / swVersion (3)
-                if ( ( dataPage & 0x0F ) == 3 )
-                {
-                    appendOutput( additionalData3 );         // modelNumber (3)
-                }
-            }
-        }
-    }
-}
-
-void antCadenceOnlyProcessing::createCadenceResultString
-(
-    unsigned int &cadence,
-    unsigned int  dataPage,
-    unsigned int  deltaRevolutionCount,
-    unsigned int  deltaEventTime,
-    unsigned int  additionalData1,
-    unsigned int  additionalData2,
     unsigned int  additionalData3,
+    bool          isUsedAsSpeedSensor,
     double       &speed,
     double        wheelCircumference,
     double        gearRatio
@@ -775,7 +681,7 @@ void antCadenceOnlyProcessing::createCadenceResultString
         else
         {
             appendJSONItem( C_CADENCE_JSON, cadence );
-            if ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) )
+            if ( isUsedAsSpeedSensor )
             {
                 appendJSONItem( "speed",               speed,              getValuePrecision() );
                 appendJSONItem( "wheel circumference", wheelCircumference, getValuePrecision() );
@@ -830,9 +736,12 @@ void antCadenceOnlyProcessing::createCadenceResultString
         {
             appendOutput( cadence );
             appendOutput( dataPage );
-            appendOutput( speed,              getValuePrecision() );
-            appendOutput( wheelCircumference, 3 );
-            appendOutput( gearRatio,          getValuePrecision() );
+            if ( isUsedAsSpeedSensor )
+            {
+                appendOutput( speed,              getValuePrecision() );
+                appendOutput( wheelCircumference, 3 );
+                appendOutput( gearRatio,          getValuePrecision() );
+            }
 
             if ( ( dataPage & 0x0F ) == 1 )
             {

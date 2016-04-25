@@ -1,10 +1,7 @@
 #ifndef __ANT_ENVIRONMENT_PROCESSING_H__
 #define __ANT_ENVIRONMENT_PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
-
-class amSplitString;
 
 class antEnvironmentProcessing : virtual public antProcessing
 {
@@ -17,16 +14,16 @@ class antEnvironmentProcessing : virtual public antProcessing
 
     protected:
 
-        std::map<std::string, unsigned int> previousHeartRateTable;
-        std::map<std::string, unsigned int> eventTimeTable;
-        std::map<std::string, double>       heartBeatTimeTable;
+        std::map<amString, unsigned int> previousHeartRateTable;
+        std::map<amString, unsigned int> eventTimeTable;
+        std::map<amString, double>       heartBeatTimeTable;
 
-        amDeviceType processEnvironmentSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processEnvironmentSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processEnvironmentSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processEnvironmentSensorSemiCooked( const amString &inputBuffer );
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendEnvironmentSensor( const std::string & );
+        bool appendEnvironmentSensor( const amString & );
 
 
     public:
@@ -34,10 +31,10 @@ class antEnvironmentProcessing : virtual public antProcessing
         antEnvironmentProcessing();
         ~antEnvironmentProcessing() {}
 
-        bool isEnvironmentSensor( const std::string &deviceID );
+        bool isEnvironmentSensor( const amString &deviceID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         void createENVResultString
              (
@@ -47,6 +44,8 @@ class antEnvironmentProcessing : virtual public antProcessing
                  unsigned int additionalData3,
                  unsigned int additionalData4
              );
+
+        virtual void reset( void );
 
 };
 

@@ -3,8 +3,16 @@
 
 #include <math.h>
 
+#define BYTE unsigned char
+
 #define C_VERSION        "1.0.0"
 #define C_AUTO_INTERFACE "auto"
+
+#define IS_WHITE_CHAR( _CCC_ ) ( ( ( _CCC_ ) == ' ' ) || ( ( _CCC_ ) == '\t' ) )
+#define NEGATE_BINARY_INT( _NNN_, _PPP_ ) ( ( ( _NNN_ ) >= ( 1 << ( (_PPP_ ) - 1 ) ) ) ?  ( ( _NNN_ ) - ( 1 << ( _PPP_ ) ) ) : ( _NNN_ ) );
+#define HEX_DIGIT_2_INT( _HHH_ ) ( ( ( ( _HHH_ ) >= '0' ) && ( ( _HHH_ ) <= '9' ) ) ? ( ( _HHH_ ) - '0' ) : \
+                                   ( ( ( toupper( _HHH_ ) >= 'A' ) && ( toupper( _HHH_ ) <= 'F' ) ) ? ( toupper( _HHH_ ) - 'A' ) : 0 ) )
+
 
 const char BUILD_NUMBER[] = C_VERSION;
 const char C_COPYRIGHT[]  = "Copyright (c) Alphamantis Technologies Inc. 2016";
@@ -56,6 +64,32 @@ enum amDeviceType
     OTHER_DEVICE,            // 14
     DEVICE_ERROR             // 15
 };
+
+
+const int E_READ_TIMEOUT_C        =    35;
+
+const int E_READ_ERROR            = 90001;
+const int E_READ_FILE_NOT_OPEN    = 90002;
+const int E_END_OF_FILE           = 90099;
+
+
+const int E_MC_NO_INTERFACE       = 91001;
+const int E_MC_NO_IP_ADDRESS      = 91002;
+const int E_MC_NO_PORT_NUMBER     = 91003;
+const int E_NO_IP_ADDRESS_IF      = 91004;
+const int E_READ_TIMEOUT          = 91005;
+const int E_MC_WRITE_FAIL         = 90006;
+const int E_SOCKET_CREATE_FAIL    = 90101;
+const int E_SOCKET_SET_OPT_FAIL   = 90102;
+const int E_SOCKET_BIND_FAIL      = 90103;
+const int E_LOOP_BACK_IP_ADDRESS  = 90104;
+const int E_EMPTY_MESSAGE         = 91099;
+
+const int E_BAD_OPTION            = 99998;
+const int E_UNKNOWN_OPTION        = 99999;
+
+
+
 
 const bool C_OUTPUT_UNKNOWN                                 = false;
 const bool C_OUTPUT_BRIDGE                                  = true;
@@ -172,12 +206,12 @@ const char C_REQUESTED_PAGE_NO[]                            = "REQUESTED_PAGE_NO
 const char C_DATA_PAGE[]                                    = "DATA_PAGE ";
 const char C_ANT_FS_SESSION[]                               = "ANT_FS_SESSION";
 
-const char C_DEFAULT_DEVICE_FILE[]                          = ""; 
-const char C_DEFAULT_INPUT_FILE_NAME[]                      = ""; 
+const char C_DEFAULT_DEVICE_FILE[]                          = "";
+const char C_DEFAULT_INPUT_FILE_NAME[]                      = "";
 const char C_DEFAULT_INTERFACE[]                            = C_AUTO_INTERFACE;
 const char C_DEFAULT_MC_ADDRESS_IN[]                        = "239.78.80.1";
-const char C_DEFAULT_MC_ADDRESS_OUT[]                       = ""; 
-const char C_DIAGNOSTICS_INDENT[]                           = "    ";  
+const char C_DEFAULT_MC_ADDRESS_OUT[]                       = "";
+const char C_DIAGNOSTICS_INDENT[]                           = "    ";
 
 const char C_LEFT_PEDAL_SMOOTHNESS[]                        = "L_PDL_SMOOTH";
 const char C_RIGHT_PEDAL_SMOOTHNESS[]                       = "R_PDL_SMOOTH";
@@ -285,32 +319,11 @@ const int    C_OFFSET_DEFAULT                               =   500;
 const int    C_NB_BATTERY_STATUS                            =     8;
 const int    C_TIME_OUT_SEC_DEFAULT                         =     0;
 
-const int    E_READ_TIMEOUT_C                               =    35;
-const int    E_MC_OUT_IP_ADD_BUT_NO_PORT                    = 99901;
-const int    E_MC_WRITE_FAIL                                = 99902;
-const int    E_BAD_OPTION                                   = 99903;
-const int    E_UNKNOWN_OPTION                               = 99904;
-const int    E_SOCKET_CREATE_FAIL                           = 99905;
-const int    E_SOCKET_SET_OPT_FAIL                          = 99906;
-const int    E_NO_IP_ADDRESS_IF                             = 99907;
-const int    E_LOOP_BACK_IP_ADDRESS                         = 99908;
-const int    E_SOCKET_BIND_FAIL                             = 99909;
-const int    E_READ_ERROR                                   = 99910;
-const int    E_READ_FILE_NOT_OPEN                           = 99911;
-const int    E_UNKNOWN_MC_CONNECT_FAILURE                   = 99912;
-const int    E_NO_INTER_FACE                                = 99913;
-const int    E_NO_FILE_NAME                                 = 99914;
-const int    E_READ_TIMEOUT                                 = 99915;
 const int    C_DEFAULT_TIME_PRECISION_DEFAULT               = 6;
 const int    C_DEFAULT_VALUE_PRECISION_DEFAULT              = 6;
 const int    C_DEFAULT_MC_PORT_NO_IN                        = 51113;
 const int    C_DEFAULT_MC_PORT_NO_OUT                       = 0;
 const int    C_DEFAULT_TIME_OUT_SEC                         = 0;   // Time out after x seconds of inactivity. x = 0: Do not time out.
-
-#ifdef __MINGW32__
-const int    E_WSA_STARTUP                                  = 99920;
-#endif // __MINGW32__
-const    int C_END_OF_FILE                                  = 99999;
 
 const double C_DBL_UNDEFINED                                = 1.0E13;
 const double C_TWO_PI                                       = 4.0 * acos( 0 );         // 2 PI
@@ -330,7 +343,7 @@ const unsigned int C_MAX_PRECISION                          = 20;
 const unsigned int C_SLOPE_DEFAULT                          = 0xFFFFFFFF;
 const unsigned int C_NON_EXISTENT_DATA_PAGE                 = 256;
 const unsigned int C_MAX_INTERFACE_COUNT                    =  10;
-const unsigned int S_DIAGNOSTICS_BASE_LENGTH                =  28; 
+const unsigned int S_DIAGNOSTICS_BASE_LENGTH                =  28;
 const unsigned int C_MAX_ZERO_TIME_POWER_B10                =   6;
 const unsigned int C_MAX_ZERO_TIME_POWER_B11                =   4;
 const unsigned int C_MAX_ZERO_TIME_POWER_B12                =   4;
@@ -341,9 +354,9 @@ const unsigned int C_MAX_ZERO_TIME_HRM                      =  12;
 const unsigned int C_MAX_ZERO_TIME                          =  12;  // the largest of all C_MAX_ZERO_TIME_xyz
 
 
-const unsigned char C_ANT_ASYNC_MSG                         = 0x12;
-const unsigned char C_ANT_PACKET_SAVER                      = 0x13;
-const unsigned char C_QUERY_RESP                            = 0x43;
+const BYTE C_ANT_ASYNC_MSG                         = 0x12;
+const BYTE C_ANT_PACKET_SAVER                      = 0x13;
+const BYTE C_QUERY_RESP                            = 0x43;
 
 #endif // __ANT_CONSTANTS_H__
 

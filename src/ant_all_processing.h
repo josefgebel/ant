@@ -35,7 +35,7 @@ class antAllProcessing : virtual public antAeroProcessing,
 {
     private:
 
-        amDeviceType processUndefinedSensorType( const char *inputBuffer );
+        amDeviceType processUndefinedSensorType( const amString &inputBuffer );
 
     public:
 
@@ -44,10 +44,10 @@ class antAllProcessing : virtual public antAeroProcessing,
 
         virtual int readDeviceFileStream( std::ifstream & );
 
-        amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
-        amDeviceType updateSensorSemiCooked( const char *inputBuffer );
+        amDeviceType updateSensorSemiCooked( const amString &inputBuffer );
 
         virtual void reset( void );
 

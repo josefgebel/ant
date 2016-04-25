@@ -1,13 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_environment_processing.h"
 
 
@@ -29,20 +22,30 @@ antEnvironmentProcessing::antEnvironmentProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "ENV";
+    reset();
+}
+
+void antEnvironmentProcessing::reset
+(
+    void
+)
+{
+    antProcessing::reset();
 }
 
 bool antEnvironmentProcessing::isEnvironmentSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_ENV_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_ENV_DEVICE_HEAD );
     return result;
 }
 
 bool antEnvironmentProcessing::appendEnvironmentSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isEnvironmentSensor( sensorID );
@@ -67,9 +70,9 @@ bool antEnvironmentProcessing::appendEnvironmentSensor
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antEnvironmentProcessing::processEnvironmentSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -82,13 +85,13 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
     unsigned int additionalData3                   = 0;
     unsigned int additionalData4                   = 0;
     amDeviceType result                            = OTHER_DEVICE;
-    std::string  sensorID                          = std::string( C_ENV_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID                          = amString( C_ENV_DEVICE_HEAD ) + deviceIDNo;
     bool         commonPage                        = false;
     bool         outputPageNo                      = true;
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -99,11 +102,11 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
             case  0: // - - Page 0: No Additional Data - - - - - - - - - - - - - - -
                      //     Bytes 1, 2, and 3: 0xFF.
                      result          = ENVIRONMENT_SENSOR;
-                     auxInt0         = hex( payLoad[ 3 ] );                                              // Transmission Info
+                     auxInt0         = hex2Int( payLoad[ 3 ] );                                              // Transmission Info
                      additionalData1 = ( auxInt0 << 4 ) & 3;                                             // Local Time
                      additionalData2 = ( auxInt0 << 2 ) & 3;                                             // UTC Time
                      additionalData3 = auxInt0 & 3;                                                      // Transmission Rate
-                     additionalData4 = hex( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );    // Supported Pages
+                     additionalData4 = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );    // Supported Pages
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Transmission Info", payLoad[ 3 ], auxInt0 );
@@ -118,13 +121,13 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
                      //     Bits 0-3 of Byte 4 and Byte 5: High Temp * 10 (Byte 5 MSB)
                      //     Bytes 6 & 7                  : Current Temp * 100 (byte 6 LSB, byte 7 MSB)
                      result          = ENVIRONMENT_SENSOR;
-                     additionalData4 = hex( payLoad[ 2 ] );                                              // Event Count
-                     auxInt0         = hex( payLoad[ 4 ] );
+                     additionalData4 = hex2Int( payLoad[ 2 ] );                                              // Event Count
+                     auxInt0         = hex2Int( payLoad[ 4 ] );
                      auxInt1         = auxInt0 >> 4;
                      auxInt2         = auxInt0 & 0x0F;
-                     additionalData2 = ( auxInt1 * 256 ) + hex( payLoad[ 3 ] );                          // Low Temperature 24h
-                     additionalData3 = ( hex( payLoad[ 5 ] ) << 4 ) + auxInt2;                           // High Temperature 24h
-                     additionalData1  = hex( payLoad[ 7 ], payLoad[ 6 ] );                               // Current Temperature
+                     additionalData2 = ( auxInt1 * 256 ) + hex2Int( payLoad[ 3 ] );                          // Low Temperature 24h
+                     additionalData3 = ( hex2Int( payLoad[ 5 ] ) << 4 ) + auxInt2;                           // High Temperature 24h
+                     additionalData1 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );                               // Current Temperature
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Current Temperature * 100", payLoad[ 7 ], payLoad[ 6 ], additionalData1 );
@@ -165,7 +168,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_ENV_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -184,11 +187,11 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         unsigned int  dataPage        = 0;
         unsigned int  counter         = 0;
@@ -197,12 +200,12 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
         unsigned int  additionalData2 = 0;
         unsigned int  additionalData3 = 0;
         unsigned int  additionalData4 = 0;
-        std::string   curVersion      = b2tVersion;
-        std::string   timeStampBuffer;
-        std::string   sensorID;
-        std::string   timeStampString;
-        std::string   semiCookedString;
-        std::string   dataPageString;
+        amString      curVersion      = b2tVersion;
+        amString      timeStampBuffer;
+        amString      sensorID;
+        amString      timeStampString;
+        amString      semiCookedString;
+        amString      dataPageString;
         bool          commonPage      = false;
         bool          outputPageNo    = true;
         amSplitString words;
@@ -213,9 +216,9 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
 
         if ( nbWords > 3 )
         {
-            sensorID         = words[ counter++ ];                  // 0
-            timeStampBuffer  = words[ counter++ ];                  // 1
-            semiCookedString = words[ counter++ ];                  // 2
+            sensorID         = words[ counter++ ];                                                   // 0 - sensor ID
+            timeStampBuffer  = words[ counter++ ];                                                   // 1 - time stamp
+            semiCookedString = words[ counter++ ];                                                   // 2 - semi-cooked indicator
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "SensorID",   sensorID );
@@ -224,7 +227,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
             }
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isEnvironmentSensor( sensorID ) )
             {
-                dataPage     = ( unsigned int ) strToInt( words[ counter++ ] );    // 3
+                dataPage     = words[ counter++ ].toUInt();                                          // 3 - data page
                 startCounter = counter;
 
                 switch ( dataPage & 0x0F )
@@ -234,10 +237,10 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
                              if ( nbWords > 7 )
                              {
                                  result          = ENVIRONMENT_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Local Time
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                      // UTC Time
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Transmission Rate
-                                 additionalData4 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Supported Pages
+                                 additionalData1 = words[ counter++ ].toUInt();                      // 4 - Local Time
+                                 additionalData2 = words[ counter++ ].toUInt();                      // 5 - UTC Time
+                                 additionalData3 = words[ counter++ ].toUInt();                      // 6 - Transmission Rate
+                                 additionalData4 = words[ counter++ ].toUInt();                      // 7 - Supported Pages
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Local Time",        additionalData1 );
@@ -252,10 +255,10 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
                              if ( nbWords > 7 )
                              {
                                  result          = ENVIRONMENT_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Current Temperature
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Low Temperature 24h
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );                      // High Temperature 24h
-                                 additionalData4 = ( unsigned int ) strToInt( words[ counter++ ] );                      // Event Count
+                                 additionalData1 = words[ counter++ ].toUInt();                      // 4 - Current Temperature
+                                 additionalData2 = words[ counter++ ].toUInt();                      // 5 - Low Temperature 24h
+                                 additionalData3 = words[ counter++ ].toUInt();                      // 6 - High Temperature 24h
+                                 additionalData4 = words[ counter++ ].toUInt();                      // 7 - Event Count
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Current Temperature * 100", additionalData1 );
@@ -320,10 +323,10 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -332,10 +335,10 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antEnvironmentProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -346,7 +349,7 @@ amDeviceType antEnvironmentProcessing::processSensor
     }
     else if ( outputUnknown )
     {
-        int deviceIDNoAsInt = strToInt( deviceIDNo );
+        int deviceIDNoAsInt = deviceIDNo.toInt();
         createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
     }
     else
@@ -359,11 +362,11 @@ amDeviceType antEnvironmentProcessing::processSensor
 
 amDeviceType antEnvironmentProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isEnvironmentSensor( inputBuffer ) )
         {
@@ -401,10 +404,10 @@ bool antEnvironmentProcessing::evaluateDeviceLine
     bool         result  = false;
     unsigned int nbWords = words.size();
 
-    if ( nbWords > 1 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 1 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_ENV_DEVICE_HEAD ) && isEnvironmentSensor( deviceName ) )
         {
             result = appendEnvironmentSensor( deviceName );
@@ -419,11 +422,10 @@ int antEnvironmentProcessing::readDeviceFileStream
 )
 {
     char          line[ C_BUFFER_SIZE ];
-    int           errorCode = 0;
     unsigned int  nbWords    = 0;
+    amString      deviceType = "";
+    amString      deviceName = "";
     amSplitString words;
-    std::string   deviceType = "";
-    std::string   deviceName = "";
 
     while ( true )
     {
@@ -433,7 +435,7 @@ int antEnvironmentProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -453,10 +455,10 @@ int antEnvironmentProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {

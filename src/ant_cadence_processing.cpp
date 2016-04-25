@@ -6,12 +6,8 @@
 // -------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------
 
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
+#include "ant_constants.h"
 #include "am_split_string.h"
-#include "b2t_utils.h"
 #include "ant_cadence_processing.h"
 
 
@@ -30,21 +26,21 @@ antCadenceProcessing::antCadenceProcessing
 
 bool antCadenceProcessing::isCadenceSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_CAD_DEVICE_HEAD        ) ||
-                  startsWith( deviceID, C_SPCAD_DEVICE_HEAD      ) ||
-                  startsWith( deviceID, C_POWER_ONLY_DEVICE_HEAD ) ||
-                  startsWith( deviceID, C_WT_POWER_DEVICE_HEAD   ) ||
-                  startsWith( deviceID, C_CT_POWER_DEVICE_HEAD   ) ||
-                  startsWith( deviceID, C_CTF_POWER_DEVICE_HEAD  );
+    bool result = deviceID.startsWith( C_CAD_DEVICE_HEAD        ) ||
+                  deviceID.startsWith( C_SPCAD_DEVICE_HEAD      ) ||
+                  deviceID.startsWith( C_POWER_ONLY_DEVICE_HEAD ) ||
+                  deviceID.startsWith( C_WT_POWER_DEVICE_HEAD   ) ||
+                  deviceID.startsWith( C_CT_POWER_DEVICE_HEAD   ) ||
+                  deviceID.startsWith( C_CTF_POWER_DEVICE_HEAD  );
     return result;
 }
 
 bool antCadenceProcessing::appendCadenceSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
     bool result = isCadenceSensor( deviceID );
@@ -72,20 +68,20 @@ void antCadenceProcessing::reset
 
 void antCadenceProcessing::setCadence
 (
-    const std::string &sensorID,
+    const amString &sensorID,
     unsigned int       value
 )
 {
     if ( cadenceTable.count( sensorID ) > 0 )
     {
-        cadenceTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+        cadenceTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
     }
     cadenceTable[ sensorID ] = value;
 }
 
 unsigned int antCadenceProcessing::getCadence
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     unsigned int cadence = 0;
@@ -131,8 +127,8 @@ bool antCadenceProcessing::evaluateDeviceLine
 
     if ( nbWords > 2 )
     {
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_CADENCE_DEVICE_ID ) && isCadenceSensor( deviceName ) )
         {
             result = appendCadenceSensor( deviceName );

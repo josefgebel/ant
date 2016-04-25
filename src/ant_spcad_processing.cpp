@@ -1,13 +1,5 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
 #include "am_split_string.h"
 #include "ant_speed_processing.h"
 #include "ant_cadence_processing.h"
@@ -34,23 +26,24 @@ antSpcadProcessing::antSpcadProcessing
     antCadenceProcessing()
 {
     reset();
+    currentDeviceType = "SPCAD790";
     setMaxZeroTime( C_MAX_ZERO_TIME_SPEED );
 }
 
 bool antSpcadProcessing::isSpeedAndCadenceSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_SPCAD_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_SPCAD_DEVICE_HEAD );
     return result;
 }
 
 bool antSpcadProcessing::appendSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCircumference,
-    double             nbMagnets
+    const amString &sensorID,
+    double          wheelCircumference,
+    double          nbMagnets
 )
 {
     bool result = isSpeedAndCadenceSensor( sensorID );
@@ -58,12 +51,12 @@ bool antSpcadProcessing::appendSpeedSensor
     {
         result = antSpeedProcessing::appendSpeedSensor( sensorID, wheelCircumference, nbMagnets );
         if ( result )
-        {   
-            if ( !isRegisteredDevice( sensorID ) ) 
-            {   
+        {
+            if ( !isRegisteredDevice( sensorID ) )
+            {
                 registerDevice( sensorID );
-            }   
-        }   
+            }
+        }
     }
     return result;
 }
@@ -76,10 +69,10 @@ bool antSpcadProcessing::appendSpeedSensor
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -88,10 +81,10 @@ bool antSpcadProcessing::appendSpeedSensor
 //---------------------------------------------------------------------------------------------------
 amDeviceType antSpcadProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -106,7 +99,7 @@ amDeviceType antSpcadProcessing::processSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -116,11 +109,11 @@ amDeviceType antSpcadProcessing::processSensor
 
 amDeviceType antSpcadProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isSpeedAndCadenceSensor( inputBuffer ) )
         {
@@ -158,10 +151,9 @@ int antSpcadProcessing::readDeviceFileStream
     std::ifstream &deviceFileStream
 )
 {
-    int          errorCode  = 0;
     unsigned int nbWords    = 0;
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
 
     char line[ C_BUFFER_SIZE ];
     amSplitString words;
@@ -174,7 +166,7 @@ int antSpcadProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -199,10 +191,10 @@ int antSpcadProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -231,9 +223,9 @@ int antSpcadProcessing::readDeviceFileStream
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -248,7 +240,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
     unsigned int rollOver                          = 0;
     bool         rollOverHappened                  = false;
     amDeviceType result                            = OTHER_DEVICE;
-    std::string  sensorID                          = std::string( C_SPCAD_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID                          = amString( C_SPCAD_DEVICE_HEAD ) + deviceIDNo;
 
     if ( isRegisteredDevice( sensorID ) )
     {
@@ -258,7 +250,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cadence Event Time
-        bikeCadenceEventTime  = hex( payLoad[ 1 ], payLoad[ 0 ] );
+        bikeCadenceEventTime  = hex2Int( payLoad[ 1 ], payLoad[ 0 ] );
         rollOver              = 65536;  // 256^2
         deltaCadenceEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, cadenceTimeTable, bikeCadenceEventTime );
         if ( diagnostics )
@@ -275,7 +267,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cadence Revolution Count
-        cumCadenceRevCount        = hex( payLoad[ 3 ], payLoad[ 2 ] );
+        cumCadenceRevCount        = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );
         rollOver                  = 65536;  // 256^2
         deltaCrankRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, cadenceCountTable, cumCadenceRevCount );
         if ( diagnostics )
@@ -292,7 +284,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Speed Event Time
-        bikeSpeedEventTime  = hex( payLoad[ 5 ], payLoad[ 4 ] );
+        bikeSpeedEventTime  = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver            = 65536;  // 256^2
         deltaSpeedEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, bikeSpeedEventTime );
         if ( diagnostics )
@@ -309,7 +301,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cumulated Wheel Count
-        wheelRevolutionCount      = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        wheelRevolutionCount      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver                  = 65536;  // 256^2
         deltaWheelRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, wheelRevolutionCount );
         if ( diagnostics )
@@ -355,7 +347,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_SPCAD_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -374,16 +366,16 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antSpcadProcessing::processSpeedAndCadenceSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   curVersion                = b2tVersion;
-        std::string   sensorID;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
+        amString      curVersion                = b2tVersion;
+        amString      sensorID;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
         amSplitString words;
         unsigned int  nbWords                   = words.split( inputBuffer );
         unsigned int  counter                   = 0;
@@ -406,10 +398,10 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensorSemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isSpeedAndCadenceSensor( sensorID ) )
             {
                 result                    = SPEED_SENSOR;
-                deltaSpeedEventTime       = ( unsigned int ) strToInt( words[ counter++ ] );      // 3
-                deltaWheelRevolutionCount = ( unsigned int ) strToInt( words[ counter++ ] );      // 4
-                deltaCadenceEventTime     = ( unsigned int ) strToInt( words[ counter++ ] );      // 5
-                deltaCrankRevolutionCount = ( unsigned int ) strToInt( words[ counter++ ] );      // 6
+                deltaSpeedEventTime       = words[ counter++ ].toUInt();      // 3
+                deltaWheelRevolutionCount = words[ counter++ ].toUInt();      // 4
+                deltaCadenceEventTime     = words[ counter++ ].toUInt();      // 5
+                deltaCrankRevolutionCount = words[ counter++ ].toUInt();      // 6
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Delta Speed Event Time", deltaSpeedEventTime );

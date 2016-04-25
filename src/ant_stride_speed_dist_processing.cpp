@@ -1,11 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_stride_speed_dist_processing.h"
 
 
@@ -27,21 +22,22 @@ antStrideSpeedDistProcessing::antStrideSpeedDistProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "STRIDE";
     reset();
 }
 
 bool antStrideSpeedDistProcessing::isStrideSpeedSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_SBSDM_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_SBSDM_DEVICE_HEAD );
     return result;
 }
 
 bool antStrideSpeedDistProcessing::appendStrideSpeedDistSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isStrideSpeedSensor( sensorID );
@@ -66,13 +62,13 @@ bool antStrideSpeedDistProcessing::appendStrideSpeedDistSensor
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result                            = OTHER_DEVICE;
-    std::string  sensorID                          = std::string( C_SBSDM_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID                          = amString( C_SBSDM_DEVICE_HEAD ) + deviceIDNo;
     char         auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
     unsigned int dataPage                          = 0;
     unsigned int auxInt1                           = 0;
@@ -93,7 +89,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -105,14 +101,14 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 
                      if ( totalTimeTable.count( sensorID ) > 0 )
                      {
-                         totalTimeTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
-                         totalDistTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
-                         eventTimeTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
-                         eventCountTable.insert( std::pair<std::string, int>( sensorID, 0 ) );
+                         totalTimeTable.insert( std::pair<amString, double>( sensorID, 0 ) );
+                         totalDistTable.insert( std::pair<amString, double>( sensorID, 0 ) );
+                         eventTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
+                         eventCountTable.insert( std::pair<amString, int>( sensorID, 0 ) );
                      }
 
                      rollOver     = 256;  // 256 (1 byte)
-                     auxInt1      = hex( payLoad[ 2 ] );     // Time (integer part)
+                     auxInt1      = hex2Int( payLoad[ 2 ] );     // Time (integer part)
                      auxInt2      = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, auxInt1 );
                      if ( semiCookedOut )
                      {
@@ -123,7 +119,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                          additionalData1               = auxInt2 + totalTimeIntTable[ sensorID ];
                          totalTimeIntTable[ sensorID ] = additionalData1;
                      }
-                     additionalData2 = hex( payLoad[ 3 ] );  // Time (fractional part)
+                     additionalData2 = hex2Int( payLoad[ 3 ] );  // Time (fractional part)
 
                      if ( diagnostics )
                      {
@@ -141,7 +137,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                          }
                      }
 
-                     auxInt1      = hex( payLoad[ 3 ] );     // Distance (integer part)
+                     auxInt1      = hex2Int( payLoad[ 3 ] );     // Distance (integer part)
                      rollOver     = 256;  // 256 (1 byte)
                      auxInt2      = getDeltaInt( rollOverHappened, sensorID, rollOver, eventDistTable, auxInt1 );
                      if ( semiCookedOut )
@@ -154,7 +150,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                          totalTimeIntTable[ sensorID ] = additionalData3;
                      }
 
-                     auxInt3         = hex( payLoad[ 4 ] );
+                     auxInt3         = hex2Int( payLoad[ 4 ] );
                      additionalData4 = auxInt3 >> 4;         // Distance (fractional part)
 
                      if ( diagnostics )
@@ -174,14 +170,14 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                      }
 
                      additionalData5 = ( auxInt3 << 4 ) >> 4;         // Speed (integer part)
-                     additionalData6 = hex( payLoad[ 5 ] );           // Speed (fractional part)
+                     additionalData6 = hex2Int( payLoad[ 5 ] );           // Speed (fractional part)
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Speed (fractional part)", payLoad[ 4 ], additionalData5, " (lower 4 bits)" );
                          appendDiagnosticsLine( "Speed (integer part)",    payLoad[ 5 ], additionalData6 );
                      }
 
-                     auxInt1      = hex( payLoad[ 6 ] );           // Stride count
+                     auxInt1      = hex2Int( payLoad[ 6 ] );           // Stride count
                      rollOver     = 256;  // 256 (1 byte)
                      auxInt2      = getDeltaInt( rollOverHappened, sensorID, rollOver, strideCountTable, auxInt1 );
                      if ( semiCookedOut )
@@ -208,7 +204,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                          }
                      }
 
-                     additionalData8 = hex( payLoad[ 7 ] );           // Latency
+                     additionalData8 = hex2Int( payLoad[ 7 ] );           // Latency
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Latency", payLoad[ 7 ], additionalData8 );
@@ -219,8 +215,8 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
             case  2:
             case  3: result = STRIDE_BASED_SD_SENSOR;
 
-                     additionalData3 = hex( payLoad[ 3 ] );     // Cadence (integer part)
-                     auxInt3         = hex( payLoad[ 4 ] );
+                     additionalData3 = hex2Int( payLoad[ 3 ] );     // Cadence (integer part)
+                     auxInt3         = hex2Int( payLoad[ 4 ] );
                      additionalData4 = auxInt3 >> 4;            // Cadence (fractional part)
 
                      if ( diagnostics )
@@ -230,7 +226,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                      }
 
                      additionalData5 = ( auxInt3 << 4 ) >> 4;         // Speed (integer part)
-                     additionalData6 = hex( payLoad[ 5 ] );           // Speed (fractional part)
+                     additionalData6 = hex2Int( payLoad[ 5 ] );           // Speed (fractional part)
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Speed (fractional part)", payLoad[ 4 ], additionalData5, " (lower 4 bits)" );
@@ -239,14 +235,14 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 
                      if ( dataPage == 3 )
                      {
-                         additionalData7 = hex( payLoad[ 6 ] );       // Calories
+                         additionalData7 = hex2Int( payLoad[ 6 ] );       // Calories
                          if ( diagnostics )
                          {
                              appendDiagnosticsLine( "Calories", payLoad[ 6 ], additionalData7 );
                          }
                      }
 
-                     additionalData8 = hex( payLoad[ 7 ] );           // Status
+                     additionalData8 = hex2Int( payLoad[ 7 ] );           // Status
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Status", payLoad[ 7 ], additionalData8 );
@@ -255,8 +251,8 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                      break;
 
             case 16: result = STRIDE_BASED_SD_SENSOR;
-                     additionalData1 = hex( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] );                   // Strides
-                     additionalData2 = hex( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );     // Distances
+                     additionalData1 = hex2Int( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] );                   // Strides
+                     additionalData2 = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );     // Distances
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Strides",  payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ],               additionalData1 );
@@ -264,7 +260,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                      }
 
             case 22: result = STRIDE_BASED_SD_SENSOR;
-                     additionalData1 = hex( payLoad[ 1 ] );                 // Capabilities
+                     additionalData1 = hex2Int( payLoad[ 1 ] );                 // Capabilities
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Capabilities", payLoad[ 1 ], additionalData1 );
@@ -312,7 +308,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_SBSDM_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -330,16 +326,16 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   sensorID;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
-        std::string   curVersion      = b2tVersion;
+        amString      sensorID;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
+        amString      curVersion      = b2tVersion;
         amSplitString words;
         unsigned int  nbWords         = words.split( inputBuffer );
         unsigned int  startCounter    = 0;
@@ -362,9 +358,9 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
         if ( nbWords > 7 )
         {
             result           = BLOOD_PRESSURE_SENSOR;
-            sensorID         = words[ counter++ ];                     //  0
-            timeStampBuffer  = words[ counter++ ];                     //  1
-            semiCookedString = words[ counter++ ];                     //  2
+            sensorID         = words[ counter++ ];                                                                //  0 - sensor ID
+            timeStampBuffer  = words[ counter++ ];                                                                //  1 - time stamp
+            semiCookedString = words[ counter++ ];                                                                //  2 - semi-cooked indicator
             if ( diagnostics )
             if ( diagnostics )
             {
@@ -375,7 +371,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isStrideSpeedSensor( sensorID ) )
             {
                 startCounter = counter;
-                dataPage    = ( unsigned int ) strToInt( words[ counter++ ] );       //  3
+                dataPage    = words[ counter++ ].toUInt();                                                        //  3 - data page
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
@@ -386,7 +382,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                     case  1: if ( nbWords > 11 )
                              {
                                  result  = STRIDE_BASED_SD_SENSOR;
-                                 auxInt1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - Delta Time (Integer Part)
+                                 auxInt1 = words[ counter++ ].toUInt();                                           //  4 - Delta Time (Integer Part)
                                  if ( semiCookedOut )
                                  {
                                      additionalData1 = auxInt1;
@@ -396,8 +392,8 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                                      additionalData1               = auxInt1 + totalTimeIntTable[ sensorID ];
                                      totalTimeIntTable[ sensorID ] = additionalData1;
                                  }
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Time (Fractional Part)
-                                 auxInt2         = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Delta distance (Integer Part)
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Time (Fractional Part)
+                                 auxInt2         = words[ counter++ ].toUInt();                                   //  6 - Delta distance (Integer Part)
                                  if ( semiCookedOut )
                                  {
                                      additionalData3 = auxInt2;
@@ -407,10 +403,10 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                                      additionalData3               = auxInt2 + totalTimeIntTable[ sensorID ];
                                      totalTimeIntTable[ sensorID ] = additionalData3;
                                  }
-                                 additionalData4 = ( unsigned int ) strToInt( words[ counter++ ] );               //  7 - Distance (Fractional Part)
-                                 additionalData5 = ( unsigned int ) strToInt( words[ counter++ ] );               //  8 - Speed (Integer Part)
-                                 additionalData6 = ( unsigned int ) strToInt( words[ counter++ ] );               //  9 - Speed (Fractional Part)
-                                 auxInt3         = ( unsigned int ) strToInt( words[ counter++ ] );               // 10 - Delta Stride Count
+                                 additionalData4 = words[ counter++ ].toUInt();                                   //  7 - Distance (Fractional Part)
+                                 additionalData5 = words[ counter++ ].toUInt();                                   //  8 - Speed (Integer Part)
+                                 additionalData6 = words[ counter++ ].toUInt();                                   //  9 - Speed (Fractional Part)
+                                 auxInt3         = words[ counter++ ].toUInt();                                   // 10 - Delta Stride Count
                                  if ( semiCookedOut )
                                  {
                                      additionalData7 = auxInt3;
@@ -420,7 +416,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                                      additionalData7                   = auxInt3 + totalStrideCountTable[ sensorID ];
                                      totalStrideCountTable[ sensorID ] = additionalData7;
                                  }
-                                 additionalData8 = ( unsigned int ) strToInt( words[ counter++ ] );               // 11 - Latency
+                                 additionalData8 = words[ counter++ ].toUInt();                                   // 11 - Latency
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "delta time integer part",     auxInt1 );
@@ -450,15 +446,15 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                     case  3: if ( ( nbWords > 9 ) || ( ( dataPage == 2 ) && ( nbWords > 8 ) ) )
                              {
                                  result          = STRIDE_BASED_SD_SENSOR;
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - Cadence (Integer Part)
-                                 additionalData4 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Cadence (Fractional Part)
-                                 additionalData5 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Speed (Integer Part)
-                                 additionalData6 = ( unsigned int ) strToInt( words[ counter++ ] );               //  7 - Speed (Fractional Part)
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  4 - Cadence (Integer Part)
+                                 additionalData4 = words[ counter++ ].toUInt();                                   //  5 - Cadence (Fractional Part)
+                                 additionalData5 = words[ counter++ ].toUInt();                                   //  6 - Speed (Integer Part)
+                                 additionalData6 = words[ counter++ ].toUInt();                                   //  7 - Speed (Fractional Part)
                                  if ( dataPage == 3 )
                                  {
-                                     additionalData7 = ( unsigned int ) strToInt( words[ counter++ ] );           //  8 - Calories
+                                     additionalData7 = words[ counter++ ].toUInt();                               //  8 - Calories
                                  }
-                                 additionalData8 = ( unsigned int ) strToInt( words[ counter++ ] );               // 8/9 - SBSDM Status
+                                 additionalData8 = words[ counter++ ].toUInt();                                   // 8/9 - SBSDM Status
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Cadence integer part",     additionalData3 );
@@ -477,8 +473,8 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                     case 16: if ( nbWords > 5 )
                              {
                                  result          = STRIDE_BASED_SD_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );  // 4 - Strides
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );  //  5 - Distance
+                                 additionalData1 = words[ counter++ ].toUInt();                                   // 4 - Strides
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Distance
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Strides",  additionalData1 );
@@ -490,7 +486,7 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
                     case 22: if ( nbWords > 4 )
                              {
                                  result          = STRIDE_BASED_SD_SENSOR;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - Capabilities
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - Capabilities
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "Capabilities", additionalData1 );
@@ -563,10 +559,10 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -575,10 +571,10 @@ amDeviceType antStrideSpeedDistProcessing::processStrideBasedSpeedAndDistanceSen
 //---------------------------------------------------------------------------------------------------
 amDeviceType antStrideSpeedDistProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -592,7 +588,7 @@ amDeviceType antStrideSpeedDistProcessing::processSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -602,11 +598,11 @@ amDeviceType antStrideSpeedDistProcessing::processSensor
 
 amDeviceType antStrideSpeedDistProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isStrideSpeedSensor( inputBuffer ) )
         {
@@ -638,15 +634,15 @@ bool antStrideSpeedDistProcessing::evaluateDeviceLine
 {
     bool         result  = false;
     unsigned int nbWords = words.size();
-    if ( nbWords > 2 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 2 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_STRIDE_DEVICE_ID ) && isStrideSpeedSensor( deviceName ) )
-        {   
+        {
             result = appendStrideSpeedDistSensor( deviceName );
-        }   
-    }   
+        }
+    }
     return result;
 }
 
@@ -655,13 +651,12 @@ int antStrideSpeedDistProcessing::readDeviceFileStream
     std::ifstream &deviceFileStream
 )
 {
-    char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
+    char          line[ C_BUFFER_SIZE ];
+    amString      deviceType = "";
+    amString      deviceName = "";
+    unsigned int  nbWords    = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
-    unsigned int nbWords    = 0;
 
     while ( true )
     {
@@ -671,7 +666,7 @@ int antStrideSpeedDistProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -691,10 +686,10 @@ int antStrideSpeedDistProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {

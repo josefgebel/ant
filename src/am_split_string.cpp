@@ -11,7 +11,7 @@ amSplitString::amSplitString
 
 amSplitString::amSplitString
 (
-    const std::string &text
+    const amString &text
 )
 {
     init();
@@ -24,37 +24,15 @@ void amSplitString::init
 )
 {
     curWordNo   = 0;
-    separators  = '\t';
+
+    separators.clear();
+    separators += '\t';
     separators += ' ';
-    terminals   = '\0';
+
+    terminals.clear();
+    terminals  += '\0';
     terminals  += '\n';
     terminals  += '\r';
-}
-
-bool amSplitString::isInString
-(
-    char               testChar,
-    const std::string &text
-) const
-{
-    std::string::const_iterator tPtr = text.begin();
-    for ( ; ( tPtr != text.end() ) && ( *tPtr != testChar ); ++tPtr );
-    return ( tPtr != text.end() );
-}
-
-void amSplitString::removeFromString
-(
-    char         obsoleteChar,
-    std::string &text
-)
-{
-    for ( std::string::iterator tPtr = text.begin(); tPtr != text.end(); ++tPtr )
-    {
-        if ( *tPtr == obsoleteChar )
-        {
-            text.erase( tPtr );
-        }
-    }
 }
 
 bool amSplitString::isSeparator
@@ -62,7 +40,7 @@ bool amSplitString::isSeparator
     char testChar
 ) const
 {
-    return isInString( testChar, separators );
+    return separators.contains( testChar );
 }
 
 bool amSplitString::isTerminal
@@ -70,7 +48,7 @@ bool amSplitString::isTerminal
     char testChar
 ) const
 {
-    return isInString( testChar, terminals );
+    return terminals.contains( testChar );
 }
 
 void amSplitString::addSeparator
@@ -100,7 +78,7 @@ void amSplitString::removeSeparator
     char obsoleteSeparator
 )
 {
-    removeFromString( obsoleteSeparator, separators );
+    separators.removeFromString( obsoleteSeparator );
 }
 
 void amSplitString::removeTerminal
@@ -108,26 +86,26 @@ void amSplitString::removeTerminal
     char obsoleteTerminal
 )
 {
-    removeFromString( obsoleteTerminal, terminals );
+    terminals.removeFromString( obsoleteTerminal );
 }
 
 
 size_t amSplitString::split
 (
-    const std::string &text,
-    const std::string &additionalTermnials,
-    const std::string &additionalSeparators
+    const amString &text,
+    const amString &additionalTermnials,
+    const amString &additionalSeparators
 )
 {
-    std::string                 word;
-    std::string::const_iterator tPtr = text.begin();
+    amString                 word;
+    amString::const_iterator tPtr = text.begin();
 
     words.clear();
     curWordNo = 0;
 
-    while ( !isTerminal( *tPtr ) && !isInString( *tPtr, additionalTermnials ) && ( tPtr != text.end() ) )
+    while ( !isTerminal( *tPtr ) && !additionalTermnials.contains( *tPtr ) && ( tPtr != text.end() ) )
     {
-        if ( isSeparator( *tPtr ) || isInString( *tPtr, additionalSeparators ) )
+        if ( isSeparator( *tPtr ) || additionalSeparators.contains( *tPtr ) )
         {
             if ( !word.empty() )
             {
@@ -149,47 +127,39 @@ size_t amSplitString::split
     return words.size();
 }
 
-void amSplitString::push_back
+const amString amSplitString::getWord
 (
-    const std::string &newWord
-)
-{
-    words.push_back( newWord );
-}
-
-const std::string amSplitString::getWord
-(
-    unsigned int wordNo
+    size_t index
 ) const
 {
-    return wordNo < words.size() ? words[ wordNo ] : std::string( "" );
+    return index < words.size() ? words[ index ] : amString( "" );
 }
 
-const std::string amSplitString::operator[]
+const amString amSplitString::operator[]
 (
-    unsigned int wordNo
+    size_t index
 ) const
 {
-    return wordNo < words.size() ? words[ wordNo ] : std::string( "" );
+    return index < words.size() ? words[ index ] : amString( "" );
 }
 
-const std::string amSplitString::front
+const amString amSplitString::front
 (
     void
 ) const
 {
-    return words.size() ? words.front() : std::string( "" );
+    return words.size() ? words.front() : amString( "" );
 }
 
-const std::string amSplitString::back
+const amString amSplitString::back
 (
     void
 ) const
 {
-    return words.size() ? words.back() : std::string( "" );
+    return words.size() ? words.back() : amString( "" );
 }
 
-const std::string amSplitString::getNextWord
+const amString amSplitString::getNextWord
 (
     void
 )
@@ -198,7 +168,18 @@ const std::string amSplitString::getNextWord
     {
         return words[ curWordNo++ ];
     }
-    return std::string( "" );
+    return amString( "" );
+}
+
+void amSplitString::push_back
+(
+    const amString &word
+)
+{
+    if ( !word.empty() )
+    {
+        words.push_back( word );
+    }
 }
 
 std::ostream &operator<<

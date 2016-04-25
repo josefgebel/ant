@@ -10,9 +10,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------
 
-#include <iostream>
-
-#include "b2t_utils.h"
 #include "am_split_string.h"
 #include "ant_cadence_speed_processing.h"
 
@@ -33,16 +30,16 @@ antCadenceSpeedProcessing::antCadenceSpeedProcessing
 
 bool antCadenceSpeedProcessing::appendCadenceSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCircumference,
-    double             gearRatio
+    const amString &sensorID,
+    double          wheelCircumference,
+    double          gearRatio
 )
 {
-    bool result = startsWith( sensorID, C_CAD_DEVICE_HEAD        ) ||
-                  startsWith( sensorID, C_POWER_ONLY_DEVICE_HEAD ) ||
-                  startsWith( sensorID, C_WT_POWER_DEVICE_HEAD   ) ||
-                  startsWith( sensorID, C_CT_POWER_DEVICE_HEAD   ) ||
-                  startsWith( sensorID, C_CTF_POWER_DEVICE_HEAD  );
+    bool result = sensorID.startsWith( C_CAD_DEVICE_HEAD        ) ||
+                  sensorID.startsWith( C_POWER_ONLY_DEVICE_HEAD ) ||
+                  sensorID.startsWith( C_WT_POWER_DEVICE_HEAD   ) ||
+                  sensorID.startsWith( C_CT_POWER_DEVICE_HEAD   ) ||
+                  sensorID.startsWith( C_CTF_POWER_DEVICE_HEAD  );
     if ( result )
     {
         antSpeedProcessing::appendSpeedSensor( sensorID, wheelCircumference, gearRatio );
@@ -53,27 +50,27 @@ bool antCadenceSpeedProcessing::appendCadenceSpeedSensor
 
 void antCadenceSpeedProcessing::setUseAsSpeedSensor
 (
-    const std::string &sensorID,
-    bool               value
+    const amString &sensorID,
+    bool            value
 )
 {
-    if ( speedCadenceSensorTable.count( sensorID ) == 0 ) 
-    {        
-        speedCadenceSensorTable.insert( std::pair<std::string, double>( sensorID, value ) );  
-    }    
+    if ( speedCadenceSensorTable.count( sensorID ) == 0 )
+    {
+        speedCadenceSensorTable.insert( std::pair<amString, double>( sensorID, value ) );
+    }
     speedCadenceSensorTable[ sensorID ] = value;
 }
 
 bool antCadenceSpeedProcessing::isUsedAsSpeedSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = false;
-    if ( speedCadenceSensorTable.count( sensorID ) == 0 ) 
-    {        
-        speedCadenceSensorTable.insert( std::pair<std::string, double>( sensorID, result ) );  
-    }        
+    if ( speedCadenceSensorTable.count( sensorID ) == 0 )
+    {
+        speedCadenceSensorTable.insert( std::pair<amString, double>( sensorID, result ) );
+    }
     result = speedCadenceSensorTable[ sensorID ];
     return result;
 }
@@ -122,20 +119,20 @@ bool antCadenceSpeedProcessing::evaluateDeviceLine
     bool         result  = false;
     unsigned int nbWords = words.size();
 
-    if ( nbWords > 1 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 1 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_SPEED_DEVICE_ID ) && isCadenceSensor( deviceName ) )
         {
             double dArg1 = wheelCircumferenceDefault;
             double dArg2 = gearRatioDefault;
             if ( nbWords > 2 )
             {
-                dArg1 = strToDouble( words[ 2 ] );
+                dArg1 = words[ 2 ].toDouble();
                 if ( nbWords > 3 )
                 {
-                    dArg2 = strToDouble( words[ 3 ] );
+                    dArg2 = words[ 3 ].toDouble();
                 }
             }
             result = appendCadenceSpeedSensor( deviceName, dArg1, dArg2 );

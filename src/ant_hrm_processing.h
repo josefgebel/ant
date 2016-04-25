@@ -1,25 +1,22 @@
 #ifndef __ANT_HRM_PROCESSING_H__
 #define __ANT_HRM_PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
-
-class amSplitString;
 
 class antHRMProcessing : virtual public antProcessing
 {
     private:
 
-        std::map<std::string, bool>         heartRateSensorTable;
-        std::map<std::string, unsigned int> previousHeartRateTable;
-        std::map<std::string, unsigned int> eventTimeTable;
-        std::map<std::string, double>       heartBeatTimeTable;
+        std::map<amString, bool>         heartRateSensorTable;
+        std::map<amString, unsigned int> previousHeartRateTable;
+        std::map<amString, unsigned int> eventTimeTable;
+        std::map<amString, double>       heartBeatTimeTable;
 
 
     protected:
 
-        amDeviceType processHRMSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processHRMSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processHRMSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processHRMSensorSemiCooked( const amString &inputBuffer );
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
 
@@ -29,13 +26,13 @@ class antHRMProcessing : virtual public antProcessing
         antHRMProcessing();
         ~antHRMProcessing() {}
 
-        bool isHeartRateSensor( const std::string &deviceID );
+        bool isHeartRateSensor ( const amString &deviceID );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendHRMSensor( const std::string &deviceName );
-        bool isRegisteredSensor( const std::string &deviceID );
+        bool appendHRMSensor   ( const amString &deviceName );
+        bool isRegisteredSensor( const amString &deviceID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         virtual void reset( void );
 

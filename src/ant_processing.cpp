@@ -1,10 +1,12 @@
 #include <sstream>
-#include <iostream>
 #include <fstream>
+#include <iostream>
+#include <unistd.h>
+#include <sys/time.h>
 
 // -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_processing.h"
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -55,13 +57,12 @@ void antProcessing::resetAll
     setMCPortNoOut( C_DEFAULT_MC_PORT_NO_OUT );
     setTimeOutSec( C_DEFAULT_TIME_OUT_SEC );
     setWriteStdout( C_DEFAULT_WRITE_STDOUT );
-    setUseLocalTime( C_DEFAULT_USE_LOCAL_TIME );
     setSemiCookedIn( C_DEFAULT_SEMI_COOKED_IN );
     setSemiCookedOut(C_DEFAULT_SEMI_COOKED_OUT );
     setOutputAsJSON( C_DEFAULT_OUTPUT_AS_JSON );
     setOutputRaw( C_DEFAULT_OUTPUT_RAW );
     setOnlyRegisteredDevices( C_DEFAULT_ONLY_REGISTERED_DEVICES );
-        
+
     setDiagnostics( C_DEFAULT_DIAGNOSTICS );
 
     initializeSupportedDeviceTypes();
@@ -69,11 +70,11 @@ void antProcessing::resetAll
 
 unsigned int antProcessing::getDeltaInt
 (
-    bool                                &rollOverHappened,
-    const std::string                   &sensorID,
-    unsigned int                         rollOver,
-    std::map<std::string, unsigned int> &valueTable,
-    unsigned int                         newValue
+    bool                             &rollOverHappened,
+    const amString                   &sensorID,
+    unsigned int                      rollOver,
+    std::map<amString, unsigned int> &valueTable,
+    unsigned int                      newValue
 )
 {
     unsigned int prevValue  = valueTable[ sensorID ];
@@ -81,16 +82,6 @@ unsigned int antProcessing::getDeltaInt
     rollOverHappened        = ( newValue < prevValue );
     unsigned int deltaValue = rollOverHappened ? ( rollOver - prevValue + newValue ) : ( newValue - prevValue );
     return deltaValue;
-}
-
-void antProcessing::printDoubleValue
-(
-    char         *resultBuffer,
-    const char   *formatString,
-    double        value
-)
-{
-    sprintf( resultBuffer, formatString, value );
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -108,7 +99,6 @@ void antProcessing::setTimePrecision
     if ( ( value >= C_MIN_PRECISION ) && ( value <= C_MAX_PRECISION ) )
     {
         timePrecision = value;
-        sprintf( timeValueFormatString, "%%.%ulf", timePrecision );
     }
 }
 
@@ -127,28 +117,17 @@ void antProcessing::setValuePrecision
     if ( ( value >= C_MIN_PRECISION ) && ( value <= C_MAX_PRECISION ) )
     {
         valuePrecision = value;
-        sprintf( doubleValueFormatString, "%%.%ulf", valuePrecision );
     }
 }
 
 bool antProcessing::isSemiCookedFormat137
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
-    bool        result = false;
-    const char *iPtr   = inputBuffer;
-
-    while ( !result && ( *iPtr != 0 ) )
-    {
-        if ( ( *iPtr == '=' ) ||
-             ( ( *iPtr == '1' ) && ( strlen( iPtr ) >= strlen( "1.34.x" ) ) && startsWith( iPtr, "1.34." ) ) )
-        {
-            result = true;
-        }
-        ++iPtr;
-    }
-
+    amSplitString words( inputBuffer );
+    amString      lastWord = words.back();
+    bool          result   = lastWord.startsWith( "1.34." );
     return result;
 }
 
@@ -160,10 +139,10 @@ bool antProcessing::isSemiCookedFormat137
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Device ID (number).
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Device ID (number).
+//    BYTE   payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -172,34 +151,40 @@ bool antProcessing::isSemiCookedFormat137
 //---------------------------------------------------------------------------------------------------
 amDeviceType antProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceID,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceID,
+    const amString &timeStampBuffer,
+    BYTE   payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    sprintf( errorMessage, "ERROR: Unknown device type %d.\n", deviceType );
+    std::stringstream auxStringStream;
+    auxStringStream << deviceType;
+    errorMessage += "ERROR: Unknown device type ";
+    errorMessage += auxStringStream.str();
+    errorMessage += ".\n";
 
     return result;
 }
 
 amDeviceType antProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( inputBuffer != NULL )
+    if ( inputBuffer.empty() )
     {
-        sprintf( errorMessage, "ERROR: Unknown device type in \"%s\".\n", inputBuffer );
+        errorMessage += "ERROR: Input Buffer is empty";
     }
     else
     {
-        sprintf( errorMessage, "ERROR: input buffer is NULL\n" );
+        errorMessage += "ERROR: Unknown device type in \"";
+        errorMessage += inputBuffer;
     }
+    errorMessage += "\".\n";
 
     return result;
 }
@@ -207,12 +192,12 @@ amDeviceType antProcessing::processSensorSemiCooked
 
 amDeviceType antProcessing::updateSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( strncmp( inputBuffer, "TYPE", strlen( "TYPE" ) ) == 0 )
+    if ( inputBuffer == "TYPE" )
     {
         result = processUndefinedSensorType( inputBuffer );
     }
@@ -248,23 +233,23 @@ amDeviceType antProcessing::updateSensorSemiCooked
 // ------------------------------------------------------------------------------------------------------
 amDeviceType antProcessing::processUndefinedSensorType
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
-    amDeviceType  result                             = OTHER_DEVICE;
-    std::string   deviceID;
-    std::string   deviceTypeString;
-    std::string   sensorID;
-    std::string   timeStampBuffer;
+    amDeviceType  result                 = OTHER_DEVICE;
+    amString      deviceID;
+    amString      deviceTypeString;
+    amString      sensorID;
+    amString      timeStampBuffer;
+    amString      auxBuffer;
     amSplitString words;
     amSplitString sensorParts;
-    unsigned int  nbWords                            = words.split( inputBuffer );
-    char          auxBuffer[ C_MEDIUM_BUFFER_SIZE ]  = { 0 };
-    unsigned char payLoad[ C_ANT_PAYLOAD_LENGTH ]    = { 0 };
-    unsigned int  nbSensorParts                      = 0;
-    unsigned int  deviceType                         = 0;
-    unsigned int  counter                            = 0;
-    unsigned int  syntaxError                        = 0;
+    unsigned int  nbWords                = words.split( inputBuffer );
+    BYTE payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
+    unsigned int  nbSensorParts          = 0;
+    unsigned int  deviceType             = 0;
+    unsigned int  counter                = 0;
+    unsigned int  syntaxError            = 0;
 
     syntaxError = ( nbWords >= 2 + C_ANT_PAYLOAD_LENGTH ) ? 0 : 1;
     if ( syntaxError == 0 )
@@ -291,14 +276,14 @@ amDeviceType antProcessing::processUndefinedSensorType
     if ( syntaxError == 0 )
     {
         deviceTypeString = sensorParts[ 0 ].substr( strlen( C_UNKNOWN_TYPE_HEAD ) );
-        deviceType       = ( unsigned int ) strToInt( deviceTypeString );
+        deviceType       = deviceTypeString.toUInt();
         syntaxError      = ( deviceType > 0 ) ? 0 : 4;
     }
 
     if ( syntaxError == 0 )
     {
         deviceID  = sensorParts[ 1 ];
-        syntaxError = ( ( unsigned int ) strToInt( deviceID ) != 0 ) ? 0 : 5;
+        syntaxError = ( ( unsigned int ) deviceID.toUInt() != 0 ) ? 0 : 5;
     }
 
     if ( syntaxError == 0 )
@@ -310,11 +295,13 @@ amDeviceType antProcessing::processUndefinedSensorType
         }
         for ( counter = 0; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
         {
-            payLoad[ counter ]  = ( hexDigit2Int( words[ 2 + counter ][ 0 ] ) ) << 4;
-            payLoad[ counter ] += hexDigit2Int( words[ 2 + counter ][ 1 ] );
+            payLoad[ counter ]  = ( HEX_DIGIT_2_INT( words[ 2 + counter ][ 0 ] ) ) << 4;
+            payLoad[ counter ] += HEX_DIGIT_2_INT( words[ 2 + counter ][ 1 ] );
             if ( diagnostics )
             {
-                sprintf( auxBuffer, "payLoad [ %u ]", counter );
+                auxBuffer  = "payLoad [ ";
+                auxBuffer += amString( counter );
+                auxBuffer += " ]";
                 appendDiagnosticsLine( auxBuffer, payLoad[ counter ] );
             }
         }
@@ -347,61 +334,18 @@ void antProcessing::reset
     totalOperatingTimeTable.clear();
 }
 
-void antProcessing::convertAdditionalDataFromSemiCooked
-(
-    char *additionalData
-)
-{
-    replaceChar( additionalData, C_SPACE_REPLACEMENT, ' ' );
-    replaceChar( additionalData, C_TAB_REPLACEMENT, '\t' );
-}
-
-void antProcessing::convertAdditionalDataToSemiCooked
-(
-    char *additionalData
-)
-{
-    replaceChar( additionalData, ' ', C_SPACE_REPLACEMENT );
-    replaceChar( additionalData, '\t', C_TAB_REPLACEMENT );
-}
-
-int antProcessing::readDeviceFile
-(
-    void
-)
-{
-    int errorCode = 0;
-    if ( !deviceFileName.empty() )
-    {
-        std::ifstream inStr( deviceFileName.c_str() );
-        if ( inStr.fail() )
-        {
-            strcat( errorMessage, "Could not open device file \"" );
-            strcat( errorMessage, deviceFileName.c_str() );
-            strcat( errorMessage, "\" for reading.\n" );
-            errorCode = 1111112;
-        }
-        else
-        {
-            errorCode = readDeviceFileStream( inStr );
-        }
-    }
-
-    return errorCode;
-}
 
 int antProcessing::readDeviceFileStream
 (
     std::ifstream &deviceFileStream
 )
 {
-    int errorCode = 0;
     return errorCode;
 }
 
 bool antProcessing::isSupportedSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = false;
@@ -422,7 +366,7 @@ bool antProcessing::isSupportedSensor
 // Check if a device is registered.
 //
 // Parameters:
-//    const std::string &deviceID   IN   Device ID (key for the has table)
+//    const amString &deviceID   IN   Device ID (key for the has table)
 //
 // Return true if the device hash table has an entry for the key.
 //        false otherwise.
@@ -430,7 +374,7 @@ bool antProcessing::isSupportedSensor
 //---------------------------------------------------------------------------------------------------
 bool antProcessing::isRegisteredDevice
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
     bool result = !onlyRegisteredDevices;
@@ -443,12 +387,12 @@ bool antProcessing::isRegisteredDevice
 
 void antProcessing::registerDevice
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
     if ( registeredDevices.count( deviceID ) == 0 )
     {
-        registeredDevices.insert( std::pair<std::string, bool>( deviceID, false ) );
+        registeredDevices.insert( std::pair<amString, bool>( deviceID, false ) );
     }
 }
 
@@ -459,40 +403,37 @@ void antProcessing::registerDevice
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::getBatteryStatus
 (
-   char *buffer,
-   int   index,
-   bool  lowerCase
+   amString &status,
+   int       index,
+   bool      lowerCase
 )
 {
     bool result = true;
     switch ( index )
     {
-        case  0: strcpy( buffer, "N/A" );
+        case  0: status = "N/A";
                  break;
-        case  1: strcpy( buffer, "New" );
+        case  1: status = "New";
                  break;
-        case  2: strcpy( buffer, "Good" );
+        case  2: status = "Good";
                  break;
-        case  3: strcpy( buffer, "Ok" );
+        case  3: status = "Ok";
                  break;
-        case  4: strcpy( buffer, "Low" );
+        case  4: status = "Low";
                  break;
-        case  5: strcpy( buffer, "Critical" );
+        case  5: status = "Critical";
                  break;
-        case  6: strcpy( buffer, "Reserved for future use" );
+        case  6: status = "Reserved for future use";
                  break;
-        case  7: strcpy( buffer, "Invalid" );
+        case  7: status = "Invalid";
                  break;
-        default: strcpy( buffer, "Unknown" );
+        default: status = "Unknown";
                  result = false;
                  break;
     }
     if ( lowerCase )
     {
-        for( int counter = 0; buffer[ counter ]; counter++ )
-        {
-            buffer[ counter ] = tolower( buffer[ counter ] );
-        }
+        status.toLower();
     }
     return result;
 }
@@ -501,77 +442,52 @@ bool antProcessing::getBatteryStatus
 // Auxilairy functions
 unsigned int antProcessing::uChar2UInt
 (
-    unsigned char byte1,
-    unsigned char byte2,
-    unsigned char byte3,
-    unsigned char byte4
+    BYTE byte1,
+    BYTE byte2,
+    BYTE byte3,
+    BYTE byte4
 )
 {
-    unsigned int result = ( unsigned int ) byte1;
-
-    result <<= 8;
-    result += ( unsigned int ) byte2;
-    result <<= 8;
-    result += ( unsigned int ) byte3;
-    result <<= 8;
-    result += ( unsigned int ) byte4;
+    unsigned int result = ( uChar2UInt( byte1, byte2, byte3 ) << 8 ) + ( unsigned int ) byte4;
     return result;
 }
 
 unsigned int antProcessing::uChar2UInt
 (
-    unsigned char byte1,
-    unsigned char byte2,
-    unsigned char byte3
+    BYTE byte1,
+    BYTE byte2,
+    BYTE byte3
 )
 {
-    unsigned int result = ( unsigned int ) byte1;
-    result <<= 8;
-    result += ( unsigned int ) byte2;
-    result <<= 8;
-    result += ( unsigned int ) byte3;
+    unsigned int result = ( uChar2UInt( byte1, byte2 ) << 8 ) + ( unsigned int ) byte3;
     return result;
 }
 
 unsigned int antProcessing::uChar2UInt
 (
-    unsigned char byte1,
-    unsigned char byte2
+    BYTE byte1,
+    BYTE byte2
 )
 {
-    unsigned int result = ( unsigned int ) byte1;
-    result <<= 8;
-    result += ( unsigned int ) byte2;
+    unsigned int result = ( uChar2UInt( byte1 ) << 8 ) + ( unsigned int ) byte2;
     return result;
 }
 
 unsigned int antProcessing::uChar2UInt
 (
-    unsigned char byte1
+    BYTE byte1
 )
 {
     unsigned int result = ( unsigned int ) byte1;
     return result;
-}
-
-void antProcessing::printDouble
-(
-    char       *resultBuffer,
-    double      value,
-    int         precision
-)
-{
-    char formatBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-    sprintf( formatBuffer, "%%.%dlf", precision );
-    sprintf( resultBuffer, formatBuffer, value );
 }
 
 void antProcessing::appendDiagnosticsField
 (
-    const std::string &fieldName
+    const amString &fieldName
 )
 {
-    std::string auxBuffer( C_DIAGNOSTICS_INDENT );
+    amString auxBuffer( C_DIAGNOSTICS_INDENT );
     auxBuffer += fieldName;
     while ( auxBuffer.size() < S_DIAGNOSTICS_BASE_LENGTH )
     {
@@ -584,10 +500,10 @@ void antProcessing::appendDiagnosticsField
 
 void antProcessing::appendDiagnosticsItemName
 (
-    const std::string &itemName
+    const amString &itemName
 )
 {
-    std::string auxBuffer;
+    amString auxBuffer;
     auxBuffer += C_DIAGNOSTICS_INDENT;
     auxBuffer += C_DIAGNOSTICS_INDENT;
     auxBuffer += itemName;
@@ -602,7 +518,7 @@ void antProcessing::appendDiagnosticsItemName
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &message
+    const amString &message
 )
 {
     diagnosticsBuffer += "\n";
@@ -613,24 +529,22 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned int       index,
-    unsigned char      itemValue
+    const amString &itemName,
+    unsigned int    index,
+    BYTE            itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-
-    sprintf( auxBuffer, "%s[ %d ]", itemName.c_str(), index );
-    appendDiagnosticsItemName( auxBuffer );
-
-    sprintf( auxBuffer, "0x%02X", itemValue );
-    diagnosticsBuffer += auxBuffer;
+    diagnosticsBuffer += itemName;
+    diagnosticsBuffer += "[ ";;
+    diagnosticsBuffer += amString( index );
+    diagnosticsBuffer += " ]";;
+    diagnosticsBuffer += amString(itemValue ); 
 }
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    const std::string &itemValue
+    const amString &itemName,
+    const amString &itemValue
 )
 {
     appendDiagnosticsItemName( itemName );
@@ -641,17 +555,13 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
     appendDiagnosticsItemName( itemName );
-
-    char auxCBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, "%u", itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -661,20 +571,16 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    const std::string &stringValue,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    const amString &stringValue,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
     appendDiagnosticsItemName( itemName );
-
     diagnosticsBuffer += stringValue;
-
-    char auxCBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, " = %u", itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += " = ";
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -684,18 +590,17 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned char      byteValue,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    BYTE            byteValue,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
+
     appendDiagnosticsItemName( itemName );
-
-    char auxCBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, "0x%02X = %u", byteValue, itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += amString( byteValue );
+    diagnosticsBuffer += " = ";
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -705,19 +610,17 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned char      byteValue1,
-    unsigned char      byteValue2,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    BYTE            byteValue1,
+    BYTE            byteValue2,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
     appendDiagnosticsItemName( itemName );
-
-    char auxCBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, "0x%02X%02X = %u", byteValue1, byteValue2, itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += amString( byteValue1, byteValue2 );
+    diagnosticsBuffer += " = ";
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -727,20 +630,18 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned char      byteValue1,
-    unsigned char      byteValue2,
-    unsigned char      byteValue3,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    BYTE            byteValue1,
+    BYTE            byteValue2,
+    BYTE            byteValue3,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
     appendDiagnosticsItemName( itemName );
-
-    char auxCBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, "0x%02X%02X%02X = %u", byteValue1, byteValue2, byteValue3, itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += amString( byteValue1, byteValue2, byteValue3 );
+    diagnosticsBuffer += " = ";
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -750,21 +651,19 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendDiagnosticsLine
 (
-    const std::string &itemName,
-    unsigned char      byteValue1,
-    unsigned char      byteValue2,
-    unsigned char      byteValue3,
-    unsigned char      byteValue4,
-    unsigned int       itemValue,
-    const std::string &additionalInfo
+    const amString &itemName,
+    BYTE            byteValue1,
+    BYTE            byteValue2,
+    BYTE            byteValue3,
+    BYTE            byteValue4,
+    unsigned int    itemValue,
+    const amString &additionalInfo
 )
 {
     appendDiagnosticsItemName( itemName );
-
-    char auxCBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxCBuffer, "0x%02X%02X%02X%02X = %u", byteValue1, byteValue2, byteValue3, byteValue4, itemValue );
-    diagnosticsBuffer += auxCBuffer;
-
+    diagnosticsBuffer += amString( byteValue1, byteValue2, byteValue3, byteValue4 );
+    diagnosticsBuffer += " = ";
+    diagnosticsBuffer += amString( itemValue );
     if ( !additionalInfo.empty() )
     {
         diagnosticsBuffer += " ";
@@ -774,58 +673,50 @@ void antProcessing::appendDiagnosticsLine
 
 void antProcessing::appendOutput
 (
-    unsigned char itemValue
+    BYTE itemValue
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer, "\t0x%02X", itemValue );
-    outBuffer += auxBuffer;
-}
-
-void antProcessing::appendOutput
-(
-    int                itemValue,
-    const std::string &unit
-)
-{
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-
-    sprintf( auxBuffer, "\t%d", itemValue );
-    outBuffer += auxBuffer;
-    outBuffer += unit;
-}
-
-void antProcessing::appendOutput
-(
-    double             itemValue,
-    unsigned int       precision,
-    const std::string &unit
-)
-{
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-
-    printDouble( auxBuffer, itemValue, precision );
     outBuffer += "\t";
-    outBuffer += auxBuffer;
-    outBuffer += unit;
+    outBuffer += amString( itemValue );
 }
 
 void antProcessing::appendOutput
 (
-    unsigned int       itemValue,
-    const std::string &unit
+    int             itemValue,
+    const amString &unit
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-
-    sprintf( auxBuffer, "\t%u", itemValue );
-    outBuffer += auxBuffer;
+    outBuffer += "\t";
+    outBuffer += amString( itemValue );
     outBuffer += unit;
 }
 
 void antProcessing::appendOutput
 (
-    const std::string &itemValue
+    double          itemValue,
+    unsigned int    precision,
+    const amString &unit
+)
+{
+    outBuffer += "\t";
+    outBuffer += amString( itemValue, precision );
+    outBuffer += unit;
+}
+
+void antProcessing::appendOutput
+(
+    unsigned int    itemValue,
+    const amString &unit
+)
+{
+    outBuffer += "\t";
+    outBuffer += amString( itemValue );
+    outBuffer += unit;
+}
+
+void antProcessing::appendOutput
+(
+    const amString &itemValue
 )
 {
     outBuffer += "\t";
@@ -833,17 +724,124 @@ void antProcessing::appendOutput
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an unsigned char (byte) value to a JSON object
+// Append an consitional value to a JSON object
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::appendOutputConditional
+(
+    bool            condition,
+    const amString &itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += "\t";
+    if ( condition )
+    {
+        outBuffer += itemValueTrue;
+    }
+    else
+    {
+        outBuffer += itemValueFalse;
+    }
+}
+
+void antProcessing::appendOutputConditional
+(
+    bool            condition,
+    int             itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += "\t";
+    if ( condition )
+    {
+        outBuffer += amString( itemValueTrue );
+    }
+    else
+    {
+        outBuffer += itemValueFalse;
+    }
+}
+
+void antProcessing::appendOutputConditional
+(
+    bool            condition,
+    unsigned int    itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += "\t";
+    if ( condition )
+    {
+        outBuffer += amString( itemValueTrue );
+    }
+    else
+    {
+        outBuffer += itemValueFalse;
+    }
+}
+
+void antProcessing::appendOutputConditional
+(
+    bool            condition,
+    double          itemValueTrue,
+    const amString &itemValueFalse,
+    int             precision
+)
+{
+    outBuffer += "\t";
+    if ( condition )
+    {
+        outBuffer += amString( itemValueTrue, precision );
+    }
+    else
+    {
+        outBuffer += itemValueFalse;
+    }
+}
+
+void antProcessing::appendOutput4Way
+(
+    int             condition,
+    const amString &itemValue0,
+    const amString &itemValue1,
+    const amString &itemValue2,
+    const amString &itemValue3
+)
+{
+    outBuffer += "\t";
+    if ( condition == 0 )
+    {
+        outBuffer += itemValue0;
+    }
+    else if ( condition == 1 )
+    {
+        outBuffer += itemValue1;
+    }
+    else if ( condition == 2 )
+    {
+        outBuffer += itemValue2;
+    }
+    else
+    {
+        outBuffer += itemValue3;
+    }
+}
+
+// -------------------------------------------------------------------------------------------------//
+// Append an BYTE (byte) value to a JSON object
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
-    const char    *itemName,
-    unsigned char  itemValue
+    const amString &itemName,
+    BYTE   itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer, "%s\"%s\": \"0x%02X\",\n", C_JSON_INDENT, itemName, itemValue );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": ";
+    outBuffer += amString( itemValue );
+    outBuffer += ",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -851,13 +849,16 @@ void antProcessing::appendJSONItem
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
-    const char   *itemName,
-    unsigned int  itemValue
+    const amString &itemName,
+    unsigned int    itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer,    "%s\"%s\": %u,\n", C_JSON_INDENT, itemName, itemValue );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": ";
+    outBuffer += amString( itemValue );
+    outBuffer += ",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -865,55 +866,50 @@ void antProcessing::appendJSONItem
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
-    const char   *itemName,
-    int           itemValue
+    const amString &itemName,
+    int             itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer,    "%s\"%s\": %d,\n", C_JSON_INDENT, itemName, itemValue );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": ";
+    outBuffer += amString( itemValue );
+    outBuffer += ",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
 // Append an boolean value to a JSON object
 // -------------------------------------------------------------------------------------------------//
-void antProcessing::appendJSONItem
+void antProcessing::appendJSONItemB
 (
-    const char   *itemName,
-    bool          itemValue
+    const amString &itemName,
+    bool            itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer,   "%s\"%s\": %s,\n", C_JSON_INDENT, itemName, itemValue ? C_TRUE_JSON : C_FALSE_JSON );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": ";
+    outBuffer += ( itemValue ? C_TRUE_JSON : C_FALSE_JSON );
+    outBuffer += ",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an string value to a JSON object
+// Append a string value to a JSON object
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
-    const char *itemName,
-    const char *itemValue
+    const amString &itemName,
+    const amString &itemValue
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer,    "%s\"%s\": \"%s\",\n", C_JSON_INDENT, itemName, itemValue );
-    outBuffer += auxBuffer;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Append an STL string value to a JSON object
-// -------------------------------------------------------------------------------------------------//
-void antProcessing::appendJSONItem
-(
-    const char        *itemName,
-    const std::string &itemValue
-)
-{
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    sprintf( auxBuffer, "%s\"%s\": \"%s\",\n", C_JSON_INDENT, itemName, itemValue.c_str() );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": \"";
+    outBuffer += itemValue;
+    outBuffer += "\",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -921,16 +917,152 @@ void antProcessing::appendJSONItem
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
-    const char *itemName,
-    double      itemValue,
-    int         precision
+    const amString &itemName,
+    double          itemValue,
+    int             precision
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-    char dblBuffer[ C_SMALL_BUFFER_SIZE ]  = { 0 };
-    printDouble( dblBuffer, itemValue, precision );
-    sprintf( auxBuffer, "%s\"%s\": %s,\n", C_JSON_INDENT, itemName, dblBuffer );
-    outBuffer += auxBuffer;
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": ";
+    outBuffer += amString( itemValue, precision );
+    outBuffer += ",\n";
+}
+
+// -------------------------------------------------------------------------------------------------//
+// Append an consitional value to a JSON object
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::appendJSONItemConditional
+(
+    const amString &itemName,
+    bool            condition,
+    const amString &itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": \"";
+    if ( condition )
+    {
+        outBuffer += itemValueTrue;
+    }
+    else
+    {
+        outBuffer += itemValueFalse;
+    }
+    outBuffer += "\",\n";
+}
+
+void antProcessing::appendJSONItemConditional
+(
+    const amString &itemName,
+    bool            condition,
+    int             itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    if ( condition )
+    {
+        outBuffer += "\": ";
+        outBuffer += amString( itemValueTrue );
+        outBuffer += ",\n";
+    }
+    else
+    {
+        outBuffer += "\": \"";
+        outBuffer += itemValueFalse;
+        outBuffer += "\",\n";
+    }
+}
+
+void antProcessing::appendJSONItemConditional
+(
+    const amString &itemName,
+    bool            condition,
+    unsigned int    itemValueTrue,
+    const amString &itemValueFalse
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    if ( condition )
+    {
+        outBuffer += "\": ";
+        outBuffer += amString( itemValueTrue );
+        outBuffer += ",\n";
+    }
+    else
+    {
+        outBuffer += "\": \"";
+        outBuffer += itemValueFalse;
+        outBuffer += "\",\n";
+    }
+}
+
+void antProcessing::appendJSONItemConditional
+(
+    const amString &itemName,
+    bool            condition,
+    double          itemValueTrue,
+    const amString &itemValueFalse,
+    int             precision
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    if ( condition )
+    {
+        outBuffer += "\": ";
+        outBuffer += amString( itemValueTrue );
+        outBuffer += ",\n";
+    }
+    else
+    {
+        outBuffer += "\": \"";
+        outBuffer += itemValueFalse;
+        outBuffer += "\",\n";
+    }
+}
+
+void antProcessing::appendJSONItem4Way
+(
+    const amString &itemName,
+    int             condition,
+    const amString &itemValue0,
+    const amString &itemValue1,
+    const amString &itemValue2,
+    const amString &itemValue3
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "\": \"";
+    if ( condition == 0 )
+    {
+        outBuffer += itemValue0;
+    }
+    else if ( condition == 1 )
+    {
+        outBuffer += itemValue1;
+    }
+    else if ( condition == 2 )
+    {
+        outBuffer += itemValue2;
+    }
+    else
+    {
+        outBuffer += itemValue3;
+    }
+    outBuffer += "\",\n";
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -941,36 +1073,47 @@ void antProcessing::appendJSONItem
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createOutputHeader
 (
-    const std::string &sensorID,
-    const std::string &timeStampBuffer
+    const amString &sensorID,
+    const amString &timeStampBuffer
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
     if ( outputAsJSON )
     {
         outBuffer += C_JSON_OPEN;
-        outBuffer += "\n", 
+        outBuffer += "\n";
 
-        sprintf( auxBuffer, "%s\"%s\": \"%s\",\n", C_JSON_INDENT, C_SENSOR_JSON, sensorID.c_str() );
-        outBuffer += auxBuffer;
+        outBuffer += C_JSON_INDENT;
+        outBuffer += "\"";
+        outBuffer += C_SENSOR_JSON;
+        outBuffer += "\": \"";
+        outBuffer += sensorID;
+        outBuffer += "\",\n";
 
-        sprintf( auxBuffer, "%s\"%s\": %s,\n", C_JSON_INDENT, C_TIMESTAMP_JSON, timeStampBuffer.c_str() );
-        outBuffer += auxBuffer;
+        outBuffer += C_JSON_INDENT;
+        outBuffer += "\"";
+        outBuffer += C_TIMESTAMP_JSON;
+        outBuffer += "\": ";
+        outBuffer += timeStampBuffer;
+        outBuffer += ",\n";
 
-        sprintf( auxBuffer, "%s\"%s\": %s,\n", C_JSON_INDENT, C_SEMI_COOKED_JSON, semiCookedOut ? C_TRUE_JSON : C_FALSE_JSON );
+        outBuffer += C_JSON_INDENT;
+        outBuffer += "\"";
+        outBuffer += C_SEMI_COOKED_JSON;
+        outBuffer += "\": ";
+        outBuffer += ( semiCookedOut ? C_TRUE_JSON : C_FALSE_JSON );
+        outBuffer += ",\n";
     }
     else
     {
+        outBuffer += sensorID;
+        outBuffer += "\t";
+        outBuffer += timeStampBuffer;
         if ( semiCookedOut )
         {
-            sprintf( auxBuffer, "%s\t%s\t%s", sensorID.c_str(), timeStampBuffer.c_str(), C_SEMI_COOKED_SYMBOL_AS_STRING );
-        }
-        else
-        {
-            sprintf( auxBuffer, "%s\t%s", sensorID.c_str(), timeStampBuffer.c_str() );
+            outBuffer += "\t";
+            outBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
         }
     }
-    outBuffer += auxBuffer;
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -980,40 +1123,48 @@ void antProcessing::createOutputHeader
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputFooter
 (
-    const std::string &versionString
+    const amString &versionString
 )
 {
-    char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-
     if ( outputAsJSON )
     {
-        sprintf( auxBuffer, "%s\"program name\": \"%s\",\n", C_JSON_INDENT, programName.c_str() );
-        outBuffer += auxBuffer;
-        sprintf( auxBuffer, "%s\"version\": \"%s\"\n%s\n", C_JSON_INDENT, versionString.c_str(), C_JSON_CLOSE );
+        outBuffer += C_JSON_INDENT;
+        outBuffer += "\"program name\": \"";
+        outBuffer += programName;
+        outBuffer += "\",\n";
+
+        outBuffer += C_JSON_INDENT;
+        outBuffer += "\"version\": \"";
+        outBuffer += versionString;
+        outBuffer += "\"\n";
+
+        outBuffer += C_JSON_CLOSE;
+        outBuffer += "\n";
     }
     else
     {
-        sprintf( auxBuffer, "\t%s", versionString.c_str() );
+        outBuffer += "\t";
+        outBuffer += versionString;
     }
-    outBuffer += auxBuffer;
 }
 
 void antProcessing::createUnknownDeviceTypeString
 (
-    int                deviceType,
-    int                deviceID,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    int             deviceID,
+    const amString &timeStampBuffer,
+    BYTE   payLoad[]
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
-
-    sprintf( auxBuffer, "%s%d_%d", C_UNKNOWN_TYPE_HEAD, deviceType, deviceID );
+    amString sensorID( C_UNKNOWN_TYPE_HEAD);
+    sensorID += amString( deviceType );
+    sensorID += "_";
+    sensorID += amString( deviceID );
     if ( diagnostics )
     {
-        appendDiagnosticsLine( "Unknown device Type", auxBuffer );
+        appendDiagnosticsLine( "Unknown device Type", sensorID );
     }
-    createOutputHeader( auxBuffer, timeStampBuffer );
+    createOutputHeader( sensorID, timeStampBuffer );
 
     for ( int counter = 0; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
     {
@@ -1023,8 +1174,10 @@ void antProcessing::createUnknownDeviceTypeString
         }
         if ( outputAsJSON )
         {
-            sprintf( auxBuffer, "payLoad[ %d ]", counter );
-            appendJSONItem( auxBuffer, payLoad[ counter ] );
+            amString payload( "payLoad[ " );
+            payload += amString( counter );
+            payload += " ]";
+            appendJSONItem( payload, payLoad[ counter ] );
         }
         else
         {
@@ -1039,13 +1192,13 @@ void antProcessing::createUnknownDeviceTypeString
 // ---------------------------------------------------------------------------------
 bool antProcessing::createCommonResultStringPage67
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       value1,
-    unsigned int       value2,
-    unsigned int       value3,
-    unsigned int       value4,
-    unsigned int       value5
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    value1,
+    unsigned int    value2,
+    unsigned int    value3,
+    unsigned int    value4,
+    unsigned int    value5
 )
 {
     // For now semi-cooked and fully cooked output are the same
@@ -1088,12 +1241,12 @@ bool antProcessing::createCommonResultStringPage67
 // ---------------------------------------------------------------------------------
 bool antProcessing::createCommonResultStringPage68
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       value1,
-    unsigned int       value2,
-    unsigned int       value3,
-    unsigned int       value4
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    value1,
+    unsigned int    value2,
+    unsigned int    value3,
+    unsigned int    value4
 )
 {
     // For now semi-cooked and fully cooked output are the same
@@ -1134,13 +1287,13 @@ bool antProcessing::createCommonResultStringPage68
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage70
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       descriptor1,
-    unsigned int       descriptor2,
-    unsigned int       requestedResponse,
-    unsigned int       requestedPage,
-    unsigned int       commandType
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    descriptor1,
+    unsigned int    descriptor2,
+    unsigned int    requestedResponse,
+    unsigned int    requestedPage,
+    unsigned int    commandType
 )
 {
     bool result = true;
@@ -1266,11 +1419,11 @@ bool antProcessing::createCommonResultStringPage70
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage80
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       manufacturerID,
-    unsigned int       hardwareRevision,
-    unsigned int       modelNumber
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    manufacturerID,
+    unsigned int    hardwareRevision,
+    unsigned int    modelNumber
 )
 {
     bool result = true;
@@ -1309,10 +1462,10 @@ bool antProcessing::createCommonResultStringPage80
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage81
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       serialNumber,
-    unsigned int       softwareRevision
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    serialNumber,
+    unsigned int    softwareRevision
 )
 {
     bool result = true;
@@ -1364,14 +1517,14 @@ bool antProcessing::createCommonResultStringPage81
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage82
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       voltage256,
-    unsigned int       status,
-    unsigned int       deltaOperatingTime,
-    unsigned int       resolution,
-    unsigned int       nbBatteries,
-    unsigned int       batteryID
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    voltage256,
+    unsigned int    status,
+    unsigned int    deltaOperatingTime,
+    unsigned int    resolution,
+    unsigned int    nbBatteries,
+    unsigned int    batteryID
 )
 {
     bool result = true;
@@ -1412,10 +1565,10 @@ bool antProcessing::createCommonResultStringPage82
     }
     else
     {
-        char   batteryStatus[ C_SMALL_BUFFER_SIZE ] = { 0 };
-        double voltageDbl                           = ( double ) voltage256 / 256.0;
-        double totalOperatingTime                   = getTotalOperationTime( sensorID );
-        double auxDouble                            = ( double ) deltaOperatingTime;
+        amString batteryStatus;
+        double   voltageDbl         = ( double ) voltage256 / 256.0;
+        double   totalOperatingTime = getTotalOperationTime( sensorID );
+        double   auxDouble          = ( double ) deltaOperatingTime;
 
         auxDouble          *= ( double ) resolution;
         totalOperatingTime += auxDouble;
@@ -1457,21 +1610,21 @@ bool antProcessing::createCommonResultStringPage82
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage83
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       seconds,
-    unsigned int       minutes,
-    unsigned int       hours,
-    unsigned int       weekDayNo,
-    unsigned int       monthDay,
-    unsigned int       month,
-    unsigned int       year
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    seconds,
+    unsigned int    minutes,
+    unsigned int    hours,
+    unsigned int    weekDayNo,
+    unsigned int    monthDay,
+    unsigned int    month,
+    unsigned int    year
 )
 {
-    bool result                            = true;
-    char timeString[ C_SMALL_BUFFER_SIZE ] = { 0 };
-    char dateString[ C_SMALL_BUFFER_SIZE ] = { 0 };
-    char wDayString[ C_SMALL_BUFFER_SIZE ] = { 0 };
+    bool     result = true;
+    amString timeString;
+    amString dateString;
+    amString wDayString;
 
     if ( outputPage )
     {
@@ -1489,27 +1642,28 @@ bool antProcessing::createCommonResultStringPage83
     if ( !semiCookedOut )
     {
         int year2000 = year + 2000;
-        sprintf( dateString, "%4d-%02d-%02d",  year2000, month,   monthDay );
-        sprintf( timeString, "%02d:%02d:%02d", hours,    minutes, seconds );
+        dateString = date2String( year2000, month, monthDay );
+        timeString = time2String( hours, minutes, seconds );
         switch( weekDayNo )
         {
-            case  0: strcpy( wDayString, ( outputAsJSON ? "sun" : "SUN" ) );
+            case  0: wDayString = "SUN";
                      break;
-            case  1: strcpy( wDayString, ( outputAsJSON ? "mon" : "MON" ) );
+            case  1: wDayString = "MON";
                      break;
-            case  2: strcpy( wDayString, ( outputAsJSON ? "tue" : "TUE" ) );
+            case  2: wDayString = "TUE";
                      break;
-            case  3: strcpy( wDayString, ( outputAsJSON ? "wed" : "WED" ) );
+            case  3: wDayString = "WED";
                      break;
-            case  4: strcpy( wDayString, ( outputAsJSON ? "thu" : "THU" ) );
+            case  4: wDayString = "THU";
                      break;
-            case  5: strcpy( wDayString, ( outputAsJSON ? "fri" : "FRI" ) );
+            case  5: wDayString = "FRI";
                      break;
-            case  6: strcpy( wDayString, ( outputAsJSON ? "sat" : "SAT" ) );
+            case  6: wDayString = "SAT";
                      break;
-            default: strcpy( wDayString, ( outputAsJSON ? C_UNKNOWN_JSON : C_UNKNOWN ) );
+            default: wDayString = C_UNKNOWN;
                      break;
         }
+        wDayString.toLower();
     }
 
     if ( outputAsJSON )
@@ -1561,12 +1715,12 @@ bool antProcessing::createCommonResultStringPage83
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::createCommonResultStringPage84
 (
-    const std::string &sensorID,
-    bool               outputPage,
-    unsigned int       subPage1,
-    unsigned int       subPage2,
-    unsigned int       dataField1,
-    unsigned int       dataField2
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    subPage1,
+    unsigned int    subPage2,
+    unsigned int    dataField1,
+    unsigned int    dataField2
 )
 {
     bool result = true;
@@ -1624,12 +1778,11 @@ bool antProcessing::createCommonResultStringPage84
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createPacketSaverModeString
 (
-    const std::string   &timeStampBuffer,
-    const unsigned char *payLoad,
-    unsigned char        nbBytes
+    const amString      &timeStampBuffer,
+    const BYTE *payLoad,
+    BYTE        nbBytes
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
     createOutputHeader( C_PACKET_SAVER_NAME, timeStampBuffer );
     for ( int counter = 0; counter < nbBytes; ++counter )
     {
@@ -1639,8 +1792,9 @@ void antProcessing::createPacketSaverModeString
         }
         if ( outputAsJSON )
         {
-            sprintf( auxBuffer, "byte[ %d ]", counter );
-            appendJSONItem( auxBuffer, payLoad[ counter ] );
+            std::stringstream auxStream;
+            auxStream << "byte[ " << counter << " ]";
+            appendJSONItem( auxStream.str(), payLoad[ counter ] );
         }
         else
         {
@@ -1657,15 +1811,15 @@ void antProcessing::createPacketSaverModeString
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createBridgeString
 (
-    const std::string &bridgeDeviceID,
-    const std::string &timeStampBuffer,
-    const std::string &bridgeName,
-    const std::string &bridgeMACAddess,
-    const std::string &firmwareVersion,
-    int                voltageValue,
-    int                powerIndicator,
-    int                operatingMode,
-    int                connectionStatus
+    const amString &bridgeDeviceID,
+    const amString &timeStampBuffer,
+    const amString &bridgeName,
+    const amString &bridgeMACAddess,
+    const amString &firmwareVersion,
+    int             voltageValue,
+    int             powerIndicator,
+    int             operatingMode,
+    int             connectionStatus
 )
 {
     double dVoltage = semiCookedOut ? 0 : ( ( double ) ( 500 + voltageValue ) ) / 1000.0;
@@ -1720,12 +1874,11 @@ void antProcessing::createBridgeString
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createPacketSaverString
 (
-    const unsigned char *line,
+    const BYTE *line,
     int                  nbBytes,
-    const std::string   &timeStampBuffer
+    const amString      &timeStampBuffer
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
     createOutputHeader( C_PACKET_SAVER_NAME, timeStampBuffer );
     for ( int counter = 0; counter < nbBytes; ++counter )
     {
@@ -1735,8 +1888,9 @@ void antProcessing::createPacketSaverString
         }
         if ( outputAsJSON )
         {
-            sprintf( auxBuffer, "byte[ %d ]", counter );
-            appendJSONItem( auxBuffer, line[ counter ] );
+            std::stringstream auxStream;
+            auxStream << "byte[ " << counter << " ]";
+            appendJSONItem( auxStream.str(), line[ counter ] );
         }
         else
         {
@@ -1753,12 +1907,11 @@ void antProcessing::createPacketSaverString
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createUnknownPacketString
 (
-    const unsigned char *line,
+    const BYTE *line,
     int                  nbBytes,
-    const std::string   &timeStampBuffer
+    const amString      &timeStampBuffer
 )
 {
-    char auxBuffer[ C_SMALL_BUFFER_SIZE ] = { 0 };
     createOutputHeader( C_UNKOWN_PACKET_NAME, timeStampBuffer );
     for ( int counter = 0; counter < nbBytes; ++counter )
     {
@@ -1768,8 +1921,9 @@ void antProcessing::createUnknownPacketString
         }
         if ( outputAsJSON )
         {
-            sprintf( auxBuffer, "byte[ %d ]", counter );
-            appendJSONItem( auxBuffer, line[ counter ] );
+            std::stringstream auxStream;
+            auxStream << "byte[ " << counter << " ]";
+            appendJSONItem( auxStream.str(), line[ counter ] );
         }
         else
         {
@@ -1788,9 +1942,9 @@ void antProcessing::createUnknownPacketString
 // -------------------------------------------------------------------------------------------------//
 bool antProcessing::processCommonPages
 (
-    const std::string &sensorID,
-    unsigned char      payLoad[],
-    bool               outputPage
+    const amString &sensorID,
+    BYTE   payLoad[],
+    bool            outputPage
 )
 {
     bool         result             = false;
@@ -1828,6 +1982,7 @@ bool antProcessing::processCommonPages
     unsigned int value3             = 0;
     unsigned int value4             = 0;
     unsigned int value5             = 0;
+    amString auxBuffer;
 
     switch ( dataPage )
     {
@@ -1927,9 +2082,9 @@ bool antProcessing::processCommonPages
                  resolution         = ( payLoad[ 7 ] & 0x80 ) ? 16 : 2;
                  if ( diagnostics )
                  {
-                     char   auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
-                     double voltageDbl                       = ( double ) voltage256 / 256.0;
-                     sprintf( auxBuffer, "(%.3lfV - Second byte PLUS lower 4 bits of first byte)", voltageDbl );
+                     double   voltageDbl = ( double ) voltage256 / 256.0;
+                     auxBuffer = amString( voltageDbl, 3 );
+                     auxBuffer += " - Second byte PLUS lower 4 bits of first byte)";
                      appendDiagnosticsLine( "Number of Batteries",   payLoad[ 2 ],               nbBatteries,  "(Lower 4 bits)" );
                      appendDiagnosticsLine( "Battery ID",            payLoad[ 2 ],               batteryID,    "(Upper 4 bits)" );
                      appendDiagnosticsLine( "Operating Time",        payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ], deltaOperatingTime );
@@ -2003,43 +2158,43 @@ bool antProcessing::processCommonPagesSemiCooked
 
     if ( nbWords > 5 )   // 5 is currently the smallest
     {
-        bool              dataPageOK         = false;
-        unsigned int      counter            = startCounter;
-        unsigned int      seconds            = 0;
-        unsigned int      minutes            = 0;
-        unsigned int      hours              = 0;
-        unsigned int      weekDayNo          = 0;
-        unsigned int      monthDay           = 0;
-        unsigned int      month              = 0;
-        unsigned int      year               = 0;
-        unsigned int      subPage1           = 0;
-        unsigned int      subPage2           = 0;
-        unsigned int      dataField1         = 0;
-        unsigned int      dataField2         = 0;
-        unsigned int      voltage256         = 0;
-        unsigned int      status             = 0;
-        unsigned int      resolution         = 0;
-        unsigned int      deltaOperatingTime = 0;
-        unsigned int      nbBatteries        = 0;
-        unsigned int      batteryID          = 0;
-        unsigned int      manufacturerID     = 0;
-        unsigned int      hardwareRevision   = 0;
-        unsigned int      modelNumber        = 0;
-        unsigned int      serialNumber       = 0;
-        unsigned int      softwareRevision   = 0;
-        unsigned int      descriptor1        = 0;
-        unsigned int      descriptor2        = 0;
-        unsigned int      requestedResponse  = 0;
-        unsigned int      requestedPage    = 0;
-        unsigned int      commandType        = 0;
-        unsigned int      value1             = 0;
-        unsigned int      value2             = 0;
-        unsigned int      value3             = 0;
-        unsigned int      value4             = 0;
-        unsigned int      value5             = 0;
-        unsigned int      value6             = 0;
-        unsigned int      value7             = 0;
-        const std::string sensorID           = words[ 0 ];
+        bool           dataPageOK         = false;
+        unsigned int   counter            = startCounter;
+        unsigned int   seconds            = 0;
+        unsigned int   minutes            = 0;
+        unsigned int   hours              = 0;
+        unsigned int   weekDayNo          = 0;
+        unsigned int   monthDay           = 0;
+        unsigned int   month              = 0;
+        unsigned int   year               = 0;
+        unsigned int   subPage1           = 0;
+        unsigned int   subPage2           = 0;
+        unsigned int   dataField1         = 0;
+        unsigned int   dataField2         = 0;
+        unsigned int   voltage256         = 0;
+        unsigned int   status             = 0;
+        unsigned int   resolution         = 0;
+        unsigned int   deltaOperatingTime = 0;
+        unsigned int   nbBatteries        = 0;
+        unsigned int   batteryID          = 0;
+        unsigned int   manufacturerID     = 0;
+        unsigned int   hardwareRevision   = 0;
+        unsigned int   modelNumber        = 0;
+        unsigned int   serialNumber       = 0;
+        unsigned int   softwareRevision   = 0;
+        unsigned int   descriptor1        = 0;
+        unsigned int   descriptor2        = 0;
+        unsigned int   requestedResponse  = 0;
+        unsigned int   requestedPage    = 0;
+        unsigned int   commandType        = 0;
+        unsigned int   value1             = 0;
+        unsigned int   value2             = 0;
+        unsigned int   value3             = 0;
+        unsigned int   value4             = 0;
+        unsigned int   value5             = 0;
+        unsigned int   value6             = 0;
+        unsigned int   value7             = 0;
+        const amString sensorID           = words[ 0 ];
 
         switch ( dataPage )
         {
@@ -2048,11 +2203,11 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 11 )
                      {
-                         value1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value2 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value3 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value4 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value5 = ( unsigned int ) strToInt( words[ counter++ ] );
+                         value1 = words[ counter++ ].toUInt();
+                         value2 = words[ counter++ ].toUInt();
+                         value3 = words[ counter++ ].toUInt();
+                         value4 = words[ counter++ ].toUInt();
+                         value5 = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2070,13 +2225,13 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 11 )
                      {
-                         value1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value2 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value3 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         value4 = ( unsigned int ) strToInt( words[ counter++ ] );
+                         value1 = words[ counter++ ].toUInt();
+                         value2 = words[ counter++ ].toUInt();
+                         value3 = words[ counter++ ].toUInt();
+                         value4 = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
-                         counter = startCounter;
+                             counter = startCounter;
                              appendDiagnosticsLine( "Command/Response ID", words[ counter++ ], value1 );
                              appendDiagnosticsLine( "Channel Frequency",   words[ counter++ ], value2 );
                              appendDiagnosticsLine( "Channel Period",      words[ counter++ ], value3 );
@@ -2090,11 +2245,11 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 8 )
                      {
-                         descriptor1       = ( unsigned int ) strToInt( words[ counter++ ] );
-                         descriptor2       = ( unsigned int ) strToInt( words[ counter++ ] );
-                         requestedResponse = ( unsigned int ) strToInt( words[ counter++ ] );
-                         requestedPage     = ( unsigned int ) strToInt( words[ counter++ ] );
-                         commandType       = ( unsigned int ) strToInt( words[ counter++ ] );
+                         descriptor1       = words[ counter++ ].toUInt();
+                         descriptor2       = words[ counter++ ].toUInt();
+                         requestedResponse = words[ counter++ ].toUInt();
+                         requestedPage     = words[ counter++ ].toUInt();
+                         commandType       = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2112,9 +2267,9 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 6 )
                      {
-                         manufacturerID   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         hardwareRevision = ( unsigned int ) strToInt( words[ counter++ ] );
-                         modelNumber      = ( unsigned int ) strToInt( words[ counter++ ] );
+                         manufacturerID   = words[ counter++ ].toUInt();
+                         hardwareRevision = words[ counter++ ].toUInt();
+                         modelNumber      = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2130,8 +2285,8 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 5 )
                      {
-                         serialNumber     = ( unsigned int ) strToInt( words[ counter++ ] );
-                         softwareRevision = ( unsigned int ) strToInt( words[ counter++ ] );
+                         serialNumber     = words[ counter++ ].toUInt();
+                         softwareRevision = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2146,12 +2301,12 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 6 )
                      {
-                         voltage256         = ( unsigned int ) strToInt( words[ counter++ ] );
-                         status             = ( unsigned int ) strToInt( words[ counter++ ] );
-                         deltaOperatingTime = ( unsigned int ) strToInt( words[ counter++ ] );
-                         resolution         = ( unsigned int ) strToInt( words[ counter++ ] );
-                         nbBatteries        = ( unsigned int ) strToInt( words[ counter++ ] );
-                         batteryID          = ( unsigned int ) strToInt( words[ counter++ ] );
+                         voltage256         = words[ counter++ ].toUInt();
+                         status             = words[ counter++ ].toUInt();
+                         deltaOperatingTime = words[ counter++ ].toUInt();
+                         resolution         = words[ counter++ ].toUInt();
+                         nbBatteries        = words[ counter++ ].toUInt();
+                         batteryID          = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2170,13 +2325,13 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 10 )
                      {
-                         seconds   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         minutes   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         hours     = ( unsigned int ) strToInt( words[ counter++ ] );
-                         weekDayNo = ( unsigned int ) strToInt( words[ counter++ ] );
-                         monthDay  = ( unsigned int ) strToInt( words[ counter++ ] );
-                         month     = ( unsigned int ) strToInt( words[ counter++ ] );
-                         year      = ( unsigned int ) strToInt( words[ counter++ ] );
+                         seconds   = words[ counter++ ].toUInt();
+                         minutes   = words[ counter++ ].toUInt();
+                         hours     = words[ counter++ ].toUInt();
+                         weekDayNo = words[ counter++ ].toUInt();
+                         monthDay  = words[ counter++ ].toUInt();
+                         month     = words[ counter++ ].toUInt();
+                         year      = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2196,10 +2351,10 @@ bool antProcessing::processCommonPagesSemiCooked
                      dataPageOK = true;
                      if ( nbWords > 7 )
                      {
-                         subPage1   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         dataField1 = ( unsigned int ) strToInt( words[ counter++ ] );
-                         subPage2   = ( unsigned int ) strToInt( words[ counter++ ] );
-                         dataField2 = ( unsigned int ) strToInt( words[ counter++ ] );
+                         subPage1   = words[ counter++ ].toUInt();
+                         dataField1 = words[ counter++ ].toUInt();
+                         subPage2   = words[ counter++ ].toUInt();
+                         dataField2 = words[ counter++ ].toUInt();
                          if ( diagnostics )
                          {
                              counter = startCounter;
@@ -2243,21 +2398,21 @@ bool antProcessing::processCommonPagesSemiCooked
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createDataPage84SubPage
 (
-    const std::string &sensorID,
-    unsigned int       subPageNo,
-    unsigned int       subPage,
-    unsigned int       dataField
+    const amString &sensorID,
+    unsigned int    subPageNo,
+    unsigned int    subPage,
+    unsigned int    dataField
 )
 {
-    int    tempAsInt10 = 0;
-    int    precision   = 3;
-    double dblValue    = 0;
-    char   auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
+    int      tempAsInt10 = 0;
+    int      precision   = 3;
+    double   dblValue    = 0;
+    amString auxString;
 
     switch ( subPage )
     {
         case  1: // Temperature
-                 tempAsInt10 = negateBinaryInt( dataField, 16 );
+                 tempAsInt10 = NEGATE_BINARY_INT( dataField, 16 );
                  dblValue = ( double ) tempAsInt10 / 100.0;
                  if ( outputAsJSON )
                  {
@@ -2325,13 +2480,12 @@ void antProcessing::createDataPage84SubPage
         default: // Undefined
                  if ( outputAsJSON )
                  {
-                     sprintf( auxBuffer, "sub page %d", subPageNo );
-                     appendJSONItem( auxBuffer, C_UNKNOWN_JSON );
+                     auxString = "sub page ";
+                     auxString += amString( subPageNo );
+                     appendJSONItem( auxString, C_UNKNOWN_JSON );
                  }
                  else
                  {
-                     sprintf( auxBuffer, "SUB_PAGE %d", subPageNo );
-                     appendOutput( auxBuffer );
                      appendOutput( "UNKNOWN"  );
                  }
                  break;
@@ -2340,16 +2494,14 @@ void antProcessing::createDataPage84SubPage
 
 int antProcessing::outputData
 (
-    int                 outSocketID,
-    struct sockaddr_in &outGroupSocket
+    void
 )
 {
-    int  errorCode = 0;
     if ( outputRaw && ( rawBuffer.size() > 0 ) )
     {
-        if ( outSocketID > 0 )
+        if ( multicastWrite.isUp() )
         {
-            errorCode = sendMulticast( outSocketID, outGroupSocket, rawBuffer.c_str(), rawBuffer.size() );
+            errorCode = multicastWrite.write( rawBuffer, errorCode, errorMessage );
         }
         if ( writeStdout )
         {
@@ -2359,9 +2511,9 @@ int antProcessing::outputData
     }
     if ( ( errorCode == 0 ) && diagnostics && ( diagnosticsBuffer.size() > 0 ) )
     {
-        if ( outSocketID > 0 )
+        if ( multicastWrite.isUp() )
         {
-            errorCode = sendMulticast( outSocketID, outGroupSocket, diagnosticsBuffer.c_str(), diagnosticsBuffer.size() );
+            errorCode = multicastWrite.write( diagnosticsBuffer, errorCode, errorMessage );
         }
         if ( writeStdout )
         {
@@ -2370,12 +2522,12 @@ int antProcessing::outputData
     }
     if ( ( errorCode == 0 ) && !outputRaw && ( outBuffer.size() > 0 ) )
     {
-        if ( outSocketID > 0 )
+        if ( multicastWrite.isUp() )
         {
-            errorCode = sendMulticast( outSocketID, outGroupSocket, outBuffer.c_str(), outBuffer.size() );
+            errorCode = multicastWrite.write( outBuffer, errorCode, errorMessage );
             if ( errorCode == 0 )
             {
-                errorCode = sendMulticast( outSocketID, outGroupSocket, "\n", 1 );
+                errorCode = multicastWrite.write( "\n", errorCode, errorMessage );
             }
         }
         if ( writeStdout )
@@ -2383,30 +2535,32 @@ int antProcessing::outputData
             std::cout << outBuffer << std::endl;
         }
     }
+
+    if ( errorCode == E_EMPTY_MESSAGE )
+    {
+        errorCode = 0;
+    }
+
     return errorCode;
 }
 
 int antProcessing::readAntFromStream
 (
-    std::istream       &inStream,
-    int                 outSocketID,
-    struct sockaddr_in &outGroupSocket
+    std::istream &inStream
 )
 {
-    int errorCode = readDeviceFile();
-
     while ( errorCode == 0 )
     {
         resetOutBuffer();
         resetDiagnosticsBuffer();
         if ( semiCookedIn )
         {
-            errorCode = readSemiCookedSingleLineFromStream( inStream, outSocketID, outGroupSocket );
+            errorCode = readSemiCookedSingleLineFromStream( inStream );
         }
         else
         {
             resetRawBuffer();
-            errorCode = readAntSingleLineFromStream( inStream, outSocketID, outGroupSocket );
+            errorCode = readAntSingleLineFromStream( inStream );
         }
     }
     return errorCode;
@@ -2414,13 +2568,10 @@ int antProcessing::readAntFromStream
 
 int antProcessing::readSemiCookedSingleLineFromStream
 (
-    std::istream       &inStream,
-    int                 outSocketID,
-    struct sockaddr_in &outGroupSocket
+    std::istream &inStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
 
     inStream.getline( line, C_BUFFER_SIZE );
     if ( strlen( line ) > 0 )
@@ -2434,12 +2585,12 @@ int antProcessing::readSemiCookedSingleLineFromStream
         {
             resultDevice = processSensorSemiCooked( line );
         }
-        errorCode = outputData( outSocketID, outGroupSocket );
+        errorCode = outputData();
     }
 
     if ( inStream.eof() || inStream.fail() )
     {
-        errorCode = C_END_OF_FILE;
+        errorCode = E_END_OF_FILE;
     }
 
     return errorCode;
@@ -2448,26 +2599,22 @@ int antProcessing::readSemiCookedSingleLineFromStream
 
 int antProcessing::readAntSingleLineFromStream
 (
-    std::istream       &inStream,
-    int                 outSocketID,
-    struct sockaddr_in &outGroupSocket
+    std::istream &inStream
 )
 {
-    int           errorCode = 0;
-    int           nbBytes   = 0;
-    unsigned char byte      = 0;
-    unsigned char line[ C_BUFFER_SIZE ];
-    char          auxBuffer[ C_SMALL_BUFFER_SIZE ];
+    int  nbBytes = 0;
+    BYTE byte    = 0;
+    BYTE line[ C_BUFFER_SIZE ];
 
     while ( errorCode == 0 )
     {
         byte = inStream.get();
         if ( inStream.eof() || inStream.fail() )
         {
-            errorCode = ant2txtLine( line, nbBytes, outSocketID, outGroupSocket );
+            errorCode = ant2txtLine( line, nbBytes );
             if ( errorCode == 0 )
             {
-                errorCode = C_END_OF_FILE;
+                errorCode = E_END_OF_FILE;
             }
             break;
         }
@@ -2480,8 +2627,7 @@ int antProcessing::readAntSingleLineFromStream
             {
                 if ( outputRaw || diagnostics )
                 {
-                    sprintf( auxBuffer, "%02X", line[ 0 ] );
-                    rawBuffer += auxBuffer;
+                    rawBuffer += amString( line[ 0 ] );
                 }
                 nbBytes = 0;
             }
@@ -2492,8 +2638,9 @@ int antProcessing::readAntSingleLineFromStream
             {
                 if ( outputRaw || diagnostics )
                 {
-                    sprintf( auxBuffer, " %02X %02X", line[ 0 ], line[ 1 ] );
-                    rawBuffer += auxBuffer;
+                    rawBuffer += amString( line[ 0 ] );
+                    rawBuffer += " ";
+                    rawBuffer += amString( line[ 1 ] );
                 }
                 nbBytes = 0;
             }
@@ -2506,7 +2653,7 @@ int antProcessing::readAntSingleLineFromStream
             inStream.putback( line[ nbBytes - 2 ] );
             nbBytes -= 2;
 
-            errorCode = ant2txtLine( line, nbBytes, outSocketID, outGroupSocket );
+            errorCode = ant2txtLine( line, nbBytes );
             break;
         }
     }
@@ -2516,48 +2663,43 @@ int antProcessing::readAntSingleLineFromStream
 
 int antProcessing::ant2txtLine
 (
-    const unsigned char *line,
-    int                  nbBytes,
-    int                  outSocketID,
-    struct sockaddr_in  &outGroupSocket
+    const BYTE *line,
+    int                  nbBytes
 )
 {
-    int           errorCode = 0;
-
     const char    operatingModeString7[] = "continuous scan mode";
     const char    operatingModeString6[] = "proximity scan mode";
     const char    operatingModeString5[] = "ANT-FS access point mode";
     const char    operatingModeString0[] = "undefined";
 
-    char          auxBuffer[ C_SMALL_BUFFER_SIZE ];
     char          bridgeName[ C_WASP_NAME_LENGTH ];
     char          deviceIDCString[ C_SMALL_BUFFER_SIZE ];
     char          operatingModeString[ C_MEDIUM_BUFFER_SIZE ];
-    unsigned char payLoad[ C_ANT_PAYLOAD_LENGTH ];
-    unsigned char packetID[ 2 ];
-    unsigned char rssi[ 2 ];
-    unsigned char timeStamp[ 2 ];
-    unsigned char reserved[ 2 ];
-    unsigned char voltage[ 2 ];
-    unsigned char macAddress[ C_MAC_ADDRESS_LENGTH ];
-    unsigned char packetCommand      = 0;
-    unsigned char sequence           = 0;
-    unsigned char messageType        = 0;
-    unsigned char channel            = 0;
-    unsigned char messageFlag        = 0;
-    unsigned char deviceIDmsb        = 0;
-    unsigned char deviceIDlsb        = 0;
-    unsigned char transType          = 0;
-    unsigned char measurementType    = 0;
-    unsigned char thresholding       = 0;
-    unsigned char crc                = 0;
-    unsigned char majorVersion       = 0;
-    unsigned char minorVersion       = 0;
-    unsigned char connectionStatus   = 0;
-    unsigned char waspProductVersion = 0;
-    unsigned char powerIndicator     = 0;
-    unsigned char operatingMode      = 0;
-    unsigned char bridgeNameLength   = 0;
+    BYTE payLoad[ C_ANT_PAYLOAD_LENGTH ];
+    BYTE packetID[ 2 ];
+    BYTE rssi[ 2 ];
+    BYTE timeStamp[ 2 ];
+    BYTE reserved[ 2 ];
+    BYTE voltage[ 2 ];
+    BYTE macAddress[ C_MAC_ADDRESS_LENGTH ];
+    BYTE packetCommand      = 0;
+    BYTE sequence           = 0;
+    BYTE messageType        = 0;
+    BYTE channel            = 0;
+    BYTE messageFlag        = 0;
+    BYTE deviceIDmsb        = 0;
+    BYTE deviceIDlsb        = 0;
+    BYTE transType          = 0;
+    BYTE measurementType    = 0;
+    BYTE thresholding       = 0;
+    BYTE crc                = 0;
+    BYTE majorVersion       = 0;
+    BYTE minorVersion       = 0;
+    BYTE connectionStatus   = 0;
+    BYTE waspProductVersion = 0;
+    BYTE powerIndicator     = 0;
+    BYTE operatingMode      = 0;
+    BYTE bridgeNameLength   = 0;
     int           counter            = 0;
     int           deviceType         = 0;
     int           byteCount          = 0;
@@ -2568,8 +2710,8 @@ int antProcessing::ant2txtLine
     int           voltageValue       = 0;
     int           timeStampValue     = 0;
     size_t        charCount          = 0;
-    std::string   deviceID           = "";
-    std::string   timeStampBuffer;
+    amString      deviceID           = "";
+    amString      timeStampBuffer;
     amDeviceType  resultDevice;
 
     resetOutBuffer();
@@ -2587,12 +2729,11 @@ int antProcessing::ant2txtLine
         }
         for ( byteCount = 0; byteCount < nbBytes; ++byteCount )
         {
-            sprintf( auxBuffer, "%02X", line[ byteCount ] );
             if ( byteCount )
             {
                 rawBuffer += " ";
             }
-            rawBuffer += auxBuffer;
+            rawBuffer += amString( line[ byteCount ] );
         }
     }
 
@@ -2614,8 +2755,7 @@ int antProcessing::ant2txtLine
         if ( diagnostics )
         {
             appendDiagnosticsField( "Packet ID" );
-            sprintf( auxBuffer, "0x%02X%02X", packetID[ 0 ], packetID[ 1 ] );
-            diagnosticsBuffer += auxBuffer;
+            diagnosticsBuffer += amString( packetID[ 0 ], packetID[ 1 ] );
         }
 
         packetCommand = line[ byteCount ];
@@ -2623,8 +2763,10 @@ int antProcessing::ant2txtLine
         if ( diagnostics )
         {
             appendDiagnosticsField( "Packet Command" );
-            sprintf( auxBuffer, "0x%02X    (%d)", packetCommand, packetCommand );
-            diagnosticsBuffer += auxBuffer;
+            diagnosticsBuffer += amString( ( BYTE ) packetCommand );
+            diagnosticsBuffer += "    (";
+            diagnosticsBuffer += amString( ( unsigned int ) packetCommand );
+            diagnosticsBuffer += ")";
         }
 
         if ( packetCommand == C_ANT_ASYNC_MSG )
@@ -2634,8 +2776,10 @@ int antProcessing::ant2txtLine
             if ( diagnostics )
             {
                 appendDiagnosticsField( "Sequence Number" );
-                sprintf( auxBuffer, "0x%02X    (%d)", sequence, sequence );
-                diagnosticsBuffer += auxBuffer;
+                diagnosticsBuffer += amString( ( BYTE ) sequence );
+                diagnosticsBuffer += "    (";
+                diagnosticsBuffer += amString( ( unsigned int ) sequence );
+                diagnosticsBuffer += ")";
             }
 
             payLoadLength = ( int ) line[ byteCount ];
@@ -2643,8 +2787,7 @@ int antProcessing::ant2txtLine
             if ( diagnostics )
             {
                 appendDiagnosticsField( "Payload Length" );
-                sprintf( auxBuffer, "%d", payLoadLength );
-                diagnosticsBuffer += auxBuffer;
+                diagnosticsBuffer += amString( ( unsigned int ) payLoadLength );
             }
 
             messageType = line[ byteCount ];
@@ -2652,8 +2795,10 @@ int antProcessing::ant2txtLine
             if ( diagnostics )
             {
                 appendDiagnosticsField( "ANT message Type" );
-                sprintf( auxBuffer, "0x%02X    (%d)", messageType, messageType );
-                diagnosticsBuffer += auxBuffer;
+                diagnosticsBuffer += amString( ( BYTE ) messageType );
+                diagnosticsBuffer += "    (";
+                diagnosticsBuffer += amString( ( unsigned int ) messageType );
+                diagnosticsBuffer += ")";
             }
 
             channel = ( int ) line[ byteCount ];
@@ -2661,8 +2806,10 @@ int antProcessing::ant2txtLine
             if ( diagnostics )
             {
                 appendDiagnosticsField( "Channel Number" );
-                sprintf( auxBuffer, "0x%02X    (%d)", channel, channel );
-                diagnosticsBuffer += auxBuffer;
+                diagnosticsBuffer += amString( ( BYTE ) channel );
+                diagnosticsBuffer += "    (";
+                diagnosticsBuffer += amString( ( unsigned int ) channel );
+                diagnosticsBuffer += ")";
             }
 
             bzero( ( void * ) payLoad, C_ANT_PAYLOAD_LENGTH );
@@ -2675,8 +2822,7 @@ int antProcessing::ant2txtLine
                 payLoad[ counter ] = line[ byteCount ];
                 if ( diagnostics )
                 {
-                    sprintf( auxBuffer, "%02X ", payLoad[ counter ] );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += toHex( payLoad[ counter ] );
                 }
             }
 
@@ -2685,8 +2831,10 @@ int antProcessing::ant2txtLine
             if ( diagnostics )
             {
                 appendDiagnosticsField( "Extended Message Flag" );
-                sprintf( auxBuffer, "0x%02X    (%d)", messageFlag, messageFlag );
-                diagnosticsBuffer += auxBuffer;
+                diagnosticsBuffer += amString( ( BYTE ) messageFlag );
+                diagnosticsBuffer += "    (";
+                diagnosticsBuffer += amString( ( unsigned int ) messageFlag );
+                diagnosticsBuffer += ")";
             }
 
             if ( messageFlag & 0x80 )
@@ -2699,8 +2847,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Device ID" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", deviceIDmsb, deviceIDlsb, deviceIDint );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString(  deviceIDlsb, deviceIDmsb );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( deviceIDint );
+                    diagnosticsBuffer += ")";
                 }
 
                 deviceType = line[ byteCount ];
@@ -2708,8 +2858,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Device Type" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", deviceType, deviceType );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) deviceType );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) deviceType );
+                    diagnosticsBuffer += ")";
                 }
 
                 transType = line[ byteCount ];
@@ -2717,12 +2869,14 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Transaction Type" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", transType, transType );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) transType );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) transType );
+                    diagnosticsBuffer += ")";
                 }
 
                 sprintf( deviceIDCString, "%d", deviceIDint );
-                deviceID     = std::string( deviceIDCString );
+                deviceID     = amString( deviceIDCString );
                 resultDevice = processSensor( deviceType, deviceID, timeStampBuffer, payLoad );
 
                 if ( resultDevice == OTHER_DEVICE )
@@ -2748,8 +2902,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Measurement Type" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", measurementType, measurementType );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) measurementType );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) measurementType );
+                    diagnosticsBuffer += ")";
                 }
 
                 rssi[ 0 ] = line[ byteCount ];
@@ -2760,8 +2916,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "RSSI" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", rssi[ 0 ], rssi[ 1 ], rssiValue );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) rssi[ 0 ], rssi[ 1 ] ); 
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) rssiValue );
+                    diagnosticsBuffer += ")";
                 }
 
                 thresholding = line[ byteCount ];
@@ -2769,8 +2927,7 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Thresholding" );
-                    sprintf( auxBuffer, "0x%02X", thresholding );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) thresholding );
                 }
 
                 crc = line[ byteCount ];
@@ -2778,8 +2935,7 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "CRC" );
-                    sprintf( auxBuffer, "0x%02X", crc );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) crc );
                 }
             }
             if ( messageFlag & 0x20 )
@@ -2792,8 +2948,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Timestamp" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", timeStamp[ 0 ], timeStamp[ 1 ], timeStampValue );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) timeStamp[ 0 ], timeStamp[ 1 ] );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) timeStampValue );
+                    diagnosticsBuffer += ")";
                 }
             }
         }
@@ -2806,8 +2964,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Sequence Number" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", sequence, sequence );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) sequence );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) sequence );
+                    diagnosticsBuffer += ")";
                 }
 
                 payLoadLength = ( int ) line[ byteCount ];
@@ -2815,8 +2975,7 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Payload Length" );
-                    sprintf( auxBuffer, "%d", payLoadLength );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( unsigned int ) payLoadLength );
                 }
 
                 reserved[ 0 ] = line[ byteCount ];
@@ -2827,8 +2986,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Reserved Bytes" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", reserved[ 0 ], reserved[ 1 ], reservedValue );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) reserved[ 0 ], reserved[ 1 ] );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) reservedValue );
+                    diagnosticsBuffer += ")";
                 }
 
                 majorVersion = line[ byteCount ];
@@ -2836,8 +2997,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Major version" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", majorVersion, majorVersion );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) majorVersion );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) majorVersion );
+                    diagnosticsBuffer += ")";
                 }
 
                 minorVersion = line[ byteCount ];
@@ -2845,8 +3008,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Minor Version" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", minorVersion, minorVersion );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) minorVersion );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) minorVersion );
+                    diagnosticsBuffer += ")";
                 }
 
                 waspProductVersion = line[ byteCount ];
@@ -2854,8 +3019,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "WASP Product Version" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", waspProductVersion, waspProductVersion );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) waspProductVersion );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) waspProductVersion );
+                    diagnosticsBuffer += ")";
                 }
 
                 connectionStatus = line[ byteCount ];
@@ -2863,19 +3030,15 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Connection Status" );
+                    diagnosticsBuffer += amString( ( BYTE ) connectionStatus );
                     if ( connectionStatus == 0 )
                     {
-                        sprintf( auxBuffer, "0x%02X  (TCP In Use)", connectionStatus );
+                        diagnosticsBuffer += " (TCP In Use)";
                     }
                     else if ( connectionStatus == 1 )
                     {
-                        sprintf( auxBuffer, "0x%02X  (TCP Available)", connectionStatus );
+                        diagnosticsBuffer += " (TCP In Available)";
                     }
-                    else
-                    {
-                        sprintf( auxBuffer, "0x%02X", connectionStatus );
-                    }
-                    diagnosticsBuffer += auxBuffer;
                 }
 
                 reserved[ 0 ] = line[ byteCount ];
@@ -2883,8 +3046,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Reserved Bytes" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", reserved[ 0 ], reserved[ 1 ], reservedValue );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) reserved[ 0 ], reserved[ 1 ] );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) reservedValue );
+                    diagnosticsBuffer += ")";
                 }
 
                 voltage[ 0 ] = line[ byteCount ];
@@ -2897,8 +3062,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Battery Level (mV)" );
-                    sprintf( auxBuffer, "0x%02X%02X  (%d)", voltage[ 0 ], voltage[ 1 ], voltageValue );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) voltage[ 0 ], voltage[ 1 ] );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) voltageValue );
+                    diagnosticsBuffer += ")";
                 }
 
                 powerIndicator = line[ byteCount ];
@@ -2906,15 +3073,11 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Power Indicator" );
+                    diagnosticsBuffer += amString( ( BYTE ) powerIndicator );
                     if ( powerIndicator == 1 )
                     {
-                        sprintf( auxBuffer, "0x%02X  (Charging)", powerIndicator );
+                        diagnosticsBuffer += "  (Charging)";
                     }
-                    else
-                    {
-                        sprintf( auxBuffer, "0x%02X", powerIndicator );
-                    }
-                    diagnosticsBuffer += auxBuffer;
                 }
 
                 operatingMode = line[ byteCount ];
@@ -2950,8 +3113,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "Operating Mode" );
-                    sprintf( auxBuffer, "0x%02X  (%s)", operatingMode, operatingModeString );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) operatingMode );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += operatingModeString;
+                    diagnosticsBuffer += ")";
                 }
 
                 bridgeNameLength = line[ byteCount ];
@@ -2959,8 +3124,10 @@ int antProcessing::ant2txtLine
                 if ( diagnostics )
                 {
                     appendDiagnosticsField( "WASP Name Length" );
-                    sprintf( auxBuffer, "0x%02X  (%d)", bridgeNameLength, bridgeNameLength );
-                    diagnosticsBuffer += auxBuffer;
+                    diagnosticsBuffer += amString( ( BYTE ) bridgeNameLength );
+                    diagnosticsBuffer += "    (";
+                    diagnosticsBuffer += amString( ( unsigned int ) bridgeNameLength );
+                    diagnosticsBuffer += ")";
                 }
                 for ( counter = 0; counter < ( int ) C_WASP_NAME_LENGTH; ++counter, ++byteCount )
                 {
@@ -2982,8 +3149,8 @@ int antProcessing::ant2txtLine
                     macAddress[ counter ] = line[ byteCount ];
                     if ( diagnostics )
                     {
-                        sprintf( auxBuffer, "%02X ", macAddress[ counter ] );
-                        diagnosticsBuffer += auxBuffer;
+                        diagnosticsBuffer += " ";
+                        diagnosticsBuffer += amString( ( BYTE ) macAddress[ counter ] );
                     }
                 }
 
@@ -3033,31 +3200,27 @@ int antProcessing::ant2txtLine
         diagnosticsBuffer.clear();
     }
 
-    errorCode = outputData( outSocketID, outGroupSocket );
+    errorCode = outputData();
 
     return errorCode;
 }
 
 int antProcessing::readAntFromMultiCast
 (
-    int                 outSocketID,
-    struct sockaddr_in &outGroupSocket
+    void
 )
 {
-    int inSocketID = -1;
-    int errorCode = readDeviceFile();
-
     if ( errorCode == 0 )
     {
         if ( interface == C_AUTO_INTERFACE )
         {
-            char localInterface[ C_TINY_BUFFER_SIZE ];
+            amString localInterface;
             bool result = true;
             for ( unsigned int counter = 0; result && ( counter < C_MAX_INTERFACE_COUNT ); ++counter )
             {
-                sprintf( localInterface, "%s%u", C_INTERFACE_ROOT, counter );
-                inSocketID = connectMulticastRead( localInterface, mcAddressIn.c_str(), mcPortNoIn, timeOutSec, errorCode, errorMessage );
-                if ( ( errorCode != 0 ) || ( inSocketID <= 0 ) )
+                localInterface = C_INTERFACE_ROOT + amString( counter );
+                errorCode = multicastRead.connect( localInterface, mcAddressIn, mcPortNoIn, timeOutSec, errorMessage );
+                if ( errorCode != 0 )
                 {
                     if ( diagnostics )
                     {
@@ -3082,12 +3245,7 @@ int antProcessing::readAntFromMultiCast
         }
         else
         {
-            inSocketID = connectMulticastRead( interface.c_str(), mcAddressIn.c_str(), mcPortNoIn, timeOutSec, errorCode, errorMessage );
-            if ( ( errorCode == 0 ) && ( inSocketID <= 0 ) )
-            {
-                errorCode = E_SOCKET_CREATE_FAIL;;
-            }
-
+            errorCode = multicastRead.connect( interface, mcAddressIn, mcPortNoIn, timeOutSec, errorMessage );
             if ( ( errorCode == 0 ) && diagnostics )
             {
                 std::cerr << std::endl;
@@ -3100,8 +3258,7 @@ int antProcessing::readAntFromMultiCast
 
     if ( errorCode == 0 )
     {
-        // Read from the inSocketID.
-        unsigned char line[ C_BUFFER_SIZE ];
+        BYTE line[ C_BUFFER_SIZE ];
         int           nbBytes   = 1;
 
         resetOutBuffer();
@@ -3110,30 +3267,31 @@ int antProcessing::readAntFromMultiCast
 
         while ( errorCode == 0 )
         {
-            nbBytes = read( inSocketID, ( void * ) line, C_BUFFER_SIZE );
+            nbBytes = multicastRead.read( line, C_BUFFER_SIZE );
             if ( nbBytes < 0 )
             {
-                strerror_r( errno, errorMessage, C_BUFFER_SIZE );
+                size_t startCount = errorMessage.size();
+                errorMessage.resize( startCount + C_BUFFER_SIZE );
+                strerror_r( errno, &( errorMessage[ startCount ] ), C_BUFFER_SIZE );
                 if ( errno == E_READ_TIMEOUT_C )
                 {
-                    errorCode = E_READ_TIMEOUT;
+                    errorCode     = E_READ_TIMEOUT;
+                    errorMessage += "Read source timed out.\n";
                 }
                 else
                 {
                     errorCode = E_READ_ERROR;
+                    errorMessage = "Error while reading.\n";
                 }
             }
             else
             {
-                errorCode = ant2txtLine( line, nbBytes, outSocketID, outGroupSocket );
+                errorCode = ant2txtLine( line, nbBytes );
             }
         }
     }
 
-    if ( inSocketID > 0 )
-    {
-        ::close( inSocketID );
-    }
+    multicastRead.close();
 
     return errorCode;
 }
@@ -3181,21 +3339,28 @@ int antProcessing::ant2txt
     void
 )
 {
-    int    errorCode = 0;
-    int    socketID  = -1;
-    struct sockaddr_in groupSock;
+    errorMessage.clear();
 
-    *errorMessage = 0;
-    errorCode     = 0;
-
-    if ( ( !mcAddressOut.empty() ) && ( mcPortNoOut > 0 ) )
+    if ( !deviceFileName.empty() )
     {
-        socketID = connectMulticastWrite( mcAddressOut.c_str(), mcPortNoOut, groupSock, errorCode, errorMessage );
-        if ( ( socketID <= 0 ) && ( errorCode == 0 ) )
+        std::ifstream inStr( deviceFileName.c_str() );
+        if ( inStr.fail() )
         {
-            errorCode = E_UNKNOWN_MC_CONNECT_FAILURE;
+            errorMessage += "Could not open device file \"";
+            errorMessage += deviceFileName;
+            errorMessage += "\" for reading.\n";
+            errorCode = 1111112;
         }
-        else if ( diagnostics )
+        else
+        {
+            errorCode = readDeviceFileStream( inStr );
+        }
+    }
+
+    if ( ( errorCode == 0 ) && ( !mcAddressOut.empty() ) && ( mcPortNoOut > 0 ) )
+    {
+        errorCode = multicastWrite.connect( mcAddressOut, mcPortNoOut, errorMessage );
+        if ( ( errorCode != 0 ) && diagnostics )
         {
             std::cerr << std::endl;
             std::cerr << "Successfully created multicast connection for writing on IP address \"" << mcAddressOut << "\" and port number " << mcPortNoOut << "." << std::endl;
@@ -3214,16 +3379,16 @@ int antProcessing::ant2txt
                 {
                     std::cerr << "READ data from STDIN." << std::endl;
                 }
-                errorCode = readAntFromStream( std::cin, socketID, groupSock );
+                errorCode = readAntFromStream( std::cin );
             }
             else
             {
                 std::ifstream inputStream( inputFileName.c_str() );
                 if ( inputStream.bad() )
                 {
-                   strcat( errorMessage, "Could not open file \"" );
-                   strcat( errorMessage, inputFileName.c_str() );
-                   strcat( errorMessage, "\" for reading.\n" );
+                   errorMessage += "Could not open file \"";
+                   errorMessage += inputFileName;
+                   errorMessage += "\" for reading.\n";
                    errorCode = E_READ_FILE_NOT_OPEN;
                 }
                 else
@@ -3234,22 +3399,19 @@ int antProcessing::ant2txt
                         std::cerr << "Successfully opened input file \"" << inputFileName << "\" for reading." << std::endl;
                         std::cerr << std::endl;
                     }
-                    errorCode = readAntFromStream( inputStream, socketID, groupSock );
+                    errorCode = readAntFromStream( inputStream );
                     inputStream.close();
                 }
             }
         }
         else
         {
-            errorCode = readAntFromMultiCast( socketID, groupSock );
+            errorCode = readAntFromMultiCast();
         }
 
-        if ( socketID > 0 )
-        {
-            ::close( socketID );
-        }
+        multicastWrite.close();
     }
-    if ( errorCode == C_END_OF_FILE )
+    if ( errorCode == E_END_OF_FILE )
     {
         errorCode = 0;
     }
@@ -3262,10 +3424,10 @@ void antProcessing::help
 )
 {
     std::stringstream outputMessage;
-    std::string       indent( "\n    " );
-    std::string       indent2( indent );
-    std::string       option( "H:" );
-    bool              argumentForH = ( validOptions.find( option ) != std::string::npos );
+    amString          indent( "\n    " );
+    amString          indent2( indent );
+    amString          option( "H:" );
+    bool              argumentForH = validOptions.contains( option );
 
     indent2 += "    ";
 
@@ -3291,7 +3453,7 @@ void antProcessing::help
     outputMessage << "\n";
 
     option = "1";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3301,7 +3463,7 @@ void antProcessing::help
     }
 
     option = "2";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3316,7 +3478,7 @@ void antProcessing::help
     }
 
     option = "B";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3326,7 +3488,7 @@ void antProcessing::help
     }
 
     option = "d";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3347,7 +3509,7 @@ void antProcessing::help
     }
 
     option = "D";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3357,7 +3519,7 @@ void antProcessing::help
     }
 
     option = "f";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3367,7 +3529,7 @@ void antProcessing::help
     }
 
     option = "H";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3386,7 +3548,7 @@ void antProcessing::help
     }
 
     option = "h";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3396,7 +3558,7 @@ void antProcessing::help
     }
 
     option = "I";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3414,7 +3576,7 @@ void antProcessing::help
     }
 
     option = "J";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3423,18 +3585,8 @@ void antProcessing::help
         outputMessage << "\n";
     }
 
-    option = "L";
-    if ( validOptions.find( option ) != std::string::npos )
-    {
-        outputMessage << indent;
-        outputMessage << "-";
-        outputMessage << option;
-        outputMessage << ": Output time as date and time string in local time.";
-        outputMessage << "\n";
-    }
-
     option = "m";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3446,7 +3598,7 @@ void antProcessing::help
     }
 
     option = "M";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3472,7 +3624,7 @@ void antProcessing::help
     }
 
     option = "p";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3488,7 +3640,7 @@ void antProcessing::help
     }
 
     option = "P";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3501,7 +3653,7 @@ void antProcessing::help
     }
 
     option = "r";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3513,7 +3665,7 @@ void antProcessing::help
     }
 
     option = "R";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3523,7 +3675,7 @@ void antProcessing::help
     }
 
     option = "s";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3534,8 +3686,8 @@ void antProcessing::help
         outputMessage << "\n";
     }
 
-    option = "S";
-    if ( validOptions.find( option ) != std::string::npos )
+    option = C_SEMI_COOKED_SYMBOL_AS_STRING;
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3547,7 +3699,7 @@ void antProcessing::help
     }
 
     option = "t";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3560,7 +3712,7 @@ void antProcessing::help
     }
 
     option = "T";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3573,7 +3725,7 @@ void antProcessing::help
     }
 
     option = "U";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3583,7 +3735,7 @@ void antProcessing::help
     }
 
     option = "v";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3593,7 +3745,7 @@ void antProcessing::help
     }
 
     option = "V";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3603,7 +3755,7 @@ void antProcessing::help
     }
 
     option = "x";
-    if ( validOptions.find( option ) != std::string::npos )
+    if ( validOptions.contains( option ) )
     {
         outputMessage << indent;
         outputMessage << "-";
@@ -3622,7 +3774,7 @@ void antProcessing::help
 void antProcessing::outputOptionPOWER
 (
     std::stringstream &outputMessage,
-    const std::string &indent
+    const amString    &indent
 )
 {
     outputMessage << indent;
@@ -3654,7 +3806,7 @@ void antProcessing::outputOptionPOWER
 void antProcessing::outputOptionF
 (
     std::stringstream &outputMessage,
-    const std::string &indent
+    const amString    &indent
 )
 {
     outputMessage << "Currently supported device types and messages are";
@@ -3688,17 +3840,28 @@ void antProcessing::outputOptionF
 
 void antProcessing::outputFormats
 (
-    const std::string &deviceType
+    const amString &deviceType
 )
 {
     std::stringstream outputMessage;
-    std::string       deviceTypeUC = toUpper( deviceType );
-    std::string       separator( "   " );
-    std::string       indent( "\n    " );
-    std::string       indent2( indent );
+    amString          deviceTypeUC = deviceType;
+    amString          auxBuffer;
+    amString          auxBuffer1;
+    amString          speedBuffer;
+    amString          separator( "   " );
+    amString          indent( "\n    " );
+    amString          indent2( indent );
     indent2 += "    ";
-    std::string       indent3( indent2 );
+    amString          indent3( indent2 );
     indent3 += "    ";
+    deviceTypeUC.toUpper();
+
+    speedBuffer  = separator;
+    speedBuffer += "<speed>";
+    speedBuffer += separator;
+    speedBuffer += "<wheel_circumference>";
+    speedBuffer += separator;
+    speedBuffer += "<gear_ratio>";
 
     if ( ( deviceTypeUC == "ALL"         ) ||
          ( deviceTypeUC == "AERO"        ) ||
@@ -3807,7 +3970,7 @@ void antProcessing::outputFormats
             outputMessage << "<yaw_angle_raw>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "AUDIO" ) )
         {
@@ -3873,7 +4036,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "1";
             outputMessage << separator;
@@ -3893,7 +4056,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "16";
             outputMessage << separator;
@@ -3902,7 +4065,7 @@ void antProcessing::outputFormats
             outputMessage << "<command_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "BLDPR" ) || ( deviceTypeUC == "BLOOD" ) )
         {
@@ -3926,12 +4089,12 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<data_page>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "BDG" ) || ( deviceTypeUC == "BRIDGE" ) )
         {
@@ -3967,7 +4130,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<bridge_name>";
             outputMessage << separator;
@@ -3984,84 +4147,46 @@ void antProcessing::outputFormats
             outputMessage << "<connection_status>";
             outputMessage << separator;
             outputMessage << "<sw_version_ant2txt>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "CAD7A" ) ||
              ( deviceTypeUC == "CAD" ) || ( deviceTypeUC == "CADENCE" ) )
         {
+            auxBuffer  = indent2;
+            auxBuffer += "CAD7A_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<cadence>";
+            auxBuffer += separator;
+
             outputMessage << "CAD7A (Cadence Only)";
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "CAD7A_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "0/128";
             outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
-            outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "CAD7A_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1/129";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
             outputMessage << separator;
             outputMessage << "<operating_time>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "CAD7A_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2/130";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
             outputMessage << separator;
             outputMessage << "<manufacturer_id>";
             outputMessage << separator;
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "CAD7A_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
-            outputMessage << "3/131";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "<model_number>";
             outputMessage << separator;
             outputMessage << "<software_version>";
@@ -4070,20 +4195,49 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent2;
-            outputMessage << "Note: Any cadence sensor can become a makeshift speed sensor (therefore <speed>, <wheel_circumference>, <gear_ratio> are output).";
+            outputMessage << "Any cadence sensor can become a makeshift speed sensor.";
+            outputMessage << std::endl;
+
+            outputMessage << auxBuffer;
+            outputMessage << "0/128";
+            outputMessage << speedBuffer;
+            outputMessage << separator;
+            outputMessage << "<sw_version>";
+
+            outputMessage << auxBuffer;
+            outputMessage << "1/129";
+            outputMessage << speedBuffer;
+            outputMessage << separator;
+            outputMessage << "<operating_time>";
+            outputMessage << separator;
+            outputMessage << "<sw_version>";
+
+            outputMessage << auxBuffer;
+            outputMessage << "2/130";
+            outputMessage << speedBuffer;
+            outputMessage << separator;
+            outputMessage << "<manufacturer_id>";
+            outputMessage << separator;
+            outputMessage << "<serial_number>";
+            outputMessage << separator;
+            outputMessage << "<sw_version>";
+
+            outputMessage << auxBuffer;
+            outputMessage << "3/131";
+            outputMessage << speedBuffer;
+            outputMessage << "<model_number>";
+            outputMessage << separator;
+            outputMessage << "<software_version>";
+            outputMessage << separator;
+            outputMessage << "<hardware_version>";
+            outputMessage << separator;
+            outputMessage << "<sw_version>";
+            outputMessage << std::endl;
+
             outputMessage << indent2;
-            outputMessage << "When used as a speed sensor the CAD7A sensor takes 2 parameters";
-            outputMessage << indent3;
-            outputMessage << "wheel circumference (default: ";
-            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
-            outputMessage << " m),";
-            outputMessage << indent3;
-            outputMessage << "gear ratio          (default: ";
-            outputMessage << C_GEAR_RATIO_DEFAULT;
-            outputMessage << ").";
-            outputMessage << indent2;
-            outputMessage << "The parameters are defined in the deviceIDs file (see option '-d') as:";
+            outputMessage << "To turn a cadence sensor into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
             outputMessage << "SPEED";
             outputMessage << separator;
@@ -4092,7 +4246,17 @@ void antProcessing::outputFormats
             outputMessage << "<wheel_circumference>";
             outputMessage << separator;
             outputMessage << "<gear_ratio>";
+            outputMessage << indent2;
+            outputMessage << "and loaded with option '-d'. The values for <wheel_circumference> and <gear_ratio> are optional, the defaults are:";
+            outputMessage << indent3;
+            outputMessage << "<wheel_circumference> = ";
+            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
+            outputMessage << " (m)";
+            outputMessage << indent3;
+            outputMessage << "<gear_ratio>          = ";
+            outputMessage << C_GEAR_RATIO_DEFAULT;
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4100,7 +4264,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_time>";
             outputMessage << separator;
@@ -4114,7 +4278,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_time>";
             outputMessage << separator;
@@ -4130,7 +4294,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_time>";
             outputMessage << separator;
@@ -4148,7 +4312,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_time>";
             outputMessage << separator;
@@ -4163,7 +4327,7 @@ void antProcessing::outputFormats
             outputMessage << "<hardware_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "ENV" ) || ( deviceTypeUC == "ENVIRONMENT") )
         {
@@ -4227,7 +4391,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "0";
             outputMessage << separator;
@@ -4245,7 +4409,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "1";
             outputMessage << separator;
@@ -4258,7 +4422,7 @@ void antProcessing::outputFormats
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "HEART"    ) ||
              ( deviceTypeUC == "HRM" ) || ( deviceTypeUC == "HEARTRATE") )
@@ -4267,66 +4431,42 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "0";
+
+            auxBuffer  = indent2;
+            auxBuffer += "HRM_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<heart_rate>";
+            auxBuffer += separator;
+            auxBuffer += "<total_hb_count>";
+            auxBuffer += separator;
+            auxBuffer += "<total_hb_event_time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
+            outputMessage << "0/128";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "1";
+
+            outputMessage << auxBuffer;
+            outputMessage << "1/129";
             outputMessage << separator;
             outputMessage << "<operating_time>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "2";
+
+            outputMessage << auxBuffer;
+            outputMessage << "2/130";
             outputMessage << separator;
             outputMessage << "<manufactured_id>";
             outputMessage << separator;
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "3";
+
+            outputMessage << auxBuffer;
+            outputMessage << "3/131";
             outputMessage << separator;
             outputMessage << "<model_number>";
             outputMessage << separator;
@@ -4335,18 +4475,9 @@ void antProcessing::outputFormats
             outputMessage << "<hw_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "4";
+
+            outputMessage << auxBuffer;
+            outputMessage << "4/132";
             outputMessage << separator;
             outputMessage << "<previous_heartbeat_event_time>";
             outputMessage << separator;
@@ -4354,76 +4485,47 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "0";
+
+            auxBuffer  = indent2;
+            auxBuffer += "HRM_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+            auxBuffer += "<heart_rate>";
+            auxBuffer += separator;
+            auxBuffer += "<total_hb_count>";
+            auxBuffer += separator;
+            auxBuffer += "<total_hb_event_time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
+            outputMessage << "0/128";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "1";
+
+            outputMessage << auxBuffer;
+            outputMessage << "1/129";
             outputMessage << separator;
             outputMessage << "<operating_time>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "2";
+
+            outputMessage << auxBuffer;
+            outputMessage << "2/130";
             outputMessage << separator;
             outputMessage << "<manufacturer_id>";
             outputMessage << separator;
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "3";
+
+            outputMessage << auxBuffer;
+            outputMessage << "3/131";
             outputMessage << separator;
             outputMessage << "<model_no>";
             outputMessage << separator;
@@ -4432,27 +4534,16 @@ void antProcessing::outputFormats
             outputMessage << "<hw_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "HRM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<heart_rate>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_count>";
-            outputMessage << separator;
-            outputMessage << "<total_hb_event_time>";
-            outputMessage << separator;
-            outputMessage << "4";
+
+            outputMessage << auxBuffer;
+            outputMessage << "4/132";
             outputMessage << separator;
             outputMessage << "<previous_hb_time>";
             outputMessage << separator;
             outputMessage << "<manufacturer_specific_data>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "MSSDM" ) || ( deviceTypeUC == "MULTI") || ( deviceTypeUC == "MULTI-SPORT") )
         {
@@ -4460,11 +4551,14 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "SPB7_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "T";
@@ -4480,11 +4574,8 @@ void antProcessing::outputFormats
             outputMessage << "<event_speed>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2";
             outputMessage << separator;
             outputMessage << "LAT";
@@ -4496,11 +4587,8 @@ void antProcessing::outputFormats
             outputMessage << "<longitude>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "FIX_TYPE";
@@ -4516,46 +4604,39 @@ void antProcessing::outputFormats
             outputMessage << "<elevation>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "48";
-            outputMessage << separator;
-            outputMessage << "MODE";
-            outputMessage << separator;
-            outputMessage << "<mode>";
-            outputMessage << separator;
+
+            auxBuffer += "48";
+            auxBuffer += separator;
+            auxBuffer += "MODE";
+            auxBuffer += separator;
+            auxBuffer += "<mode>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "SCALE_FACTOR";
             outputMessage << separator;
             outputMessage << "<scale_factor>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "48";
-            outputMessage << separator;
-            outputMessage << "MODE";
-            outputMessage << separator;
-            outputMessage << "<mode>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "CALIBRATION_REQUEST";
             outputMessage << separator;
             outputMessage << "<sw_version>";
+
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "MSSDM_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "<delta_event_time>";
@@ -4565,13 +4646,8 @@ void antProcessing::outputFormats
             outputMessage << "<event_speed>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2";
             outputMessage << separator;
             outputMessage << "<latitude>";
@@ -4579,13 +4655,8 @@ void antProcessing::outputFormats
             outputMessage << "<longitude>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "<fix_type>";
@@ -4595,13 +4666,8 @@ void antProcessing::outputFormats
             outputMessage << "<elevation>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "MSSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "48";
             outputMessage << separator;
             outputMessage << "<mode>";
@@ -4609,7 +4675,8 @@ void antProcessing::outputFormats
             outputMessage << "<value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB01" ) )
         {
@@ -4617,11 +4684,14 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB01_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "REQUEST";
             outputMessage << separator;
             outputMessage << "ZERO_OFFSET";
@@ -4629,11 +4699,8 @@ void antProcessing::outputFormats
             outputMessage << "<zero_offset_value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "REQUEST";
             outputMessage << separator;
             outputMessage << "SLOPE";
@@ -4641,11 +4708,8 @@ void antProcessing::outputFormats
             outputMessage << "<slope_value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "REQUEST";
             outputMessage << separator;
             outputMessage << "SERIAL_NO";
@@ -4653,41 +4717,29 @@ void antProcessing::outputFormats
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "RESPONSE";
             outputMessage << separator;
             outputMessage << "ZERO_OFFSET";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "RESPONSE";
             outputMessage << separator;
             outputMessage << "SLOPE";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "RESPONSE";
             outputMessage << separator;
             outputMessage << "SERIAL_NO";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "AUTO_ZERO_ENABLE";
             outputMessage << separator;
             outputMessage << "<support_status>";
@@ -4697,21 +4749,13 @@ void antProcessing::outputFormats
             outputMessage << "<on_off_status>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "MANUAL_ZERO_REQUEST";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "AUTO_ZERO_REQUEST";
             outputMessage << separator;
             outputMessage << "AUTO_ZERO";
@@ -4719,11 +4763,8 @@ void antProcessing::outputFormats
             outputMessage << "ON/OFF/NOT_SUPPORTED";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "MANUAL_ZERO_SUCCESS";
             outputMessage << separator;
             outputMessage << "AUTO_ZERO";
@@ -4733,12 +4774,8 @@ void antProcessing::outputFormats
             outputMessage << "<value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "MANUAL_ZERO_FAILED";
             outputMessage << separator;
             outputMessage << "AUTO_ZERO";
@@ -4748,52 +4785,35 @@ void antProcessing::outputFormats
             outputMessage << "<value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "CUSTOM_CALIBRATION_PARAMS_REQUEST";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "CUSTOM_CALIBRATION_PARAMS_RESPONSE";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "CUSTOM_CALIBRATION_PARAMS_UPDATE";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "CUSTOM_CALIBRATION_PARAMS_UPDATE_RESPONSE";
             outputMessage << separator;
             outputMessage << "<sw_version>";
+
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "16";
             outputMessage << separator;
             outputMessage << "<ctf_defined_id>";
@@ -4801,14 +4821,8 @@ void antProcessing::outputFormats
             outputMessage << "<message_value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "18";
             outputMessage << separator;
             outputMessage << "<auto_zero_enable>";
@@ -4816,38 +4830,20 @@ void antProcessing::outputFormats
             outputMessage << "<auto_zero_status>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "170";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "171";
             outputMessage << separator;
             outputMessage << "<auto_zero_status>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "172";
             outputMessage << separator;
             outputMessage << "<auto_zero_status>";
@@ -4855,14 +4851,8 @@ void antProcessing::outputFormats
             outputMessage << "<value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "175";
             outputMessage << separator;
             outputMessage << "<auto_zero_status>";
@@ -4870,50 +4860,28 @@ void antProcessing::outputFormats
             outputMessage << "<value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "186";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "187";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "188";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB01_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "189";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB02" ) )
         {
@@ -4959,7 +4927,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<sub_page_number>";
             outputMessage << separator;
@@ -4970,7 +4938,7 @@ void antProcessing::outputFormats
             outputMessage << "<auto_crank_length>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB03" ) )
         {
@@ -5004,7 +4972,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<number_of_data_types>";
             outputMessage << separator;
@@ -5017,7 +4985,7 @@ void antProcessing::outputFormats
             outputMessage << "<measurement_value>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB10" ) )
         {
@@ -5025,41 +4993,37 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB10_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<power>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
-            outputMessage << separator;
-            outputMessage << "<power_pedal_contribution>";
-            outputMessage << separator;
-            outputMessage << "R_PEDAL/PEDAL_UNKNOWN";
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB10_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<power>";
+            auxBuffer += separator;
+            auxBuffer += "<cadence>";
+            auxBuffer += separator;
+            auxBuffer += "<power_pedal_contribution>";
+            auxBuffer += separator;
+            auxBuffer += "R_PEDAL/PEDAL_UNKNOWN";
+
+            outputMessage << auxBuffer;
+            outputMessage << separator; 
+            outputMessage << "<sw_version>";
+
+            outputMessage << indent3;
+            outputMessage << "or";
+
+            outputMessage << auxBuffer;
+            outputMessage << speedBuffer;
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent2;
-            outputMessage << "Note: Any power-only power meter is also a cadence sensor and can therefore become a makeshift speed sensor (thus <speed>, <wheel_circumference>, <gear_ratio> are output).";
+            outputMessage << "Any power-only power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
             outputMessage << indent2;
-            outputMessage << "When used as a speed sensor the PWRB10 sensor takes 2 parameters";
-            outputMessage << indent3;
-            outputMessage << "wheel circumference (default: ";
-            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
-            outputMessage << " m),";
-            outputMessage << indent3;
-            outputMessage << "gear ratio          (default: ";
-            outputMessage << C_GEAR_RATIO_DEFAULT;
-            outputMessage << ").";
-            outputMessage << indent2;
-            outputMessage << "The parameters are defined in the deviceIDs file (see option '-d') as:";
+            outputMessage << "To turn a power-only power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
             outputMessage << "SPEED";
             outputMessage << separator;
@@ -5068,7 +5032,17 @@ void antProcessing::outputFormats
             outputMessage << "<wheel_circumference>";
             outputMessage << separator;
             outputMessage << "<gear_ratio>";
+            outputMessage << indent2;
+            outputMessage << "and loaded with option '-d'. The values for <wheel_circumference> and <gear_ratio> are optional, the defaults are:";
+            outputMessage << indent3;
+            outputMessage << "<wheel_circumference> = ";
+            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
+            outputMessage << " (m)";
+            outputMessage << indent3;
+            outputMessage << "<gear_ratio>          = ";
+            outputMessage << C_GEAR_RATIO_DEFAULT;
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5076,7 +5050,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
@@ -5089,7 +5063,7 @@ void antProcessing::outputFormats
             outputMessage << "<pedal_power>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB11" ) )
         {
@@ -5097,45 +5071,51 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB11_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<power>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<torque>";
-            outputMessage << separator;
-            outputMessage << "<wheel_ticks>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB11_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<power>";
+            auxBuffer += separator;
+            auxBuffer += "<cadence>";
+            auxBuffer += separator;
+            auxBuffer += "<torque>";
+            auxBuffer += separator;
+            auxBuffer += "<wheel_ticks>";
+
+            outputMessage << auxBuffer; 
+            outputMessage << separator; 
+            outputMessage << "<sw_version>";
+
+            outputMessage << indent3;
+            outputMessage << "or";
+
+            outputMessage << auxBuffer; 
             outputMessage << "<wheel_circumference>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << separator;
             outputMessage << std::endl;
+
             outputMessage << indent2;
-            outputMessage << "Note: Any wheel torque power meter is also a speed sensor (thus <speed> and <wheel_circumference> are output).";
+            outputMessage << "Any wheel-torque power meter is also a speed sensor.";
             outputMessage << indent2;
-            outputMessage << "When used as a speed sensor the PWRB11 sensor takes one additional parameter";
-            outputMessage << indent3;
-            outputMessage << "wheel circumference (default: ";
-            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
-            outputMessage << " m)j";
-            outputMessage << indent2;
-            outputMessage << "The parameter is defined in the deviceIDs file (see option '-d') as:";
+            outputMessage << "To turn a wheel-torque power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
             outputMessage << "SPEED";
             outputMessage << separator;
             outputMessage << "PWRB11_<id>";
             outputMessage << separator;
             outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "1";
+            outputMessage << indent2;
+            outputMessage << "and loaded with option '-d'. The value for <wheel_circumference> is optional, the defaults is:";
+            outputMessage << indent3;
+            outputMessage << "<wheel_circumference> = ";
+            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
+            outputMessage << " (m)";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5143,7 +5123,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
@@ -5156,7 +5136,7 @@ void antProcessing::outputFormats
             outputMessage << "<wheel_ticks>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB12" ) )
         {
@@ -5164,42 +5144,37 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB12_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<power>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<torque>";
-            outputMessage << separator;
-            outputMessage << "<crank_ticks>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB12_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<power>";
+            auxBuffer += separator;
+            auxBuffer += "<cadence>";
+            auxBuffer += separator;
+            auxBuffer += "<torque>";
+            auxBuffer += separator;
+            auxBuffer += "<crank_ticks>";
+
+            outputMessage << auxBuffer;
             outputMessage << separator;
             outputMessage << "<sw_version>";
+
+            outputMessage << indent3;
+            outputMessage << "or";
+
+            outputMessage << auxBuffer;
+            outputMessage << speedBuffer;
             outputMessage << separator;
-            outputMessage << std::endl;
+            outputMessage << "<sw_version>";
             outputMessage << indent2;
-            outputMessage << "Note: Any CT power meter is also a cadence sensor and can therefore become a makeshift speed sensor (thus <speed>, <wheel_circumference>, <gear_ratio> are output).";
+
             outputMessage << indent2;
-            outputMessage << "When used as a speed sensor the PWRB12 sensor takes 2 parameters";
-            outputMessage << indent3;
-            outputMessage << "wheel circumference (default: ";
-            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
-            outputMessage << " m),";
-            outputMessage << indent3;
-            outputMessage << "gear ratio          (default: ";
-            outputMessage << C_GEAR_RATIO_DEFAULT;
-            outputMessage << ").";
+            outputMessage << "Any CT power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
             outputMessage << indent2;
-            outputMessage << "The parameters are defined in the deviceIDs file (see option '-d') as:";
+            outputMessage << "To turn a CT power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
             outputMessage << "SPEED";
             outputMessage << separator;
@@ -5208,7 +5183,17 @@ void antProcessing::outputFormats
             outputMessage << "<wheel_circumference>";
             outputMessage << separator;
             outputMessage << "<gear_ratio>";
+            outputMessage << indent2;
+            outputMessage << "and loaded with option '-d'. The values for <wheel_circumference> and <gear_ratio> are optional, the defaults are:";
+            outputMessage << indent3;
+            outputMessage << "<wheel_circumference> = ";
+            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
+            outputMessage << " (m)";
+            outputMessage << indent3;
+            outputMessage << "<gear_ratio>          = ";
+            outputMessage << C_GEAR_RATIO_DEFAULT;
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5216,7 +5201,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
@@ -5229,7 +5214,7 @@ void antProcessing::outputFormats
             outputMessage << "<crank_ticks>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB13" ) )
         {
@@ -5237,19 +5222,22 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB13_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "L_TRQ_EFF";
-            outputMessage << separator;
-            outputMessage << "<lte_value>";
-            outputMessage << separator;
-            outputMessage << "R_TRQ_EFF";
-            outputMessage << separator;
-            outputMessage << "<rte_value>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB13_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "L_TRQ_EFF";
+            auxBuffer += separator;
+            auxBuffer += "<lte_value>";
+            auxBuffer += separator;
+            auxBuffer += "R_TRQ_EFF";
+            auxBuffer += separator;
+            auxBuffer += "<rte_value>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "C_PDL_SMOOTH";
             outputMessage << separator;
             outputMessage << "<common_pedal_smoothness>";
@@ -5259,19 +5247,8 @@ void antProcessing::outputFormats
             outputMessage << "<event_no>";
             outputMessage << separator;
             outputMessage << " <sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB13_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "L_TRQ_EFF";
-            outputMessage << separator;
-            outputMessage << "<lte_value>";
-            outputMessage << separator;
-            outputMessage << "R_TRQ_EFF";
-            outputMessage << separator;
-            outputMessage << "<rte_value>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "L_PDL_SMOOTH";
             outputMessage << separator;
             outputMessage << "<left_pedal_smoothness>";
@@ -5286,14 +5263,16 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
+
             outputMessage << "PWRB13_<id>";
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<raw_left_torque_effectiveness>";
             outputMessage << separator;
@@ -5306,7 +5285,7 @@ void antProcessing::outputFormats
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB20" ) )
         {
@@ -5314,33 +5293,39 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB20_<id>";
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB20_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<power>";
+            auxBuffer += separator;
+            auxBuffer += "<cadence>";
+            auxBuffer += separator;
+            auxBuffer += "<torque>";
+            auxBuffer += separator;
+            auxBuffer += "<offset>";
+            auxBuffer += separator;
+            auxBuffer += "<slope>";
+            auxBuffer += separator;
+            auxBuffer += "<factory_slope>";
+            auxBuffer += separator;
+            auxBuffer += "<slope_used>";
+
+            outputMessage << auxBuffer;
             outputMessage << separator;
-            outputMessage << "<time>";
+            outputMessage << "<sw_version>";
+
+            outputMessage << indent3;
+            outputMessage << "or";
+
+            outputMessage << auxBuffer;
+            outputMessage << speedBuffer;
             outputMessage << separator;
-            outputMessage << "<power>";
-            outputMessage << separator;
-            outputMessage << "<cadence>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<torque>";
-            outputMessage << separator;
-            outputMessage << "<offset>";
-            outputMessage << separator;
-            outputMessage << "<slope>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<gear_ratio>";
-            outputMessage << separator;
-            outputMessage << "<user_defined_slope>";
-            outputMessage << separator;
-            outputMessage << "<factory_slope>";
-            outputMessage << separator;
-            outputMessage << " <sw_version>";
+            outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent2;
             outputMessage << "The CTF power meter takes 2 parameters";
             outputMessage << indent3;
@@ -5361,21 +5346,14 @@ void antProcessing::outputFormats
             outputMessage << "<offset>";
             outputMessage << separator;
             outputMessage << "<slope>";
+            outputMessage << indent2;
+            outputMessage << "Define <slope> = -1 to use the factory slope.";
             outputMessage << std::endl;
+
             outputMessage << indent2;
-            outputMessage << "Note: Any CTF power meter is also a cadence sensor and can therefore become a makeshift speed sensor (thus <speed>, <wheel_circumference>, <gear_ratio> are output).";
+            outputMessage << "Any CTF power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
             outputMessage << indent2;
-            outputMessage << "When used as a speed sensor the PWRB20 sensor takes 2 parameters";
-            outputMessage << indent3;
-            outputMessage << "wheel circumference (default: ";
-            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
-            outputMessage << " m),";
-            outputMessage << indent3;
-            outputMessage << "gear ratio          (default: ";
-            outputMessage << C_GEAR_RATIO_DEFAULT;
-            outputMessage << ").";
-            outputMessage << indent2;
-            outputMessage << "The parameters are defined in the deviceIDs file (see option '-d') as:";
+            outputMessage << "To turn a CTF power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
             outputMessage << "SPEED";
             outputMessage << separator;
@@ -5384,7 +5362,17 @@ void antProcessing::outputFormats
             outputMessage << "<wheel_circumference>";
             outputMessage << separator;
             outputMessage << "<gear_ratio>";
+            outputMessage << indent2;
+            outputMessage << "and loaded with option '-d'. The values for <wheel_circumference> and <gear_ratio> are optional, the defaults are:";
+            outputMessage << indent3;
+            outputMessage << "<wheel_circumference> = ";
+            outputMessage << C_WHEEL_CIRCUMFERENCE_DEFAULT;
+            outputMessage << " (m)";
+            outputMessage << indent3;
+            outputMessage << "<gear_ratio>          = ";
+            outputMessage << C_GEAR_RATIO_DEFAULT;
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5392,7 +5380,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_event_count>";
             outputMessage << separator;
@@ -5403,7 +5391,7 @@ void antProcessing::outputFormats
             outputMessage << "<factory_slope>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB46" ) )
         {
@@ -5411,76 +5399,43 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB46_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_1";
-            outputMessage << separator;
-            outputMessage << "<d_byte_1>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_2";
-            outputMessage << separator;
-            outputMessage << "<d_byte_2>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB46_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += "DESCRIPTOR_BYTE_1";
+            auxBuffer += separator;
+            auxBuffer += "<d_byte_1>";
+            auxBuffer += separator;
+            auxBuffer += "DESCRIPTOR_BYTE_2";
+            auxBuffer += separator;
+            auxBuffer += "<d_byte_2>";
+            auxBuffer += separator;
+
+            auxBuffer1  = separator;
+            auxBuffer1 += "REQUESTED_PAGE_NO";
+            auxBuffer1 += separator;
+            auxBuffer1 += "<page_no>";
+            auxBuffer1 += separator;
+            auxBuffer1 += "<command_type>";
+            auxBuffer1 += separator;
+            auxBuffer1 += "<sw_version>";
+
+            outputMessage << auxBuffer;
             outputMessage << "TRANSMIT_INVALID";
-            outputMessage << separator;
-            outputMessage << "REQUESTED_PAGE_NO";
-            outputMessage << separator;
-            outputMessage << "<page_no>";
-            outputMessage << separator;
-            outputMessage << "<command_type>";
-            outputMessage << separator;
-            outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB46_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_1";
-            outputMessage << separator;
-            outputMessage << "<d_byte_1>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_2";
-            outputMessage << separator;
-            outputMessage << "<d_byte_2>";
-            outputMessage << separator;
+            outputMessage << auxBuffer1;
+
+            outputMessage << auxBuffer;
             outputMessage << "TRANSMIT_UNTIL_SUCCESS";
-            outputMessage << "REQUESTED_PAGE_NO";
-            outputMessage << separator;
-            outputMessage << "<page_no>";
-            outputMessage << separator;
-            outputMessage << "<command_type>";
-            outputMessage << separator;
-            outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "PWRB46_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_1";
-            outputMessage << separator;
-            outputMessage << "<d_byte_1>";
-            outputMessage << separator;
-            outputMessage << "DESCRIPTOR_BYTE_2";
-            outputMessage << separator;
-            outputMessage << "<d_byte_2>";
-            outputMessage << separator;
+            outputMessage << auxBuffer1;
+
+            outputMessage << auxBuffer;
             outputMessage << "TRANSMIT_NB_TIMES";
-            outputMessage << separator;
-            outputMessage << "<nb_transmit>";
-            outputMessage << separator;
-            outputMessage << "<acknowledge_reply>";
-            outputMessage << separator;
-            outputMessage << "REQUESTED_PAGE_NO";
-            outputMessage << separator;
-            outputMessage << "<page_no>";
-            outputMessage << separator;
-            outputMessage << "<command_type>";
-            outputMessage << separator;
-            outputMessage << "<sw_version>";
+            outputMessage << auxBuffer1;
+
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5488,7 +5443,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<descriptor_1>";
             outputMessage << separator;
@@ -5501,20 +5456,23 @@ void antProcessing::outputFormats
             outputMessage << "<command_type>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB50" ) )
         {
             outputMessage << "PWRB50 (Manufacturer Information)";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB50_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<manufactured_id>";
+
+            auxBuffer  = indent2;
+            auxBuffer += "PWRB50_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+
+            outputMessage << auxBuffer;
             outputMessage << separator;
             outputMessage << "<model_number>";
             outputMessage << separator;
@@ -5522,14 +5480,12 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "PWRB50_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
+
+            outputMessage << auxBuffer;
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<manufacturer_id>";
             outputMessage << separator;
@@ -5538,7 +5494,7 @@ void antProcessing::outputFormats
             outputMessage << "<hw_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB51" ) )
         {
@@ -5564,14 +5520,14 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<pm_software_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "POWER" ) || ( deviceTypeUC == "PWRB52" ) )
         {
@@ -5603,7 +5559,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<voltage_256>";
             outputMessage << separator;
@@ -5618,7 +5574,7 @@ void antProcessing::outputFormats
             outputMessage << "<battery_id>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "SBSDM" ) || ( deviceTypeUC == "STRIDE" ) )
         {
@@ -5626,11 +5582,14 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "SBSDM_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "SPEED";
@@ -5654,11 +5613,8 @@ void antProcessing::outputFormats
             outputMessage << "<total_stride_count>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2, 4 - 15";
             outputMessage << separator;
             outputMessage << "CADENCE";
@@ -5682,11 +5638,8 @@ void antProcessing::outputFormats
             outputMessage << "<use_state>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "CADENCE";
@@ -5714,11 +5667,8 @@ void antProcessing::outputFormats
             outputMessage << "<use_state>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "16";
             outputMessage << separator;
             outputMessage << "<strides_since _reset>";
@@ -5726,11 +5676,8 @@ void antProcessing::outputFormats
             outputMessage << "<distance_since_reset>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "22";
             outputMessage << separator;
             outputMessage << "TIME";
@@ -5759,15 +5706,19 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "SBSDM_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "<time_fract_part>";
@@ -5783,13 +5734,8 @@ void antProcessing::outputFormats
             outputMessage << "<latency>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2,4-15";
             outputMessage << separator;
             outputMessage << "<cadence_fract_part>";
@@ -5803,13 +5749,8 @@ void antProcessing::outputFormats
             outputMessage << "<status>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "<cadence_fract_part>";
@@ -5825,13 +5766,8 @@ void antProcessing::outputFormats
             outputMessage << "<status>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "16";
             outputMessage << separator;
             outputMessage << "<strides_since_reset>";
@@ -5839,19 +5775,15 @@ void antProcessing::outputFormats
             outputMessage << "<distance_since_reset>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SBSDM_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "22";
             outputMessage << separator;
             outputMessage << "<capabilities>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" ) || ( deviceTypeUC == "SPB7" ) || ( deviceTypeUC == "SPEED" ) )
         {
@@ -5859,47 +5791,32 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<number_of_magnets>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "SPB7_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += "<speed>";
+            auxBuffer += separator;
+            auxBuffer += "<wheel_circumference>";
+            auxBuffer += separator;
+            auxBuffer += "<number_of_magnets>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "0/128";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<number_of_magnets>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1/129";
             outputMessage << separator;
             outputMessage << "<operating_time>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<number_of_magnets>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2/130";
             outputMessage << separator;
             outputMessage << "<manufacturer_id>";
@@ -5907,17 +5824,8 @@ void antProcessing::outputFormats
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "<speed>";
-            outputMessage << separator;
-            outputMessage << "<wheel_circumference>";
-            outputMessage << separator;
-            outputMessage << "<number_of_magnets>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3/131";
             outputMessage << separator;
             outputMessage << "<model_number>";
@@ -5928,6 +5836,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent2;
             outputMessage << "The speed-only sensor SPB7 takes 2 parameters";
             outputMessage << indent3;
@@ -5951,47 +5860,32 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<delta_event_time>";
-            outputMessage << separator;
-            outputMessage << "<delta_revolution_count>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "SPB7_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+            auxBuffer += "<delta_event_time>";
+            auxBuffer += separator;
+            auxBuffer += "<delta_revolution_count>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "0/128";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<delta_event_time>";
-            outputMessage << separator;
-            outputMessage << "<delta_revolution_count>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1/129";
             outputMessage << separator;
             outputMessage << "<operating_time>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<delta_event_time>";
-            outputMessage << separator;
-            outputMessage << "<delta_revolution_count>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2/130";
             outputMessage << separator;
             outputMessage << "<manufacturer_id>";
@@ -5999,17 +5893,8 @@ void antProcessing::outputFormats
             outputMessage << "<serial_number>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "SPB7_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
-            outputMessage << "<delta_event_time>";
-            outputMessage << separator;
-            outputMessage << "<delta_revolution_count>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3/131";
             outputMessage << separator;
             outputMessage << "<model_number>";
@@ -6019,7 +5904,7 @@ void antProcessing::outputFormats
             outputMessage << "<hardware_version>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" )   || ( deviceTypeUC == "SPCAD790" ) ||
              ( deviceTypeUC == "SPCAD" ) || ( deviceTypeUC == "SPEED" ) )
@@ -6071,7 +5956,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<time>";
             outputMessage << separator;
-            outputMessage << "S";
+            outputMessage << C_SEMI_COOKED_SYMBOL_AS_STRING;
             outputMessage << separator;
             outputMessage << "<delta_speed_event_time>";
             outputMessage << separator;
@@ -6082,7 +5967,7 @@ void antProcessing::outputFormats
             outputMessage << "<delta_crank_revolution_count>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+            outputMessage << std::endl << std::endl;
         }
         if ( ( deviceTypeUC == "ALL" )   || ( deviceTypeUC == "WEIGHT" ) ||
              ( deviceTypeUC == "WEIGHT_SCALE" ) || ( deviceTypeUC == "SCALE" ) )
@@ -6091,11 +5976,14 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Fully Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            auxBuffer  = indent2;
+            auxBuffer += "WEIGHT_<id>";
+            auxBuffer += separator;
+            auxBuffer += "<time>";
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "<user_profile_capability>";
@@ -6111,11 +5999,8 @@ void antProcessing::outputFormats
             outputMessage << "<body_weight>";
             outputMessage << separator;
             outputMessage << " <sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2";
             outputMessage << separator;
             outputMessage << "<user_profile_capability>";
@@ -6131,11 +6016,8 @@ void antProcessing::outputFormats
             outputMessage << "<body_fat>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "<user_profile_capability>";
@@ -6151,11 +6033,8 @@ void antProcessing::outputFormats
             outputMessage << "<basal_metabolic_rate>";
             outputMessage << separator;
             outputMessage << " <sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "4";
             outputMessage << separator;
             outputMessage << "<user_profile_capability>";
@@ -6171,11 +6050,8 @@ void antProcessing::outputFormats
             outputMessage << "<bone_mass>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "58";
             outputMessage << separator;
             outputMessage << "<user_profile_capability>";
@@ -6207,16 +6083,15 @@ void antProcessing::outputFormats
             outputMessage << "<activity_class>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
+
             outputMessage << std::endl;
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            auxBuffer += C_SEMI_COOKED_SYMBOL_AS_STRING;
+            auxBuffer += separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "1";
             outputMessage << separator;
             outputMessage << "<user_profile>";
@@ -6226,13 +6101,8 @@ void antProcessing::outputFormats
             outputMessage << "<body_weight>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "2";
             outputMessage << separator;
             outputMessage << "<user_profile>";
@@ -6242,13 +6112,8 @@ void antProcessing::outputFormats
             outputMessage << "<body_fat>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "3";
             outputMessage << separator;
             outputMessage << "<user_profile>";
@@ -6258,13 +6123,8 @@ void antProcessing::outputFormats
             outputMessage << "<basal_metabolic_rate>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "4";
             outputMessage << separator;
             outputMessage << "<user_profile>";
@@ -6274,13 +6134,8 @@ void antProcessing::outputFormats
             outputMessage << "<bone_mass>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << indent2;
-            outputMessage << "WEIGHT_<id>";
-            outputMessage << separator;
-            outputMessage << "<time>";
-            outputMessage << separator;
-            outputMessage << "S";
-            outputMessage << separator;
+
+            outputMessage << auxBuffer;
             outputMessage << "58";
             outputMessage << separator;
             outputMessage << "<user_profile>";
@@ -6294,7 +6149,8 @@ void antProcessing::outputFormats
             outputMessage << "<descriptor_bit>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-            outputMessage << std::endl << std::endl << std::endl;
+
+            outputMessage << std::endl << std::endl;
         }
     }
     else
@@ -6322,25 +6178,26 @@ void antProcessing::outputFormats
     std::cout << outputMessage.str() << std::endl;
 }
 
-bool antProcessing::processInput
+bool antProcessing::processArguments
 (
-    const std::string &programNameIn,
-    const std::string &validOptionsIn,
-    const std::string &deviceType,
-    int                argc,
-    char              *argv[]
+    const amString &programNameIn,
+    const amString &validOptionsIn,
+    const amString &deviceType,
+    int             argc,
+    char           *argv[]
 )
 {
-    bool                     running       = true;
-    bool                     readStdin     = false;
-    bool                     readFile      = false;
-    bool                     readMulticast = true;
-    bool                     outPort       = false;
-    int                      counter       = 0;
-    int                      option        = 0;
-    int                      intArg        = 0;
-    std::vector<std::string> labels;
-    std::string              thisLabel;
+    const char           *prevOption    = 0;
+    bool                  running       = true;
+    bool                  readStdin     = false;
+    bool                  readFile      = false;
+    bool                  readMulticast = true;
+    bool                  outPort       = false;
+    int                   counter       = 0;
+    int                   option        = 0;
+    int                   intArg        = 0;
+    std::vector<amString> labels;
+    amString              thisLabel;
 
     programName  = programNameIn;
     validOptions = validOptionsIn;
@@ -6351,6 +6208,7 @@ bool antProcessing::processInput
 
     while ( running && ( option = getopt( argc, argv, validOptions.c_str() ) ) != -1 )
     {
+        prevOption = argv[ counter ];
         ++counter;
 
         switch ( option )
@@ -6377,14 +6235,14 @@ bool antProcessing::processInput
                  ++counter;
                  break;
             case 'H':
-                 if ( validOptions.find( "H:" ) == std::string::npos )
-                 {
-                     outputFormats( deviceType );
-                 }
-                 else
+                 if ( validOptions.contains( "H:" ) )
                  {
                      ++counter;
                      outputFormats( optarg );
+                 }
+                 else
+                 {
+                     outputFormats( currentDeviceType );
                  }
                  running = false;
                  break;
@@ -6398,9 +6256,6 @@ bool antProcessing::processInput
                  break;
             case 'J':
                  setOutputAsJSON( true );
-                 break;
-            case 'L':
-                 setUseLocalTime( true );
                  break;
             case 'l':
                  labels.push_back( optarg );
@@ -6474,7 +6329,7 @@ bool antProcessing::processInput
                  if ( strcmp( argv[ counter ], "-H" ) == 0 )
                  {
                      std::stringstream outputMessage;
-                     std::string       indent( "\n    " );
+                     amString          indent( "\n    " );
                      if ( deviceType == "POWER" )
                      {
                          outputMessage << std::endl;
@@ -6490,12 +6345,16 @@ bool antProcessing::processInput
                      break;
                  }
                  errorCode = E_BAD_OPTION;
-                 sprintf( errorMessage, "Command line option is missing its value" );
+                 errorMessage += "Command line option '";
+                 errorMessage += prevOption;
+                 errorMessage += "' is missing its argument value.\n";
                  break;
             default:
                  running   = false;
                  errorCode = E_UNKNOWN_OPTION;
-                 sprintf( errorMessage, "Unknown command line option \"-%s\"", argv[ counter ] );
+                 errorMessage += "Unknown command line option \"";
+                 errorMessage += argv[ counter ];
+                 errorMessage += "\"";
                  break;
         }
     }
@@ -6503,7 +6362,6 @@ bool antProcessing::processInput
     if ( running && testMode && ( errorCode == 0 ) )
     {
         testCounter = 0;
-        setUseLocalTime( C_DEFAULT_USE_LOCAL_TIME );
         setTimePrecision( C_DEFAULT_TIME_PRECISION_DEFAULT );
         setValuePrecision( C_DEFAULT_VALUE_PRECISION_DEFAULT );
     }
@@ -6528,7 +6386,7 @@ bool antProcessing::processInput
         {
             if ( C_DEFAULT_INTERFACE == 0 )
             {
-                errorCode = E_NO_INTER_FACE;
+                errorCode = E_MC_NO_INTERFACE;
             }
         }
     }
@@ -6538,11 +6396,12 @@ bool antProcessing::processInput
         // -------------------------------
         // Deal with output target
         // -------------------------------
-        if ( getMCAddressOut().empty() )
+        if ( !getMCAddressOut().empty() )
         {
             if ( getMCPortNoOut() <= 0 )
             {
-                errorCode = E_MC_OUT_IP_ADD_BUT_NO_PORT;
+                errorCode     = E_MC_NO_IP_ADDRESS;
+                errorMessage += "IP address for multicast write connection is present, port number is missing.";
             }
         }
     }
@@ -6564,20 +6423,20 @@ bool antProcessing::processInput
 
 void antProcessing::setZeroTimeCount
 (
-    const std::string &sensorID,
-    unsigned int       value
+    const amString &sensorID,
+    unsigned int    value
 )
 {
     if ( zeroTimeCountTable.count( sensorID ) > 0 )
     {
-        zeroTimeCountTable.insert( std::pair<std::string, unsigned int>( sensorID, 0 ) );
+        zeroTimeCountTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
     }
     zeroTimeCountTable[ sensorID ] = value;
 }
 
 unsigned int antProcessing::getZeroTimeCount
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     unsigned int value = 0;
@@ -6590,7 +6449,7 @@ unsigned int antProcessing::getZeroTimeCount
 
 void antProcessing::getUnixTimeAsString
 (
-    std::string &timeStampBuffer
+    amString &timeStampBuffer
 )
 {
     double subSecondTimer = 0;
@@ -6608,31 +6467,29 @@ void antProcessing::getUnixTimeAsString
 
 void antProcessing::getUnixTimeAsString
 (
-    std::string &timeStampBuffer,
-    double       subSecondTimer
+    amString &timeStampBuffer,
+    double    subSecondTimer
 )
 {
-    char   timeStampCBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
-    sprintf( timeStampCBuffer, timeValueFormatString, subSecondTimer );
-    timeStampBuffer = timeStampCBuffer;
+    timeStampBuffer = amString( subSecondTimer, timePrecision );
 }
 
 void antProcessing::setTotalOperationTime
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( totalOperatingTimeTable.count( sensorID ) == 0 )
     {
-        totalOperatingTimeTable.insert( std::pair<std::string, double>(  sensorID, 0 ) );
+        totalOperatingTimeTable.insert( std::pair<amString, double>(  sensorID, 0 ) );
     }
     totalOperatingTimeTable[ sensorID ] = value;
 }
 
 double antProcessing::getTotalOperationTime
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     double result = 0;
@@ -6641,5 +6498,104 @@ double antProcessing::getTotalOperationTime
         result = totalOperatingTimeTable[ sensorID ];
     }
     return result;
+}
+
+double antProcessing::getUnixTime
+(
+    void
+)
+{
+    struct timeval tv; 
+    gettimeofday( &tv, NULL );
+    double result = ( double ) tv.tv_sec + ( ( double ) tv.tv_usec ) / 1.0E6;
+
+    return result;
+}
+
+int antProcessing::hex2Int
+(
+    BYTE b4, 
+    BYTE b3, 
+    BYTE b2, 
+    BYTE b1
+)
+{
+    int res = hex2Int( b4 );
+    res <<= 24; 
+    res += hex2Int( b3, b2, b1 );
+    return res;
+}
+
+int antProcessing::hex2Int 
+(
+    BYTE b3, 
+    BYTE b2, 
+    BYTE b1
+)
+{
+    int res = hex2Int( b3 );
+    res <<= 16; 
+    res += hex2Int( b2, b1 );
+    return res;
+}
+
+int antProcessing::hex2Int 
+(
+    BYTE b2, 
+    BYTE b1
+)
+{
+    int res = hex2Int( b2 );
+    res <<= 8;
+    res += hex2Int( b1 );
+    return res;
+}
+
+int antProcessing::hex2Int 
+(
+    BYTE b1
+)
+{
+    int res = ( unsigned int ) b1; 
+    return res;
+}
+
+void antProcessing::outputError
+(
+    void
+)
+{
+    switch ( errorCode )
+    {
+        case 0:
+             errorMessage = "Exited without error.";
+             break;
+        case E_MC_WRITE_FAIL:
+        case E_MC_NO_INTERFACE:
+        case E_MC_NO_IP_ADDRESS:
+        case E_NO_IP_ADDRESS_IF:
+        case E_MC_NO_PORT_NUMBER:
+        case E_BAD_OPTION:
+        case E_UNKNOWN_OPTION:
+        case E_SOCKET_CREATE_FAIL:
+        case E_SOCKET_SET_OPT_FAIL:
+        case E_LOOP_BACK_IP_ADDRESS:
+        case E_SOCKET_BIND_FAIL:
+        case E_READ_ERROR:
+        case E_READ_FILE_NOT_OPEN:
+        case E_READ_TIMEOUT:
+             break;
+        default:
+             errorMessage = "Unknown error code " + amString( errorCode ) + ".\n";
+             break;
+    }
+
+    std::cerr << programName;
+    std::cerr << ": " << errorMessage;
+    if ( errorCode != 0 )
+    {
+        std::cerr << " (Error Code = " << errorCode << ")";
+    }
+    std::cerr << "." << std::endl;
 }
 

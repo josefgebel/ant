@@ -1,9 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-#include "b2t_utils.h"
+// Local Libraries
+#include "am_split_string.h"
 #include "ant_audio_processing.h"
 
 
@@ -25,20 +22,30 @@ antAudioProcessing::antAudioProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "AUDIO";
+    reset();
+}
+
+void antAudioProcessing::reset
+(
+    void
+)
+{
+    antProcessing::reset();
 }
 
 bool antAudioProcessing::isAudioSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_AUDIO_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_AUDIO_DEVICE_HEAD );
     return result;
 }
 
 bool antAudioProcessing::appendAudioSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isAudioSensor( sensorID );
@@ -63,13 +70,13 @@ bool antAudioProcessing::appendAudioSensor
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antAudioProcessing::processAudioControl
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result          = OTHER_DEVICE;
-    std::string  sensorID        = std::string( C_AUDIO_DEVICE_HEAD ) + deviceIDNo;
+    amString     sensorID        = amString( C_AUDIO_DEVICE_HEAD ) + deviceIDNo;
     unsigned int dataPage        = 0;
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
@@ -80,7 +87,7 @@ amDeviceType antAudioProcessing::processAudioControl
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -89,10 +96,10 @@ amDeviceType antAudioProcessing::processAudioControl
         switch ( dataPage & 0x0F )
         {
             case  1: result          = AUDIO_CONTROL;
-                     additionalData1 = hex( payLoad[ 1 ] );                   // Volume
-                     additionalData2 = hex( payLoad[ 3 ], payLoad[ 2 ] );     // Total Track Time
-                     additionalData3 = hex( payLoad[ 5 ], payLoad[ 4 ] );     // Current Track Time
-                     additionalData4 = hex( payLoad[ 7 ] );                   // State
+                     additionalData1 = hex2Int( payLoad[ 1 ] );                   // Volume
+                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );     // Total Track Time
+                     additionalData3 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Current Track Time
+                     additionalData4 = hex2Int( payLoad[ 7 ] );                   // State
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Volume",             payLoad[ 1 ],               additionalData1 );
@@ -103,8 +110,8 @@ amDeviceType antAudioProcessing::processAudioControl
                      break;
 
             case 16: result          = AUDIO_CONTROL;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     // Serial Number
-                     additionalData2 = hex( payLoad[ 7 ] );                   // Command Number
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // Serial Number
+                     additionalData2 = hex2Int( payLoad[ 7 ] );                   // Command Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Serial Number",  payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -141,7 +148,7 @@ amDeviceType antAudioProcessing::processAudioControl
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_AUDIO_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -160,14 +167,14 @@ amDeviceType antAudioProcessing::processAudioControl
 // ---------------------------------------------------------------------------------------------------
 amDeviceType antAudioProcessing::processAudioControlSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType  result          = OTHER_DEVICE;
-    std::string   sensorID;
-    std::string   semiCookedString;
-    std::string   timeStampBuffer;
-    std::string   curVersion      = b2tVersion;
+    amString      sensorID;
+    amString      semiCookedString;
+    amString      timeStampBuffer;
+    amString      curVersion         = b2tVersion;
     amSplitString words;
     unsigned int  nbWords         = words.split( inputBuffer );
     unsigned int  counter         = 0;
@@ -194,7 +201,7 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
         if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isAudioSensor( sensorID ) )
         {
             startCounter = counter;
-            dataPage    = ( unsigned int ) strToInt( words[ counter++ ] );       //  3
+            dataPage    = ( unsigned int ) words[ counter++ ].toInt();       //  3
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Data Page", dataPage );
@@ -205,10 +212,10 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
                 case  1: if ( nbWords > 6 )
                          {
                              result          = AUDIO_CONTROL;
-                             additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );       //  4 - Volume
-                             additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );       //  5 - Total Track Time
-                             additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );       //  6 - Current Track Time
-                             additionalData4 = ( unsigned int ) strToInt( words[ counter++ ] );       //  7 - State
+                             additionalData1 = words[ counter++ ].toUInt();       //  4 - Volume
+                             additionalData2 = words[ counter++ ].toUInt();       //  5 - Total Track Time
+                             additionalData3 = words[ counter++ ].toUInt();       //  6 - Current Track Time
+                             additionalData4 = words[ counter++ ].toUInt();       //  7 - State
                              if ( diagnostics )
                              {
                                  appendDiagnosticsLine( "Volume",             additionalData1 );
@@ -220,8 +227,8 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
                          break;
 
                 case 16: result          = AUDIO_CONTROL;
-                         additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );           // 4 - Serial Number
-                         additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );           // 5 - Command Number
+                         additionalData1 = words[ counter++ ].toUInt();           // 4 - Serial Number
+                         additionalData2 = words[ counter++ ].toUInt();           // 5 - Command Number
                          if ( diagnostics )
                          {
                              appendDiagnosticsLine( "Serial Number",  additionalData1 );
@@ -282,10 +289,10 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
 // the result string into the resultBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -294,10 +301,10 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antAudioProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -308,7 +315,7 @@ amDeviceType antAudioProcessing::processSensor
     }
     else if ( outputUnknown )
     {
-        int deviceIDNoAsInt = strToInt( deviceIDNo );
+        int deviceIDNoAsInt = deviceIDNo.toInt();
         createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
     }
     else
@@ -321,12 +328,12 @@ amDeviceType antAudioProcessing::processSensor
 
 amDeviceType antAudioProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isAudioSensor( inputBuffer ) )
         {
@@ -359,15 +366,15 @@ bool antAudioProcessing::evaluateDeviceLine
 {
     bool         result  = false;
     unsigned int nbWords = words.size();
-    if ( nbWords > 2 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 2 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_AUDIO_DEVICE_ID ) && isAudioSensor( deviceName ) )
-        {   
+        {
             result = appendAudioSensor( deviceName );
-        }   
-    }   
+        }
+    }
     return result;
 }
 
@@ -377,11 +384,10 @@ int antAudioProcessing::readDeviceFileStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
     unsigned int nbWords    = 0;
 
     while ( true )
@@ -392,7 +398,7 @@ int antAudioProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -412,10 +418,10 @@ int antAudioProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {

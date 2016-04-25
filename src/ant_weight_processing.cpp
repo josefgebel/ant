@@ -1,11 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_weight_processing.h"
 
 
@@ -27,20 +22,30 @@ antWeightProcessing::antWeightProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "WEIGHT";
+    reset();
+}
+
+void antWeightProcessing::reset
+(
+    void
+)
+{
+    antProcessing::reset();
 }
 
 bool antWeightProcessing::isWeightScaleSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_WEIGHT_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_WEIGHT_DEVICE_HEAD );
     return result;
 }
 
 bool antWeightProcessing::appendWeightSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     bool result = isWeightScaleSensor( sensorID );
@@ -65,13 +70,13 @@ bool antWeightProcessing::appendWeightSensor
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antWeightProcessing::processWeightScaleSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result          = OTHER_DEVICE;
-    std::string  sensorID;
+    amString     sensorID;
     unsigned int dataPage        = 0;
     unsigned int auxInt          = 0;
     unsigned int additionalData1 = 0;
@@ -85,7 +90,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex( payLoad[ 0 ] );
+        dataPage = hex2Int( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -94,9 +99,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
         switch ( dataPage & 0x0F )
         {
             case  1: result          = WEIGHT_SCALE;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex( payLoad[ 3 ] );                   // Capabilities
-                     additionalData3 = hex( payLoad[ 7 ], payLoad[ 6 ] );     // Body Weight
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = hex2Int( payLoad[ 3 ] );                   // Capabilities
+                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Body Weight
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -106,9 +111,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  2: result          = WEIGHT_SCALE;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex( payLoad[ 5 ], payLoad[ 4 ] );     // Hydration
-                     additionalData3 = hex( payLoad[ 7 ], payLoad[ 6 ] );     // Body Fat
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Hydration
+                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Body Fat
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -118,9 +123,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  3: result          = WEIGHT_SCALE;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex( payLoad[ 5 ], payLoad[ 4 ] );     // Active Metabolic Rate
-                     additionalData3 = hex( payLoad[ 7 ], payLoad[ 6 ] );     // Basal Metabolic Rate
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Active Metabolic Rate
+                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Basal Metabolic Rate
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile",          payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -130,9 +135,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  4: result          = WEIGHT_SCALE;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex( payLoad[ 6 ], payLoad[ 5 ] );     // Muscle Mass
-                     additionalData3 = hex( payLoad[ 7 ] );                   // Bone Mass
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = hex2Int( payLoad[ 6 ], payLoad[ 5 ] );     // Muscle Mass
+                     additionalData3 = hex2Int( payLoad[ 7 ] );                   // Bone Mass
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -142,13 +147,13 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case 58: result          = WEIGHT_SCALE;
-                     additionalData1 = hex( payLoad[ 2 ], payLoad[ 1 ] );     //  User Profile
-                     additionalData2 = hex( payLoad[ 3 ] );                   //  Capabilities
-                     auxInt          = hex( payLoad[ 5 ] );
+                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     //  User Profile
+                     additionalData2 = hex2Int( payLoad[ 3 ] );                   //  Capabilities
+                     auxInt          = hex2Int( payLoad[ 5 ] );
                      additionalData3 = auxInt >> 7;                           //  Gender
                      additionalData4 = auxInt & ( ( 1 << 7 ) - 1 );           //  Age
-                     additionalData5 = hex( payLoad[ 6 ] );                   //  User Height
-                     additionalData6 = hex( payLoad[ 7 ] );                   //  Descript Bit
+                     additionalData5 = hex2Int( payLoad[ 6 ] );                   //  User Height
+                     additionalData6 = hex2Int( payLoad[ 7 ] );                   //  Descript Bit
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile",  payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -189,7 +194,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( C_WEIGHT_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -199,16 +204,16 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
 
 amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
-        std::string   sensorID;
-        std::string   semiCookedString;
-        std::string   timeStampBuffer;
-        std::string   curVersion      = b2tVersion;
+        amString      sensorID;
+        amString      semiCookedString;
+        amString      timeStampBuffer;
+        amString      curVersion      = b2tVersion;
         amSplitString words;
         unsigned int  nbWords         = words.split( inputBuffer );
         unsigned int  startCounter    = 0;
@@ -237,7 +242,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
             if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isWeightScaleSensor( sensorID ) )
             {
                 startCounter = counter;
-                dataPage    = ( unsigned int ) strToInt( words[ counter++ ] );       //  3
+                dataPage    = words[ counter++ ].toUInt();                           //  3
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Data Page", dataPage );
@@ -248,9 +253,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                     case  1: if ( nbWords > 6 )
                              {
                                  result          = WEIGHT_SCALE;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - User Profile
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Capabilities
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Body Weight
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - User Profile
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Capabilities
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  6 - Body Weight
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "User Profile", additionalData1 );
@@ -263,9 +268,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                     case  2: if ( nbWords > 6 )
                              {
                                  result          = WEIGHT_SCALE;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - User Profile
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Hydration
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Body Fat
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - User Profile
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Hydration
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  6 - Body Fat
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "User Profile", additionalData1 );
@@ -278,9 +283,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                     case  3: if ( nbWords > 6 )
                              {
                                  result          = WEIGHT_SCALE;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - User Profile
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Active Metabolic Rate
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Basal Metabolic Rate
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - User Profile
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Active Metabolic Rate
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  6 - Basal Metabolic Rate
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "User Profile",          additionalData1 );
@@ -293,9 +298,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                     case  4: if ( nbWords > 6 )
                              {
                                  result          = WEIGHT_SCALE;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - User Profile
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Muscle Mass
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Bone Mass
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - User Profile
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Muscle Mass
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  6 - Bone Mass
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "User Profile", additionalData1 );
@@ -308,12 +313,12 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                     case 58: if ( nbWords > 9 )
                              {
                                  result          = WEIGHT_SCALE;
-                                 additionalData1 = ( unsigned int ) strToInt( words[ counter++ ] );               //  4 - User Profile
-                                 additionalData2 = ( unsigned int ) strToInt( words[ counter++ ] );               //  5 - Capabilities
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  6 - Gender
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  7 - Age
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  8 - User Height
-                                 additionalData3 = ( unsigned int ) strToInt( words[ counter++ ] );               //  9 - Descript Bit
+                                 additionalData1 = words[ counter++ ].toUInt();                                   //  4 - User Profile
+                                 additionalData2 = words[ counter++ ].toUInt();                                   //  5 - Capabilities
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  6 - Gender
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  7 - Age
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  8 - User Height
+                                 additionalData3 = words[ counter++ ].toUInt();                                   //  9 - Descript Bit
                                  if ( diagnostics )
                                  {
                                      appendDiagnosticsLine( "User Profile",  additionalData1 );
@@ -380,10 +385,10 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -392,10 +397,10 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antWeightProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -409,7 +414,7 @@ amDeviceType antWeightProcessing::processSensor
         resetOutBuffer();
         if ( outputUnknown )
         {
-            int deviceIDNoAsInt = strToInt( deviceIDNo );
+            int deviceIDNoAsInt = deviceIDNo.toInt();
             createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
         }
     }
@@ -419,11 +424,11 @@ amDeviceType antWeightProcessing::processSensor
 
 amDeviceType antWeightProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isWeightScaleSensor( inputBuffer ) )
         {
@@ -456,15 +461,15 @@ bool antWeightProcessing::evaluateDeviceLine
 {
     bool         result  = false;
     unsigned int nbWords = words.size();
-    if ( nbWords > 2 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 2 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_WEIGHT_DEVICE_ID ) && isWeightScaleSensor( deviceName ) )
-        {   
+        {
             result = appendWeightSensor( deviceName );
-        }   
-    }   
+        }
+    }
     return result;
 }
 
@@ -474,11 +479,10 @@ int antWeightProcessing::readDeviceFileStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
     unsigned int nbWords    = 0;
 
     while ( true )
@@ -489,7 +493,7 @@ int antWeightProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -509,10 +513,10 @@ int antWeightProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -705,7 +709,7 @@ void antWeightProcessing::createWeightScaleString
                 {
                     appendJSONItem( "active metabolic rate", activeMetabolicRate, 2 );
                 }
-    
+
                 double basalMetabolicRate = ( double ) additionalData3 / 100.0;
                 if ( ( additionalData3 == 0xFFFF ) || ( additionalData3 == 0xFFFE ) )
                 {
@@ -727,7 +731,7 @@ void antWeightProcessing::createWeightScaleString
                 {
                     appendJSONItem( "muscle mass", muscleMass, 2 );
                 }
-    
+
                 double boneMass = ( double ) additionalData3 /  10.0;
                 if ( ( additionalData3 == 0xFF ) || ( additionalData3 == 0xFE ) )
                 {

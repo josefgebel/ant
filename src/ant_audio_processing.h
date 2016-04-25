@@ -3,18 +3,16 @@
 
 #include "ant_processing.h"
 
-class amSplitString;
-
 class antAudioProcessing : virtual public antProcessing
 {
     protected:
 
-        amDeviceType processAudioControl( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processAudioControlSemiCooked( const char *inputBuffer );
+        amDeviceType processAudioControl( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processAudioControlSemiCooked( const amString &inputBuffer );
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendAudioSensor( const std::string & );
+        bool appendAudioSensor( const amString & );
 
 
     public:
@@ -22,12 +20,14 @@ class antAudioProcessing : virtual public antProcessing
         antAudioProcessing();
         ~antAudioProcessing() {}
 
-        bool isAudioSensor( const std::string &deviceID );
+        bool isAudioSensor( const amString &deviceID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         amDeviceType createAudioControlString( unsigned int dataPage, unsigned int data1, unsigned int data2, unsigned int data3, unsigned int data4 );
+
+        virtual void reset( void );
 
 };
 

@@ -11,7 +11,7 @@ BIN_DIR=../bin
 
 COMMON_HEADERS=ant_constants.h
 
-SOURCES=b2t_utils.cpp am_split_string.cpp ant_processing.cpp
+SOURCES=am_string.cpp am_multicast_read.cpp am_multicast_write.cpp am_split_string.cpp ant_processing.cpp
 S_OBJECTS=$(SOURCES:.cpp=.o)
 CS_SOURCES=ant_cadence_speed_processing.cpp ant_cadence_processing.cpp ant_speed_processing.cpp $(SOURCES)
 CS_OBJECTS=$(CS_SOURCES:.cpp=.o)
@@ -312,3 +312,4 @@ install_clean:
 	$(MOVE) $(EXECUTABLE_99) $(BIN_DIR)
 	make clean
 
+# DO NOT DELETE

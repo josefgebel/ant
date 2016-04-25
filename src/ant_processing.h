@@ -2,50 +2,55 @@
 #define __ANT_PROCESSING_H__
 
 #include <map>
-#include "am_split_string.h"
+#include <vector>
+
+#include <am_multicast_read.h>
+#include <am_multicast_write.h>
+
+#include "ant_constants.h"
+#include "am_string.h"
+
+class amSplitString;
 
 class antProcessing
 {
 
     private:
 
-        int readSemiCookedSingleLineFromStream( std::istream &inStream,   int outSocketID, struct sockaddr_in &outGroupSocket );
-        int readAntSingleLineFromStream       ( std::istream &inStream,   int outSocketID, struct sockaddr_in &outGroupSocket );
-        int readAntFromStream   ( std::istream &inStream,                 int outSocketID, struct sockaddr_in &outGroupSocket );
-        int ant2txtLine         ( const unsigned char *line, int nbBytes, int outSocketID, struct sockaddr_in &outGroupSocket );
-        int readAntFromMultiCast(                                         int outSocketID, struct sockaddr_in &outGroupSocket );
-        int outputData          (                                         int outSocketID, struct sockaddr_in &outGroupSocket );
-        int errorCode;
+        bool     testMode;
+        int      testCounter;
+        amString programName;
+        amString validOptions;
 
-        std::string programName;
-        std::string validOptions;
+        amMulticastRead  multicastRead;
+        amMulticastWrite multicastWrite;
 
-        void appendDiagnosticsItemName( const std::string &itemName );
-        void appendDiagnosticsField( const std::string &fieldName);
+        int readSemiCookedSingleLineFromStream( std::istream &inStream );
+        int readAntSingleLineFromStream       ( std::istream &inStream );
+        int readAntFromStream   ( std::istream &inStream );
+        int ant2txtLine         ( const BYTE *line, int nbBytes );
+        int readAntFromMultiCast( void );
+        int outputData          ( void );
 
-        bool testMode;
-        int  testCounter;
+        void appendDiagnosticsItemName( const amString &itemName );
+        void appendDiagnosticsField   ( const amString &fieldName);
 
 
     protected:
 
-        char doubleValueFormatString[ C_SMALL_BUFFER_SIZE ];
-        char timeValueFormatString[ C_SMALL_BUFFER_SIZE ];
-        char errorMessage[ C_BUFFER_SIZE ];
-        std::string outBuffer;
-        std::string rawBuffer;
-        std::string diagnosticsBuffer;
+        int      errorCode;
 
-        void resetRawBuffer        ( void ) { rawBuffer.clear(); }
-        void resetOutBuffer        ( void ) { outBuffer.clear(); }
-        void resetDiagnosticsBuffer( void ) { diagnosticsBuffer.clear(); }
-
-        std::string deviceFileName;
-        std::string mcAddressIn;
-        std::string mcAddressOut;
-        std::string interface;
-        std::string inputFileName;
-        std::string b2tVersion;
+        amString errorMessage;
+        amString outBuffer;
+        amString rawBuffer;
+        amString diagnosticsBuffer;
+        amString deviceFileName;
+        amString mcAddressIn;
+        amString mcAddressOut;
+        amString interface;
+        amString inputFileName;
+        amString b2tVersion;
+        amString currentDeviceType;
 
         int timePrecision;
         int valuePrecision;
@@ -53,7 +58,6 @@ class antProcessing
         int mcPortNoOut;
         int timeOutSec;
 
-        bool useLocalTime;
         bool outputUnknown;
         bool outputBridge;
         bool writeStdout;
@@ -66,177 +70,180 @@ class antProcessing
 
         unsigned int maxZeroTime;
 
-        std::map<std::string, bool> registeredDevices;
-        std::vector<std::string>    supportedSensorTypes;
+        std::vector<amString>            supportedSensorTypes;
+        std::map<amString, bool>         registeredDevices;
+        std::map<amString, unsigned int> zeroTimeCountTable;
+        std::map<amString, unsigned int> eventTimeTable;
+        std::map<amString, unsigned int> eventCountTable;
+        std::map<amString, unsigned int> totalTimeIntTable;
+        std::map<amString, unsigned int> totalCountTable;
+        std::map<amString, unsigned int> operatingTimeTable;
+        std::map<amString, unsigned int> sameEventCountTable;
+        std::map<amString, double>       totalTimeTable;
+        std::map<amString, double>       totalOperatingTimeTable;
 
-        std::map<std::string, unsigned int> zeroTimeCountTable;
-        std::map<std::string, unsigned int> eventTimeTable;
-        std::map<std::string, unsigned int> eventCountTable;
-        std::map<std::string, unsigned int> totalTimeIntTable;
-        std::map<std::string, unsigned int> totalCountTable;
-        std::map<std::string, unsigned int> operatingTimeTable;
-        std::map<std::string, unsigned int> sameEventCountTable;
-        std::map<std::string, double>       totalTimeTable;
-        std::map<std::string, double>       totalOperatingTimeTable;
+        void resetRawBuffer        ( void ) { rawBuffer.clear(); }
+        void resetOutBuffer        ( void ) { outBuffer.clear(); }
+        void resetDiagnosticsBuffer( void ) { diagnosticsBuffer.clear(); }
+        void clearErrors           ( void ) { errorMessage.clear(); errorCode = 0; }
 
         virtual void initializeSupportedDeviceTypes( void ) { }
         virtual int  readDeviceFileStream( std::ifstream &deviceFileStream );
 
-        inline void setMaxZeroTime( unsigned int value ) { maxZeroTime = value; }
-        void getUnixTimeAsString( std::string &timeStampBuffer );
-        void getUnixTimeAsString( std::string &timeStampBuffer, double subSecondTimer );
+        int hex2Int( BYTE b1 );
+        int hex2Int( BYTE b2, BYTE b1 );
+        int hex2Int( BYTE b3, BYTE b2, BYTE b1 );
+        int hex2Int( BYTE b4, BYTE b3, BYTE b2, BYTE b1 );
 
-        void setZeroTimeCount( const std::string &sensorID, unsigned int value );
-        unsigned int getZeroTimeCount( const std::string &sensorID );
+        double getUnixTime( void );
+        void getUnixTimeAsString( amString &timeStampBuffer );
+        void getUnixTimeAsString( amString &timeStampBuffer, double subSecondTimer );
+        void setZeroTimeCount( const amString &sensorID, unsigned int value );
+        unsigned int getZeroTimeCount( const amString &sensorID );
+
+        inline void setMaxZeroTime( unsigned int value ) { maxZeroTime = value; }
 
         bool createCommonResultStringPage67
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       value1,
-                 unsigned int       value2,
-                 unsigned int       value3,
-                 unsigned int       value4,
-                 unsigned int       value5
-                 );
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    value1,
+                 unsigned int    value2,
+                 unsigned int    value3,
+                 unsigned int    value4,
+                 unsigned int    value5
+             );
         bool createCommonResultStringPage68
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       value1,
-                 unsigned int       value2,
-                 unsigned int       value3,
-                 unsigned int       value4
-                 );
-
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    value1,
+                 unsigned int    value2,
+                 unsigned int    value3,
+                 unsigned int    value4
+             );
         bool createCommonResultStringPage70
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       descriptor1,
-                 unsigned int       descriptor2,
-                 unsigned int       requestedResponse,
-                 unsigned int       requestedPageNo,
-                 unsigned int       commandType
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    descriptor1,
+                 unsigned int    descriptor2,
+                 unsigned int    requestedResponse,
+                 unsigned int    requestedPageNo,
+                 unsigned int    commandType
              );
         bool createCommonResultStringPage80
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       manufacturerID,
-                 unsigned int       hardwareRevision,
-                 unsigned int       modelNumber
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    manufacturerID,
+                 unsigned int    hardwareRevision,
+                 unsigned int    modelNumber
              );
         bool createCommonResultStringPage81
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       serialNumber,
-                 unsigned int       softwareRevision
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    serialNumber,
+                 unsigned int    softwareRevision
              );
-
         bool createCommonResultStringPage82
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       voltage256,
-                 unsigned int       status,
-                 unsigned int       operatingTime,
-                 unsigned int       resolution,
-                 unsigned int       nbBatteries,
-                 unsigned int       batteryID
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    voltage256,
+                 unsigned int    status,
+                 unsigned int    operatingTime,
+                 unsigned int    resolution,
+                 unsigned int    nbBatteries,
+                 unsigned int    batteryID
              );
         bool createCommonResultStringPage83
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       seconds,
-                 unsigned int       minutes,
-                 unsigned int       hours,
-                 unsigned int       weekDayNo,
-                 unsigned int       monthDay,
-                 unsigned int       month,
-                 unsigned int       year
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    seconds,
+                 unsigned int    minutes,
+                 unsigned int    hours,
+                 unsigned int    weekDayNo,
+                 unsigned int    monthDay,
+                 unsigned int    month,
+                 unsigned int    year
              );
         bool createCommonResultStringPage84
              (
-                 const std::string &sensorID,
-                 bool               outputPageNo,
-                 unsigned int       subPage1,
-                 unsigned int       subPage2,
-                 unsigned int       dataField1,
-                 unsigned int       dataField2
+                 const amString &sensorID,
+                 bool            outputPageNo,
+                 unsigned int    subPage1,
+                 unsigned int    subPage2,
+                 unsigned int    dataField1,
+                 unsigned int    dataField2
              );
-        void createDataPage84SubPage( const std::string &sensorID, unsigned int subPageNo, unsigned int subPage, unsigned int dataField );
-
-        amDeviceType processUndefinedSensorType( const char *inputBuffer );
-
-        void convertAdditionalDataFromSemiCooked( char *additionalData );
-        void convertAdditionalDataToSemiCooked( char *additionalData );
+        void createDataPage84SubPage( const amString &sensorID, unsigned int subPageNo, unsigned int subPage, unsigned int dataField );
+        bool getBatteryStatus( amString &status, int index, bool lowerCase = false );
 
         unsigned int getDeltaInt
-        (
-            bool                                &rollOverHappened,
-            const std::string                   &sensorID,
-            unsigned int                         rollOver,
-            std::map<std::string, unsigned int> &valueTable,
-            unsigned int                         newValue
-        );
+                     (
+                         bool                             &rollOverHappened,
+                         const amString                   &sensorID,
+                         unsigned int                      rollOver,
+                         std::map<amString, unsigned int> &valueTable,
+                         unsigned int                      newValue
+                     );
 
-        bool isRegisteredDevice( const std::string & );
-        void registerDevice( const std::string & );
+        bool isRegisteredDevice( const amString & );
+        void registerDevice    ( const amString & );
 
-        void printDoubleValue( char *resultBuffer, const char *formatString, double value );
-
-        bool isSupportedSensor( const std::string &deviceID );
-        bool isSemiCookedFormat137( const char *inputBuffer );
-
-        bool getBatteryStatus( char *buffer, int index, bool lowerCase = false );
+        bool isSupportedSensor    ( const amString &deviceID );
+        bool isSemiCookedFormat137( const amString &inputBuffer );
 
         // Diagnostics
-        void appendDiagnosticsLine( const std::string &message );
-        void appendDiagnosticsLine( const std::string &itemName, const std::string &itemValue );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned int itemValue, const std::string &additionalInfo = "" );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned int index, unsigned char itemValue );
-        void appendDiagnosticsLine( const std::string &itemName, const std::string &stringValue, unsigned int itemValue, const std::string &additionalInfo = "" );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned char byteValue, unsigned int itemValue, const std::string &additionalInfo = "" );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned char byteValue1, unsigned char byteValue2, unsigned int itemValue, const std::string &additionalInfo = "" );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned char byteValue1, unsigned char byteValue2, unsigned char byteValue3, unsigned int itemValue, const std::string &additionalInfo = "" );
-        void appendDiagnosticsLine( const std::string &itemName, unsigned char byteValue1, unsigned char byteValue2, unsigned char byteValue3, unsigned char byteValue4, unsigned int itemValue, const std::string &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &message );
+        void appendDiagnosticsLine( const amString &itemName, const amString &itemValue );
+        void appendDiagnosticsLine( const amString &itemName, unsigned int itemValue, const amString &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &itemName, unsigned int index, BYTE itemValue );
+        void appendDiagnosticsLine( const amString &itemName, const amString &stringValue, unsigned int itemValue, const amString &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &itemName, BYTE byteValue, unsigned int itemValue, const amString &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &itemName, BYTE byteValue1, BYTE byteValue2, unsigned int itemValue, const amString &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &itemName, BYTE byteValue1, BYTE byteValue2, BYTE byteValue3, unsigned int itemValue, const amString &additionalInfo = "" );
+        void appendDiagnosticsLine( const amString &itemName, BYTE byteValue1, BYTE byteValue2, BYTE byteValue3, BYTE byteValue4, unsigned int itemValue, const amString &additionalInfo = "" );
 
 
         // Auxilairy functions
-        unsigned int uChar2UInt( unsigned char byte1 );
-        unsigned int uChar2UInt( unsigned char byte1, unsigned char byte2 );
-        unsigned int uChar2UInt( unsigned char byte1, unsigned char byte2, unsigned char byte3 );
-        unsigned int uChar2UInt( unsigned char byte1, unsigned char byte2, unsigned char byte3, unsigned char byte4 );
-        void printDouble( char *resultBuffer, double value, int precision );
-        void appendOutput( unsigned char itemValue );
-        void appendOutput( int itemValue, const std::string &unit = "" );
-        void appendOutput( double itemValue, unsigned int precision, const std::string &unit = "" );
-        void appendOutput( unsigned int itemValue, const std::string &unit = "" );
-        void appendOutput( const std::string &itemValue );
-        void appendJSONItem( const char *itemName, unsigned char      itemValue );
-        void appendJSONItem( const char *itemName, unsigned int       itemValue );
-        void appendJSONItem( const char *itemName, int                itemValue );
-        void appendJSONItem( const char *itemName, bool               itemValue );
-        void appendJSONItem( const char *itemName, double             itemValue, int precision );
-        void appendJSONItem( const char *itemName, const char        *itemValue );
-        void appendJSONItem( const char *itemName, const std::string &itemValue );
+        unsigned int uChar2UInt( BYTE byte1 );
+        unsigned int uChar2UInt( BYTE byte1, BYTE byte2 );
+        unsigned int uChar2UInt( BYTE byte1, BYTE byte2, BYTE byte3 );
+        unsigned int uChar2UInt( BYTE byte1, BYTE byte2, BYTE byte3, BYTE byte4 );
+        void appendOutput( BYTE itemValue );
+        void appendOutput( int itemValue, const amString &unit = "" );
+        void appendOutput( double itemValue, unsigned int precision, const amString &unit = "" );
+        void appendOutput( unsigned int itemValue, const amString &unit = "" );
+        void appendOutput( const amString &itemValue );
+        void appendOutputConditional( bool condition, int             itemValueTrue, const amString &itemValueFalse );
+        void appendOutputConditional( bool condition, unsigned int    itemValueTrue, const amString &itemValueFalse );
+        void appendOutputConditional( bool condition, double          itemValueTrue, const amString &itemValueFalse, int precision );
+        void appendOutputConditional( bool condition, const amString &itemValueTrue, const amString &itemValueFalse );
+        void appendOutput4Way( int  condition, const amString &itemValue0, const amString &itemValue1, const amString &itemValue2, const amString &itemValue3 );
+        void appendJSONItem( const amString &itemName, BYTE   itemValue );
+        void appendJSONItem( const amString &itemName, unsigned int    itemValue );
+        void appendJSONItem( const amString &itemName, int             itemValue );
+        void appendJSONItem( const amString &itemName, double          itemValue, int precision );
+        void appendJSONItem( const amString &itemName, const amString &itemValue );
+        void appendJSONItemB( const amString &itemName, bool           itemValue );
+        void appendJSONItemConditional( const amString &itemName, bool condition, int             itemValueTrue, const amString &itemValueFalse );
+        void appendJSONItemConditional( const amString &itemName, bool condition, unsigned int    itemValueTrue, const amString &itemValueFalse );
+        void appendJSONItemConditional( const amString &itemName, bool condition, double          itemValueTrue, const amString &itemValueFalse, int precision = 6 );
+        void appendJSONItemConditional( const amString &itemName, bool condition, const amString &itemValueTrue, const amString &itemValueFalse );
+        void appendJSONItem4Way( const amString &itemName, int condition, const amString &itemValue0, const amString &itemValue1, const amString &itemValue2, const amString &itemValue3 );
 
-        void createUnknownDeviceTypeString( int deviceType, int deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        void createOutputHeader( const std::string &sensorID, const std::string &timeStampBuffer );
-        void appendOutputFooter( const std::string &versionString );
+        void createUnknownDeviceTypeString( int deviceType, int deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        void createOutputHeader( const amString &sensorID, const amString &timeStampBuffer );
+        void appendOutputFooter( const amString &versionString );
 
+        amDeviceType processUndefinedSensorType( const amString &inputBuffer );
 
-        bool processCommonPagesSemiCooked
-             (
-                 const amSplitString &words,
-                 unsigned int        startCounter,
-                 unsigned int        dataPage,
-                 bool                outputPageNo
-             );
-        bool processCommonPages( const std::string &sensorID, unsigned char payLoad[], bool outputPageNo );
+        bool processCommonPagesSemiCooked( const amSplitString &words, unsigned int startCounter, unsigned int dataPage, bool outputPageNo );
+        bool processCommonPages( const amString &sensorID, BYTE payLoad[], bool outputPageNo );
 
         void resetAll( void );
 
@@ -246,32 +253,32 @@ class antProcessing
         antProcessing();
         ~antProcessing() {}
 
-        bool processInput( const std::string &programNameIn, const std::string &validOptionsIn, const std::string &deviceType, int argc, char *argv[] );
-
-        int getErrorCode( void ) const { return errorCode; }
-        void setErrorCode( int value ) { errorCode = value; }
+        bool processArguments( const amString &programNameIn, const amString &validOptionsIn, const amString &deviceType, int argc, char *argv[] );
 
         void help( void );
-        void outputFormats( const std::string &deviceType );
-        void outputOptionF( std::stringstream &outputMessage, const std::string &indent );
-        void outputOptionPOWER( std::stringstream &outputMessage, const std::string &indent );
+        void outputFormats( const amString &deviceType );
+        void outputOptionF( std::stringstream &outputMessage, const amString &indent );
+        void outputOptionPOWER( std::stringstream &outputMessage, const amString &indent );
+
+        int  getErrorCode( void ) const { return errorCode; }
+        void outputError( void );
 
         virtual void reset( void );
 
-        inline std::string getDeviceFileName( void ) const        { return deviceFileName; }
-        inline void        setDeviceFileName( std::string value ) { deviceFileName = value; }
+        inline amString getDeviceFileName( void ) const     { return deviceFileName; }
+        inline void     setDeviceFileName( amString value ) { deviceFileName = value; }
 
-        inline std::string getMCAddressIn( void ) const        { return mcAddressIn; }
-        inline void        setMCAddressIn( std::string value ) { mcAddressIn = value; }
+        inline amString getMCAddressIn( void ) const     { return mcAddressIn; }
+        inline void     setMCAddressIn( amString value ) { mcAddressIn = value; }
 
-        inline std::string getMCAddressOut( void ) const        { return mcAddressOut; }
-        inline void        setMCAddressOut( std::string value ) { mcAddressOut = value; }
+        inline amString getMCAddressOut( void ) const     { return mcAddressOut; }
+        inline void     setMCAddressOut( amString value ) { mcAddressOut = value; }
 
-        inline std::string getInterface( void ) const        { return interface; }
-        inline void        setInterface( std::string value ) { interface = value; }
+        inline amString getInterface( void ) const     { return interface; }
+        inline void     setInterface( amString value ) { interface = value; }
 
-        inline std::string getInputFileName( void ) const        { return inputFileName; }
-        inline void        setInputFileName( std::string value ) { inputFileName = value; }
+        inline amString getInputFileName( void ) const     { return inputFileName; }
+        inline void     setInputFileName( amString value ) { inputFileName = value; }
 
         inline int  getMCPortNoIn( void ) const { return mcPortNoIn; }
         inline void setMCPortNoIn( int value )  { mcPortNoIn = value; }
@@ -309,9 +316,6 @@ class antProcessing
         inline bool getDiagnostics( void ) const { return diagnostics; }
         inline void setDiagnostics( bool value ) { diagnostics = value; }
 
-        inline bool getUseLocalTime( void ) const { return useLocalTime; }
-        inline void setUseLocalTime( bool value ) { useLocalTime = value; }
-
         inline void setOutputUnknown( bool value ) { outputUnknown = value; }
         inline bool getOutputUnknown( void ) const { return outputUnknown; }
 
@@ -321,35 +325,31 @@ class antProcessing
         inline void setTestMode( bool value ) { testMode = value; }
         inline bool getTestMode( void ) const { return testMode; }
 
-        double getTotalOperationTime( const std::string &sensorID );
-        void setTotalOperationTime( const std::string &sensorID, double value );
+        double getTotalOperationTime( const amString &sensorID );
+        void setTotalOperationTime( const amString &sensorID, double value );
 
-        inline const char *getErrorMessage( void ) const { return errorMessage; }
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
+        amDeviceType         updateSensorSemiCooked ( const amString &inputBuffer );
 
-        int readDeviceFile( void );
-
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
-        amDeviceType         updateSensorSemiCooked ( const char *inputBuffer );
-
-        void createPacketSaverModeString( const std::string &timeStampBuffer, const unsigned char *payLoad, unsigned char nbBytes );
+        void createPacketSaverModeString( const amString &timeStampBuffer, const BYTE *payLoad, BYTE nbBytes );
 
         void createBridgeString
              (
-                 const std::string &bridgeDeviceID,
-                 const std::string &timeStampBuffer,
-                 const std::string &bridgeName,
-                 const std::string &bridgeMACAddess,
-                 const std::string &firmwareVersion,
-                 int                voltageValue,
-                 int                powerIndicator,
-                 int                operatingMode,
-                 int                connectionStatus
+                 const amString &bridgeDeviceID,
+                 const amString &timeStampBuffer,
+                 const amString &bridgeName,
+                 const amString &bridgeMACAddess,
+                 const amString &firmwareVersion,
+                 int             voltageValue,
+                 int             powerIndicator,
+                 int             operatingMode,
+                 int             connectionStatus
             );
 
-        void createPacketSaverString( const unsigned char *line, int nbBytes, const std::string &timeStampBuffer );
-        void createUnknownPacketString( const unsigned char *line, int nbBytes, const std::string &timeStampBuffer );
-     
+        void createPacketSaverString( const BYTE *line, int nbBytes, const amString &timeStampBuffer );
+        void createUnknownPacketString( const BYTE *line, int nbBytes, const amString &timeStampBuffer );
+
         int ant2txt( void );
 
 };

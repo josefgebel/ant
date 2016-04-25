@@ -1,22 +1,19 @@
 #ifndef __ANT_STRIDE_SPEED_DIST__PROCESSING_H__
 #define __ANT_STRIDE_SPEED_DIST__PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
-
-class amSplitString;
 
 class antStrideSpeedDistProcessing : virtual public antProcessing
 {
     protected:
 
-        std::map<std::string, double>       totalDistTable;
-        std::map<std::string, unsigned int> eventDistTable;
-        std::map<std::string, unsigned int> totalStrideCountTable;
-        std::map<std::string, unsigned int> strideCountTable;
+        std::map<amString, double>       totalDistTable;
+        std::map<amString, unsigned int> eventDistTable;
+        std::map<amString, unsigned int> totalStrideCountTable;
+        std::map<amString, unsigned int> strideCountTable;
 
-        amDeviceType processStrideBasedSpeedAndDistanceSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processStrideBasedSpeedAndDistanceSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processStrideBasedSpeedAndDistanceSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processStrideBasedSpeedAndDistanceSensorSemiCooked( const amString &inputBuffer );
 
         void createSBSDMResultString
              (
@@ -33,7 +30,7 @@ class antStrideSpeedDistProcessing : virtual public antProcessing
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendStrideSpeedDistSensor( const std::string & );
+        bool appendStrideSpeedDistSensor( const amString & );
 
 
     public:
@@ -41,10 +38,10 @@ class antStrideSpeedDistProcessing : virtual public antProcessing
         antStrideSpeedDistProcessing();
         ~antStrideSpeedDistProcessing() {}
 
-        bool isStrideSpeedSensor( const std::string & );
+        bool isStrideSpeedSensor( const amString & );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         virtual void reset( void );
 };

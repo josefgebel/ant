@@ -1,10 +1,6 @@
 #ifndef __ANT_SPCAD_PROCESSING_H__
 #define __ANT_SPCAD_PROCESSING_H__
 
-#include <string>
-#include <vector>
-
-#include "ant_constants.h"
 #include "ant_processing.h"
 #include "ant_speed_processing.h"
 #include "ant_cadence_processing.h"
@@ -16,12 +12,12 @@ class antSpcadProcessing : virtual public antProcessing,
 
     private:
 
-        std::map<std::string, unsigned int> operatingTimeTable;
-        std::map<std::string, unsigned int> cadenceTimeTable;
-        std::map<std::string, unsigned int> cadenceCountTable;
+        std::map<amString, unsigned int> operatingTimeTable;
+        std::map<amString, unsigned int> cadenceTimeTable;
+        std::map<amString, unsigned int> cadenceCountTable;
 
-        amDeviceType processSpeedAndCadenceSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processSpeedAndCadenceSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processSpeedAndCadenceSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processSpeedAndCadenceSensorSemiCooked( const amString &inputBuffer );
 
         void createSPCADResultString
              (
@@ -39,7 +35,7 @@ class antSpcadProcessing : virtual public antProcessing,
     protected:
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool appendSpeedSensor( const std::string &sensorID, double wheelCircumference, double nbMagnets );
+        bool appendSpeedSensor( const amString &sensorID, double wheelCircumference, double nbMagnets );
 
 
     public:
@@ -47,10 +43,10 @@ class antSpcadProcessing : virtual public antProcessing,
         antSpcadProcessing();
         ~antSpcadProcessing() {}
 
-        bool isSpeedAndCadenceSensor( const std::string &sensorID );
+        bool isSpeedAndCadenceSensor( const amString &sensorID );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         virtual void reset( void );
 

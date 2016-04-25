@@ -1,13 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_all_processing.h"
 
 // -------------------------------------------------------------------------------------------------------------------------
@@ -39,6 +32,7 @@ antAllProcessing::antAllProcessing
     antHRMProcessing(),
     antSpeedOnlyProcessing()
 {
+    currentDeviceType = "ALL";
     reset();
 }
 
@@ -69,11 +63,10 @@ int antAllProcessing::readDeviceFileStream
 )
 {
     char line[ C_BUFFER_SIZE ];
-    int  errorCode = 0;
     amSplitString words;
 
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString     deviceType = "";
+    amString     deviceName = "";
     unsigned int nbWords    = 0;
 
     while ( true )
@@ -84,7 +77,7 @@ int antAllProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -105,10 +98,10 @@ int antAllProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -158,10 +151,10 @@ int antAllProcessing::readDeviceFileStream
 // the result string into the outBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -170,10 +163,10 @@ int antAllProcessing::readDeviceFileStream
 //---------------------------------------------------------------------------------------------------
 amDeviceType antAllProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -207,7 +200,7 @@ amDeviceType antAllProcessing::processSensor
         default           : result = OTHER_DEVICE;
                             if ( outputUnknown )
                             {
-                                int deviceIDNoAsInt = strToInt( deviceIDNo );
+                                int deviceIDNoAsInt = deviceIDNo.toInt();
                                 createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
                             }
                             else
@@ -222,14 +215,14 @@ amDeviceType antAllProcessing::processSensor
 
 amDeviceType antAllProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0  ) )
+    if ( !inputBuffer.empty() )
     {
-        switch ( *inputBuffer )
+        switch ( inputBuffer[ 0 ] )
         {
             case 'A': // Aero Sensor  or  Audio Control
                       if ( isAeroSensor( inputBuffer ) )
@@ -292,7 +285,7 @@ amDeviceType antAllProcessing::processSensorSemiCooked
                       }
                       break;
             case 'T': // Previously unrecognized Sensor Type
-                      if ( startsWith( inputBuffer, C_UNKNOWN_TYPE_HEAD ) )
+                      if ( inputBuffer.startsWith( C_UNKNOWN_TYPE_HEAD ) )
                       {
                           result = processUndefinedSensorType( inputBuffer );
                       }
@@ -344,21 +337,21 @@ amDeviceType antAllProcessing::processSensorSemiCooked
 // ------------------------------------------------------------------------------------------------------
 amDeviceType antAllProcessing::processUndefinedSensorType
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amSplitString words;
     amSplitString sensorParts;
-    amDeviceType  result            = OTHER_DEVICE;
-    std::string   deviceIDNo        = "";
-    std::string   deviceTypeString  = "";
-    std::string   sensorID          = "";
-    std::string   timeStampBuffer   = "";
-    unsigned int  nbWords           = words.split( inputBuffer );
-    unsigned int  nbSensorParts     = 0;
-    unsigned int  deviceType        = 0;
-    unsigned int  counter           = 0;
-    unsigned int  syntaxError       = 0;
+    amDeviceType  result           = OTHER_DEVICE;
+    amString      deviceIDNo       = "";
+    amString      deviceTypeString = "";
+    amString      sensorID         = "";
+    amString      timeStampBuffer  = "";
+    unsigned int  nbWords          = words.split( inputBuffer );
+    unsigned int  nbSensorParts    = 0;
+    unsigned int  deviceType       = 0;
+    unsigned int  counter          = 0;
+    unsigned int  syntaxError      = 0;
 
     syntaxError = ( nbWords >= 2 + C_ANT_PAYLOAD_LENGTH ) ? 0 : 1;
     if ( syntaxError == 0 )
@@ -385,19 +378,19 @@ amDeviceType antAllProcessing::processUndefinedSensorType
     if ( syntaxError == 0 )
     {
         deviceTypeString = sensorParts[ 0 ].substr( strlen( C_UNKNOWN_TYPE_HEAD ) );
-        deviceType       = ( unsigned int ) strToInt( deviceTypeString );
+        deviceType       = deviceTypeString.toUInt();
         syntaxError      = ( deviceType > 0 ) ? 0 : 4;
     }
 
     if ( syntaxError == 0 )
     {
         deviceIDNo  = sensorParts[ 1 ];
-        syntaxError = ( ( unsigned int ) strToInt( deviceIDNo ) != 0 ) ? 0 : 5;
+        syntaxError = ( deviceIDNo.toUInt() != 0 ) ? 0 : 5;
     }
 
     if ( syntaxError == 0 )
     {
-        unsigned char payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
+        BYTE payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
 
         timeStampBuffer = words[ 1 ];
         if ( diagnostics )
@@ -406,8 +399,8 @@ amDeviceType antAllProcessing::processUndefinedSensorType
         }
         for ( counter = 0; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
         {
-            payLoad[ counter ]  = ( hexDigit2Int( words[ 2 + counter ][ 0 ] ) ) << 4;
-            payLoad[ counter ] += hexDigit2Int( words[ 2 + counter ][ 1 ] );
+            payLoad[ counter ]  = ( HEX_DIGIT_2_INT( words[ 2 + counter ][ 0 ] ) ) << 4;
+            payLoad[ counter ] += HEX_DIGIT_2_INT( words[ 2 + counter ][ 1 ] );
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "payLoad", counter, payLoad[ counter ] );

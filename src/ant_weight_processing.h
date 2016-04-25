@@ -1,10 +1,7 @@
 #ifndef __ANT_WEIGHT_PROCESSING_H__
 #define __ANT_WEIGHT_PROCESSING_H__
 
-#include "ant_constants.h"
 #include "ant_processing.h"
-
-class amSplitString;
 
 class antWeightProcessing : virtual public antProcessing
 {
@@ -16,16 +13,16 @@ class antWeightProcessing : virtual public antProcessing
 
     protected:
 
-        std::map<std::string, unsigned int> previousHeartRateTable;
-        std::map<std::string, unsigned int> eventTimeTable;
-        std::map<std::string, double>       heartBeatTimeTable;
+        std::map<amString, unsigned int> previousHeartRateTable;
+        std::map<amString, unsigned int> eventTimeTable;
+        std::map<amString, double>       heartBeatTimeTable;
 
-        amDeviceType processWeightScaleSensor( const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        amDeviceType processWeightScaleSensorSemiCooked( const char *inputBuffer );
+        amDeviceType processWeightScaleSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        amDeviceType processWeightScaleSensorSemiCooked( const amString &inputBuffer );
 
         virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
         bool evaluateDeviceLine( const amSplitString &words );
-        bool appendWeightSensor( const std::string & );
+        bool appendWeightSensor( const amString & );
 
 
     public:
@@ -33,10 +30,10 @@ class antWeightProcessing : virtual public antProcessing
         antWeightProcessing();
         ~antWeightProcessing() {}
 
-        bool isWeightScaleSensor( const std::string & );
+        bool isWeightScaleSensor( const amString & );
 
-        virtual amDeviceType processSensor( int deviceType, const std::string &deviceIDNo, const std::string &timeStampBuffer, unsigned char payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const char *inputBuffer );
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
 
         void createWeightScaleString
              (
@@ -48,6 +45,8 @@ class antWeightProcessing : virtual public antProcessing
                  unsigned int additionalData5,
                  unsigned int additionalData6
              );
+
+        virtual void reset( void );
 
 };
 

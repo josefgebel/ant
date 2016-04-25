@@ -6,12 +6,7 @@
 // -------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------
 
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
 #include "ant_constants.h"
-#include "b2t_utils.h"
 #include "am_split_string.h"
 #include "ant_speed_processing.h"
 
@@ -32,7 +27,7 @@ antSpeedProcessing::antSpeedProcessing
 
 double antSpeedProcessing::getNbMagnets
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     double nbMagnets = ( nbMagnetsTable.count( sensorID ) == 0 ) ? nbMagnetsDefault : nbMagnetsTable[ sensorID ];
@@ -41,13 +36,13 @@ double antSpeedProcessing::getNbMagnets
 
 void antSpeedProcessing::setNbMagnets
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( nbMagnetsTable.count( sensorID ) == 0 )
     {
-        nbMagnetsTable.insert( std::pair<std::string, double>( sensorID, nbMagnetsDefault ) );
+        nbMagnetsTable.insert( std::pair<amString, double>( sensorID, nbMagnetsDefault ) );
     }
     nbMagnetsTable[ sensorID ] = value;
 }
@@ -59,27 +54,27 @@ void antSpeedProcessing::setNbMagnets
 // ---------------------------------------------------------------------------------
 bool antSpeedProcessing::isPureSpeedSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
-    double result = ( startsWith( sensorID, C_SPEED_OBSOLETE_HEAD ) || startsWith( sensorID, C_SPEED_DEVICE_HEAD    ) ||
-                      startsWith( sensorID, C_SPCAD_DEVICE_HEAD   ) || startsWith( sensorID, C_WT_POWER_DEVICE_HEAD ) );
+    double result = ( sensorID.startsWith( C_SPEED_OBSOLETE_HEAD ) || sensorID.startsWith( C_SPEED_DEVICE_HEAD    ) ||
+                      sensorID.startsWith( C_SPCAD_DEVICE_HEAD   ) || sensorID.startsWith( C_WT_POWER_DEVICE_HEAD ) );
     return result;
 }
 
 bool antSpeedProcessing::isMakeshiftSpeedSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
-    double result = ( startsWith( sensorID, C_CAD_DEVICE_HEAD      ) || startsWith( sensorID, C_POWER_ONLY_DEVICE_HEAD ) ||
-                      startsWith( sensorID, C_CT_POWER_DEVICE_HEAD ) || startsWith( sensorID, C_CTF_POWER_DEVICE_HEAD  ) );
+    double result = ( sensorID.startsWith( C_CAD_DEVICE_HEAD      ) || sensorID.startsWith( C_POWER_ONLY_DEVICE_HEAD ) ||
+                      sensorID.startsWith( C_CT_POWER_DEVICE_HEAD ) || sensorID.startsWith( C_CTF_POWER_DEVICE_HEAD  ) );
     return result;
 }
 
 bool antSpeedProcessing::isSpeedSensor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     double result = ( isPureSpeedSensor( sensorID ) || isMakeshiftSpeedSensor( sensorID ) );
@@ -88,7 +83,7 @@ bool antSpeedProcessing::isSpeedSensor
 
 double antSpeedProcessing::getWheelCircumference
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     double wheelCircumference = ( wheelCircumferenceTable.count( sensorID ) == 0 ) ? wheelCircumferenceDefault : wheelCircumferenceTable[ sensorID ];
@@ -97,25 +92,25 @@ double antSpeedProcessing::getWheelCircumference
 
 void antSpeedProcessing::setWheelCircumference
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( wheelCircumferenceTable.count( sensorID ) == 0 )
     {
-        wheelCircumferenceTable.insert( std::pair<std::string, double>( sensorID, wheelCircumferenceDefault ) );
+        wheelCircumferenceTable.insert( std::pair<amString, double>( sensorID, wheelCircumferenceDefault ) );
     }
     wheelCircumferenceTable[ sensorID ] = value;
 }
 
 double antSpeedProcessing::getSpeed
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( speedTable.count( sensorID ) == 0 )
     {
-        speedTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        speedTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     double speed = speedTable[ sensorID ];
     return speed;
@@ -123,13 +118,13 @@ double antSpeedProcessing::getSpeed
 
 void antSpeedProcessing::setSpeed
 (
-    const std::string &sensorID,
-    double             value
+    const amString &sensorID,
+    double          value
 )
 {
     if ( speedTable.count( sensorID ) == 0 )
     {
-        speedTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+        speedTable.insert( std::pair<amString, double>( sensorID, 0 ) );
     }
     speedTable[ sensorID ] = value;
 }
@@ -137,9 +132,9 @@ void antSpeedProcessing::setSpeed
 
 bool antSpeedProcessing::appendSpeedSensor
 (
-    const std::string &sensorID,
-    double             wheelCircumference,
-    double             nbMagnets
+    const amString &sensorID,
+    double          wheelCircumference,
+    double          nbMagnets
 )
 {
     bool result = isSpeedSensor( sensorID );
@@ -147,11 +142,11 @@ bool antSpeedProcessing::appendSpeedSensor
     {
         if ( wheelCircumferenceTable.count( sensorID ) == 0 )
         {
-            wheelCircumferenceTable.insert( std::pair<std::string, double>( sensorID, wheelCircumference ) );
+            wheelCircumferenceTable.insert( std::pair<amString, double>( sensorID, wheelCircumference ) );
         }
         if ( nbMagnetsTable.count( sensorID ) == 0 )
         {
-            nbMagnetsTable.insert         ( std::pair<std::string, double>( sensorID, nbMagnets ) );
+            nbMagnetsTable.insert         ( std::pair<amString, double>( sensorID, nbMagnets ) );
         }
     }
     return result;
@@ -219,20 +214,20 @@ bool antSpeedProcessing::evaluateDeviceLine
     bool         result  = false;
     unsigned int nbWords = words.size();
 
-    if ( nbWords > 1 ) 
-    {   
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+    if ( nbWords > 1 )
+    {
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         if ( ( deviceType == C_SPEED_DEVICE_ID ) && isPureSpeedSensor( deviceName ) )
         {
             double dArg1 = wheelCircumferenceDefault;
             double dArg2 = nbMagnetsDefault;
             if ( nbWords > 2 )
             {
-                dArg1 = strToDouble( words[ 2 ] );
+                dArg1 = words[ 2 ].toDouble();
                 if ( nbWords > 3 )
                 {
-                    dArg2 = strToDouble( words[ 3 ] );
+                    dArg2 = words[ 3 ].toDouble();
                 }
             }
             result = appendSpeedSensor( deviceName, dArg1, dArg2 );

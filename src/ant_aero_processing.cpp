@@ -1,14 +1,6 @@
 // -------------------------------------------------------------------------------------------------------------------------
-// System Libraries
-
-// System C++ libraries
-#include <iostream>
-#include <fstream>
-#include <iomanip>
-
-// -------------------------------------------------------------------------------------------------------------------------
 // Local Libraries
-#include "b2t_utils.h"
+#include "am_split_string.h"
 #include "ant_aero_processing.h"
 
 
@@ -30,24 +22,25 @@ antAeroProcessing::antAeroProcessing
     void
 ) : antProcessing()
 {
+    currentDeviceType = "AERO";
+    rho               = rhoDefault;
     reset();
-    rho = rhoDefault;
 }
 
 bool antAeroProcessing::isAeroSensor
 (
-    const std::string &deviceID
+    const amString &deviceID
 )
 {
-    bool result = startsWith( deviceID, C_AERO_DEVICE_HEAD );
+    bool result = deviceID.startsWith( C_AERO_DEVICE_HEAD );
     return result;
 }
 
 bool antAeroProcessing::appendAeroSensor
 (
-    const std::string &sensorID,
-    double             calibrationRho,
-    double             airSpeedMultiplier
+    const amString &sensorID,
+    double          calibrationRho,
+    double          airSpeedMultiplier
 )
 {
     bool result = isAeroSensor( sensorID );
@@ -60,13 +53,13 @@ bool antAeroProcessing::appendAeroSensor
 
         if ( rhoCalibrationTable.count( sensorID ) == 0 )
         {
-            rhoCalibrationTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+            rhoCalibrationTable.insert( std::pair<amString, double>( sensorID, 0 ) );
         }
         rhoCalibrationTable[ sensorID ] = calibrationRho;
 
         if ( airSpeedMultiplierTable.count( sensorID ) == 0 )
         {
-            airSpeedMultiplierTable.insert( std::pair<std::string, double>( sensorID, 0 ) );
+            airSpeedMultiplierTable.insert( std::pair<amString, double>( sensorID, 0 ) );
         }
         airSpeedMultiplierTable[ sensorID ] = airSpeedMultiplier;
     }
@@ -75,12 +68,12 @@ bool antAeroProcessing::appendAeroSensor
 
 double antAeroProcessing::getCalibrationRho
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( rhoCalibrationTable.count( sensorID ) == 0 )
     {
-        rhoCalibrationTable.insert( std::pair<std::string, double>( sensorID, calibrationRhoDefault ) );
+        rhoCalibrationTable.insert( std::pair<amString, double>( sensorID, calibrationRhoDefault ) );
     }
     double calibrationRho = rhoCalibrationTable[ sensorID ];
     return calibrationRho;
@@ -88,12 +81,12 @@ double antAeroProcessing::getCalibrationRho
 
 double antAeroProcessing::getAirSpeedMultiplier
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     if ( airSpeedMultiplierTable.count( sensorID ) == 0 )
     {
-        airSpeedMultiplierTable.insert( std::pair<std::string, double>( sensorID, airSpeedMultiplierDefault ) );
+        airSpeedMultiplierTable.insert( std::pair<amString, double>( sensorID, airSpeedMultiplierDefault ) );
     }
     double airSpeedMultiplier = airSpeedMultiplierTable[ sensorID ];
     return airSpeedMultiplier;
@@ -110,13 +103,13 @@ double antAeroProcessing::getAirSpeedMultiplier
 //-------------------------------------------------------------------------------------------------//
 amDeviceType antAeroProcessing::processAeroSensor
 (
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result      = OTHER_DEVICE;
-    std::string  sensorID    = std::string( C_AERO_DEVICE_HEAD ) + deviceIDNo;
+    amString  sensorID       = amString( C_AERO_DEVICE_HEAD ) + deviceIDNo;
     unsigned int dataPage    = 0;
     unsigned int airSpeedRaw = 0;
     unsigned int yawAngleRaw = 0;
@@ -124,9 +117,9 @@ amDeviceType antAeroProcessing::processAeroSensor
     if ( isRegisteredDevice( sensorID ) )
     {
         result      = AERO_SENSOR;
-        dataPage    = hex( payLoad[ 0 ] );
-        yawAngleRaw = hex( payLoad[ 5 ], payLoad[ 4 ] );
-        airSpeedRaw = hex( payLoad[ 7 ], payLoad[ 6 ] );
+        dataPage    = hex2Int( payLoad[ 0 ] );
+        yawAngleRaw = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        airSpeedRaw = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
 
         if ( diagnostics )
         {
@@ -168,7 +161,7 @@ amDeviceType antAeroProcessing::processAeroSensor
             resetOutBuffer();
             if ( outputUnknown )
             {
-                int deviceIDNoAsInt = strToInt( deviceIDNo );
+                int deviceIDNoAsInt = deviceIDNo.toInt();
                 createUnknownDeviceTypeString( C_AERO_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
             }
         }
@@ -188,11 +181,11 @@ amDeviceType antAeroProcessing::processAeroSensor
 //---------------------------------------------------------------------------------------------------
 amDeviceType antAeroProcessing::processAeroSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         amSplitString words;
         unsigned int  nbWords            = words.split( inputBuffer );
@@ -203,10 +196,10 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
         unsigned int  startCounter       = 0;
         bool          commonPage         = false;
         bool          outputPageNo       = true;
-        std::string   curVersion         = b2tVersion;
-        std::string   sensorID;
-        std::string   timeStampBuffer;
-        std::string   semiCookedString;
+        amString   curVersion         = b2tVersion;
+        amString   sensorID;
+        amString   timeStampBuffer;
+        amString   semiCookedString;
 
         if ( nbWords > 4 )
         {
@@ -223,8 +216,8 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
             {
                 startCounter = counter;
                 result       = AERO_SENSOR;
-                airSpeedRaw  = ( unsigned int ) strToInt( words[ counter++ ] );          // 3
-                yawAngleRaw  = ( unsigned int ) strToInt( words[ counter++ ] );          // 4
+                airSpeedRaw  = ( unsigned int ) words[ counter++ ].toInt();          // 3
+                yawAngleRaw  = ( unsigned int ) words[ counter++ ].toInt();          // 4
                 if ( diagnostics )
                 {
                     appendDiagnosticsLine( "Raw Air Speed", airSpeedRaw );
@@ -246,10 +239,6 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
             double calibrationRho     = getCalibrationRho( sensorID );
             double airSpeedMultiplier = getAirSpeedMultiplier( sensorID );
 
-            if ( useLocalTime )
-            {
-                getUnixTimeAsString( timeStampBuffer );
-            }
             createOutputHeader( sensorID, timeStampBuffer );
             if ( commonPage )
             {
@@ -286,10 +275,10 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
 // the result string into the resultBuffer.
 //
 // Parameters:
-//    int                deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
-//    const std::string &deviceID          IN   Device ID (number).
-//    const std::string &timeStampBuffer   IN   Time stamp.
-//    unsigned char      payLoad[]         IN   Array of bytes with the data to be converted.
+//    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
+//    const amString &deviceID          IN   Device ID (number).
+//    const amString &timeStampBuffer   IN   Time stamp.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
 // Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
 //             if successful.
@@ -298,10 +287,10 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
 //---------------------------------------------------------------------------------------------------
 amDeviceType antAeroProcessing::processSensor
 (
-    int                deviceType,
-    const std::string &deviceIDNo,
-    const std::string &timeStampBuffer,
-    unsigned char      payLoad[]
+    int             deviceType,
+    const amString &deviceIDNo,
+    const amString &timeStampBuffer,
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -312,7 +301,7 @@ amDeviceType antAeroProcessing::processSensor
     }
     else if ( outputUnknown )
     {
-        int deviceIDNoAsInt = strToInt( deviceIDNo );
+        int deviceIDNoAsInt = deviceIDNo.toInt();
         createUnknownDeviceTypeString( deviceType, deviceIDNoAsInt, timeStampBuffer, payLoad );
     }
     else
@@ -325,12 +314,12 @@ amDeviceType antAeroProcessing::processSensor
 
 amDeviceType antAeroProcessing::processSensorSemiCooked
 (
-    const char *inputBuffer
+    const amString &inputBuffer
 )
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( ( inputBuffer != NULL ) && ( *inputBuffer != 0 ) )
+    if ( !inputBuffer.empty() )
     {
         if ( isAeroSensor( inputBuffer ) )
         {
@@ -356,6 +345,7 @@ void antAeroProcessing::reset
 {
     antProcessing::reset();
 
+    currentDeviceType = "AERO";
     airSpeedMultiplierTable.clear();
     rhoCalibrationTable.clear();
 
@@ -374,7 +364,7 @@ void antAeroProcessing::setRho
 
 bool antAeroProcessing::setCalibrationRho
 (
-    const std::string &sensorID,
+    const amString &sensorID,
     double             value
 )
 {
@@ -388,7 +378,7 @@ bool antAeroProcessing::setCalibrationRho
 
 bool antAeroProcessing::setAirSpeedMultiplier
 (
-    const std::string &sensorID,
+    const amString &sensorID,
     double             value
 )
 {
@@ -409,8 +399,8 @@ bool antAeroProcessing::evaluateDeviceLine
     unsigned int nbWords = words.size();
     if ( nbWords > 1 )
     {
-        std::string deviceType = words[ 0 ];
-        std::string deviceName = words[ 1 ];
+        amString deviceType = words[ 0 ];
+        amString deviceName = words[ 1 ];
         double      dArg1      = 0;
         double      dArg2      = 0;
         if ( ( deviceType == C_AERO_DEVICE_ID ) && isAeroSensor( deviceName ) )
@@ -419,17 +409,17 @@ bool antAeroProcessing::evaluateDeviceLine
             dArg2 = C_AIR_SPEED_MULTIPLIER_DEFAULT;
             if ( nbWords > 2 )
             {
-                dArg1 = strToDouble( words[ 2 ] );
+                dArg1 = words[ 2 ].toDouble();
                 if ( nbWords > 3 )
                 {
-                    dArg2 = strToDouble( words[ 3 ] );
+                    dArg2 = words[ 3 ].toDouble();
                 }
             }
             appendAeroSensor( deviceName, dArg1, dArg2 );
         }
         else if ( deviceType == C_RHO_ID )
         {
-            dArg1 = strToDouble( words[ 1 ] );
+            dArg1 = words[ 1 ].toDouble();
             if ( dArg1 > 0 )
             {
                 setRho( dArg1 );
@@ -444,10 +434,9 @@ int antAeroProcessing::readDeviceFileStream
     std::ifstream &deviceFileStream
 )
 {
-    std::string  deviceType = "";
-    std::string  deviceName = "";
+    amString  deviceType = "";
+    amString  deviceName = "";
     unsigned int nbWords    = 0;
-    int          errorCode  = 0;
 
     char line[ C_BUFFER_SIZE ];
     amSplitString words;
@@ -460,7 +449,7 @@ int antAeroProcessing::readDeviceFileStream
             break;
         }
         const char *lPtr = line;
-        while ( isWhiteChar( *lPtr ) )
+        while ( IS_WHITE_CHAR( *lPtr ) )
         {
             ++lPtr;
         }
@@ -480,10 +469,10 @@ int antAeroProcessing::readDeviceFileStream
                 std::ifstream devicesIncludeFileStream( includeFileName );
                 if ( devicesIncludeFileStream.fail() )
                 {
-                    strcat( errorMessage,"ERROR while opening devices ID include file \"" );
-                    strcat( errorMessage,includeFileName );
-                    strcat( errorMessage,"\".\n" );
-                    errorCode = E_READ_FILE_NOT_OPEN;
+                    errorMessage += "ERROR while opening devices ID include file \"";
+                    errorMessage += includeFileName;
+                    errorMessage += "\".\n";
+                    errorCode     = E_READ_FILE_NOT_OPEN;
                 }
                 else
                 {
@@ -618,7 +607,7 @@ double antAeroProcessing::computeAirSpeed
 
 double antAeroProcessing::getCorrectionFactor
 (
-    const std::string &sensorID
+    const amString &sensorID
 )
 {
     double correctionFactor = 1.0;

@@ -4,14 +4,16 @@
 #include <fstream>
 #include <ostream>
 #include <vector>
-#include <string>
+
+#include "am_string.h"
 
 class amSplitString
 {
     public:
 
         amSplitString( void );
-        amSplitString( const std::string & );
+        amSplitString( const amString & );
+        ~amSplitString( void ) {};
 
         inline void removeAllTerminals( void )  { terminals.clear(); }
         inline void removeAllSeparators( void ) { separators.clear(); }
@@ -21,31 +23,29 @@ class amSplitString
         void addSeparator( char );
         void removeTerminal( char );
         void removeSeparator( char );
+        void push_back( const amString &word );
 
-        size_t split( const std::string &text, const std::string &additionalTermnials = "", const std::string &additionalSeparators = "" );
+        size_t split( const amString &text, const amString &additionalTermnials = "", const amString &additionalSeparators = "" );
 
-        void push_back( const std::string &newWord );
-        const std::string getWord( unsigned int ) const;
-        const std::string operator[]( unsigned int ) const;
-        const std::string getNextWord( void );
-        const std::string front( void ) const;
-        const std::string back( void ) const;
+        const amString getWord( size_t index ) const;
+        const amString operator[]( size_t index ) const;
+        const amString getNextWord( void );
+        const amString front( void ) const;
+        const amString back( void ) const;
 
         inline size_t size( void ) const { return words.size(); }
 
 
     private:
 
-        std::vector<std::string> words;
-        std::string              terminals;
-        std::string              separators;
-        size_t                   curWordNo;
+        std::vector<amString> words;
+        amString              terminals;
+        amString              separators;
+        size_t                curWordNo;
 
-        void init            ( void );
-        bool isTerminal      ( char ) const;
-        bool isSeparator     ( char ) const;
-        bool isInString      ( char, const std::string & ) const;
-        void removeFromString( char, std::string & );
+        void init       ( void );
+        bool isTerminal ( char ) const;
+        bool isSeparator( char ) const;
 
 };
 
