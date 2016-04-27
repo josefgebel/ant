@@ -3,6 +3,7 @@
 #include "am_split_string.h"
 #include "ant_cadence_only_processing.h"
 
+#include <iostream>
 // -------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------
 //
@@ -22,7 +23,7 @@ antCadenceOnlyProcessing::antCadenceOnlyProcessing
 ) : antProcessing(),
     antCadenceSpeedProcessing()
 {
-    currentDeviceType = "CAD7A";
+    setCurrentDeviceType( "CAD7A" );
     reset();
 }
 
@@ -295,7 +296,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensor
             }
             setCadence( sensorID, cadence );
         }
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -339,7 +340,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
         unsigned int  additionalData3      = 0;
         bool          commonPage           = false;
         bool          outputPageNo         = true;
-        amString      curVersion           = b2tVersion;
+        amString      curVersion           = getVersion();
         amString      sensorID;
         amString      semiCookedString;
         amString      timeStampBuffer;
@@ -494,7 +495,7 @@ amDeviceType antCadenceOnlyProcessing::processCadenceOnlySensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -565,7 +566,7 @@ amDeviceType antCadenceOnlyProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -573,72 +574,57 @@ amDeviceType antCadenceOnlyProcessing::processSensorSemiCooked
     return result;
 }
 
-int antCadenceOnlyProcessing::readDeviceFileStream
+void antCadenceOnlyProcessing::readDeviceFileLine
 (
-    std::ifstream &deviceFileStream
+    const char *line
 )
 {
-    char line[ C_BUFFER_SIZE ];
     amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
 
-    amString     deviceType = "";
-    amString     deviceName = "";
-    unsigned int nbWords    = 0;
-
-    while ( true )
+    if ( nbWords > 1 )
     {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
+        amString deviceType = words[ 0 ];
 
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( isCadenceOnlySensor( deviceName ) )
+            else
             {
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else 
+        {
+            amString deviceName = words[ 1 ];
+            if ( isCadenceOnlySensor( deviceName ) )
+            {
+                amString curErrorMessage;
                 if ( deviceType == C_CADENCE_DEVICE_ID )
                 {
-                    antCadenceProcessing::evaluateDeviceLine( words );
+                    errorCode = antCadenceProcessing::readDeviceFileLine1( line, curErrorMessage );
                 }
                 else if ( deviceType == C_SPEED_DEVICE_ID )
                 {
-                    antCadenceSpeedProcessing::evaluateDeviceLine( words );
+                    // Makeshift Speed Sensor
+                    errorCode = antCadenceSpeedProcessing::readDeviceFileLine1( line, curErrorMessage );
+                }
+                if ( errorCode )
+                {
+                    appendErrorMessage( curErrorMessage );
                 }
             }
         }
     }
-
-    return errorCode;
 }
 
 void antCadenceOnlyProcessing::reset

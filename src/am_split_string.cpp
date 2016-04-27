@@ -182,6 +182,26 @@ void amSplitString::push_back
     }
 }
 
+amString amSplitString::concatenate
+(
+    int  start,
+    int  end,
+    char link
+) const
+{
+    amString result;
+    int endPos = ( end < 0 ) ? words.size() : end;
+    for ( int pos = start; pos < endPos; ++pos )
+    {
+        if ( !result.empty() )
+        {
+            result += link;
+        }
+        result += words[ pos ];
+    }
+    return result;
+}
+
 std::ostream &operator<<
 (
     std::ostream        &ostr,

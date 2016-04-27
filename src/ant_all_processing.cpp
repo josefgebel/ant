@@ -32,7 +32,7 @@ antAllProcessing::antAllProcessing
     antHRMProcessing(),
     antSpeedOnlyProcessing()
 {
-    currentDeviceType = "ALL";
+    setCurrentDeviceType( "ALL" );
     reset();
 }
 
@@ -57,90 +57,68 @@ void antAllProcessing::reset
 
 //---------------------------------------------------------------------------------------------------
 
-int antAllProcessing::readDeviceFileStream
+void antAllProcessing::readDeviceFileLine
 (
-    std::ifstream &deviceFileStream
+    const char *line
 )
 {
-    char line[ C_BUFFER_SIZE ];
     amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
 
-    amString     deviceType = "";
-    amString     deviceName = "";
-    unsigned int nbWords    = 0;
-
-    while ( true )
+    if ( nbWords > 1 )
     {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
+        amString deviceType = words[ 0 ];
 
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( deviceType == C_SPEED_DEVICE_ID )
+            else
             {
-                if ( isSpeedOnlySensor( deviceName ) || isSpeedAndCadenceSensor( deviceName ) )
-                {
-                    antSpeedProcessing::evaluateDeviceLine( words );
-                }
-                else if ( isCadenceSensor( deviceName ) )
-                {
-                    antCadenceSpeedProcessing::evaluateDeviceLine( words );
-                }
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
             }
-            else if ( deviceType == C_POWER_DEVICE_ID )
+        }
+        else if ( deviceType == C_RHO_ID )
+        {
+            antAeroProcessing::readDeviceFileLine( line );
+        }
+        else
+        {
+            amString deviceName = words[ 1 ];
+            if ( isAeroSensor( deviceName ) )
             {
-                 antPowerProcessing::evaluateDeviceLine( words );
+                antAeroProcessing::readDeviceFileLine( line );
             }
-            else if ( deviceType == C_HEART_RATE_DEVICE_ID )
+            else if ( isPowerSensor( deviceName ) )
             {
-                antHRMProcessing::evaluateDeviceLine( words );
+                antPowerProcessing::readDeviceFileLine( line );
             }
-            else if ( deviceType == C_CADENCE_DEVICE_ID )
+            else if ( isSpeedAndCadenceSensor( deviceName ) )
             {
-                antCadenceProcessing::evaluateDeviceLine( words );
+                antSpcadProcessing::readDeviceFileLine( line );
             }
-            else if ( ( deviceType == C_AERO_DEVICE_ID ) || ( deviceType == C_RHO_ID ) )
+            else if ( isSpeedOnlySensor( deviceName ) )
             {
-                // Aero Sensor or Current Air Density
-                antAeroProcessing::evaluateDeviceLine( words );
+                antSpeedOnlyProcessing::readDeviceFileLine( line );
+            }
+            else if ( isHeartRateSensor( deviceName ) )
+            {
+                antHRMProcessing::readDeviceFileLine( line );
+            }
+            else if ( isCadenceOnlySensor( deviceName ) )
+            {
+                antCadenceOnlyProcessing::readDeviceFileLine( line );
             }
         }
     }
-
-    return errorCode;
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -305,7 +283,7 @@ amDeviceType antAllProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -413,7 +391,7 @@ amDeviceType antAllProcessing::processUndefinedSensorType
         resetOutBuffer();
         if ( outputUnknown )
         {
-            outBuffer = inputBuffer;
+            setOutBuffer( inputBuffer );
         }
     }
 

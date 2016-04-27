@@ -48,30 +48,15 @@ bool antCadenceSpeedProcessing::appendCadenceSpeedSensor
     return result;
 }
 
-void antCadenceSpeedProcessing::setUseAsSpeedSensor
+bool antCadenceSpeedProcessing::isMakeshiftSpeedSensor
 (
-    const amString &sensorID,
-    bool            value
+    const amString &deviceID
 )
 {
-    if ( speedCadenceSensorTable.count( sensorID ) == 0 )
-    {
-        speedCadenceSensorTable.insert( std::pair<amString, double>( sensorID, value ) );
-    }
-    speedCadenceSensorTable[ sensorID ] = value;
-}
-
-bool antCadenceSpeedProcessing::isUsedAsSpeedSensor
-(
-    const amString &sensorID
-)
-{
-    bool result = false;
-    if ( speedCadenceSensorTable.count( sensorID ) == 0 )
-    {
-        speedCadenceSensorTable.insert( std::pair<amString, double>( sensorID, result ) );
-    }
-    result = speedCadenceSensorTable[ sensorID ];
+    bool result = deviceID.startsWith( C_CAD_DEVICE_HEAD        ) ||
+                  deviceID.startsWith( C_POWER_ONLY_DEVICE_HEAD ) ||
+                  deviceID.startsWith( C_CT_POWER_DEVICE_HEAD   ) ||
+                  deviceID.startsWith( C_CTF_POWER_DEVICE_HEAD  );
     return result;
 }
 
@@ -100,44 +85,75 @@ double antCadenceSpeedProcessing::computeSpeed
     return speed;
 }
 
-// ----------------------------------------------------------------------------
-// Read a line from the deviceIDs file
-// If the line contains a speed device definition of a cadence sensor (which
-//     uses cadence to compute speed - Note: this does not include SPCAD790)
-//     read the device ID, the wheel circumference and gear ratio, and store
-//     the values in the appropriate tables.
-//     Also, set "usedAsSpeedSensor" true.
-//     Return true.
-// Else:
-//     Return false.
-// ----------------------------------------------------------------------------
-bool antCadenceSpeedProcessing::evaluateDeviceLine
+int antCadenceSpeedProcessing::readDeviceFileLine1
 (
-    const amSplitString &words
+    const char *line,
+    amString   &errorMessage
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords   = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+    int           errorCode = 0;
 
     if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( ( deviceType == C_SPEED_DEVICE_ID ) && isCadenceSensor( deviceName ) )
+        if ( ( deviceType == C_SPEED_DEVICE_ID ) )
         {
-            double dArg1 = wheelCircumferenceDefault;
-            double dArg2 = gearRatioDefault;
-            if ( nbWords > 2 )
+            amString deviceName = words[ 1 ];
+            if ( isMakeshiftSpeedSensor( deviceName ) )
             {
-                dArg1 = words[ 2 ].toDouble();
-                if ( nbWords > 3 )
+                double curCircumference = wheelCircumferenceDefault;
+                double curGearRatio     = gearRatioDefault;
+                if ( nbWords > 2 )
                 {
-                    dArg2 = words[ 3 ].toDouble();
+                    curCircumference = words[ 2 ].toDouble();
+                    if ( ( curCircumference < C_MIN_CIRCUMFERENCE ) || ( curCircumference > C_MAX_CIRCUMFERENCE ) )
+                    {
+                        errorMessage     += "WARNING: Value for wheel circumference (";
+                        errorMessage     += amString( curCircumference, 4 );
+                        errorMessage     += " m) is outside of recommended range [";
+                        errorMessage     += amString( C_MIN_CIRCUMFERENCE, 4 );
+                        errorMessage     += ", ";
+                        errorMessage     += amString( C_MAX_CIRCUMFERENCE, 4 );
+                        errorMessage     += "].\n";
+                        curCircumference  = wheelCircumferenceDefault;
+                        errorCode         = E_BAD_PARAMETER_VALUE;
+                        errorMessage     += "             The value has been set to its default (";
+                        errorMessage     += amString( curCircumference, 4 );
+                        errorMessage     += " m).\n";
+                    }
+                    if ( nbWords > 3 )
+                    {
+                        curGearRatio = words[ 3 ].toDouble();
+                        if ( ( curGearRatio < C_MIN_GEAR_RATIO ) || ( curGearRatio > C_MAX_GEAR_RATIO ) )
+                        {
+                            errorMessage += ( errorCode ? "         " : "WARNING: " );
+                            errorMessage += "Value for gear ratio (";
+                            errorMessage += amString( curGearRatio, 8 );
+                            errorMessage += ") is outside of recommended range [";
+                            errorMessage += amString( C_MIN_GEAR_RATIO, 8 );
+                            errorMessage += ", ";
+                            errorMessage += amString( C_MAX_GEAR_RATIO, 8 );
+                            errorMessage += "].\n";
+                            curGearRatio  = gearRatioDefault;
+                            errorCode     = E_BAD_PARAMETER_VALUE;
+                            errorMessage += "             The value has been set to its default (";
+                            errorMessage += amString( curGearRatio, 4 );
+                            errorMessage += ").\n";
+                        }
+                    }
                 }
+                appendCadenceSpeedSensor( deviceName, curCircumference, curGearRatio );
             }
-            result = appendCadenceSpeedSensor( deviceName, dArg1, dArg2 );
+        }
+        if ( errorCode )
+        {
+            errorMessage += "         Line in file: \"";
+            errorMessage += line;
+            errorMessage += "\".\n";
         }
     }
-    return result;
+    return errorCode;
 }
 

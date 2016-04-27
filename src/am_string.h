@@ -7,6 +7,14 @@ const size_t C_DBL_RECISION = 6;
 
 class amString : public std::string
 {
+
+    private:
+
+        bool isDouble( std::string::const_iterator &tPtr ) const;
+        bool isInteger( std::string::const_iterator &tPtr ) const;
+        bool isUnsignedInteger( std::string::const_iterator &tPtr ) const;
+
+
     public:
 
         amString( void );

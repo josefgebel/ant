@@ -7,23 +7,6 @@ class amString;
 
 class amMulticastWrite
 {
-    public:
-
-        amMulticastWrite( void );
-        ~amMulticastWrite( void ) {};
-
-        inline bool isUp( void ) const { return connectionUp; }
-        void close( void );
-
-        size_t write
-               (
-                   const amString &buffer,
-                   int             errorCode,
-                   amString       &errorMessage,
-                   int             length = -1
-               );
-        int connect( const amString &ipAddress, int portNo, amString &errorMessage );
-
 
     private:
 
@@ -33,6 +16,18 @@ class amMulticastWrite
         bool determineIPAddress( amString &ipAddress, const amString &interface );
 
         struct sockaddr_in groupSock;
+
+
+    public:
+
+        amMulticastWrite( void );
+        ~amMulticastWrite( void ) {};
+
+        inline bool isUp( void ) const { return connectionUp; }
+
+        void   close( void );
+        size_t write( const amString &buffer, int errorCode, amString &errorMessage, int length = -1 );
+        int connect( const amString &ipAddress, int portNo, amString &errorMessage );
 
 };
 

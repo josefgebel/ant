@@ -115,13 +115,10 @@ class antPowerProcessing : virtual public antProcessing,
         amDeviceType processPowerMeter( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processPowerMeterSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
 
         bool appendPowerSensor( const amString &sensorID );
         bool appendPowerSensor( const amString &sensorID, unsigned int offset, unsigned int slope );
-        bool appendSpeedSensor( const amString &sensorID, double wheelCirumference );
-        bool appendPowerSpeedSensor( const amString &sensorID, double wheelCirumference, double gearRatio );
 
 
     public:

@@ -20,8 +20,8 @@ class antWeightProcessing : virtual public antProcessing
         amDeviceType processWeightScaleSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processWeightScaleSensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendWeightSensor( const amString & );
 
 

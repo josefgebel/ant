@@ -28,8 +28,8 @@ class antStrideSpeedDistProcessing : virtual public antProcessing
                  unsigned int additionalData8
              );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendStrideSpeedDistSensor( const amString & );
 
 

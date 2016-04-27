@@ -11,18 +11,17 @@ class antEnvironmentProcessing : virtual public antProcessing
         double convertTemp10 ( int temp10 );
         double convertTemp100( int temp100 );
 
-
-    protected:
-
         std::map<amString, unsigned int> previousHeartRateTable;
         std::map<amString, unsigned int> eventTimeTable;
         std::map<amString, double>       heartBeatTimeTable;
 
+
+    protected:
+
         amDeviceType processEnvironmentSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processEnvironmentSensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
         bool appendEnvironmentSensor( const amString & );
 
 

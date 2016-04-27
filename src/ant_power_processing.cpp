@@ -29,7 +29,9 @@ antPowerProcessing::antPowerProcessing
     setMaxZeroTimeB11( C_MAX_ZERO_TIME_POWER_B11 );
     setMaxZeroTimeB12( C_MAX_ZERO_TIME_POWER_B12 );
     setMaxZeroTimeB20( C_MAX_ZERO_TIME_POWER_B20 );
-    currentDeviceType = "POWER";
+    resetSlopeDefault();
+    resetOffsetDefault();
+    setCurrentDeviceType( "POWER" );
     reset();
 }
 
@@ -236,52 +238,6 @@ bool antPowerProcessing::appendPowerSensor
     return result;
 }
 
-bool antPowerProcessing::appendSpeedSensor
-(
-    const amString &sensorID,
-    double          wheelCirumference
-)
-{
-    bool result = isWheelTorquePowerSensor( sensorID );
-    if ( result )
-    {
-        if ( wheelCircumferenceTable.count( sensorID ) == 0 )
-        {
-            wheelCircumferenceTable.insert( std::pair<amString, double>( sensorID, 0 ) );
-        }
-        wheelCircumferenceTable[ sensorID ] = wheelCirumference ;
-        setUseAsSpeedSensor( sensorID, true );
-
-        if ( !isRegisteredDevice( sensorID ) )
-        {
-            registerDevice( sensorID );
-        }
-    }
-    return result;
-}
-
-bool antPowerProcessing::appendPowerSpeedSensor
-(
-    const amString &sensorID,
-    double          wheelCirumference,
-    double          gearRatio
-)
-{
-    bool result = isPowerSensor( sensorID );
-    if ( result )
-    {
-        result = antCadenceSpeedProcessing::appendCadenceSpeedSensor( sensorID, wheelCirumference, gearRatio );
-        if ( result )
-        {
-            if ( !isRegisteredDevice( sensorID ) )
-            {
-                registerDevice( sensorID );
-            }
-        }
-    }
-    return result;
-}
-
 double antPowerProcessing::getPower
 (
     const amString &sensorID
@@ -422,7 +378,7 @@ amDeviceType antPowerProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -430,152 +386,138 @@ amDeviceType antPowerProcessing::processSensorSemiCooked
     return result;
 }
 
-bool antPowerProcessing::evaluateDeviceLine
+void antPowerProcessing::readDeviceFileLine
 (
-    const amSplitString &words
+    const char *line
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+
     if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( isPowerSensor( deviceName ) )
-        {
-            double       dArg1  = 0;
-            double       dArg2  = 0;
-            unsigned int uiArg1 = 0;
-            unsigned int uiArg2 = 0;
 
-            if ( deviceType == C_POWER_DEVICE_ID )
+        if ( deviceType == C_INCLUDE_FILE )
+        {
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                if ( isCrankTorqueFrequencyPowerSensor( deviceName ) )
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
+            }
+            else
+            {
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else
+        {
+            amString curErrorMessage;
+            amString deviceName = words[ 1 ];
+
+            if ( isPowerSensor( deviceName ) )
+            {
+                if ( deviceType == C_POWER_DEVICE_ID )
                 {
-                    uiArg1 = ( unsigned int ) C_OFFSET_DEFAULT;
-                    uiArg2 = ( unsigned int ) C_SLOPE_DEFAULT;
-                    if ( nbWords > 2 )
+                    if ( isCrankTorqueFrequencyPowerSensor( deviceName ) )
                     {
-                        uiArg1 = words[ 2 ].toUInt();
-                        if ( nbWords > 3 )
+                        unsigned int curOffset      = offsetDefault;
+                        unsigned int curSlope10NmHz = slopeDefault;
+                        if ( nbWords > 2 )
                         {
-                            dArg2 = words[ 3 ].toDouble();
-                            if ( dArg2 > 0 )
+                            curOffset = words[ 2 ].toUInt();
+                            if ( ( curOffset < C_MIN_ZERO_OFFSET ) || ( curOffset > C_MAX_ZERO_OFFSET ) )
                             {
-                               dArg2 *= 10;
-                               uiArg2 = ( unsigned int ) round( dArg2 );
+                                appendErrorMessage( "WARNING: Value for power meter zero offset (" );
+                                appendErrorMessage( curOffset );
+                                appendErrorMessage( " Hz) is outside of recommended range [" );
+                                appendErrorMessage( C_MIN_ZERO_OFFSET );
+                                appendErrorMessage( ", " );
+                                appendErrorMessage( C_MAX_ZERO_OFFSET );
+                                appendErrorMessage( "].\n" );
+                                curOffset = offsetDefault;
+                                errorCode = E_BAD_PARAMETER_VALUE;
+                                appendErrorMessage( "             The value has been set to its default (" );
+                                appendErrorMessage( curOffset, 4 );
+                                appendErrorMessage( " Hz).\n" );
+                            }
+                            if ( nbWords > 3 )
+                            {
+                                double curSlope = words[ 3 ].toDouble();
+                                if ( curSlope >= 0 )
+                                {
+                                    if ( ( curSlope < C_MIN_PM_SLOPE ) || ( curSlope > C_MAX_PM_SLOPE ) )
+                                    {
+                                        if ( errorCode )
+                                        {
+                                            appendErrorMessage( "         " );
+                                        }
+                                        else
+                                        {
+                                            appendErrorMessage( "WARNING: " );
+                                        }
+                                        appendErrorMessage( "Value for power meter slope (" );
+                                        appendErrorMessage( curSlope, 1 );
+                                        appendErrorMessage( " Nm/Hz) is outside of recommended range [" );
+                                        appendErrorMessage( C_MIN_PM_SLOPE, 1 );
+                                        appendErrorMessage( ", " );
+                                        appendErrorMessage( C_MAX_PM_SLOPE, 1 );
+                                        appendErrorMessage( "].\n" );
+                                        appendErrorMessage( "             The value has been set to its default (factory slope).\n" );
+                                        errorCode = E_BAD_PARAMETER_VALUE;
+                                    }
+                                    else
+                                    {
+                                       curSlope *= 10;
+                                       curSlope10NmHz = ( unsigned int ) round( curSlope );
+                                    }
+                                }
+                            }
+                            if ( errorCode )
+                            {
+                                appendErrorMessage( "         Line in file: \"" );
+                                appendErrorMessage( line );
+                                appendErrorMessage( "\".\n" );
                             }
                         }
+                        appendPowerSensor( deviceName, curOffset, curSlope10NmHz );
                     }
-                    appendPowerSensor( deviceName, uiArg1, uiArg2 );
-                }
-                else if ( isWheelTorquePowerSensor( deviceName ) )
-                {
-                    appendPowerSensor( deviceName );
-                }
-                else
-                {
-                    appendPowerSensor( deviceName );
-                }
-                result = true;
-            }
-            else if ( deviceType == C_SPEED_DEVICE_ID )
-            {
-                dArg1 = wheelCircumferenceDefault;
-                if ( isWheelTorquePowerSensor( deviceName ) )
-                {
-                    if ( nbWords > 2 )
+                    else if ( isWheelTorquePowerSensor( deviceName ) )
                     {
-                        dArg1 = words[ 2 ].toDouble();
+                        appendPowerSensor( deviceName );
                     }
-                    appendSpeedSensor( deviceName, dArg1 );
-                }
-                else
-                {
-                    dArg2  = gearRatioDefault;
-                    uiArg1 = isCrankTorqueFrequencyPowerSensor( deviceName ) ? 4 : 2;
-                    if ( nbWords > uiArg1 )
+                    else
                     {
-                        dArg1  = words[ uiArg1 ].toDouble();
-                        uiArg2 = isCrankTorqueFrequencyPowerSensor( deviceName ) ? 5 : 3;
-                        if ( nbWords > uiArg2 )
-                        {
-                            dArg2 = words[ uiArg2 ].toDouble();
-                        }
+                        appendPowerSensor( deviceName );
                     }
-                    appendCadenceSpeedSensor( deviceName, dArg1, dArg2 );
                 }
-                result = true;
-            }
-            else if ( deviceType == C_SPEED_DEVICE_ID )
-            {
-                appendCadenceSensor( deviceName );
-                result = true;
+                else if ( deviceType == C_SPEED_DEVICE_ID )
+                {
+                    if ( isWheelTorquePowerSensor( deviceName ) )
+                    {
+                        errorCode = antSpeedProcessing::readDeviceFileLine1( line, curErrorMessage );
+                    }
+                    else
+                    {
+                        errorCode = antCadenceSpeedProcessing::readDeviceFileLine1( line, curErrorMessage );
+                    }
+                }
+                else if ( deviceType == C_CADENCE_DEVICE_ID )
+                {
+                    errorCode = antCadenceProcessing::readDeviceFileLine1( line, curErrorMessage );
+                }
+                if ( errorCode )
+                {
+                    appendErrorMessage( curErrorMessage );
+                }
             }
         }
     }
-    return result;
-}
-
-int antPowerProcessing::readDeviceFileStream
-(
-    std::ifstream &deviceFileStream
-)
-{
-    char line[ C_BUFFER_SIZE ];
-    amSplitString words;
-
-    amString     deviceType = "";
-    amString     deviceName = "";
-    unsigned int nbWords    = 0;
-
-    while ( true )
-    {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
-
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
-        {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-            if ( deviceType == C_INCLUDE_FILE )
-            {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
-            }
-            else if ( ( deviceType == C_POWER_DEVICE_ID ) || ( deviceType == C_SPEED_DEVICE_ID ) || ( deviceType == C_CADENCE_DEVICE_ID ) )
-            {
-                evaluateDeviceLine( words );
-            }
-        }
-    }
-
-    return errorCode;
 }
 
 void antPowerProcessing::reset
@@ -585,7 +527,6 @@ void antPowerProcessing::reset
 {
     antProcessing::reset();
     antCadenceSpeedProcessing::reset();
-    resetGearRatioDefault();
     resetSlopeDefault();
     resetOffsetDefault();
 
@@ -782,7 +723,7 @@ bool antPowerProcessing::createB01ResultString
     amString     sensorID;
     amString     timeStampBuffer;
     amString     semiCookedString;
-    amString     curVersion      = b2tVersion;
+    amString     curVersion      = getVersion();
     bool         result          = false;
     unsigned int nbWords         = words.size();
     unsigned int counter         = 0;
@@ -1009,7 +950,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     {
         createOutputHeader( sensorID, timeStampBuffer );
         createPWRB01ResultString( calibrationID, additionalData1, additionalData2 );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     return result;
@@ -1055,7 +996,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -1124,7 +1065,7 @@ amDeviceType antPowerProcessing::processPowerMeterB02
     {
         createOutputHeader( sensorID, timeStampBuffer );
         createPWRB02ResultString( subPageNumber, additionalData1, additionalData2, additionalData3 );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     return result;
@@ -1156,7 +1097,7 @@ amDeviceType antPowerProcessing::processPowerMeterB02SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -1176,7 +1117,7 @@ bool antPowerProcessing::createB02ResultString
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
     unsigned int additionalData3 = 0;
-    amString     curVersion      = b2tVersion;
+    amString     curVersion      = getVersion();
     amString     sensorID;
     amString     timeStampBuffer;
     amString     semiCookedString;
@@ -1328,7 +1269,7 @@ amDeviceType antPowerProcessing::processPowerMeterB03
     // Create the Result String
     createOutputHeader( sensorID, timeStampBuffer );
     createPWRB03ResultString( nbDataTypes, dataType, scaleFactor, deltaEventTime, value, timeStampDbl );
-    appendOutputFooter( b2tVersion );
+    appendOutputFooter( getVersion() );
 
     return result;
 }
@@ -1359,7 +1300,7 @@ amDeviceType antPowerProcessing::processPowerMeterB03SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -1372,16 +1313,16 @@ bool antPowerProcessing::createB03ResultString
     const amSplitString &words
 )
 {
-    bool         result                            = false;
-    unsigned int nbWords                           = words.size();
-    unsigned int counter                           = 0;
-    unsigned int additionalData1                   = 0;
-    unsigned int additionalData2                   = 0;
-    unsigned int additionalData3                   = 0;
-    unsigned int additionalData4                   = 0;
-    unsigned int additionalData5                   = 0;
-    double       additionalDoubleData              = 0;
-    amString     curVersion                        = b2tVersion;
+    bool         result               = false;
+    unsigned int nbWords              = words.size();
+    unsigned int counter              = 0;
+    unsigned int additionalData1      = 0;
+    unsigned int additionalData2      = 0;
+    unsigned int additionalData3      = 0;
+    unsigned int additionalData4      = 0;
+    unsigned int additionalData5      = 0;
+    double       additionalDoubleData = 0;
+    amString     curVersion           = getVersion();
     amString     sensorID;
     amString     timeStampBuffer;
     amString     semiCookedString;
@@ -1588,7 +1529,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
             wheelCircumference,
             gearRatio
         );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
 
         if ( isUsedAsSpeedSensor( sensorID ) )
         {
@@ -1622,7 +1563,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
         amString      sensorID;
         amString      timeStampBuffer;
         amString      semiCookedString;
-        amString      curVersion            = b2tVersion;
+        amString      curVersion            = getVersion();
         amSplitString words;
         unsigned int  nbWords               = words.split( inputBuffer );
         unsigned int  eventCount            = 0;
@@ -1731,7 +1672,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -1894,7 +1835,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
             speed,
             wheelCircumference
         );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
 
         setPower  ( sensorID, power );
         setTorque ( sensorID, torque );
@@ -1934,7 +1875,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
         unsigned int  instantaneousCadence   = 0;
         unsigned int  wheelTicks             = 0;
         unsigned int  counter                = 0;
-        amString      curVersion             = b2tVersion;
+        amString      curVersion             = getVersion();
         amString      semiCookedString;
         amString      timeStampBuffer;
         amString      sensorID;
@@ -2030,7 +1971,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -2246,7 +2187,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12
             wheelCircumference,
             gearRatio
         );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
         if ( isUsedAsSpeedSensor( sensorID ) )
         {
             setSpeed( sensorID, speed );
@@ -2272,7 +2213,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
         amSplitString words;
         unsigned int  nbWords                = words.split( inputBuffer );
         amString      sensorID;
-        amString      curVersion             = b2tVersion;
+        amString      curVersion             = getVersion();
         amString      timeStampBuffer;
         amString      semiCookedString;
         unsigned int  counter                = 0;
@@ -2386,7 +2327,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -2417,7 +2358,7 @@ bool antPowerProcessing::createB13ResultString
     unsigned int rawRightPedalSmoothness     = 0;
     unsigned int deltaEventCount             = 0;
     unsigned int totalEventCount             = 0;
-    amString     curVersion                  = b2tVersion;
+    amString     curVersion                  = getVersion();
     amString     sensorID;
     amString     timeStampBuffer;
     amString     semiCookedString;
@@ -2561,7 +2502,7 @@ amDeviceType antPowerProcessing::processPowerMeterB13
             deltaEventCount,
             totalEventCount
         );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     return result;
@@ -2602,7 +2543,7 @@ amDeviceType antPowerProcessing::processPowerMeterB13SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -2754,7 +2695,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
             setSpeed( sensorID, speed );
         }
 
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
 
         setPower  ( sensorID, power );
         setTorque ( sensorID, torque );
@@ -2786,7 +2727,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
         unsigned int  nbWords              = words.split( inputBuffer );
         amString      sensorID;
         amString      timeStampBuffer;
-        amString      curVersion           = b2tVersion;
+        amString      curVersion           = getVersion();
         amString      semiCookedString;
         unsigned int  deltaEventCount      = 0;
         unsigned int  deltaTimeStamp       = 0;
@@ -2890,7 +2831,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -2921,7 +2862,7 @@ bool antPowerProcessing::createB46ResultString
     unsigned int requestedResponse = 0;
     unsigned int requestedPageNo   = 0;
     unsigned int commandType       = 0;
-    amString     curVersion        = b2tVersion;
+    amString     curVersion        = getVersion();
     amString     sensorID;
     amString     timeStampBuffer;
     amString     semiCookedString;
@@ -3022,7 +2963,7 @@ amDeviceType antPowerProcessing::processPowerMeterB46
     {
         createOutputHeader( sensorID, timeStampBuffer );
         createCommonResultStringPage70( sensorID, outputPageNo, descriptor1, descriptor2, requestedResponse, requestedPageNo, commandType );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     return result;
@@ -3061,7 +3002,7 @@ amDeviceType antPowerProcessing::processPowerMeterB46SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -3085,7 +3026,7 @@ bool antPowerProcessing::createB50ResultString
     amString     sensorID;
     amString     semiCookedString;
     amString     timeStampBuffer;
-    amString     curVersion       = b2tVersion;
+    amString     curVersion       = getVersion();
     bool         result           = false;
     unsigned int nbWords          = words.size();
     unsigned int counter          = 0;
@@ -3173,7 +3114,7 @@ amDeviceType antPowerProcessing::processPowerMeterB50
 
     createOutputHeader( sensorID, timeStampBuffer );
     createCommonResultStringPage80( sensorID, outputPageNo, manufacturerID, hardwareRevision, modelNumber );
-    appendOutputFooter( b2tVersion );
+    appendOutputFooter( getVersion() );
 
     return result;
 }
@@ -3205,7 +3146,7 @@ amDeviceType antPowerProcessing::processPowerMeterB50SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -3230,7 +3171,7 @@ bool antPowerProcessing::createB51ResultString
     amString     sensorID;
     amString     semiCookedString;
     amString     timeStampBuffer;
-    amString     curVersion       = b2tVersion;
+    amString     curVersion       = getVersion();
     bool         result           = false;
     unsigned int nbWords          = words.size();
     unsigned int counter          = 0;
@@ -3324,7 +3265,7 @@ amDeviceType antPowerProcessing::processPowerMeterB51
 
     createOutputHeader( sensorID, timeStampBuffer );
     createCommonResultStringPage81( sensorID, outputPageNo, serialNumber, softwareRevision );
-    appendOutputFooter( b2tVersion );
+    appendOutputFooter( getVersion() );
 
     return result;
 }
@@ -3364,7 +3305,7 @@ amDeviceType antPowerProcessing::processPowerMeterB51SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -3388,7 +3329,7 @@ bool antPowerProcessing::createB52ResultString
     amString     timeStampBuffer;
     amString     sensorID;
     amString     semiCookedString;
-    amString     curVersion         = b2tVersion;
+    amString     curVersion         = getVersion();
     bool         result             = false;
     unsigned int nbWords            = words.size();
     unsigned int nbBatteries        = 0;
@@ -3490,7 +3431,7 @@ bool antPowerProcessing::createB52ResultString
         if ( commonPage )
         {
             result = POWER_METER;
-            appendOutputFooter( b2tVersion );
+            appendOutputFooter( getVersion() );
         }
         else
         {
@@ -3669,7 +3610,7 @@ amDeviceType antPowerProcessing::processPowerMeterB52
     if ( commonPage )
     {
         result = POWER_METER;
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
     else
     {
@@ -3723,7 +3664,7 @@ amDeviceType antPowerProcessing::processPowerMeterB52SemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -3830,7 +3771,7 @@ amDeviceType antPowerProcessing::processPowerMeter
                  if ( commonPage )
                  {
                      result = POWER_METER;
-                     appendOutputFooter( b2tVersion );
+                     appendOutputFooter( getVersion() );
                  }
                  else
                  {
@@ -3974,14 +3915,14 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
                              if ( commonPage )
                              {
                                  result = POWER_METER;
-                                 appendOutputFooter( b2tVersion );
+                                 appendOutputFooter( getVersion() );
                              }
                              else
                              {
                                  resetOutBuffer();
                                  if ( outputUnknown )
                                  {
-                                     outBuffer = inputBuffer;
+                                     setOutBuffer( inputBuffer );
                                  }
                              }
                              break;
@@ -4807,6 +4748,7 @@ void antPowerProcessing::createPWRB11ResultString
             appendOutput( cadence );
             appendOutput( torque, getValuePrecision() );
             appendOutput( wheelTicks );
+std::cerr << "isSpeedSensor = " << isSpeedSensor << std::endl;
             if ( isSpeedSensor )
             {
                 appendOutput( speed, getValuePrecision() );

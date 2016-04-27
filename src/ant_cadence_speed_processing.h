@@ -8,15 +8,19 @@ class antCadenceSpeedProcessing : virtual public antSpeedProcessing,
                                   virtual public antCadenceProcessing
 {
 
-    protected:
+    private:
 
         double gearRatioDefault;
-
         std::map<amString, bool> speedCadenceSensorTable;
 
+
+    protected:
+
+        bool   isMakeshiftSpeedSensor( const amString &deviceID );
         bool   appendCadenceSpeedSensor( const amString &sensorID, double wheelCirumference, double gearRatio );
         double computeSpeed( unsigned int cadence, double wheelCircumference, double gearRatio );
-        bool   evaluateDeviceLine( const amSplitString &words );
+
+        virtual int readDeviceFileLine1( const char *line, amString &errorMessage );
 
         virtual void reset( void );
 
@@ -29,8 +33,6 @@ class antCadenceSpeedProcessing : virtual public antSpeedProcessing,
         void setGearRatioDefault  ( double value ) { gearRatioDefault = value; }
         void resetGearRatioDefault( void ) { gearRatioDefault = C_GEAR_RATIO_DEFAULT; }
 
-        void setUseAsSpeedSensor( const amString &sensorID, bool value );
-        bool isUsedAsSpeedSensor( const amString &sensorID );
 };
 
 #endif // __ANT_CADENCE_SPEED_PROCESSING_H__

@@ -1,5 +1,6 @@
 #include <sstream>
 #include <iomanip>
+#include <iostream>
 
 #include "am_string.h"
 
@@ -237,14 +238,28 @@ bool amString::isUnsignedInteger
     void
 ) const
 {
-    bool                        result = false;
     std::string::const_iterator tPtr   = begin();
+    bool                        result = isUnsignedInteger( tPtr );
+    return result;
+}
+bool amString::isUnsignedInteger
+(
+    std::string::const_iterator &tPtr
+) const
+{
+    bool result = false;
     if ( tPtr != end() )
     {
-        result = true;
-        for ( ; result && ( tPtr != end() ); ++tPtr )
+        for ( ; ( tPtr != end() ); ++tPtr )
         {
-            result = ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) );
+            if ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) )
+            {
+                result = true;
+            }
+            else
+            {
+                break;
+            }
         }
     }
     return result;
@@ -255,8 +270,18 @@ bool amString::isInteger
     void
 ) const
 {
-    bool                        result = false;
     std::string::const_iterator tPtr   = begin();
+    bool                        result = isInteger( tPtr );
+    result &= ( tPtr == end() );
+    return result;
+}
+
+bool amString::isInteger
+(
+    std::string::const_iterator &tPtr
+) const
+{
+    bool result = false;
     if ( tPtr != end() )
     {
         if ( ( *tPtr == '-' ) || ( *tPtr == '+' ) )
@@ -265,11 +290,7 @@ bool amString::isInteger
         }
         if ( tPtr != end() )
         {
-            result = true;
-            for ( ; result && ( tPtr != end() ); ++tPtr )
-            {
-                result = ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) );
-            }
+            result = isUnsignedInteger( tPtr );
         }
     }
     return result;
@@ -282,46 +303,30 @@ bool amString::isDouble
 {
     bool                        result = false;
     std::string::const_iterator tPtr   = begin();
-    if ( tPtr != end() )
+    result = isDouble( tPtr );
+    if ( result && ( tPtr != end() ) && ( ( toupper( *tPtr ) == 'E' ) || ( toupper( *tPtr ) == 'G' ) ) )
     {
-        if ( ( *tPtr == '-' ) || ( *tPtr == '+' ) )
+        ++tPtr;
+        result = isInteger( tPtr );
+    }
+    result &= ( tPtr == end() );
+    return result;
+}
+
+bool amString::isDouble
+(
+    std::string::const_iterator &tPtr
+) const
+{
+    bool result = isInteger( tPtr );
+    if ( result && ( tPtr != end() ) )
+    {
+        if ( *tPtr == '.' )
         {
-             ++tPtr;
-        }
-        if ( tPtr != end() )
-        {
-            result = true;
-            for ( ; result && ( tPtr != end() ); ++tPtr )
+            ++tPtr;
+            if ( tPtr != end() )
             {
-                result = ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) );
-            }
-            if ( *tPtr == '.' )
-            {
-                ++tPtr;
-                if ( tPtr != end() )
-                {
-                    result = true;
-                    for ( ; result && ( tPtr != end() ); ++tPtr )
-                    {
-                        result = ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) );
-                    }
-                }
-            }
-            else if ( ( *tPtr == 'E' ) || ( *tPtr == 'e' ) )
-            {
-                ++tPtr;
-                if ( ( *tPtr == '-' ) || ( *tPtr == '+' ) )
-                {
-                     ++tPtr;
-                }
-                if ( tPtr != end() )
-                {
-                    result = true;
-                    for ( ; result && ( tPtr != end() ); ++tPtr )
-                    {
-                        result = ( ( *tPtr >= '0' ) && ( *tPtr <= '9' ) );
-                    }
-                }
+                result = isUnsignedInteger( tPtr );
             }
         }
     }

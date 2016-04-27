@@ -22,7 +22,7 @@ antWeightProcessing::antWeightProcessing
     void
 ) : antProcessing()
 {
-    currentDeviceType = "WEIGHT";
+    setCurrentDeviceType( "WEIGHT" );
     reset();
 }
 
@@ -186,7 +186,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
         {
             createWeightScaleString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4, additionalData5, additionalData6 );
         }
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -213,7 +213,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
         amString      sensorID;
         amString      semiCookedString;
         amString      timeStampBuffer;
-        amString      curVersion      = b2tVersion;
+        amString      curVersion      = getVersion();
         amSplitString words;
         unsigned int  nbWords         = words.split( inputBuffer );
         unsigned int  startCounter    = 0;
@@ -369,7 +369,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -439,7 +439,7 @@ amDeviceType antWeightProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -447,91 +447,44 @@ amDeviceType antWeightProcessing::processSensorSemiCooked
     return result;
 }
 
-// ----------------------------------------------------------------------------
-// Read a line from the deviceIDs file
-// If the line contains a heart rate monitor device definition
-//     Return true.
-// Else:
-//     Return false.
-// ----------------------------------------------------------------------------
-bool antWeightProcessing::evaluateDeviceLine
+void antWeightProcessing::readDeviceFileLine
 (
-    const amSplitString &words
+    const char *line
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
-    if ( nbWords > 2 )
+    amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+
+    if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( ( deviceType == C_WEIGHT_DEVICE_ID ) && isWeightScaleSensor( deviceName ) )
-        {
-            result = appendWeightSensor( deviceName );
-        }
-    }
-    return result;
-}
 
-int antWeightProcessing::readDeviceFileStream
-(
-    std::ifstream &deviceFileStream
-)
-{
-    char line[ C_BUFFER_SIZE ];
-    amSplitString words;
-
-    amString     deviceType = "";
-    amString     deviceName = "";
-    unsigned int nbWords    = 0;
-
-    while ( true )
-    {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
-
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
-        {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( ( deviceType == C_WEIGHT_DEVICE_ID ) && isWeightScaleSensor( deviceName ) )
+            else
             {
-                evaluateDeviceLine( words );
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else if ( deviceType == C_WEIGHT_DEVICE_ID )
+        {
+            amString deviceName = words[ 1 ];
+            if ( isWeightScaleSensor( deviceName ) )
+            {
+                appendWeightSensor( deviceName );
             }
         }
     }
-
-    return errorCode;
 }
 
 void antWeightProcessing::getWeightScaleCapabilities

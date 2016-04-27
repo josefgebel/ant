@@ -35,7 +35,8 @@ class antSpeedOnlyProcessing : virtual public antProcessing,
              );
 
         bool appendSpeedSensor( const amString &sensorID, double wheelCircumference, double nbMagnets );
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
+
+        virtual void readDeviceFileLine( const char *line );
 
 
     public:

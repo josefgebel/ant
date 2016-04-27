@@ -9,6 +9,19 @@
 
 class amSplitString
 {
+
+    private:
+
+        std::vector<amString> words;
+        amString              terminals;
+        amString              separators;
+        size_t                curWordNo;
+
+        void init       ( void );
+        bool isTerminal ( char ) const;
+        bool isSeparator( char ) const;
+
+
     public:
 
         amSplitString( void );
@@ -33,19 +46,9 @@ class amSplitString
         const amString front( void ) const;
         const amString back( void ) const;
 
+        amString concatenate( int start, int end = -1, char link = ' ' ) const;
+
         inline size_t size( void ) const { return words.size(); }
-
-
-    private:
-
-        std::vector<amString> words;
-        amString              terminals;
-        amString              separators;
-        size_t                curWordNo;
-
-        void init       ( void );
-        bool isTerminal ( char ) const;
-        bool isSeparator( char ) const;
 
 };
 

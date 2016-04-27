@@ -3,7 +3,6 @@
 #include "am_split_string.h"
 #include "ant_aero_processing.h"
 
-
 // -------------------------------------------------------------------------------------------------------------------------
 // -------------------------------------------------------------------------------------------------------------------------
 //
@@ -22,8 +21,10 @@ antAeroProcessing::antAeroProcessing
     void
 ) : antProcessing()
 {
-    currentDeviceType = "AERO";
-    rho               = rhoDefault;
+    setCurrentDeviceType( "AERO" );
+    resetRhoDefault();
+    resetCalibrationRhoDefault();
+    resetAirSpeedMultiplierDefault();
     reset();
 }
 
@@ -136,7 +137,7 @@ amDeviceType antAeroProcessing::processAeroSensor
 
         createOutputHeader( sensorID, timeStampBuffer );
         createAEROResultString( airSpeedRaw, yawAngleRaw, calibrationRho, airSpeedMultiplier, rho );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -149,7 +150,7 @@ amDeviceType antAeroProcessing::processAeroSensor
             commonPage = processCommonPages( sensorID, payLoad, outputPageNo );
             if ( commonPage )
             {
-                appendOutputFooter( b2tVersion );
+                appendOutputFooter( getVersion() );
             }
             else
             {
@@ -188,15 +189,15 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
     if ( !inputBuffer.empty() )
     {
         amSplitString words;
-        unsigned int  nbWords            = words.split( inputBuffer );
-        unsigned int  airSpeedRaw        = 0;
-        unsigned int  yawAngleRaw        = 0;
-        unsigned int  counter            = 0;
-        unsigned int  dataPage           = 0;
-        unsigned int  startCounter       = 0;
-        bool          commonPage         = false;
-        bool          outputPageNo       = true;
-        amString   curVersion         = b2tVersion;
+        unsigned int  nbWords      = words.split( inputBuffer );
+        unsigned int  airSpeedRaw  = 0;
+        unsigned int  yawAngleRaw  = 0;
+        unsigned int  counter      = 0;
+        unsigned int  dataPage     = 0;
+        unsigned int  startCounter = 0;
+        bool          commonPage   = false;
+        bool          outputPageNo = true;
+        amString   curVersion      = getVersion();
         amString   sensorID;
         amString   timeStampBuffer;
         amString   semiCookedString;
@@ -259,7 +260,7 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -330,7 +331,7 @@ amDeviceType antAeroProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -344,14 +345,9 @@ void antAeroProcessing::reset
 )
 {
     antProcessing::reset();
-
-    currentDeviceType = "AERO";
     airSpeedMultiplierTable.clear();
     rhoCalibrationTable.clear();
-
-    resetRhoDefault();
-    resetCalibrationRhoDefault();
-    resetAirSpeedMultiplierDefault();
+    setRho( rhoDefault );
 }
 
 void antAeroProcessing::setRho
@@ -365,7 +361,7 @@ void antAeroProcessing::setRho
 bool antAeroProcessing::setCalibrationRho
 (
     const amString &sensorID,
-    double             value
+    double          value
 )
 {
     bool result = ( rhoCalibrationTable.count( sensorID ) > 0 );
@@ -379,7 +375,7 @@ bool antAeroProcessing::setCalibrationRho
 bool antAeroProcessing::setAirSpeedMultiplier
 (
     const amString &sensorID,
-    double             value
+    double          value
 )
 {
     bool result = ( airSpeedMultiplierTable.count( sensorID ) > 0 );
@@ -390,147 +386,135 @@ bool antAeroProcessing::setAirSpeedMultiplier
     return result;
 }
 
-bool antAeroProcessing::evaluateDeviceLine
+void antAeroProcessing::readDeviceFileLine
 (
-    const amSplitString &words
+    const char *line
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+
     if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        double      dArg1      = 0;
-        double      dArg2      = 0;
-        if ( ( deviceType == C_AERO_DEVICE_ID ) && isAeroSensor( deviceName ) )
+
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            dArg1 = C_CALIBRATION_RHO_DEFAULT;
-            dArg2 = C_AIR_SPEED_MULTIPLIER_DEFAULT;
-            if ( nbWords > 2 )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                dArg1 = words[ 2 ].toDouble();
-                if ( nbWords > 3 )
-                {
-                    dArg2 = words[ 3 ].toDouble();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            appendAeroSensor( deviceName, dArg1, dArg2 );
+            else
+            {
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
         }
         else if ( deviceType == C_RHO_ID )
         {
-            dArg1 = words[ 1 ].toDouble();
-            if ( dArg1 > 0 )
+            double curRho = words[ 1 ].toDouble();
+            if ( ( curRho < C_MIN_RHO ) || ( curRho > C_MAX_RHO ) )
             {
-                setRho( dArg1 );
-            }
-        }
-    }
-    return result;
-}
-
-int antAeroProcessing::readDeviceFileStream
-(
-    std::ifstream &deviceFileStream
-)
-{
-    amString  deviceType = "";
-    amString  deviceName = "";
-    unsigned int nbWords    = 0;
-
-    char line[ C_BUFFER_SIZE ];
-    amSplitString words;
-
-    while ( true )
-    {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
-
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
-        {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-            if ( deviceType == C_INCLUDE_FILE )
-            {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
+                if ( errorCode )
                 {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
+                    appendErrorMessage( "         " );
                 }
                 else
                 {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
+                    appendErrorMessage( "WARNING: " );
+                }
+                appendErrorMessage( "Value for current air density (" );
+                appendErrorMessage( curRho, 4 );
+                appendErrorMessage( " kg/m^3) is outside of recommended range [" );
+                appendErrorMessage( C_MIN_RHO, 4 );
+                appendErrorMessage( ", " );
+                appendErrorMessage( C_MAX_RHO, 4 );
+                appendErrorMessage( "].\n" );
+                curRho    = rhoDefault;
+                errorCode = E_BAD_PARAMETER_VALUE;
+                appendErrorMessage( "             The value has been set to its default (" );
+                appendErrorMessage( curRho, 4 );
+                appendErrorMessage( ").\n" );
+            }
+            setRho( curRho );
+        }
+        else
+        {
+            amString deviceName = words[ 1 ];
+            if ( isAeroSensor( deviceName ) )
+            {
+                if ( deviceType == C_AERO_DEVICE_ID )
+                {
+                    double curCalibrationRho = calibrationRhoDefault;
+                    double curMultiplier     = airSpeedMultiplierDefault;
+                    if ( nbWords > 2 )
+                    {
+                        curCalibrationRho = words[ 2 ].toDouble();
+                        if ( ( curCalibrationRho < C_MIN_RHO ) || ( curCalibrationRho > C_MAX_RHO ) )
+                        {
+                            if ( errorCode )
+                            {
+                                appendErrorMessage( "         " );
+                            }
+                            else
+                            {
+                                appendErrorMessage( "WARNING: " );
+                            }
+                            appendErrorMessage( "Value for calibration air density (" );
+                            appendErrorMessage( curCalibrationRho, 4 );
+                            appendErrorMessage( " kg/m^3) is outside of recommended range [" );
+                            appendErrorMessage( C_MIN_RHO, 4 );
+                            appendErrorMessage( ", " );
+                            appendErrorMessage( C_MAX_RHO, 4 );
+                            appendErrorMessage( "].\n" );
+                            curCalibrationRho = calibrationRhoDefault;
+                            errorCode         = E_BAD_PARAMETER_VALUE;
+                            appendErrorMessage( "             The value has been set to its default (" );
+                            appendErrorMessage( curCalibrationRho, 4 );
+                            appendErrorMessage( ").\n" );
+                        }
+                        if ( nbWords > 3 )
+                        {
+                            curMultiplier = words[ 3 ].toDouble();
+                            if ( ( curMultiplier < C_MIN_MULTIPLIER ) || ( curMultiplier > C_MAX_MULTIPLIER ) )
+                            {
+                                if ( errorCode )
+                                {
+                                    appendErrorMessage( "         " );
+                                }
+                                else
+                                {
+                                    appendErrorMessage( "WARNING: " );
+                                }
+                                appendErrorMessage( "Value for air speed multiplier (" );
+                                appendErrorMessage( curMultiplier, 4 );
+                                appendErrorMessage( ") is outside of recommended range [" );
+                                appendErrorMessage( C_MIN_MULTIPLIER, 4 );
+                                appendErrorMessage( ", " );
+                                appendErrorMessage( C_MAX_MULTIPLIER, 4 );
+                                appendErrorMessage( "].\n" );
+                                curMultiplier = airSpeedMultiplierDefault;
+                                errorCode     = E_BAD_PARAMETER_VALUE;
+                                appendErrorMessage( "             The value has been set to its default (" );
+                                appendErrorMessage( curMultiplier, 4 );
+                                appendErrorMessage( ").\n" );
+                            }
+                        }
+                    }
+                    appendAeroSensor( deviceName, curCalibrationRho, curMultiplier );
                 }
             }
-            else if ( ( deviceType == C_AERO_DEVICE_ID ) || ( deviceType == C_RHO_ID ) )
-            {
-                evaluateDeviceLine( words );
-            }
         }
-    }
-
-    return errorCode;
-}
-
-void antAeroProcessing::createAEROResultString
-(
-    unsigned int airSpeedRaw,
-    unsigned int yawAngleRaw,
-    double       calibrationRho,
-    double       airSpeedMultiplier,
-    double       currentRho
-)
-{
-    if ( semiCookedOut )
-    {
-        if ( outputAsJSON )
+        if ( errorCode )
         {
-            appendJSONItem( "raw air speed", airSpeedRaw );
-            appendJSONItem( "raw yaw angle", yawAngleRaw );
-        }
-        else
-        {
-            appendOutput( airSpeedRaw );
-            appendOutput( yawAngleRaw );
-        }
-    }
-    else
-    {
-        double airSpeed = computeAirSpeed( airSpeedRaw, calibrationRho, airSpeedMultiplier, currentRho );
-        double yawAngle = computeYawAngle( yawAngleRaw );
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "air speed",               airSpeed,           getValuePrecision() );
-            appendJSONItem( "yaw angle",               yawAngle,           getValuePrecision() );
-            appendJSONItem( "calibration air density", calibrationRho,     getValuePrecision() );
-            appendJSONItem( "air speed multiplier",    airSpeedMultiplier, getValuePrecision() );
-            appendJSONItem( "current air density",     currentRho,         getValuePrecision() );
-        }
-        else
-        {
-            appendOutput( airSpeed,           getValuePrecision() );
-            appendOutput( yawAngle,           getValuePrecision() );
-            appendOutput( calibrationRho,     getValuePrecision() );
-            appendOutput( airSpeedMultiplier, getValuePrecision() );
-            appendOutput( currentRho,         getValuePrecision() );
+            appendErrorMessage( "         Line in file: \"" );
+            appendErrorMessage( line );
+            appendErrorMessage( "\".\n" );
         }
     }
 }
@@ -625,5 +609,50 @@ double antAeroProcessing::getCorrectionFactor
     }
 
     return correctionFactor;
+}
+
+void antAeroProcessing::createAEROResultString
+(
+    unsigned int airSpeedRaw,
+    unsigned int yawAngleRaw,
+    double       calibrationRho,
+    double       airSpeedMultiplier,
+    double       currentRho
+)
+{
+    if ( semiCookedOut )
+    {
+        if ( outputAsJSON )
+        {
+            appendJSONItem( "raw air speed", airSpeedRaw );
+            appendJSONItem( "raw yaw angle", yawAngleRaw );
+        }
+        else
+        {
+            appendOutput( airSpeedRaw );
+            appendOutput( yawAngleRaw );
+        }
+    }
+    else
+    {
+        double airSpeed = computeAirSpeed( airSpeedRaw, calibrationRho, airSpeedMultiplier, currentRho );
+        double yawAngle = computeYawAngle( yawAngleRaw );
+        if ( outputAsJSON )
+        {
+            appendJSONItem( "air speed",               airSpeed,           getValuePrecision() );
+            appendJSONItem( "yaw angle",               yawAngle,           getValuePrecision() );
+            appendJSONItem( "calibration air density", calibrationRho,     getValuePrecision() );
+            appendJSONItem( "air speed multiplier",    airSpeedMultiplier, getValuePrecision() );
+            appendJSONItem( "current air density",     currentRho,         getValuePrecision() );
+        }
+        else
+        {
+            appendOutput( airSpeed,           getValuePrecision() );
+            appendOutput( yawAngle,           getValuePrecision() );
+            appendOutput( calibrationRho,     getValuePrecision() );
+            appendOutput( airSpeedMultiplier, getValuePrecision() );
+            appendOutput( currentRho,         getValuePrecision() );
+        }
+    }
 }
 

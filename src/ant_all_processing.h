@@ -33,16 +33,18 @@ class antAllProcessing : virtual public antAeroProcessing,
                          virtual public antHRMProcessing,
                          virtual public antSpeedOnlyProcessing
 {
+
     private:
 
         amDeviceType processUndefinedSensorType( const amString &inputBuffer );
+
 
     public:
 
         antAllProcessing();
         virtual ~antAllProcessing() {}
 
-        virtual int readDeviceFileStream( std::ifstream & );
+        virtual void readDeviceFileLine( const char *line );
 
         amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processSensorSemiCooked( const amString &inputBuffer );

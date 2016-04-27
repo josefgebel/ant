@@ -26,7 +26,7 @@ antSpcadProcessing::antSpcadProcessing
     antCadenceProcessing()
 {
     reset();
-    currentDeviceType = "SPCAD790";
+    setCurrentDeviceType( "SPCAD790" );
     setMaxZeroTime( C_MAX_ZERO_TIME_SPEED );
 }
 
@@ -126,7 +126,7 @@ amDeviceType antSpcadProcessing::processSensorSemiCooked
         resetOutBuffer();
         if ( outputUnknown )
         {
-            outBuffer = inputBuffer;
+            setOutBuffer( inputBuffer );
         }
     }
 
@@ -146,70 +146,57 @@ void antSpcadProcessing::reset
     cadenceCountTable.clear();
 }
 
-int antSpcadProcessing::readDeviceFileStream
+void antSpcadProcessing::readDeviceFileLine
 (
-    std::ifstream &deviceFileStream
+    const char *line
 )
 {
-    unsigned int nbWords    = 0;
-    amString     deviceType = "";
-    amString     deviceName = "";
-
-    char line[ C_BUFFER_SIZE ];
     amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
 
-    while ( true )
+    if ( nbWords > 1 )
     {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
+        amString deviceType = words[ 0 ];
 
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            // ----------------------------------------
-            // All entries must have at least 2 words
-            // ----------------------------------------
-
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( ( deviceType == C_SPEED_DEVICE_ID ) && isSpeedAndCadenceSensor( deviceName ) )
+            else
             {
-                antSpeedProcessing::evaluateDeviceLine( words );
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else
+        {
+            amString deviceName = words[ 1 ];
+ 
+            if ( isSpeedAndCadenceSensor( deviceName ) )
+            {
+                amString curErrorMessage;
+                if ( deviceType == C_SPEED_DEVICE_ID )
+                {
+                    errorCode = antSpeedProcessing::readDeviceFileLine1( line, curErrorMessage );
+                }
+                else if ( deviceType == C_CADENCE_DEVICE_ID )
+                {
+                    errorCode = antCadenceProcessing::readDeviceFileLine1( line, curErrorMessage );
+                }
+                if ( errorCode )
+                {
+                    appendErrorMessage( curErrorMessage );
+                }
             }
         }
     }
-
-    return errorCode;
 }
 
 //-------------------------------------------------------------------------------------------------//
@@ -339,7 +326,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
         setSpeed( sensorID, speed );
         setCadence( sensorID, cadence );
         setZeroTimeCount( sensorID, zeroTime );
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -372,7 +359,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensorSemiCooked
     amDeviceType result = OTHER_DEVICE;
     if ( !inputBuffer.empty() )
     {
-        amString      curVersion                = b2tVersion;
+        amString      curVersion                = getVersion();
         amString      sensorID;
         amString      semiCookedString;
         amString      timeStampBuffer;
@@ -443,7 +430,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }

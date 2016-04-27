@@ -2,7 +2,7 @@
 
 const char C_PROGRAM_NAME[]  = "power_ant2txt";
 const char C_DEVICE_NAME[]   = "POWER";
-const char C_OPTION_STRING[] = "12BDd:f:H:hI:Jl:M:m:P:p:RrsST:t:UvVx";
+const char C_OPTION_STRING[] = "12BDd:f:H:hI:Jl:M:m:P:p:RrsST:t:UvVwx";
 
 int main
 (

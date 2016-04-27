@@ -164,7 +164,7 @@ int amMulticastRead::connect
         errorCode     = E_MC_NO_INTERFACE;
         errorMessage += "Creating multicast connection for reading failed. No Interface.\n";
     }
-    else if ( !ipAddress.empty() )
+    else if ( ipAddress.empty() )
     {
         errorCode     = E_MC_NO_IP_ADDRESS;
         errorMessage += "Creating multicast connection for reading failed. No IP Address.\n";

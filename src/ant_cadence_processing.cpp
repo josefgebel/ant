@@ -110,30 +110,28 @@ unsigned int antCadenceProcessing::computeCadence
     return cadence;
 }
 
-// ----------------------------------------------------------------------------
-// Read a line from the deviceIDs file
-// If the line contains a cadence device definition
-//     Return true.
-// Else:
-//     Return false.
-// ----------------------------------------------------------------------------
-bool antCadenceProcessing::evaluateDeviceLine
+int antCadenceProcessing::readDeviceFileLine1
 (
-    const amSplitString &words
+    const char *line,
+    amString   &errorMessage
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords   = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+    int           errorCode = 0;
 
-    if ( nbWords > 2 )
+    if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( ( deviceType == C_CADENCE_DEVICE_ID ) && isCadenceSensor( deviceName ) )
+        if ( deviceType == C_CADENCE_DEVICE_ID )
         {
-            result = appendCadenceSensor( deviceName );
+            amString deviceName = words[ 1 ];
+            if ( isCadenceSensor( deviceName ) )
+            {
+                appendCadenceSensor( deviceName );
+            }
         }
     }
-    return result;
+    return errorCode;
 }
 

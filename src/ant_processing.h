@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <iostream>
 
 #include <am_multicast_read.h>
 #include <am_multicast_write.h>
@@ -17,10 +18,38 @@ class antProcessing
 
     private:
 
-        bool     testMode;
-        int      testCounter;
+        bool testMode;
+        bool outputBridge;
+        bool writeStdout;
+        bool semiCookedIn;
+        bool outputRaw;
+        bool onlyRegisteredDevices;
+        bool exitOnWarnings;
+
+        int testCounter;
+        int timePrecision;
+        int valuePrecision;
+        int mcPortNoIn;
+        int mcPortNoOut;
+        int timeOutSec;
+
         amString programName;
         amString validOptions;
+        amString errorMessage;
+        amString outBuffer;
+        amString rawBuffer;
+        amString diagnosticsBuffer;
+        amString deviceFileName;
+        amString mcAddressIn;
+        amString mcAddressOut;
+        amString interface;
+        amString inputFileName;
+        amString currentDeviceType;
+        amString b2tVersion;
+
+        std::vector<amString>            supportedSensorTypes;
+        std::map<amString, bool>         registeredDevices;
+        std::map<amString, unsigned int> zeroTimeCountTable;
 
         amMulticastRead  multicastRead;
         amMulticastWrite multicastWrite;
@@ -38,41 +67,13 @@ class antProcessing
 
     protected:
 
-        int      errorCode;
+        int errorCode;
 
-        amString errorMessage;
-        amString outBuffer;
-        amString rawBuffer;
-        amString diagnosticsBuffer;
-        amString deviceFileName;
-        amString mcAddressIn;
-        amString mcAddressOut;
-        amString interface;
-        amString inputFileName;
-        amString b2tVersion;
-        amString currentDeviceType;
-
-        int timePrecision;
-        int valuePrecision;
-        int mcPortNoIn;
-        int mcPortNoOut;
-        int timeOutSec;
-
-        bool outputUnknown;
-        bool outputBridge;
-        bool writeStdout;
-        bool semiCookedIn;
+        bool diagnostics;
         bool semiCookedOut;
         bool outputAsJSON;
-        bool outputRaw;
-        bool diagnostics;
-        bool onlyRegisteredDevices;
+        bool outputUnknown;
 
-        unsigned int maxZeroTime;
-
-        std::vector<amString>            supportedSensorTypes;
-        std::map<amString, bool>         registeredDevices;
-        std::map<amString, unsigned int> zeroTimeCountTable;
         std::map<amString, unsigned int> eventTimeTable;
         std::map<amString, unsigned int> eventCountTable;
         std::map<amString, unsigned int> totalTimeIntTable;
@@ -82,13 +83,21 @@ class antProcessing
         std::map<amString, double>       totalTimeTable;
         std::map<amString, double>       totalOperatingTimeTable;
 
+        inline amString getCurrentDeviceType( void ) const { return currentDeviceType; }
+        inline void  setCurrentDeviceType( const amString &value) { currentDeviceType = value; }
+        inline amString getVersion( void ) const { return b2tVersion; }
+
         void resetRawBuffer        ( void ) { rawBuffer.clear(); }
         void resetOutBuffer        ( void ) { outBuffer.clear(); }
         void resetDiagnosticsBuffer( void ) { diagnosticsBuffer.clear(); }
         void clearErrors           ( void ) { errorMessage.clear(); errorCode = 0; }
 
+        void setOutBuffer( const amString &value ) { outBuffer = value; }
+
         virtual void initializeSupportedDeviceTypes( void ) { }
-        virtual int  readDeviceFileStream( std::ifstream &deviceFileStream );
+
+        void readDeviceFileStream( std::ifstream &deviceFileStream );
+        virtual void readDeviceFileLine( const char *line ) {}
 
         int hex2Int( BYTE b1 );
         int hex2Int( BYTE b2, BYTE b1 );
@@ -101,8 +110,6 @@ class antProcessing
         void setZeroTimeCount( const amString &sensorID, unsigned int value );
         unsigned int getZeroTimeCount( const amString &sensorID );
 
-        inline void setMaxZeroTime( unsigned int value ) { maxZeroTime = value; }
-
         bool createCommonResultStringPage67
              (
                  const amString &sensorID,
@@ -113,15 +120,7 @@ class antProcessing
                  unsigned int    value4,
                  unsigned int    value5
              );
-        bool createCommonResultStringPage68
-             (
-                 const amString &sensorID,
-                 bool            outputPageNo,
-                 unsigned int    value1,
-                 unsigned int    value2,
-                 unsigned int    value3,
-                 unsigned int    value4
-             );
+        bool createCommonResultStringPage68( const amString &sensorID, bool outputPageNo, unsigned int value1, unsigned int value2, unsigned int value3, unsigned int value4 );
         bool createCommonResultStringPage70
              (
                  const amString &sensorID,
@@ -132,21 +131,8 @@ class antProcessing
                  unsigned int    requestedPageNo,
                  unsigned int    commandType
              );
-        bool createCommonResultStringPage80
-             (
-                 const amString &sensorID,
-                 bool            outputPageNo,
-                 unsigned int    manufacturerID,
-                 unsigned int    hardwareRevision,
-                 unsigned int    modelNumber
-             );
-        bool createCommonResultStringPage81
-             (
-                 const amString &sensorID,
-                 bool            outputPageNo,
-                 unsigned int    serialNumber,
-                 unsigned int    softwareRevision
-             );
+        bool createCommonResultStringPage80( const amString &sensorID, bool outputPageNo, unsigned int manufacturerID, unsigned int hardwareRevision, unsigned int modelNumber );
+        bool createCommonResultStringPage81( const amString &sensorID, bool outputPageNo, unsigned int serialNumber, unsigned int softwareRevision );
         bool createCommonResultStringPage82
              (
                  const amString &sensorID,
@@ -196,6 +182,13 @@ class antProcessing
 
         bool isSupportedSensor    ( const amString &deviceID );
         bool isSemiCookedFormat137( const amString &inputBuffer );
+
+        // Error Message
+        void appendErrorMessage( const amString &message );
+        void appendErrorMessage( int value );
+        void appendErrorMessage( unsigned int value );
+        void appendErrorMessage( BYTE value );
+        void appendErrorMessage( double value, int precision );
 
         // Diagnostics
         void appendDiagnosticsLine( const amString &message );
@@ -312,6 +305,9 @@ class antProcessing
 
         inline bool getOnlyRegisteredDevices( void ) const { return onlyRegisteredDevices; }
         inline void setOnlyRegisteredDevices( bool value ) { onlyRegisteredDevices = value; }
+
+        inline bool getExitOnWarnings( void ) const { return exitOnWarnings; }
+        inline void setExitOnWarnings( bool value ) { exitOnWarnings = value; }
 
         inline bool getDiagnostics( void ) const { return diagnostics; }
         inline void setDiagnostics( bool value ) { diagnostics = value; }

@@ -15,15 +15,18 @@ class antSpeedProcessing
         void resetNbMagnetsDefault         ( void ) { nbMagnetsDefault          = C_NB_MAGNETS_DEFAULT; }
         void resetWheelCircumferenceDefault( void ) { wheelCircumferenceDefault = C_WHEEL_CIRCUMFERENCE_DEFAULT; }
 
+        std::map<amString, double> nbMagnetsTable;
+        std::map<amString, double> wheelCircumferenceTable;
+        std::map<amString, double> speedTable;
+        std::map<amString, bool>   usedAsSpeedSensorTable;
+
 
     protected:
 
         double nbMagnetsDefault;
         double wheelCircumferenceDefault;
 
-        std::map<amString, double> nbMagnetsTable;
-        std::map<amString, double> wheelCircumferenceTable;
-        std::map<amString, double> speedTable;
+        unsigned int maxZeroTime;
 
         double getSpeed             ( const amString &sensorID );
         double getWheelCircumference( const amString &sensorID );
@@ -37,7 +40,11 @@ class antSpeedProcessing
         bool isSpeedSensor( const amString &sensorID );
 
         bool appendSpeedSensor( const amString &sensorID, double wheelCirumference, double nbMagnets );
-        bool evaluateDeviceLine( const amSplitString &words );
+
+        virtual int readDeviceFileLine1( const char *line, amString &errorMessage );
+
+        inline void setMaxZeroTime( unsigned int value ) { maxZeroTime = value; }
+
         double computeSpeed
                (
                    double        previousSpeed,
@@ -51,6 +58,8 @@ class antSpeedProcessing
 
         virtual void reset( void );
 
+        void setUseAsSpeedSensor( const amString &sensorID, bool value );
+        bool isUsedAsSpeedSensor( const amString &sensorID );
 
     public:
 

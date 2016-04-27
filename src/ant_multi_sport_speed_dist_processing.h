@@ -10,17 +10,16 @@ class antMultiSportProcessing : virtual public antProcessing
 
         double convertTemp10( int temp10 );
 
-
-    protected:
-
         std::map<amString, double>       totalDistTable;
         std::map<amString, unsigned int> eventDistTable;
+
+
+    protected:
 
         amDeviceType processMultiSportSpeedAndDistanceSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processMultiSportSpeedAndDistanceSensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
         bool appendMultiSportSensor( const amString & );
 
 

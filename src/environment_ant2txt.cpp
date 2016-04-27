@@ -2,7 +2,7 @@
 
 const char C_PROGRAM_NAME[]  = "environment_ant2txt";
 const char C_DEVICE_NAME[]   = "ENV";
-const char C_OPTION_STRING[] = "12BDd:f:HhI:Jl:M:m:P:p:RrsST:t:UvVx";
+const char C_OPTION_STRING[] = "12BDd:f:HhI:Jl:M:m:P:p:RrsST:t:UvVwx";
 
 int main
 (

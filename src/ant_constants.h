@@ -68,6 +68,8 @@ enum amDeviceType
 
 const int E_READ_TIMEOUT_C        =    35;
 
+const int E_BAD_PARAMETER_VALUE   = 10001;
+
 const int E_READ_ERROR            = 90001;
 const int E_READ_FILE_NOT_OPEN    = 90002;
 const int E_END_OF_FILE           = 90099;
@@ -243,6 +245,7 @@ const char C_PM_MFR_INFO_HEAD[]                             = "PWRB50_";
 const char C_PM_PROD_INFO_HEAD[]                            = "PWRB51_";
 const char C_PM_STATUS_MSG_HEAD[]                           = "PWRB52_";
 const char C_SPCAD_DEVICE_HEAD[]                            = "SPCAD790_";
+const char C_GEAR_RATIO_DEFAULT_AS_RATIO[]                  = "51:15";
 const char C_SPEED_DEVICE_HEAD[]                            = "SPB7_";
 const char C_SPEED_OBSOLETE_HEAD[]                          = "SP7B_";
 const char C_SBSDM_DEVICE_HEAD[]                            = "SBSDM_";
@@ -336,9 +339,23 @@ const double C_MIN_POWER_VALUE                              =    0.0;
 const double C_MAX_POWER_VALUE                              = 2500.0;
 const double C_MIN_CADENCE                                  =    0.0;
 const double C_MAX_CADENCE                                  =  256.0;
+const double C_MIN_PM_SLOPE                                 =   10.0;
+const double C_MAX_PM_SLOPE                                 =   50.0;
+const double C_MIN_RHO                                      =    0.5;
+const double C_MAX_RHO                                      =    2.0;
+const double C_MIN_MULTIPLIER                               =    0.1;
+const double C_MAX_MULTIPLIER                               =    2.0;
+const double C_MIN_CIRCUMFERENCE                            =    1.0;
+const double C_MAX_CIRCUMFERENCE                            =    3.0;
+const double C_MIN_GEAR_RATIO                               =    1.0;
+const double C_MAX_GEAR_RATIO                               =   10.0;
 
-const unsigned int C_MIN_PRECISION                          = 0;
-const unsigned int C_MAX_PRECISION                          = 20;
+const unsigned int C_MIN_PRECISION                          =    0;
+const unsigned int C_MAX_PRECISION                          =   20;
+const unsigned int C_MIN_ZERO_OFFSET                        =   50;
+const unsigned int C_MAX_ZERO_OFFSET                        = 1000;
+const unsigned int C_MIN_NB_MAGNETS                         =    1;
+const unsigned int C_MAX_NB_MAGNETS                         =    4;
 
 const unsigned int C_SLOPE_DEFAULT                          = 0xFFFFFFFF;
 const unsigned int C_NON_EXISTENT_DATA_PAGE                 = 256;

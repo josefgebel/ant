@@ -33,7 +33,7 @@ class antCadenceOnlyProcessing : virtual public antProcessing,
         amDeviceType processCadenceOnlySensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processCadenceOnlySensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
+        virtual void readDeviceFileLine( const char *line );
 
         bool appendCadenceOnlySensor( const amString &sensorID );
 

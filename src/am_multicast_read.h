@@ -5,6 +5,15 @@ class amString;
 
 class amMulticastRead
 {
+
+    private:
+
+        int  socketID;
+        bool connectionUp;
+
+        bool determineIPAddress( amString &ipAddress, const amString &interface );
+
+
     public:
 
         amMulticastRead( void );
@@ -15,14 +24,6 @@ class amMulticastRead
 
         size_t read( unsigned char *buffer, size_t bufferSize );
         int connect( const amString &interface, const amString &ipAddress, int portNo, int timeOutSec, amString &errorMessage );
-
-
-    private:
-
-        int  socketID;
-        bool connectionUp;
-
-        bool determineIPAddress( amString &ipAddress, const amString &interface );
 
 };
 

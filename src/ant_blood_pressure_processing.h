@@ -5,13 +5,14 @@
 
 class antBloodPressureProcessing : virtual public antProcessing
 {
+
     protected:
 
         amDeviceType processBloodPressureSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processBloodPressureSensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendBloodPressureSensor( const amString & );
 
 

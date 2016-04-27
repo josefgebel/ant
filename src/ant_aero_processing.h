@@ -8,6 +8,14 @@ class antAeroProcessing : virtual public antProcessing
 
     private:
 
+        double rho;
+        double rhoDefault;
+        double airSpeedMultiplierDefault;
+        double calibrationRhoDefault;
+
+        std::map<amString, double> airSpeedMultiplierTable;
+        std::map<amString, double> rhoCalibrationTable;
+
         void   resetRhoDefault               ( void ) { rhoDefault                = C_RHO_DEFAULT; }
         void   resetCalibrationRhoDefault    ( void ) { calibrationRhoDefault     = C_CALIBRATION_RHO_DEFAULT; }
         void   resetAirSpeedMultiplierDefault( void ) { airSpeedMultiplierDefault = C_AIR_SPEED_MULTIPLIER_DEFAULT; }
@@ -20,14 +28,6 @@ class antAeroProcessing : virtual public antProcessing
 
     protected:
 
-        double rho;
-        double rhoDefault;
-        double airSpeedMultiplierDefault;
-        double calibrationRhoDefault;
-
-        std::map<amString, double> airSpeedMultiplierTable;
-        std::map<amString, double> rhoCalibrationTable;
-
         double convertAirspeed( int );
         double convertYaw( int, int );
 
@@ -37,8 +37,8 @@ class antAeroProcessing : virtual public antProcessing
         double getCalibrationRho( const amString &sensorID );
         double getAirSpeedMultiplier( const amString &sensorID );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendAeroSensor( const amString &, double = C_CALIBRATION_RHO_DEFAULT, double = C_AIR_SPEED_MULTIPLIER_DEFAULT );
 
 

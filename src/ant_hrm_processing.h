@@ -18,7 +18,7 @@ class antHRMProcessing : virtual public antProcessing
         amDeviceType processHRMSensor( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processHRMSensorSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
+        virtual void readDeviceFileLine( const char *line );
 
 
     public:
@@ -27,7 +27,6 @@ class antHRMProcessing : virtual public antProcessing
         ~antHRMProcessing() {}
 
         bool isHeartRateSensor ( const amString &deviceID );
-        bool evaluateDeviceLine( const amSplitString &words );
         bool appendHRMSensor   ( const amString &deviceName );
         bool isRegisteredSensor( const amString &deviceID );
 

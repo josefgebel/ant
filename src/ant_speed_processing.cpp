@@ -148,6 +148,7 @@ bool antSpeedProcessing::appendSpeedSensor
         {
             nbMagnetsTable.insert         ( std::pair<amString, double>( sensorID, nbMagnets ) );
         }
+        setUseAsSpeedSensor( sensorID, true );
     }
     return result;
 }
@@ -161,7 +162,36 @@ void antSpeedProcessing::reset
     resetWheelCircumferenceDefault();
     nbMagnetsTable.clear();
     wheelCircumferenceTable.clear();
+    usedAsSpeedSensorTable.clear();
     speedTable.clear();
+    setMaxZeroTime( C_MAX_ZERO_TIME );
+}
+
+void antSpeedProcessing::setUseAsSpeedSensor
+(
+    const amString &sensorID,
+    bool            value
+)
+{
+    if ( usedAsSpeedSensorTable.count( sensorID ) == 0 )
+    {
+        usedAsSpeedSensorTable.insert( std::pair<amString, double>( sensorID, value ) );
+    }
+    usedAsSpeedSensorTable[ sensorID ] = value;
+}
+
+bool antSpeedProcessing::isUsedAsSpeedSensor
+(
+    const amString &sensorID
+)
+{
+    bool result = false;
+    if ( usedAsSpeedSensorTable.count( sensorID ) == 0 )
+    {
+        usedAsSpeedSensorTable.insert( std::pair<amString, double>( sensorID, result ) );
+    }
+    result = usedAsSpeedSensorTable[ sensorID ];
+    return result;
 }
 
 double antSpeedProcessing::computeSpeed
@@ -196,43 +226,75 @@ double antSpeedProcessing::computeSpeed
     return speed;
 }
 
-// ----------------------------------------------------------------------------
-// Read a line from the deviceIDs file
-// If the line contains a speed device definition of a speed sensor (not a
-//     makeshift cadence speed sensor), such as SPCAD, SPB7 or PWRB11
-//     (Wheel-Torque Power Meter) read the device ID, the wheel circumference
-//     and number of magnets, and store the values in the appropriate tables.
-//     Return true.
-// Else:
-//     Return false.
-// ----------------------------------------------------------------------------
-bool antSpeedProcessing::evaluateDeviceLine
+int antSpeedProcessing::readDeviceFileLine1
 (
-    const amSplitString &words
+    const char *line,
+    amString   &errorMessage
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords   = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
+    int           errorCode = 0;
 
     if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( ( deviceType == C_SPEED_DEVICE_ID ) && isPureSpeedSensor( deviceName ) )
+        if ( deviceType == C_SPEED_DEVICE_ID )
         {
-            double dArg1 = wheelCircumferenceDefault;
-            double dArg2 = nbMagnetsDefault;
-            if ( nbWords > 2 )
+            amString deviceName = words[ 1 ];
+            if ( isPureSpeedSensor( deviceName ) )
             {
-                dArg1 = words[ 2 ].toDouble();
-                if ( nbWords > 3 )
+                double curCircumference = wheelCircumferenceDefault;
+                double curNbMagnets     = nbMagnetsDefault;
+                if ( nbWords > 2 )
                 {
-                    dArg2 = words[ 3 ].toDouble();
+                    curCircumference = words[ 2 ].toDouble();
+                    if ( ( curCircumference < C_MIN_CIRCUMFERENCE ) || ( curCircumference > C_MAX_CIRCUMFERENCE ) )
+                    {
+                        errorMessage     += "WARNING: Value for wheel circumference (";
+                        errorMessage     += amString( curCircumference, 4 );
+                        errorMessage     += " m) is outside of recommended range [";
+                        errorMessage     += amString( C_MIN_CIRCUMFERENCE, 4 );
+                        errorMessage     += ", ";
+                        errorMessage     += amString( C_MAX_CIRCUMFERENCE, 4 );
+                        errorMessage     += "].\n";
+                        curCircumference  = wheelCircumferenceDefault;
+                        errorCode         = E_BAD_PARAMETER_VALUE;
+                        errorMessage     += "             The value has been set to its default (";
+                        errorMessage     += amString( curCircumference, 4 );
+                        errorMessage     += " m).\n";
+                    }
+                    if ( nbWords > 3 )
+                    {
+                        curNbMagnets = words[ 3 ].toDouble();
+                        if ( ( curNbMagnets < C_MIN_NB_MAGNETS ) || ( curNbMagnets > C_MAX_NB_MAGNETS ) )
+                        {
+                            errorMessage += ( errorCode ? "         " : "WARNING: " );
+                            errorMessage += "Value for number of magnets (";
+                            errorMessage += amString( curNbMagnets, 0 );
+                            errorMessage += ") is outside of recommended range [";
+                            errorMessage += amString( C_MIN_NB_MAGNETS );
+                            errorMessage += ", ";
+                            errorMessage += amString( C_MAX_NB_MAGNETS );
+                            errorMessage += "].\n";
+                            curNbMagnets  = nbMagnetsDefault;
+                            errorCode     = E_BAD_PARAMETER_VALUE;
+                            errorMessage += "             The value has been set to its default (";
+                            errorMessage += amString( curNbMagnets, 0 );
+                            errorMessage += ").\n";
+                        }
+                    }
+                    if ( errorCode )
+                    {
+                        errorMessage += "         Line in file: \"";
+                        errorMessage += line;
+                        errorMessage += "\".\n";
+                    }
                 }
+                appendSpeedSensor( deviceName, curCircumference, curNbMagnets );
             }
-            result = appendSpeedSensor( deviceName, dArg1, dArg2 );
         }
     }
-    return result;
+    return errorCode;
 }
 

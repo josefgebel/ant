@@ -31,7 +31,6 @@ antProcessing::antProcessing
 {
     b2tVersion = BUILD_NUMBER;
     testMode   = false;
-    setMaxZeroTime( C_MAX_ZERO_TIME );
     resetAll();
 }
 
@@ -161,9 +160,9 @@ amDeviceType antProcessing::processSensor
 
     std::stringstream auxStringStream;
     auxStringStream << deviceType;
-    errorMessage += "ERROR: Unknown device type ";
-    errorMessage += auxStringStream.str();
-    errorMessage += ".\n";
+    appendErrorMessage( "ERROR: Unknown device type " );
+    appendErrorMessage( auxStringStream.str() );
+    appendErrorMessage( ".\n" );
 
     return result;
 }
@@ -177,14 +176,14 @@ amDeviceType antProcessing::processSensorSemiCooked
 
     if ( inputBuffer.empty() )
     {
-        errorMessage += "ERROR: Input Buffer is empty";
+        appendErrorMessage( "ERROR: Input Buffer is empty" );
     }
     else
     {
-        errorMessage += "ERROR: Unknown device type in \"";
-        errorMessage += inputBuffer;
+        appendErrorMessage( "ERROR: Unknown device type in \"" );
+        appendErrorMessage( inputBuffer );
     }
-    errorMessage += "\".\n";
+    appendErrorMessage( "\".\n" );
 
     return result;
 }
@@ -204,7 +203,7 @@ amDeviceType antProcessing::updateSensorSemiCooked
 
     if ( result == OTHER_DEVICE )
     {
-        outBuffer = inputBuffer;
+        setOutBuffer( inputBuffer );
     }
 
     return result;
@@ -310,7 +309,7 @@ amDeviceType antProcessing::processUndefinedSensorType
     }
     else
     {
-        outBuffer = inputBuffer;
+        setOutBuffer( inputBuffer );
     }
 
 
@@ -332,15 +331,6 @@ void antProcessing::reset
     sameEventCountTable.clear();
     totalTimeTable.clear();
     totalOperatingTimeTable.clear();
-}
-
-
-int antProcessing::readDeviceFileStream
-(
-    std::ifstream &deviceFileStream
-)
-{
-    return errorCode;
 }
 
 bool antProcessing::isSupportedSensor
@@ -480,6 +470,46 @@ unsigned int antProcessing::uChar2UInt
 {
     unsigned int result = ( unsigned int ) byte1;
     return result;
+}
+
+void antProcessing::appendErrorMessage
+(
+    const amString &message
+)
+{
+    errorMessage += message;
+}
+
+void antProcessing::appendErrorMessage
+(
+    int value
+)
+{
+    errorMessage += amString( value );
+}
+
+void antProcessing::appendErrorMessage
+(
+    unsigned int value
+)
+{
+    errorMessage += amString( value );
+}
+
+void antProcessing::appendErrorMessage
+(
+    BYTE value
+)
+{
+    errorMessage += amString( value );
+}
+void antProcessing::appendErrorMessage
+(
+    double value,
+    int precision
+)
+{
+    errorMessage += amString( value, precision );
 }
 
 void antProcessing::appendDiagnosticsField
@@ -3276,12 +3306,12 @@ int antProcessing::readAntFromMultiCast
                 if ( errno == E_READ_TIMEOUT_C )
                 {
                     errorCode     = E_READ_TIMEOUT;
-                    errorMessage += "Read source timed out.\n";
+                    appendErrorMessage( "Read source timed out.\n" );
                 }
                 else
                 {
                     errorCode = E_READ_ERROR;
-                    errorMessage = "Error while reading.\n";
+                    appendErrorMessage("Error while reading.\n" );
                 }
             }
             else
@@ -3346,14 +3376,14 @@ int antProcessing::ant2txt
         std::ifstream inStr( deviceFileName.c_str() );
         if ( inStr.fail() )
         {
-            errorMessage += "Could not open device file \"";
-            errorMessage += deviceFileName;
-            errorMessage += "\" for reading.\n";
-            errorCode = 1111112;
+            appendErrorMessage( "Could not open device file \"" );
+            appendErrorMessage( deviceFileName );
+            appendErrorMessage( "\" for reading.\n" );
+            errorCode = E_READ_FILE_NOT_OPEN;
         }
         else
         {
-            errorCode = readDeviceFileStream( inStr );
+            readDeviceFileStream( inStr );
         }
     }
 
@@ -3386,9 +3416,9 @@ int antProcessing::ant2txt
                 std::ifstream inputStream( inputFileName.c_str() );
                 if ( inputStream.bad() )
                 {
-                   errorMessage += "Could not open file \"";
-                   errorMessage += inputFileName;
-                   errorMessage += "\" for reading.\n";
+                   appendErrorMessage( "Could not open file \"" );
+                   appendErrorMessage( inputFileName );
+                   appendErrorMessage( "\" for reading.\n" );
                    errorCode = E_READ_FILE_NOT_OPEN;
                 }
                 else
@@ -3416,6 +3446,37 @@ int antProcessing::ant2txt
         errorCode = 0;
     }
     return errorCode;
+}
+
+void antProcessing::readDeviceFileStream
+(
+    std::ifstream &deviceFileStream
+)
+{
+    char line[ C_BUFFER_SIZE ];
+    while ( errorCode == 0 )
+    {   
+        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
+        if ( deviceFileStream.fail() || deviceFileStream.eof() )
+        {   
+            break;
+        }   
+        const char *lPtr = line;
+        while ( IS_WHITE_CHAR( *lPtr ) ) 
+        {
+            ++lPtr;
+        }
+        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
+        {
+            continue;
+        }
+        readDeviceFileLine( lPtr );
+        if ( ( errorCode == E_BAD_PARAMETER_VALUE ) && !getExitOnWarnings() )
+        {
+            std::cerr << errorMessage << std::endl;
+            clearErrors();
+        }
+    }
 }
 
 void antProcessing::help
@@ -3751,6 +3812,16 @@ void antProcessing::help
         outputMessage << "-";
         outputMessage << option;
         outputMessage << ": Output version (long form).";
+        outputMessage << "\n";
+    }
+
+    option = "w";
+    if ( validOptions.contains( option ) )
+    {
+        outputMessage << indent;
+        outputMessage << "-";
+        outputMessage << option;
+        outputMessage << ": Exit the program on warnings.";
         outputMessage << "\n";
     }
 
@@ -4255,6 +4326,9 @@ void antProcessing::outputFormats
             outputMessage << indent3;
             outputMessage << "<gear_ratio>          = ";
             outputMessage << C_GEAR_RATIO_DEFAULT;
+            outputMessage << " (";
+            outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
+            outputMessage << ")";
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5041,6 +5115,9 @@ void antProcessing::outputFormats
             outputMessage << indent3;
             outputMessage << "<gear_ratio>          = ";
             outputMessage << C_GEAR_RATIO_DEFAULT;
+            outputMessage << " (";
+            outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
+            outputMessage << ")";
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5084,9 +5161,9 @@ void antProcessing::outputFormats
             auxBuffer += "<torque>";
             auxBuffer += separator;
             auxBuffer += "<wheel_ticks>";
+            auxBuffer += separator;
 
             outputMessage << auxBuffer; 
-            outputMessage << separator; 
             outputMessage << "<sw_version>";
 
             outputMessage << indent3;
@@ -5099,7 +5176,7 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
 
             outputMessage << indent2;
-            outputMessage << "Any wheel-torque power meter is also a speed sensor.";
+            outputMessage << "Any wheel-torque power meter can also be used as a speed sensor.";
             outputMessage << indent2;
             outputMessage << "To turn a wheel-torque power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
@@ -5192,6 +5269,9 @@ void antProcessing::outputFormats
             outputMessage << indent3;
             outputMessage << "<gear_ratio>          = ";
             outputMessage << C_GEAR_RATIO_DEFAULT;
+            outputMessage << " (";
+            outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
+            outputMessage << ")";
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5371,6 +5451,9 @@ void antProcessing::outputFormats
             outputMessage << indent3;
             outputMessage << "<gear_ratio>          = ";
             outputMessage << C_GEAR_RATIO_DEFAULT;
+            outputMessage << " (";
+            outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
+            outputMessage << ")";
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -6321,6 +6404,9 @@ bool antProcessing::processArguments
                  std::cout << programName << " Version " << b2tVersion << C_COPYRIGHT << std::endl;
                  running = false;
                  break;
+            case 'w':
+                 setExitOnWarnings( true );
+                 break;
             case 'x':
                  setTestMode( true );
                  break;
@@ -6345,16 +6431,16 @@ bool antProcessing::processArguments
                      break;
                  }
                  errorCode = E_BAD_OPTION;
-                 errorMessage += "Command line option '";
-                 errorMessage += prevOption;
-                 errorMessage += "' is missing its argument value.\n";
+                 appendErrorMessage( "Command line option '" );
+                 appendErrorMessage( prevOption );
+                 appendErrorMessage( "' is missing its argument value.\n" );
                  break;
             default:
                  running   = false;
                  errorCode = E_UNKNOWN_OPTION;
-                 errorMessage += "Unknown command line option \"";
-                 errorMessage += argv[ counter ];
-                 errorMessage += "\"";
+                 appendErrorMessage( "Unknown command line option \"" );
+                 appendErrorMessage( argv[ counter ] );
+                 appendErrorMessage( "\"" );
                  break;
         }
     }
@@ -6401,7 +6487,7 @@ bool antProcessing::processArguments
             if ( getMCPortNoOut() <= 0 )
             {
                 errorCode     = E_MC_NO_IP_ADDRESS;
-                errorMessage += "IP address for multicast write connection is present, port number is missing.";
+                appendErrorMessage( "IP address for multicast write connection is present, port number is missing." );
             }
         }
     }
@@ -6568,8 +6654,9 @@ void antProcessing::outputError
     switch ( errorCode )
     {
         case 0:
-             errorMessage = "Exited without error.";
+             appendErrorMessage( "Exited without error." );
              break;
+        case E_BAD_PARAMETER_VALUE:
         case E_MC_WRITE_FAIL:
         case E_MC_NO_INTERFACE:
         case E_MC_NO_IP_ADDRESS:
@@ -6586,16 +6673,17 @@ void antProcessing::outputError
         case E_READ_TIMEOUT:
              break;
         default:
-             errorMessage = "Unknown error code " + amString( errorCode ) + ".\n";
+             appendErrorMessage( "Unknown error code " );
+             appendErrorMessage( errorCode );
+             appendErrorMessage( ".\n" );
              break;
     }
 
+    std::cerr << std::endl;
     std::cerr << programName;
-    std::cerr << ": " << errorMessage;
-    if ( errorCode != 0 )
-    {
-        std::cerr << " (Error Code = " << errorCode << ")";
-    }
-    std::cerr << "." << std::endl;
+    std::cerr << ": ";
+    std::cerr << std::endl;
+    std::cerr << errorMessage;
+    std::cerr << std::endl;
 }
 

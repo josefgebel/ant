@@ -23,7 +23,7 @@ antSpeedOnlyProcessing::antSpeedOnlyProcessing
     antSpeedProcessing()
 {
     reset();
-    currentDeviceType = "SPB7";
+    setCurrentDeviceType( "SPB7" );
     setMaxZeroTime( C_MAX_ZERO_TIME_SPEED );
 }
 
@@ -132,7 +132,7 @@ amDeviceType antSpeedOnlyProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -148,70 +148,53 @@ void antSpeedOnlyProcessing::reset
     antSpeedProcessing::reset();
 }
 
-int antSpeedOnlyProcessing::readDeviceFileStream
+void antSpeedOnlyProcessing::readDeviceFileLine
 (
-    std::ifstream &deviceFileStream
+    const char *line
 )
 {
-    unsigned int nbWords    = 0;
-    amString     deviceType = "";
-    amString     deviceName = "";
-
-    char line[ C_BUFFER_SIZE ];
     amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
 
-    while ( true )
+    if ( nbWords > 1 )
     {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
-        {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
+        amString deviceType = words[ 0 ];
 
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            // ----------------------------------------
-            // All entries must have at least 2 words
-            // ----------------------------------------
-
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( ( deviceType == C_SPEED_DEVICE_ID ) && isSpeedOnlySensor( deviceName ) )
+            else
             {
-                antSpeedProcessing::evaluateDeviceLine( words );
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else
+        {
+            amString deviceName = words[ 1 ];
+ 
+            if ( isSpeedOnlySensor( deviceName ) )
+            {
+                if ( deviceType == C_SPEED_DEVICE_ID )
+                {
+                    amString curErrorMessage;
+                    errorCode = antSpeedProcessing::readDeviceFileLine1( line, curErrorMessage );
+                    if ( errorCode )
+                    {
+                        appendErrorMessage( curErrorMessage );
+                    }
+                }
             }
         }
     }
-
-    return errorCode;
 }
 
 //-------------------------------------------------------------------------------------------------//
@@ -255,7 +238,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
             eventTimeTable.insert    ( std::pair<amString, unsigned int>( sensorID, 0 ) );
             eventCountTable.insert   ( std::pair<amString, unsigned int>( sensorID, 0 ) );
             operatingTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
-            speedTable.insert        ( std::pair<amString, double>( sensorID, 0 ) );
+            setSpeed( sensorID, 0 );
         }
 
         dataPage = hex2Int( payLoad[ 0 ] );
@@ -381,7 +364,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
             setZeroTimeCount( sensorID, zeroTime );
             setSpeed( sensorID, speed );
         }
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -478,7 +461,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
     amDeviceType result = OTHER_DEVICE;
     if ( !inputBuffer.empty() )
     {
-        amString      curVersion                = b2tVersion;
+        amString      curVersion                = getVersion();
         amString      semiCookedString;
         amString      sensorID;
         amString      timeStampBuffer;
@@ -635,7 +618,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }

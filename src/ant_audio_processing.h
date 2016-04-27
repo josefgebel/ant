@@ -5,13 +5,14 @@
 
 class antAudioProcessing : virtual public antProcessing
 {
+
     protected:
 
         amDeviceType processAudioControl( const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         amDeviceType processAudioControlSemiCooked( const amString &inputBuffer );
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendAudioSensor( const amString & );
 
 

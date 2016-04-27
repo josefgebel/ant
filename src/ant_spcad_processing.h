@@ -34,7 +34,8 @@ class antSpcadProcessing : virtual public antProcessing,
 
     protected:
 
-        virtual int readDeviceFileStream( std::ifstream &deviceFileStream );
+        virtual void readDeviceFileLine( const char *line );
+
         bool appendSpeedSensor( const amString &sensorID, double wheelCircumference, double nbMagnets );
 
 

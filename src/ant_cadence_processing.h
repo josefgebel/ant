@@ -23,7 +23,8 @@ class antCadenceProcessing
         unsigned int computeCadence( unsigned int previousCadence, unsigned int deltaRevolutionCount, unsigned int deltaEventTime );
 
         virtual void reset( void );
-        bool evaluateDeviceLine( const amSplitString &words );
+        virtual int readDeviceFileLine1( const char *line, amString &errorMessage );
+
 
     public:
 

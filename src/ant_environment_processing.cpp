@@ -22,7 +22,7 @@ antEnvironmentProcessing::antEnvironmentProcessing
     void
 ) : antProcessing()
 {
-    currentDeviceType = "ENV";
+    setCurrentDeviceType( "ENV" );
     reset();
 }
 
@@ -160,7 +160,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
         {
             createENVResultString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4 );
         }
-        appendOutputFooter( b2tVersion );
+        appendOutputFooter( getVersion() );
     }
 
     if ( result == OTHER_DEVICE )
@@ -200,7 +200,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
         unsigned int  additionalData2 = 0;
         unsigned int  additionalData3 = 0;
         unsigned int  additionalData4 = 0;
-        amString      curVersion      = b2tVersion;
+        amString      curVersion      = getVersion();
         amString      timeStampBuffer;
         amString      sensorID;
         amString      timeStampString;
@@ -307,7 +307,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
             resetOutBuffer();
             if ( outputUnknown )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -377,7 +377,7 @@ amDeviceType antEnvironmentProcessing::processSensorSemiCooked
             resetOutBuffer();
             if ( getOutputUnknown() )
             {
-                outBuffer = inputBuffer;
+                setOutBuffer( inputBuffer );
             }
         }
     }
@@ -385,95 +385,44 @@ amDeviceType antEnvironmentProcessing::processSensorSemiCooked
     return result;
 }
 
-// ----------------------------------------------------------------------------
-// Read a line from the deviceIDs file
-// If the line contains a speed device definition of a cadence sensor (which
-//     uses cadence to compute speed - Note: this does not include SPCAD790)
-//     read the device ID, the wheel circumference and gear ratio, and store
-//     the values in the appropriate tables.
-//     Also, set "usedAsSpeedSensor" true.
-//     Return true.
-// Else:
-//     Return false.
-// ----------------------------------------------------------------------------
-bool antEnvironmentProcessing::evaluateDeviceLine
+void antEnvironmentProcessing::readDeviceFileLine
 (
-    const amSplitString &words
+    const char *line
 )
 {
-    bool         result  = false;
-    unsigned int nbWords = words.size();
+    amSplitString words;
+    unsigned int  nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
 
     if ( nbWords > 1 )
     {
         amString deviceType = words[ 0 ];
-        amString deviceName = words[ 1 ];
-        if ( ( deviceType == C_ENV_DEVICE_HEAD ) && isEnvironmentSensor( deviceName ) )
-        {
-            result = appendEnvironmentSensor( deviceName );
-        }
-    }
-    return result;
-}
 
-int antEnvironmentProcessing::readDeviceFileStream
-(
-    std::ifstream &deviceFileStream
-)
-{
-    char          line[ C_BUFFER_SIZE ];
-    unsigned int  nbWords    = 0;
-    amString      deviceType = "";
-    amString      deviceName = "";
-    amSplitString words;
-
-    while ( true )
-    {
-        deviceFileStream.getline( line, C_BUFFER_SIZE, '\n' );
-        if ( deviceFileStream.fail() || deviceFileStream.eof() )
+        if ( deviceType == C_INCLUDE_FILE )
         {
-            break;
-        }
-        const char *lPtr = line;
-        while ( IS_WHITE_CHAR( *lPtr ) )
-        {
-            ++lPtr;
-        }
-        if ( ( *lPtr == 0 ) || ( *lPtr == C_COMMENT_SYMBOL ) )
-        {
-            continue;
-        }
-
-        nbWords = words.split( line, C_COMMENT_SYMBOL_AS_STRING );
-        if ( nbWords > 1 )
-        {
-            deviceType = words[ 0 ];
-            deviceName = words[ 1 ];
-            if ( deviceType == C_INCLUDE_FILE )
+            amString      curFileName = words.concatenate( 1 );
+            std::ifstream devicesIncludeFileStream( curFileName.c_str() );
+            if ( devicesIncludeFileStream.fail() )
             {
-                const char *includeFileName = deviceName.c_str();
-                std::ifstream devicesIncludeFileStream( includeFileName );
-                if ( devicesIncludeFileStream.fail() )
-                {
-                    errorMessage += "ERROR while opening devices ID include file \"";
-                    errorMessage += includeFileName;
-                    errorMessage += "\".\n";
-                    errorCode     = E_READ_FILE_NOT_OPEN;
-                }
-                else
-                {
-                    errorCode = readDeviceFileStream( devicesIncludeFileStream );
-                    devicesIncludeFileStream.close();
-                }
+                appendErrorMessage( "ERROR while opening devices ID include file \"" );
+                appendErrorMessage( curFileName );
+                appendErrorMessage( "\".\n" );
+                errorCode = E_READ_FILE_NOT_OPEN;
             }
-            else if ( ( deviceType == C_ENV_DEVICE_HEAD ) && isEnvironmentSensor( deviceName ) )
+            else
             {
-                evaluateDeviceLine( words );
+                readDeviceFileStream( devicesIncludeFileStream );
+                devicesIncludeFileStream.close();
+            }
+        }
+        else if ( deviceType == C_ENV_DEVICE_HEAD )
+        {
+            amString deviceName = words[ 1 ];
+            if ( isEnvironmentSensor( deviceName ) )
+            {
+                appendEnvironmentSensor( deviceName );
             }
         }
     }
-
-    return errorCode;
 }
 
 void antEnvironmentProcessing::createENVResultString
