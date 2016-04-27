@@ -4748,7 +4748,6 @@ void antPowerProcessing::createPWRB11ResultString
             appendOutput( cadence );
             appendOutput( torque, getValuePrecision() );
             appendOutput( wheelTicks );
-std::cerr << "isSpeedSensor = " << isSpeedSensor << std::endl;
             if ( isSpeedSensor )
             {
                 appendOutput( speed, getValuePrecision() );
