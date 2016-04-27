@@ -4574,7 +4574,7 @@ void antPowerProcessing::createPWRB10ResultString
             appendJSONItem( "delta event count",       deltaEventCount );
             appendJSONItem( "delta accumulated power", deltaAccumulatedPower );
             appendJSONItem( "instantaneous power",     instantaneousPower );
-            appendJSONItem( "instantaneous cadence",   instantaneousCadence );
+            appendJSONItemConditional( "instantaneous cadence", instantaneousCadence != 255, instantaneousCadence, C_UNDEFINED_JSON );
             appendJSONItem( "pedal power",             pedalPower );
         }
         else
@@ -4605,9 +4605,8 @@ void antPowerProcessing::createPWRB10ResultString
         else
         {
             zeroTimeCount = 0;
-            if ( zeroTimeCount > maxZeroTimeB10 )
             power = ( double ) deltaAccumulatedPower / ( double ) deltaEventCount;
-            if ( isMakeshiftSpeedSensor )
+            if ( isMakeshiftSpeedSensor && ( instantaneousCadence != 255 ) )
             {
                 speed = ( ( wheelCircumference > 0 ) && ( gearRatio > 0 ) ) ? wheelCircumference * cadence * gearRatio / 60.0 : 0;
             }
@@ -4635,7 +4634,7 @@ void antPowerProcessing::createPWRB10ResultString
         {
             appendJSONItem( "event count", eventCount );
             appendJSONItem( "power",       power,              getValuePrecision() );
-            appendJSONItem( "cadence",     cadence );
+            appendJSONItemConditional( "cadence", instantaneousCadence != 255, cadence, C_UNDEFINED_JSON );
             if ( isMakeshiftSpeedSensor )
             {
                 appendJSONItem( "speed",               speed,              getValuePrecision() );
@@ -4648,7 +4647,7 @@ void antPowerProcessing::createPWRB10ResultString
         else
         {
             appendOutput( power, getValuePrecision() );
-            appendOutput( cadence );
+            appendOutputConditional( instantaneousCadence != 255, cadence, C_UNDEFINED );
             appendOutputConditional( pedalPowerContribution >= 0, pedalPowerContribution, "NO_PEDAL_POWER_CONTRIBUTION" );
             appendOutputConditional( rightPedal, C_RIGHT_PEDAL, C_UNKNOWN_PEDAL );
             appendOutput( eventCount );
@@ -5129,9 +5128,11 @@ void antPowerProcessing::createPWRB20ResultString
         {
             appendOutput( power,                          getValuePrecision() );
             appendOutput( cadence );
+            appendOutput( torque,                         getValuePrecision() );
             appendOutput( powerMeterOffset );
             appendOutput( powerMeterSlope_Nm_10Hz / 10.0, 1 );
             appendOutputConditional( userDefinedSlope_Nm_10Hz == C_SLOPE_DEFAULT, "FACTORY_SLOPE", "USER_DEFINED_SLOPE" );
+            appendOutput( factorySlope_Nm_10Hz / 10.0, 1 );
             if ( isMakeshiftSpeedSensor )
             {
                 appendOutput( speed,                      getValuePrecision() );

@@ -155,9 +155,9 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
 
             case  3: result          = MULTI_SPORT_SD_SENSOR;
                      auxInt1         = hex2Int( payLoad[ 4 ] );
-                     additionalData1 = ( auxInt1 << 4 ) >> 4;                      // Fix Type
+                     additionalData1 = ( auxInt1 << 4 ) >> 4;                          // Fix Type
                      auxInt2         = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
-                     additionalData2 = auxInt2 >> 4;                               // Heading
+                     additionalData2 = auxInt2 >> 4;                                   // Heading
                      additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );          // Elevation
                      if ( diagnostics )
                      {

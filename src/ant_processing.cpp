@@ -3919,6 +3919,12 @@ void antProcessing::outputFormats
     amString          auxBuffer;
     amString          auxBuffer1;
     amString          speedBuffer;
+    amString          unitsMessage;
+    amString          powerUnitMessage;
+    amString          cadUnitMessage;
+    amString          torqueUnitMessage;
+    amString          speedUnitMessage;
+    amString          voltageMessage;
     amString          separator( "   " );
     amString          indent( "\n    " );
     amString          indent2( indent );
@@ -3926,6 +3932,26 @@ void antProcessing::outputFormats
     amString          indent3( indent2 );
     indent3 += "    ";
     deviceTypeUC.toUpper();
+
+    unitsMessage  = indent2;
+    unitsMessage += "The units for the result values are:";
+    unitsMessage += indent3;
+    unitsMessage += "time       : s       (seconds)";
+
+    powerUnitMessage += indent3;
+    powerUnitMessage += "power      : W       (watts)";
+
+    cadUnitMessage += indent3;
+    cadUnitMessage += "cadence    : rpm     (revolutions per minute)";
+
+    torqueUnitMessage += indent3;
+    torqueUnitMessage += "torque     : Nm      (Netwon meters)";
+
+    speedUnitMessage += indent3;
+    speedUnitMessage += "speed      : m/s     (meters per second)";
+
+    voltageMessage += indent3;
+    voltageMessage += "voltage    : V       (Volts)";
 
     speedBuffer  = separator;
     speedBuffer += "<speed>";
@@ -4029,6 +4055,14 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<current_air_density>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << indent3;
+            outputMessage << "wind speed : m/s     (meters per seconds)";
+            outputMessage << indent3;
+            outputMessage << "yaw angle  : deg     (degrees)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4100,6 +4134,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4153,6 +4188,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4194,6 +4230,11 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version_ant2txt>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << voltageMessage;
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4258,6 +4299,8 @@ void antProcessing::outputFormats
             outputMessage << "<sw_version>";
 
             outputMessage << auxBuffer;
+            outputMessage << "3/131";
+            outputMessage << separator;
             outputMessage << "<model_number>";
             outputMessage << separator;
             outputMessage << "<software_version>";
@@ -4268,7 +4311,7 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
 
             outputMessage << indent2;
-            outputMessage << "Any cadence sensor can become a makeshift speed sensor.";
+            outputMessage << "Any cadence sensor can become a makeshift speed sensor for a fixed gear bike.";
             outputMessage << std::endl;
 
             outputMessage << auxBuffer;
@@ -4329,6 +4372,11 @@ void antProcessing::outputFormats
             outputMessage << " (";
             outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
             outputMessage << ")";
+            outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << speedUnitMessage;
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -4458,6 +4506,12 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << indent3;
+            outputMessage << "temperature: deg C   (degrees Celsius)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -4560,6 +4614,11 @@ void antProcessing::outputFormats
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
 
+            outputMessage << unitsMessage;
+            outputMessage << indent3;
+            outputMessage << "heart rate : bpm     (beats per minute)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
@@ -4627,7 +4686,7 @@ void antProcessing::outputFormats
             outputMessage << "\"Fully Cooked\"";
 
             auxBuffer  = indent2;
-            auxBuffer += "SPB7_<id>";
+            auxBuffer += "MSSDM_<id>";
             auxBuffer += separator;
             auxBuffer += "<time>";
             auxBuffer += separator;
@@ -4697,8 +4756,22 @@ void antProcessing::outputFormats
             outputMessage << "CALIBRATION_REQUEST";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << speedUnitMessage;
+            outputMessage << indent3;
+            outputMessage << "longitude  : deg     (degrees)";
+            outputMessage << indent3;
+            outputMessage << "latitude   : deg     (degrees)";
+            outputMessage << indent3;
+            outputMessage << "heading    : deg     (degrees)";
+            outputMessage << indent3;
+            outputMessage << "distance   : m       (meters)";
+            outputMessage << indent3;
+            outputMessage << "elevation  : m       (meters)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
@@ -4879,8 +4952,15 @@ void antProcessing::outputFormats
             outputMessage << "CUSTOM_CALIBRATION_PARAMS_UPDATE_RESPONSE";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << indent3;
+            outputMessage << "offset     : Hz      (Hertz)";
+            outputMessage << indent3;
+            outputMessage << "slope      : 10*NmHz (10 * Newton Meters / Hertz)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
@@ -4994,6 +5074,11 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
+            outputMessage << indent3;
+            outputMessage << "length     : m       (meters)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5039,6 +5124,7 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5095,7 +5181,7 @@ void antProcessing::outputFormats
             outputMessage << std::endl;
 
             outputMessage << indent2;
-            outputMessage << "Any power-only power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
+            outputMessage << "Any power-only power meter is also a cadence sensor and can therefore become a makeshift speed sensor for a fixed gear bike.";
             outputMessage << indent2;
             outputMessage << "To turn a power-only power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
@@ -5118,6 +5204,12 @@ void antProcessing::outputFormats
             outputMessage << " (";
             outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
             outputMessage << ")";
+            outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << powerUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << speedUnitMessage;
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5193,6 +5285,13 @@ void antProcessing::outputFormats
             outputMessage << " (m)";
             outputMessage << std::endl;
 
+            outputMessage << unitsMessage;
+            outputMessage << powerUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << torqueUnitMessage;
+            outputMessage << speedUnitMessage;
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5249,7 +5348,7 @@ void antProcessing::outputFormats
             outputMessage << indent2;
 
             outputMessage << indent2;
-            outputMessage << "Any CT power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
+            outputMessage << "Any CT power meter is also a cadence sensor and can therefore become a makeshift speed sensor for a fixed gear bike.";
             outputMessage << indent2;
             outputMessage << "To turn a CT power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
@@ -5272,6 +5371,13 @@ void antProcessing::outputFormats
             outputMessage << " (";
             outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
             outputMessage << ")";
+            outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << powerUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << torqueUnitMessage;
+            outputMessage << speedUnitMessage;
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5389,9 +5495,9 @@ void antProcessing::outputFormats
             auxBuffer += separator;
             auxBuffer += "<slope>";
             auxBuffer += separator;
-            auxBuffer += "<factory_slope>";
-            auxBuffer += separator;
             auxBuffer += "<slope_used>";
+            auxBuffer += separator;
+            auxBuffer += "<factory_slope>";
 
             outputMessage << auxBuffer;
             outputMessage << separator;
@@ -5405,6 +5511,19 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+            outputMessage << indent2;
+            outputMessage << "where";
+            outputMessage << indent3;
+            outputMessage << "<slope> is the slope value used for the computation of torque and power,";
+            outputMessage << indent2;
+            outputMessage << "and";
+            outputMessage << indent3;
+            outputMessage << "<slope_used> = USER_DEFINED_SLOPE (if user-defined slope was used) or FACTORY_SLOPE (if factory slope was used)";
+            outputMessage << indent2;
+            outputMessage << "and";
+            outputMessage << indent3;
+            outputMessage << "<factory_slope> is the factory slope value (whether it was used or not).";
+            outputMessage << std::endl;
 
             outputMessage << indent2;
             outputMessage << "The CTF power meter takes 2 parameters";
@@ -5415,7 +5534,7 @@ void antProcessing::outputFormats
             outputMessage << indent3;
             outputMessage << "power meter slope  (default: ";
             outputMessage << ( int ) C_SLOPE_DEFAULT;
-            outputMessage << " [use factory slope], unit: Nm/Hz). ";
+            outputMessage << " [use factory slope]; if positive, the unit is Nm/Hz). ";
             outputMessage << indent2;
             outputMessage << "The parameters are defined in the deviceIDs file (see option '-d') as:";
             outputMessage << indent3;
@@ -5426,12 +5545,10 @@ void antProcessing::outputFormats
             outputMessage << "<offset>";
             outputMessage << separator;
             outputMessage << "<slope>";
-            outputMessage << indent2;
-            outputMessage << "Define <slope> = -1 to use the factory slope.";
             outputMessage << std::endl;
 
             outputMessage << indent2;
-            outputMessage << "Any CTF power meter is also a cadence sensor and can therefore become a makeshift speed sensor.";
+            outputMessage << "Any CTF power meter is also a cadence sensor and can therefore become a makeshift speed sensor for a fixed gear bike.";
             outputMessage << indent2;
             outputMessage << "To turn a CTF power meter into a speed sensor it must be defined as a such in the deviceIDs file by";
             outputMessage << indent3;
@@ -5453,7 +5570,14 @@ void antProcessing::outputFormats
             outputMessage << C_GEAR_RATIO_DEFAULT;
             outputMessage << " (";
             outputMessage << C_GEAR_RATIO_DEFAULT_AS_RATIO;
-            outputMessage << ")";
+            outputMessage << ", number of teeth of crankshaft sprocket : number of teeth of wheel hub sprocket)";
+            outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << powerUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << torqueUnitMessage;
+            outputMessage << speedUnitMessage;
             outputMessage << std::endl;
 
             outputMessage << indent;
@@ -5635,6 +5759,11 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << voltageMessage;
+            voltageMessage  = indent3;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -5790,6 +5919,15 @@ void antProcessing::outputFormats
             outputMessage << "<sw_version>";
             outputMessage << std::endl;
 
+            outputMessage << unitsMessage;
+            outputMessage << speedUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << indent3;
+            outputMessage << "distance   : m       (meters)";
+            outputMessage << indent3;
+            outputMessage << "latency    : s       (seconds)";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
@@ -5941,6 +6079,11 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<nb_magnets>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << speedUnitMessage;
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
@@ -6032,6 +6175,12 @@ void antProcessing::outputFormats
             outputMessage << separator;
             outputMessage << "<nb_magnets>";
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << speedUnitMessage;
+            outputMessage << cadUnitMessage;
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
             outputMessage << indent2;
@@ -6166,8 +6315,17 @@ void antProcessing::outputFormats
             outputMessage << "<activity_class>";
             outputMessage << separator;
             outputMessage << "<sw_version>";
-
             outputMessage << std::endl;
+
+            outputMessage << unitsMessage;
+            outputMessage << indent3;
+            outputMessage << "weight     : kg  (kilogramms)";
+            outputMessage << indent3;
+            outputMessage << "height     : m   (meters)";
+            outputMessage << indent3;
+            outputMessage << "age        : years";
+            outputMessage << std::endl;
+
             outputMessage << indent;
             outputMessage << "\"Semi-Cooked\"";
 
