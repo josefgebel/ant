@@ -49,9 +49,6 @@ class antAeroProcessing : virtual public antProcessing
 
         bool isAeroSensor( const amString &deviceID );
 
-        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
-        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
-
         void setRho( double value );
         void setRhoDefault( double value ) { rhoDefault = value; }
 
@@ -61,9 +58,11 @@ class antAeroProcessing : virtual public antProcessing
         bool setAirSpeedMultiplier( const amString &sensorID, double value );
         void setAirSpeedMultiplierDefault( double value ) { airSpeedMultiplierDefault = value; }
 
-        virtual void reset( void );
-
         void createAEROResultString( unsigned int airSpeedRaw, unsigned int yawAngleRaw, double calibrationRho, double airSpeedMultiplier, double currentRho );
+
+        virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
+        virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
+        virtual void reset( void );
 
 };
 

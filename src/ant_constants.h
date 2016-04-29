@@ -12,7 +12,6 @@
 #define HEX_DIGIT_2_INT( _HHH_ ) ( ( ( ( _HHH_ ) >= '0' ) && ( ( _HHH_ ) <= '9' ) ) ? ( ( _HHH_ ) - '0' ) : \
                                    ( ( ( toupper( _HHH_ ) >= 'A' ) && ( toupper( _HHH_ ) <= 'F' ) ) ? ( toupper( _HHH_ ) - 'A' + 10 ) : 0 ) )
 
-
 const char BUILD_NUMBER[] = C_VERSION;
 const char C_COPYRIGHT[]  = "Copyright (c) Alphamantis Technologies Inc. 2016";
 
@@ -89,9 +88,6 @@ const int E_EMPTY_MESSAGE         = 91099;
 
 const int E_BAD_OPTION            = 99998;
 const int E_UNKNOWN_OPTION        = 99999;
-
-
-
 
 const bool C_OUTPUT_UNKNOWN                                 = false;
 const bool C_OUTPUT_BRIDGE                                  = true;
@@ -323,12 +319,11 @@ const int    C_NB_MAGNETS_DEFAULT                           =     1;
 const int    C_OFFSET_DEFAULT                               =   500;
 const int    C_NB_BATTERY_STATUS                            =     8;
 const int    C_TIME_OUT_SEC_DEFAULT                         =     0;
-
-const int    C_DEFAULT_TIME_PRECISION_DEFAULT               = 6;
-const int    C_DEFAULT_VALUE_PRECISION_DEFAULT              = 6;
+const int    C_DEFAULT_TIME_PRECISION_DEFAULT               =     6;
+const int    C_DEFAULT_VALUE_PRECISION_DEFAULT              =     6;
 const int    C_DEFAULT_MC_PORT_NO_IN                        = 51113;
-const int    C_DEFAULT_MC_PORT_NO_OUT                       = 0;
-const int    C_DEFAULT_TIME_OUT_SEC                         = 0;   // Time out after x seconds of inactivity. x = 0: Do not time out.
+const int    C_DEFAULT_MC_PORT_NO_OUT                       =     0;
+const int    C_DEFAULT_TIME_OUT_SEC                         =     0;   // Time out after x seconds of inactivity. x = 0: Do not time out.
 
 const double C_DBL_UNDEFINED                                = 1.0E13;
 const double C_TWO_PI                                       = 4.0 * acos( 0 );         // 2 PI
@@ -371,7 +366,6 @@ const unsigned int C_MAX_ZERO_TIME_SPEED                    =  12;
 const unsigned int C_MAX_ZERO_TIME_CADENCE                  =  12;
 const unsigned int C_MAX_ZERO_TIME_HRM                      =  12;
 const unsigned int C_MAX_ZERO_TIME                          =  12;  // the largest of all C_MAX_ZERO_TIME_xyz
-
 
 const BYTE C_ANT_ASYNC_MSG                         = 0x12;
 const BYTE C_ANT_PACKET_SAVER                      = 0x13;
