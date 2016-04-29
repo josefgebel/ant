@@ -2,8 +2,7 @@
 #define __ANT_CONSTANTS_H__
 
 #include <math.h>
-
-#define BYTE unsigned char
+#include <am_string.h>
 
 #define C_VERSION        "1.0.0"
 #define C_AUTO_INTERFACE "auto"
@@ -11,7 +10,7 @@
 #define IS_WHITE_CHAR( _CCC_ ) ( ( ( _CCC_ ) == ' ' ) || ( ( _CCC_ ) == '\t' ) )
 #define NEGATE_BINARY_INT( _NNN_, _PPP_ ) ( ( ( _NNN_ ) >= ( 1 << ( (_PPP_ ) - 1 ) ) ) ?  ( ( _NNN_ ) - ( 1 << ( _PPP_ ) ) ) : ( _NNN_ ) );
 #define HEX_DIGIT_2_INT( _HHH_ ) ( ( ( ( _HHH_ ) >= '0' ) && ( ( _HHH_ ) <= '9' ) ) ? ( ( _HHH_ ) - '0' ) : \
-                                   ( ( ( toupper( _HHH_ ) >= 'A' ) && ( toupper( _HHH_ ) <= 'F' ) ) ? ( toupper( _HHH_ ) - 'A' ) : 0 ) )
+                                   ( ( ( toupper( _HHH_ ) >= 'A' ) && ( toupper( _HHH_ ) <= 'F' ) ) ? ( toupper( _HHH_ ) - 'A' + 10 ) : 0 ) )
 
 
 const char BUILD_NUMBER[] = C_VERSION;
@@ -62,7 +61,8 @@ enum amDeviceType
     AUDIO_CONTROL,           // 12
     PACKET_SAVER_MODE,       // 13
     OTHER_DEVICE,            // 14
-    DEVICE_ERROR             // 15
+    UNKNOWN_DEVICE,          // 15
+    DEVICE_ERROR             // 16
 };
 
 
@@ -106,6 +106,8 @@ const bool C_DEFAULT_OUTPUT_RAW                             = false;
 const bool C_DEFAULT_DIAGNOSTICS                            = false;
 const bool C_DEFAULT_ONLY_REGISTERED_DEVICES                = false;
 
+const char C_UNSUPPORTED_DATA_PAGE[]                        = "UNSUPPORTED_DATA_PAGE";
+const char C_UNSUPPORTED_DATA_PAGE_JSON[]                   = "unsupported data page";
 const char C_N_A_JSON[]                                     = "n/a";
 const char C_ON_JSON[]                                      = "on";
 const char C_OFF_JSON[]                                     = "off";

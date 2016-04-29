@@ -90,7 +90,7 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -99,9 +99,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
         switch ( dataPage & 0x0F )
         {
             case  1: result          = WEIGHT_SCALE;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex2Int( payLoad[ 3 ] );                   // Capabilities
-                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Body Weight
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = byte2UInt( payLoad[ 3 ] );                   // Capabilities
+                     additionalData3 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );     // Body Weight
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -111,9 +111,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  2: result          = WEIGHT_SCALE;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Hydration
-                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Body Fat
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );     // Hydration
+                     additionalData3 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );     // Body Fat
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -123,9 +123,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  3: result          = WEIGHT_SCALE;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Active Metabolic Rate
-                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );     // Basal Metabolic Rate
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );     // Active Metabolic Rate
+                     additionalData3 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );     // Basal Metabolic Rate
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile",          payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -135,9 +135,9 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case  4: result          = WEIGHT_SCALE;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
-                     additionalData2 = hex2Int( payLoad[ 6 ], payLoad[ 5 ] );     // Muscle Mass
-                     additionalData3 = hex2Int( payLoad[ 7 ] );                   // Bone Mass
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     // User Profile
+                     additionalData2 = byte2UInt( payLoad[ 6 ], payLoad[ 5 ] );     // Muscle Mass
+                     additionalData3 = byte2UInt( payLoad[ 7 ] );                   // Bone Mass
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile", payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -147,13 +147,13 @@ amDeviceType antWeightProcessing::processWeightScaleSensor
                      break;
 
             case 58: result          = WEIGHT_SCALE;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     //  User Profile
-                     additionalData2 = hex2Int( payLoad[ 3 ] );                   //  Capabilities
-                     auxInt          = hex2Int( payLoad[ 5 ] );
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     //  User Profile
+                     additionalData2 = byte2UInt( payLoad[ 3 ] );                   //  Capabilities
+                     auxInt          = byte2UInt( payLoad[ 5 ] );
                      additionalData3 = auxInt >> 7;                           //  Gender
                      additionalData4 = auxInt & ( ( 1 << 7 ) - 1 );           //  Age
-                     additionalData5 = hex2Int( payLoad[ 6 ] );                   //  User Height
-                     additionalData6 = hex2Int( payLoad[ 7 ] );                   //  Descript Bit
+                     additionalData5 = byte2UInt( payLoad[ 6 ] );                   //  User Height
+                     additionalData6 = byte2UInt( payLoad[ 7 ] );                   //  Descript Bit
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "User Profile",  payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -207,46 +207,51 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
     const amString &inputBuffer
 )
 {
-    amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
-    {
-        amString      sensorID;
-        amString      semiCookedString;
-        amString      timeStampBuffer;
-        amString      curVersion      = getVersion();
-        amSplitString words;
-        unsigned int  nbWords         = words.split( inputBuffer );
-        unsigned int  startCounter    = 0;
-        unsigned int  counter         = 0;
-        unsigned int  dataPage        = 0;
-        unsigned int  additionalData1 = 0;
-        unsigned int  additionalData2 = 0;
-        unsigned int  additionalData3 = 0;
-        unsigned int  additionalData4 = 0;
-        unsigned int  additionalData5 = 0;
-        unsigned int  additionalData6 = 0;
-        bool          commonPage      = false;
-        bool          outputPageNo    = true;
+    amDeviceType  result          = OTHER_DEVICE;
+    amString      sensorID;
+    amString      semiCookedString;
+    amString      timeStampBuffer;
+    amString      curVersion      = getVersion();
+    amSplitString words;
+    unsigned int  nbWords         = words.split( inputBuffer );
+    unsigned int  startCounter    = 0;
+    unsigned int  counter         = 0;
+    unsigned int  dataPage        = 0;
+    unsigned int  additionalData1 = 0;
+    unsigned int  additionalData2 = 0;
+    unsigned int  additionalData3 = 0;
+    unsigned int  additionalData4 = 0;
+    unsigned int  additionalData5 = 0;
+    unsigned int  additionalData6 = 0;
+    bool          commonPage      = false;
+    bool          outputPageNo    = true;
 
-        if ( nbWords > 7 )
+    if ( nbWords > 7 )
+    {
+        sensorID         = words[ counter++ ];                     //  0
+        timeStampBuffer  = words[ counter++ ];                     //  1
+        semiCookedString = words[ counter++ ];                     //  2
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                     //  0
-            timeStampBuffer  = words[ counter++ ];                     //  1
-            semiCookedString = words[ counter++ ];                     //  2
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isWeightScaleSensor( sensorID ) )
+        {
+            startCounter = counter;
+            dataPage    = words[ counter++ ].toUInt();                           //  3
             if ( diagnostics )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                appendDiagnosticsLine( "Data Page", dataPage );
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isWeightScaleSensor( sensorID ) )
+
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                startCounter = counter;
-                dataPage    = words[ counter++ ].toUInt();                           //  3
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Data Page", dataPage );
-                }
+                result = UNKNOWN_DEVICE;
+            }
+            else
+            {
                 counter = startCounter;
                 switch ( dataPage & 0x0F )
                 {
@@ -337,40 +342,44 @@ amDeviceType antWeightProcessing::processWeightScaleSensorSemiCooked
                 }
             }
         }
+    }
 
-        if ( result == WEIGHT_SCALE )
+    if ( result == WEIGHT_SCALE )
+    {
+        if ( nbWords > counter )
         {
-            if ( nbWords > counter )
+            curVersion = words.back();
+            if ( diagnostics )
             {
-                curVersion = words.back();
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Version", curVersion );
-                }
+                appendDiagnosticsLine( "Version", curVersion );
             }
-            createOutputHeader( sensorID, timeStampBuffer );
-            if ( commonPage )
-            {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
-                if ( !commonPage )
-                {
-                    result = OTHER_DEVICE;
-                }
-            }
-            else
-            {
-                createWeightScaleString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4, additionalData5, additionalData6 );
-            }
-            appendOutputFooter( curVersion );
         }
-
-        if ( result == OTHER_DEVICE )
+        createOutputHeader( sensorID, timeStampBuffer );
+        if ( commonPage )
         {
-            resetOutBuffer();
-            if ( outputUnknown )
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
+            if ( !commonPage )
             {
-                setOutBuffer( inputBuffer );
+                result = OTHER_DEVICE;
             }
+        }
+        else
+        {
+            createWeightScaleString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4, additionalData5, additionalData6 );
+        }
+        appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
+        {
+            setOutBuffer( inputBuffer );
         }
     }
 

@@ -91,7 +91,7 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -102,11 +102,11 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
             case  0: // - - Page 0: No Additional Data - - - - - - - - - - - - - - -
                      //     Bytes 1, 2, and 3: 0xFF.
                      result          = ENVIRONMENT_SENSOR;
-                     auxInt0         = hex2Int( payLoad[ 3 ] );                                              // Transmission Info
+                     auxInt0         = byte2UInt( payLoad[ 3 ] );                                              // Transmission Info
                      additionalData1 = ( auxInt0 << 4 ) & 3;                                             // Local Time
                      additionalData2 = ( auxInt0 << 2 ) & 3;                                             // UTC Time
                      additionalData3 = auxInt0 & 3;                                                      // Transmission Rate
-                     additionalData4 = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );    // Supported Pages
+                     additionalData4 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );    // Supported Pages
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Transmission Info", payLoad[ 3 ], auxInt0 );
@@ -121,13 +121,13 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensor
                      //     Bits 0-3 of Byte 4 and Byte 5: High Temp * 10 (Byte 5 MSB)
                      //     Bytes 6 & 7                  : Current Temp * 100 (byte 6 LSB, byte 7 MSB)
                      result          = ENVIRONMENT_SENSOR;
-                     additionalData4 = hex2Int( payLoad[ 2 ] );                                              // Event Count
-                     auxInt0         = hex2Int( payLoad[ 4 ] );
+                     additionalData4 = byte2UInt( payLoad[ 2 ] );                                              // Event Count
+                     auxInt0         = byte2UInt( payLoad[ 4 ] );
                      auxInt1         = auxInt0 >> 4;
                      auxInt2         = auxInt0 & 0x0F;
-                     additionalData2 = ( auxInt1 * 256 ) + hex2Int( payLoad[ 3 ] );                          // Low Temperature 24h
-                     additionalData3 = ( hex2Int( payLoad[ 5 ] ) << 4 ) + auxInt2;                           // High Temperature 24h
-                     additionalData1 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );                               // Current Temperature
+                     additionalData2 = ( auxInt1 * 256 ) + byte2UInt( payLoad[ 3 ] );                          // Low Temperature 24h
+                     additionalData3 = ( byte2UInt( payLoad[ 5 ] ) << 4 ) + auxInt2;                           // High Temperature 24h
+                     additionalData1 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );                               // Current Temperature
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Current Temperature * 100", payLoad[ 7 ], payLoad[ 6 ], additionalData1 );
@@ -191,43 +191,47 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
+    unsigned int  dataPage        = 0;
+    unsigned int  counter         = 0;
+    unsigned int  startCounter    = 0;
+    unsigned int  additionalData1 = 0;
+    unsigned int  additionalData2 = 0;
+    unsigned int  additionalData3 = 0;
+    unsigned int  additionalData4 = 0;
+    amString      curVersion      = getVersion();
+    amString      timeStampBuffer;
+    amString      sensorID;
+    amString      timeStampString;
+    amString      semiCookedString;
+    amString      dataPageString;
+    bool          commonPage      = false;
+    bool          outputPageNo    = true;
+    amSplitString words;
+    unsigned int  nbWords         = words.split( inputBuffer );
+
+    // Semi-cooked string has the syntax
+    //    "<device_id>\t<time_stamp>\t<semi_cooked_symbol>\t<data_page>\t...."
+
+    if ( nbWords > 3 )
     {
-        unsigned int  dataPage        = 0;
-        unsigned int  counter         = 0;
-        unsigned int  startCounter    = 0;
-        unsigned int  additionalData1 = 0;
-        unsigned int  additionalData2 = 0;
-        unsigned int  additionalData3 = 0;
-        unsigned int  additionalData4 = 0;
-        amString      curVersion      = getVersion();
-        amString      timeStampBuffer;
-        amString      sensorID;
-        amString      timeStampString;
-        amString      semiCookedString;
-        amString      dataPageString;
-        bool          commonPage      = false;
-        bool          outputPageNo    = true;
-        amSplitString words;
-        unsigned int  nbWords         = words.split( inputBuffer );
-
-        // Semi-cooked string has the syntax
-        //    "<device_id>\t<time_stamp>\t<semi_cooked_symbol>\t<data_page>\t...."
-
-        if ( nbWords > 3 )
+        sensorID         = words[ counter++ ];                                                   // 0 - sensor ID
+        timeStampBuffer  = words[ counter++ ];                                                   // 1 - time stamp
+        semiCookedString = words[ counter++ ];                                                   // 2 - semi-cooked indicator
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                                                   // 0 - sensor ID
-            timeStampBuffer  = words[ counter++ ];                                                   // 1 - time stamp
-            semiCookedString = words[ counter++ ];                                                   // 2 - semi-cooked indicator
-            if ( diagnostics )
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isEnvironmentSensor( sensorID ) )
+        {
+            dataPage = words[ counter++ ].toUInt();                                              // 3 - data page
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                result = UNKNOWN_DEVICE;
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isEnvironmentSensor( sensorID ) )
+            else
             {
-                dataPage     = words[ counter++ ].toUInt();                                          // 3 - data page
                 startCounter = counter;
 
                 switch ( dataPage & 0x0F )
@@ -274,41 +278,45 @@ amDeviceType antEnvironmentProcessing::processEnvironmentSensorSemiCooked
                 }
             }
         }
+    }
 
-        if ( result == ENVIRONMENT_SENSOR )
+    if ( result == ENVIRONMENT_SENSOR )
+    {
+        if ( nbWords > counter )
         {
-            if ( nbWords > counter )
+            curVersion = words.back();
+            if ( diagnostics )
             {
-                curVersion = words.back();
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Version", curVersion );
-                }
+                appendDiagnosticsLine( "Version", curVersion );
             }
-
-            createOutputHeader( sensorID, timeStampBuffer );
-            if ( commonPage )
-            {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
-                if ( !commonPage )
-                {
-                    result = OTHER_DEVICE;
-                }
-            }
-            else
-            {
-                createENVResultString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4 );
-            }
-            appendOutputFooter( curVersion );
         }
 
-        if ( result == OTHER_DEVICE )
+        createOutputHeader( sensorID, timeStampBuffer );
+        if ( commonPage )
         {
-            resetOutBuffer();
-            if ( outputUnknown )
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
+            if ( !commonPage )
             {
-                setOutBuffer( inputBuffer );
+                result = OTHER_DEVICE;
             }
+        }
+        else
+        {
+            createENVResultString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4 );
+        }
+        appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
+        {
+            setOutBuffer( inputBuffer );
         }
     }
 

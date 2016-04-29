@@ -237,7 +237,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cadence Event Time
-        bikeCadenceEventTime  = hex2Int( payLoad[ 1 ], payLoad[ 0 ] );
+        bikeCadenceEventTime  = byte2UInt( payLoad[ 1 ], payLoad[ 0 ] );
         rollOver              = 65536;  // 256^2
         deltaCadenceEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, cadenceTimeTable, bikeCadenceEventTime );
         if ( diagnostics )
@@ -254,7 +254,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cadence Revolution Count
-        cumCadenceRevCount        = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );
+        cumCadenceRevCount        = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );
         rollOver                  = 65536;  // 256^2
         deltaCrankRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, cadenceCountTable, cumCadenceRevCount );
         if ( diagnostics )
@@ -271,7 +271,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Speed Event Time
-        bikeSpeedEventTime  = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        bikeSpeedEventTime  = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver            = 65536;  // 256^2
         deltaSpeedEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, bikeSpeedEventTime );
         if ( diagnostics )
@@ -288,7 +288,7 @@ amDeviceType antSpcadProcessing::processSpeedAndCadenceSensor
 
         // - - - - - - - - - - - - - - - - - - - - -
         // Cumulated Wheel Count
-        wheelRevolutionCount      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        wheelRevolutionCount      = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver                  = 65536;  // 256^2
         deltaWheelRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, wheelRevolutionCount );
         if ( diagnostics )

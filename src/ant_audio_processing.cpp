@@ -87,19 +87,18 @@ amDeviceType antAudioProcessing::processAudioControl
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
         }
-
-        switch ( dataPage & 0x0F )
+        switch ( dataPage )
         {
             case  1: result          = AUDIO_CONTROL;
-                     additionalData1 = hex2Int( payLoad[ 1 ] );                   // Volume
-                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );     // Total Track Time
-                     additionalData3 = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );     // Current Track Time
-                     additionalData4 = hex2Int( payLoad[ 7 ] );                   // State
+                     additionalData1 = byte2UInt( payLoad[ 1 ] );                   // Volume
+                     additionalData2 = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );     // Total Track Time
+                     additionalData3 = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );     // Current Track Time
+                     additionalData4 = byte2UInt( payLoad[ 7 ] );                   // State
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Volume",             payLoad[ 1 ],               additionalData1 );
@@ -110,8 +109,8 @@ amDeviceType antAudioProcessing::processAudioControl
                      break;
 
             case 16: result          = AUDIO_CONTROL;
-                     additionalData1 = hex2Int( payLoad[ 2 ], payLoad[ 1 ] );     // Serial Number
-                     additionalData2 = hex2Int( payLoad[ 7 ] );                   // Command Number
+                     additionalData1 = byte2UInt( payLoad[ 2 ], payLoad[ 1 ] );     // Serial Number
+                     additionalData2 = byte2UInt( payLoad[ 7 ] );                   // Command Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Serial Number",  payLoad[ 2 ], payLoad[ 1 ], additionalData1 );
@@ -131,10 +130,6 @@ amDeviceType antAudioProcessing::processAudioControl
         if ( commonPage )
         {
             commonPage = processCommonPages( sensorID, payLoad, outputPageNo );
-            if ( !commonPage )
-            {
-                result = OTHER_DEVICE;
-            }
         }
         else
         {
@@ -201,44 +196,52 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
         if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isAudioSensor( sensorID ) )
         {
             startCounter = counter;
-            dataPage    = ( unsigned int ) words[ counter++ ].toInt();       //  3
+            dataPage     = ( unsigned int ) words[ counter++ ].toInt();       //  3
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Data Page", dataPage );
             }
-            counter = startCounter;
-            switch ( dataPage & 0x0F )
+
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                case  1: if ( nbWords > 6 )
-                         {
-                             result          = AUDIO_CONTROL;
-                             additionalData1 = words[ counter++ ].toUInt();       //  4 - Volume
-                             additionalData2 = words[ counter++ ].toUInt();       //  5 - Total Track Time
-                             additionalData3 = words[ counter++ ].toUInt();       //  6 - Current Track Time
-                             additionalData4 = words[ counter++ ].toUInt();       //  7 - State
+                result = UNKNOWN_DEVICE;
+            }
+            else
+            {
+                counter = startCounter;
+                switch ( dataPage )
+                {
+                    case  1: if ( nbWords > 6 )
+                             {
+                                 result          = AUDIO_CONTROL;
+                                 additionalData1 = words[ counter++ ].toUInt();       //  4 - Volume
+                                 additionalData2 = words[ counter++ ].toUInt();       //  5 - Total Track Time
+                                 additionalData3 = words[ counter++ ].toUInt();       //  6 - Current Track Time
+                                 additionalData4 = words[ counter++ ].toUInt();       //  7 - State
+                                 if ( diagnostics )
+                                 {
+                                     appendDiagnosticsLine( "Volume",             additionalData1 );
+                                     appendDiagnosticsLine( "Total Track Time",   additionalData2 );
+                                     appendDiagnosticsLine( "Current Track Time", additionalData3 );
+                                     appendDiagnosticsLine( "State",              additionalData4 );
+                                }
+                             }
+                             break;
+
+                    case 16: result          = AUDIO_CONTROL;
+                             additionalData1 = words[ counter++ ].toUInt();           // 4 - Serial Number
+                             additionalData2 = words[ counter++ ].toUInt();           // 5 - Command Number
                              if ( diagnostics )
                              {
-                                 appendDiagnosticsLine( "Volume",             additionalData1 );
-                                 appendDiagnosticsLine( "Total Track Time",   additionalData2 );
-                                 appendDiagnosticsLine( "Current Track Time", additionalData3 );
-                                 appendDiagnosticsLine( "State",              additionalData4 );
-                            }
-                         }
-                         break;
+                                 appendDiagnosticsLine( "Serial Number",  additionalData1 );
+                                 appendDiagnosticsLine( "Command Number", additionalData2 );
+                             }
+                             break;
 
-                case 16: result          = AUDIO_CONTROL;
-                         additionalData1 = words[ counter++ ].toUInt();           // 4 - Serial Number
-                         additionalData2 = words[ counter++ ].toUInt();           // 5 - Command Number
-                         if ( diagnostics )
-                         {
-                             appendDiagnosticsLine( "Serial Number",  additionalData1 );
-                             appendDiagnosticsLine( "Command Number", additionalData2 );
-                         }
-                         break;
-
-                default: commonPage = true;
-                         result     = AUDIO_CONTROL;
-                         break;
+                    default: commonPage = true;
+                             result     = AUDIO_CONTROL;
+                             break;
+                }
             }
         }
     }
@@ -256,7 +259,7 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
         createOutputHeader( sensorID, timeStampBuffer );
         if ( commonPage )
         {
-            commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
             if ( !commonPage )
             {
                 result = OTHER_DEVICE;
@@ -267,6 +270,10 @@ amDeviceType antAudioProcessing::processAudioControlSemiCooked
             createAudioControlString( dataPage, additionalData1, additionalData2, additionalData3, additionalData4 );
         }
         appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
     }
 
     if ( result == OTHER_DEVICE )

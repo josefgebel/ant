@@ -121,19 +121,19 @@ amDeviceType antHRMProcessing::processHRMSensor
             operatingTimeTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
         }
 
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
         }
 
-        heartRate = hex2Int( payLoad[ 7 ] );
+        heartRate = byte2UInt( payLoad[ 7 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Heart Rate", payLoad[ 7 ], heartRate );
         }
 
-        heartBeatEventTime         = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        heartBeatEventTime         = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver                   = 65536;  // 256^2
         deltaHeartBeatEventTime    = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, heartBeatEventTime );
         totalHeartBeatEventTime    = totalTimeTable[ sensorID ] + ( ( double ) deltaHeartBeatEventTime ) / 1024.0;
@@ -150,7 +150,7 @@ amDeviceType antHRMProcessing::processHRMSensor
             appendDiagnosticsLine( "Delta Heart Beat Even Time", deltaHeartBeatEventTime, auxBuffer );
         }
 
-        heartBeatCount              = hex2Int( payLoad[ 6 ] );
+        heartBeatCount              = byte2UInt( payLoad[ 6 ] );
         rollOver                    = 256;  // 256 = 1 Byte
         deltaHeartBeatCount         = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, heartBeatCount );
         totalHeartBeatCount         = totalCountTable[ sensorID ] + deltaHeartBeatCount;
@@ -174,7 +174,7 @@ amDeviceType antHRMProcessing::processHRMSensor
 
             case  1: // - - Page 1: Operating Time - - - - - - - - - - - - - - - - -
                      result          = HEART_RATE_METER;
-                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
+                     additionalData2 = byte2UInt( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
                      rollOver        = 16777216;  // 256^3
                      additionalData1 = getDeltaInt( rollOverHappened, sensorID, rollOver, operatingTimeTable, additionalData2 );
                                        // deltaOperatingTime
@@ -194,8 +194,8 @@ amDeviceType antHRMProcessing::processHRMSensor
 
             case  2: // - - Page 2: Manufacturer Information - - - - - - - - - - - -
                      result          = HEART_RATE_METER;
-                     additionalData1 = hex2Int( payLoad[ 1 ] );                // Manufacturer ID
-                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
+                     additionalData1 = byte2UInt( payLoad[ 1 ] );                // Manufacturer ID
+                     additionalData2 = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Manufacturer ID", payLoad[ 1 ], additionalData1 );
@@ -205,9 +205,9 @@ amDeviceType antHRMProcessing::processHRMSensor
 
             case  3: // - - Page 3: Product Information  - - - - - - - - - - - - - -
                      result          = HEART_RATE_METER;
-                     additionalData1 = hex2Int( payLoad[ 1 ] );   // H/W Version
-                     additionalData2 = hex2Int( payLoad[ 2 ] );   // S/W Version
-                     additionalData3 = hex2Int( payLoad[ 3 ] );   // Model Number
+                     additionalData1 = byte2UInt( payLoad[ 1 ] );   // H/W Version
+                     additionalData2 = byte2UInt( payLoad[ 2 ] );   // S/W Version
+                     additionalData3 = byte2UInt( payLoad[ 3 ] );   // Model Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Hardware Version", payLoad[ 1 ], additionalData1 );
@@ -219,8 +219,8 @@ amDeviceType antHRMProcessing::processHRMSensor
             case  4: // - - Page 4: Previous Heartbeat Time - - - - - - - - - - - - -
                      result                         = HEART_RATE_METER;
                      rollOver                       = 65536;  // 256^2
-                     additionalData2                = hex2Int( payLoad[ 1 ] );                 // Manufacturer Specific Data;
-                     additionalData3                = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );   // Previous Heart Beat Event Time
+                     additionalData2                = byte2UInt( payLoad[ 1 ] );                 // Manufacturer Specific Data;
+                     additionalData3                = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );   // Previous Heart Beat Event Time
                      additionalData1                = getDeltaInt( rollOverHappened, sensorID, rollOver, previousHeartRateTable, additionalData3 );
                      additionalDoubleData1          = heartBeatTimeTable[ sensorID ] + ( ( double ) additionalData1 ) / 1024.0;
                      additionalData3                = 0;
@@ -292,48 +292,52 @@ amDeviceType antHRMProcessing::processHRMSensorSemiCooked
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
-    {
-        amSplitString words;
-        unsigned int  deltaHeartBeatEventTime = 0;
-        unsigned int  deltaHeartBeatCount     = 0;
-        unsigned int  heartRate               = 0;
-        unsigned int  dataPage                = 0;
-        unsigned int  counter                 = 0;
-        unsigned int  startCounter            = 0;
-        unsigned int  additionalData1         = 0;
-        unsigned int  additionalData2         = 0;
-        unsigned int  additionalData3         = 0;
-        unsigned int  totalHeartBeatCount     = 0;
-        unsigned int  nbWords                 = words.split( inputBuffer );
-        double        totalHeartBeatEventTime = 0;
-        double        additionalDoubleData1   = 0;
-        amString      timeStampBuffer;
-        amString      curVersion              = getVersion();
-        amString      sensorID;
-        amString      timeStampString;
-        amString      semiCookedString;
-        bool          commonPage              = false;
-        bool          outputPageNo            = true;
+    amSplitString words;
+    unsigned int  deltaHeartBeatEventTime = 0;
+    unsigned int  deltaHeartBeatCount     = 0;
+    unsigned int  heartRate               = 0;
+    unsigned int  dataPage                = 0;
+    unsigned int  counter                 = 0;
+    unsigned int  startCounter            = 0;
+    unsigned int  additionalData1         = 0;
+    unsigned int  additionalData2         = 0;
+    unsigned int  additionalData3         = 0;
+    unsigned int  totalHeartBeatCount     = 0;
+    unsigned int  nbWords                 = words.split( inputBuffer );
+    double        totalHeartBeatEventTime = 0;
+    double        additionalDoubleData1   = 0;
+    amString      timeStampBuffer;
+    amString      curVersion              = getVersion();
+    amString      sensorID;
+    amString      timeStampString;
+    amString      semiCookedString;
+    bool          commonPage              = false;
+    bool          outputPageNo            = true;
 
-        if ( nbWords > 6 )
+    if ( nbWords > 6 )
+    {
+        sensorID         = words[ counter++ ];                        // 0
+        timeStampBuffer  = words[ counter++ ];                        // 1
+        semiCookedString = words[ counter++ ];                        // 2
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                  // 0
-            timeStampBuffer  = words[ counter++ ];                  // 1
-            semiCookedString = words[ counter++ ];                  // 2
-            if ( diagnostics )
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isHeartRateSensor( sensorID ) )
+        {
+            startCounter            = counter;
+            heartRate               = words[ counter++ ].toUInt();    // 3
+            deltaHeartBeatEventTime = words[ counter++ ].toUInt();    // 4
+            deltaHeartBeatCount     = words[ counter++ ].toUInt();    // 5
+            dataPage                = words[ counter++ ].toUInt();    // 6
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                result = UNKNOWN_DEVICE;
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isHeartRateSensor( sensorID ) )
+            else
             {
-                startCounter                = counter;
-                heartRate                   = words[ counter++ ].toUInt();    // 3
-                deltaHeartBeatEventTime     = words[ counter++ ].toUInt();    // 4
-                deltaHeartBeatCount         = words[ counter++ ].toUInt();    // 5
-                dataPage                    = words[ counter++ ].toUInt();    // 6
                 totalHeartBeatEventTime     = totalTimeTable[ sensorID ] + ( ( double ) deltaHeartBeatEventTime ) / 1024.0;
                 totalTimeTable[ sensorID ]  = totalHeartBeatEventTime;
                 totalHeartBeatCount         = totalCountTable[ sensorID ] + deltaHeartBeatCount;
@@ -418,52 +422,56 @@ amDeviceType antHRMProcessing::processHRMSensorSemiCooked
                 }
             }
         }
+    }
 
-        if ( result == HEART_RATE_METER )
+    if ( result == HEART_RATE_METER )
+    {
+        if ( nbWords > counter )
         {
-            if ( nbWords > counter )
+            curVersion = words.back();
+            if ( diagnostics )
             {
-                curVersion = words.back();
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Version", curVersion );
-                }
+                appendDiagnosticsLine( "Version", curVersion );
             }
-            createOutputHeader( sensorID, timeStampBuffer );
-            if ( commonPage )
-            {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
-                if ( !commonPage )
-                {
-                    result = OTHER_DEVICE;
-                }
-            }
-            else
-            {
-                createHRMResultString
-                (
-                    dataPage,
-                    heartRate,
-                    deltaHeartBeatEventTime,
-                    deltaHeartBeatCount,
-                    totalHeartBeatEventTime,
-                    totalHeartBeatCount,
-                    additionalData1,
-                    additionalData2,
-                    additionalData3,
-                    additionalDoubleData1
-                );
-            }
-            appendOutputFooter( curVersion );
         }
-
-        if ( result == OTHER_DEVICE )
+        createOutputHeader( sensorID, timeStampBuffer );
+        if ( commonPage )
         {
-            resetOutBuffer();
-            if ( outputUnknown )
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
+            if ( !commonPage )
             {
-                setOutBuffer( inputBuffer );
+                result = OTHER_DEVICE;
             }
+        }
+        else
+        {
+            createHRMResultString
+            (
+                dataPage,
+                heartRate,
+                deltaHeartBeatEventTime,
+                deltaHeartBeatCount,
+                totalHeartBeatEventTime,
+                totalHeartBeatCount,
+                additionalData1,
+                additionalData2,
+                additionalData3,
+                additionalDoubleData1
+            );
+        }
+        appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
+        {
+            setOutBuffer( inputBuffer );
         }
     }
 

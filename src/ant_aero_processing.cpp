@@ -118,9 +118,9 @@ amDeviceType antAeroProcessing::processAeroSensor
     if ( isRegisteredDevice( sensorID ) )
     {
         result      = AERO_SENSOR;
-        dataPage    = hex2Int( payLoad[ 0 ] );
-        yawAngleRaw = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
-        airSpeedRaw = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        dataPage    = byte2UInt( payLoad[ 0 ] );
+        yawAngleRaw = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
+        airSpeedRaw = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
 
         if ( diagnostics )
         {
@@ -193,7 +193,6 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
         unsigned int  airSpeedRaw  = 0;
         unsigned int  yawAngleRaw  = 0;
         unsigned int  counter      = 0;
-        unsigned int  dataPage     = 0;
         unsigned int  startCounter = 0;
         bool          commonPage   = false;
         bool          outputPageNo = true;
@@ -243,7 +242,7 @@ amDeviceType antAeroProcessing::processAeroSensorSemiCooked
             createOutputHeader( sensorID, timeStampBuffer );
             if ( commonPage )
             {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
+                commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
                 if ( !commonPage )
                 {
                     result = OTHER_DEVICE;

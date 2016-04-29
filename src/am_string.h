@@ -1,6 +1,8 @@
 #ifndef __AM_STRING_H__
 #define __AM_STRING_H__
 
+#define BYTE unsigned char
+
 #include <string>
 
 const size_t C_DBL_RECISION = 6;
@@ -23,10 +25,10 @@ class amString : public std::string
         explicit amString( char character );
         explicit amString( int number );
         explicit amString( unsigned int number );
-        explicit amString( unsigned char number );
-        explicit amString(unsigned char number1, unsigned char number2 ); 
-        explicit amString(unsigned char number1, unsigned char number2, unsigned char number3 ); 
-        explicit amString(unsigned char number1, unsigned char number2, unsigned char number3, unsigned char number4 );
+        explicit amString( BYTE number );
+        explicit amString(BYTE number1, BYTE number2 ); 
+        explicit amString(BYTE number1, BYTE number2, BYTE number3 ); 
+        explicit amString(BYTE number1, BYTE number2, BYTE number3, BYTE number4 );
         explicit amString( double number, size_t precision = C_DBL_RECISION );
         virtual ~amString( void ) {};
 

@@ -241,13 +241,13 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
             setSpeed( sensorID, 0 );
         }
 
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
         }
 
-        bikeSpeedEventTime      = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        bikeSpeedEventTime      = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver                = 65536;  // 256^2
         deltaBikeSpeedEventTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, bikeSpeedEventTime );
         if ( diagnostics )
@@ -261,7 +261,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
             appendDiagnosticsLine( "Delta Bike Speed Event Time", deltaBikeSpeedEventTime, auxBuffer );
         }
 
-        wheelRevolutionCount      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        wheelRevolutionCount      = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver                  = 65536;  // 256^2
         deltaWheelRevolutionCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, wheelRevolutionCount );
         if ( diagnostics )
@@ -283,7 +283,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  1: // - - Page 1: Operating Time - - - - - - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
+                     additionalData2 = byte2UInt( payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] ); // Operating Time
                      rollOver        = 16777216;  // 256^3
                      additionalData1 = getDeltaInt( rollOverHappened, sensorID, rollOver, operatingTimeTable, additionalData2 );
                                    // deltaOperatingTime
@@ -303,8 +303,8 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  2: // - - Page 2: Manufacturer Information - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData1 = hex2Int( payLoad[ 1 ] );                // Manufacturer ID
-                     additionalData2 = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
+                     additionalData1 = byte2UInt( payLoad[ 1 ] );                // Manufacturer ID
+                     additionalData2 = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );  // Serial Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Manufacturer ID", payLoad[ 1 ], additionalData1 );
@@ -314,9 +314,9 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensor
 
             case  3: // - - Page 3: Product Information  - - - - - - - - - - - - - -
                      result          = SPEED_SENSOR;
-                     additionalData1 = hex2Int( payLoad[ 1 ] );   // H/W Version
-                     additionalData2 = hex2Int( payLoad[ 2 ] );   // S/W Version
-                     additionalData3 = hex2Int( payLoad[ 3 ] );   // Model Number
+                     additionalData1 = byte2UInt( payLoad[ 1 ] );   // H/W Version
+                     additionalData2 = byte2UInt( payLoad[ 2 ] );   // S/W Version
+                     additionalData3 = byte2UInt( payLoad[ 3 ] );   // Model Number
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Hardware Version", payLoad[ 1 ], additionalData1 );
@@ -458,51 +458,55 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
     const amString &inputBuffer
 )
 {
-    amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
+    amDeviceType  result = OTHER_DEVICE;
+    amString      curVersion                = getVersion();
+    amString      semiCookedString;
+    amString      sensorID;
+    amString      timeStampBuffer;
+    amSplitString words;
+    unsigned int  nbWords                   = 0;
+    unsigned int  counter                   = 0;
+    unsigned int  startCounter              = 0;
+    unsigned int  dataPage                  = 0;
+    unsigned int  deltaBikeSpeedEventTime   = 0;
+    unsigned int  deltaWheelRevolutionCount = 0;
+    unsigned int  additionalData1           = 0;
+    unsigned int  additionalData2           = 0;
+    unsigned int  additionalData3           = 0;
+    bool          commonPage                = false;
+    bool          outputPageNo              = true;
+
+    if ( isSemiCookedFormat137( inputBuffer ) )
     {
-        amString      curVersion                = getVersion();
-        amString      semiCookedString;
-        amString      sensorID;
-        amString      timeStampBuffer;
-        amSplitString words;
-        unsigned int  nbWords                   = 0;
-        unsigned int  counter                   = 0;
-        unsigned int  startCounter              = 0;
-        unsigned int  dataPage                  = 0;
-        unsigned int  deltaBikeSpeedEventTime   = 0;
-        unsigned int  deltaWheelRevolutionCount = 0;
-        unsigned int  additionalData1           = 0;
-        unsigned int  additionalData2           = 0;
-        unsigned int  additionalData3           = 0;
-        bool          commonPage                = false;
-        bool          outputPageNo              = true;
+        nbWords = splitFormat137_SPB7( inputBuffer, words );
+    }
+    else
+    {
+        nbWords = words.split( inputBuffer );
+    }
 
-        if ( isSemiCookedFormat137( inputBuffer ) )
+    if ( nbWords > 5 )
+    {
+        sensorID         = words[ counter++ ];                            // 0
+        timeStampBuffer  = words[ counter++ ];                            // 1
+        semiCookedString = words[ counter++ ];                            // 2
+        replaceObsoleteHeader( sensorID );
+        if ( diagnostics )
         {
-            nbWords = splitFormat137_SPB7( inputBuffer, words );
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
         }
-        else
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isSpeedOnlySensor( sensorID ) )
         {
-            nbWords = words.split( inputBuffer );
-        }
-
-        if ( nbWords > 5 )
-        {
-            sensorID         = words[ counter++ ];                  // 0
-            timeStampBuffer  = words[ counter++ ];                  // 1
-            semiCookedString = words[ counter++ ];                  // 2
-            replaceObsoleteHeader( sensorID );
-            if ( diagnostics )
+            startCounter = counter;
+            dataPage     = words[ counter++ ].toUInt();                   // 3
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                result = UNKNOWN_DEVICE;
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isSpeedOnlySensor( sensorID ) )
+            else
             {
-                startCounter              = counter;
-                dataPage                  = words[ counter++ ].toUInt();  // 3
                 deltaBikeSpeedEventTime   = words[ counter++ ].toUInt();  // 4
                 deltaWheelRevolutionCount = words[ counter++ ].toUInt();  // 5
                 if ( diagnostics )
@@ -582,7 +586,7 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
             createOutputHeader( sensorID, timeStampBuffer );
             if ( commonPage )
             {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
+                commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
                 if ( !commonPage )
                 {
                     result = OTHER_DEVICE;
@@ -612,14 +616,19 @@ amDeviceType antSpeedOnlyProcessing::processBikeSpeedSensorSemiCooked
             }
             appendOutputFooter( curVersion );
         }
+    }
 
-        if ( result == OTHER_DEVICE )
+    if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
         {
-            resetOutBuffer();
-            if ( outputUnknown )
-            {
-                setOutBuffer( inputBuffer );
-            }
+            setOutBuffer( inputBuffer );
         }
     }
 

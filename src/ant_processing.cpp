@@ -34,6 +34,11 @@ antProcessing::antProcessing
     resetAll();
 }
 
+// ------------------------------------------------------------------------------------------------------
+//
+// Reset all member variables to their defaults.
+//
+// ------------------------------------------------------------------------------------------------------
 void antProcessing::resetAll
 (
     void
@@ -67,6 +72,152 @@ void antProcessing::resetAll
     initializeSupportedDeviceTypes();
 }
 
+// ------------------------------------------------------------------------------------------------------
+//
+// Reset all arrays and hash tables.
+//
+// ------------------------------------------------------------------------------------------------------
+void antProcessing::reset
+(
+    void
+)
+{
+    zeroTimeCountTable.clear();
+    registeredDevices.clear();
+    eventTimeTable.clear();
+    eventCountTable.clear();
+    totalTimeIntTable.clear();
+    totalCountTable.clear();
+    operatingTimeTable.clear();
+    sameEventCountTable.clear();
+    totalTimeTable.clear();
+    totalOperatingTimeTable.clear();
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Determnine if a sensor has a supported device type.
+//
+// ------------------------------------------------------------------------------------------------------
+bool antProcessing::isSupportedSensor
+(
+    const amString &sensorID
+)
+{
+    bool result = false;
+    for ( int count = 0; !result && ( count < ( int ) supportedSensorTypes.size() ); ++count )
+    {
+        if ( sensorID.substr( 0, supportedSensorTypes[ count ].size() ) == supportedSensorTypes[ count ] )
+        {
+            result = true;
+        }
+    }
+    return result;
+}
+
+//---------------------------------------------------------------------------------------------------
+//
+// isRegisteredDevice
+//
+// Check if a device is registered.
+//
+// Parameters:
+//    const amString &deviceID   IN   Device ID (key for the has table)
+//
+// Return true if the device hash table has an entry for the key.
+//        false otherwise.
+//
+//---------------------------------------------------------------------------------------------------
+bool antProcessing::isRegisteredDevice
+(
+    const amString &deviceID
+)
+{
+    bool result = !onlyRegisteredDevices;
+    if ( !result )
+    {
+        result = ( registeredDevices.count( deviceID ) > 0 );
+    }
+    return result;
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Register a device.
+//
+// ------------------------------------------------------------------------------------------------------
+void antProcessing::registerDevice
+(
+    const amString &deviceID
+)
+{
+    if ( registeredDevices.count( deviceID ) == 0 )
+    {
+        registeredDevices.insert( std::pair<amString, bool>( deviceID, false ) );
+    }
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Get the number of elapsed seconds since 1970 (with micro-second presision).
+//
+// ------------------------------------------------------------------------------------------------------
+double antProcessing::getUnixTime
+(
+    void
+)
+{
+    struct timeval tv;
+    gettimeofday( &tv, NULL );
+    double result = ( double ) tv.tv_sec + ( ( double ) tv.tv_usec ) / 1.0E6;
+
+    return result;
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Get the number of elapsed seconds since 1970 and write the result into a buffer.
+//
+// ------------------------------------------------------------------------------------------------------
+void antProcessing::getUnixTimeAsString
+(
+    amString &timeStampBuffer
+)
+{
+    double subSecondTimer = 0;
+    if ( testMode )
+    {
+        subSecondTimer = ( double ) testCounter * 0.1;
+        ++testCounter;
+    }
+    else
+    {
+        subSecondTimer = getUnixTime();
+    }
+    getUnixTimeAsString( timeStampBuffer, subSecondTimer );
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Write the result into a buffer.
+//
+// ------------------------------------------------------------------------------------------------------
+void antProcessing::getUnixTimeAsString
+(
+    amString &timeStampBuffer,
+    double    subSecondTimer
+)
+{
+    timeStampBuffer = amString( subSecondTimer, timePrecision );
+}
+
+// ------------------------------------------------------------------------------------------------------
+//
+// Compute the difference bewteen the current and the previous value and
+// replace the previous value by the current value.
+// Adjust for rollover if the current value is smaller than the previous value.
+//
+// ------------------------------------------------------------------------------------------------------
 unsigned int antProcessing::getDeltaInt
 (
     bool                             &rollOverHappened,
@@ -85,8 +236,6 @@ unsigned int antProcessing::getDeltaInt
 
 //---------------------------------------------------------------------------------------------------
 //
-// setTimePrecision
-//
 // Set the precision value for the floating point output of time values.
 //
 //---------------------------------------------------------------------------------------------------
@@ -103,8 +252,6 @@ void antProcessing::setTimePrecision
 
 //---------------------------------------------------------------------------------------------------
 //
-// setValuePrecision
-//
 // Set the precision value for floating point output of real integer quantities.
 //
 //---------------------------------------------------------------------------------------------------
@@ -119,6 +266,11 @@ void antProcessing::setValuePrecision
     }
 }
 
+//---------------------------------------------------------------------------------------------------
+//
+// Decide if a semi-cooked input string was created by an older version (version 1.37)
+//
+//---------------------------------------------------------------------------------------------------
 bool antProcessing::isSemiCookedFormat137
 (
     const amString &inputBuffer
@@ -132,20 +284,19 @@ bool antProcessing::isSemiCookedFormat137
 
 //---------------------------------------------------------------------------------------------------
 //
-// processSensor
-//
-// Depending on the device type call a subroutine to process the payload data and put
+// Depending on the device type call a subroutine to process the ANT+ payload data and put
 // the result string into the outBuffer.
 //
 // Parameters:
 //    int             deviceType        IN   Device type (SPCAD, SPEED, CADENCE, HRM, AERO, POWER).
 //    const amString &deviceID          IN   Device ID (number).
 //    const amString &timeStampBuffer   IN   Device ID (number).
-//    BYTE   payLoad[]         IN   Array of bytes with the data to be converted.
+//    BYTE            payLoad[]         IN   Array of bytes with the data to be converted.
 //
-// Return amDeviceType SPEED_SENSOR, CADENCE_SENSOR, POWER_METER, AERO_SENSOR, or HEART_RATE_METER
-//             if successful.
-//        amDeviceType OTHER_DEVICE otherwise (device type ot recognized)
+// Return Device type  if successful.
+//        OTHER_DEVICE otherwise (device type ot recognized)
+//
+// Note: This is merely a place holder.
 //
 //---------------------------------------------------------------------------------------------------
 amDeviceType antProcessing::processSensor
@@ -153,7 +304,7 @@ amDeviceType antProcessing::processSensor
     int             deviceType,
     const amString &deviceID,
     const amString &timeStampBuffer,
-    BYTE   payLoad[]
+    BYTE            payLoad[]
 )
 {
     amDeviceType result = OTHER_DEVICE;
@@ -167,6 +318,20 @@ amDeviceType antProcessing::processSensor
     return result;
 }
 
+//---------------------------------------------------------------------------------------------------
+//
+// Depending on the device type call a subroutine to process the semi-cooked payload data and put
+// the result string into the outBuffer.
+//
+// Parameters:
+//    const amString &inputBuffer     IN: Semi-cooked input string
+//
+// Return Device type  if successful.
+//        OTHER_DEVICE otherwise (device type ot recognized)
+//
+// Note: This is merely a place holder.
+//
+//---------------------------------------------------------------------------------------------------
 amDeviceType antProcessing::processSensorSemiCooked
 (
     const amString &inputBuffer
@@ -188,7 +353,17 @@ amDeviceType antProcessing::processSensorSemiCooked
     return result;
 }
 
-
+//---------------------------------------------------------------------------------------------------
+//
+// Scan a previously unprocessed semi-cooked string the result string into the outBuffer.
+//
+// Parameters:
+//    const amString &inputBuffer     IN: Semi-cooked input string
+//
+// Return Device type  if successful.
+//        OTHER_DEVICE otherwise (device type ot recognized)
+//
+//---------------------------------------------------------------------------------------------------
 amDeviceType antProcessing::updateSensorSemiCooked
 (
     const amString &inputBuffer
@@ -196,7 +371,7 @@ amDeviceType antProcessing::updateSensorSemiCooked
 {
     amDeviceType result = OTHER_DEVICE;
 
-    if ( inputBuffer == "TYPE" )
+    if ( inputBuffer.startsWith( C_UNKNOWN_TYPE_HEAD ) )
     {
         result = processUndefinedSensorType( inputBuffer );
     }
@@ -244,7 +419,7 @@ amDeviceType antProcessing::processUndefinedSensorType
     amSplitString words;
     amSplitString sensorParts;
     unsigned int  nbWords                = words.split( inputBuffer );
-    BYTE payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
+    BYTE          payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
     unsigned int  nbSensorParts          = 0;
     unsigned int  deviceType             = 0;
     unsigned int  counter                = 0;
@@ -287,15 +462,16 @@ amDeviceType antProcessing::processUndefinedSensorType
 
     if ( syntaxError == 0 )
     {
+        unsigned int start = words[ 2 ].startsWith( "0x" ) ? 2 : 0;
         timeStampBuffer = words[ 1 ];
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Timestamp", timeStampBuffer );
         }
-        for ( counter = 0; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
+        for ( counter = 0; ( counter < C_ANT_PAYLOAD_LENGTH ) && ( counter < words.size() - 2 ); ++counter )
         {
-            payLoad[ counter ]  = ( HEX_DIGIT_2_INT( words[ 2 + counter ][ 0 ] ) ) << 4;
-            payLoad[ counter ] += HEX_DIGIT_2_INT( words[ 2 + counter ][ 1 ] );
+            payLoad[ counter ]  = HEX_DIGIT_2_INT( words[ 2 + counter ][ start ] ) << 4;
+            payLoad[ counter ] += HEX_DIGIT_2_INT( words[ 2 + counter ][ start + 1 ] );
             if ( diagnostics )
             {
                 auxBuffer  = "payLoad [ ";
@@ -314,76 +490,6 @@ amDeviceType antProcessing::processUndefinedSensorType
 
 
     return result;
-}
-
-void antProcessing::reset
-(
-    void
-)
-{
-    zeroTimeCountTable.clear();
-    registeredDevices.clear();
-    eventTimeTable.clear();
-    eventCountTable.clear();
-    totalTimeIntTable.clear();
-    totalCountTable.clear();
-    operatingTimeTable.clear();
-    sameEventCountTable.clear();
-    totalTimeTable.clear();
-    totalOperatingTimeTable.clear();
-}
-
-bool antProcessing::isSupportedSensor
-(
-    const amString &sensorID
-)
-{
-    bool result = false;
-    for ( int count = 0; !result && ( count < ( int ) supportedSensorTypes.size() ); ++count )
-    {
-        if ( sensorID.substr( 0, supportedSensorTypes[ count ].size() ) == supportedSensorTypes[ count ] )
-        {
-            result = true;
-        }
-    }
-    return result;
-}
-
-//---------------------------------------------------------------------------------------------------
-//
-// isRegisteredDevice
-//
-// Check if a device is registered.
-//
-// Parameters:
-//    const amString &deviceID   IN   Device ID (key for the has table)
-//
-// Return true if the device hash table has an entry for the key.
-//        false otherwise.
-//
-//---------------------------------------------------------------------------------------------------
-bool antProcessing::isRegisteredDevice
-(
-    const amString &deviceID
-)
-{
-    bool result = !onlyRegisteredDevices;
-    if ( !result )
-    {
-        result = ( registeredDevices.count( deviceID ) > 0 );
-    }
-    return result;
-}
-
-void antProcessing::registerDevice
-(
-    const amString &deviceID
-)
-{
-    if ( registeredDevices.count( deviceID ) == 0 )
-    {
-        registeredDevices.insert( std::pair<amString, bool>( deviceID, false ) );
-    }
 }
 
 // -------------------------------------------------------------------------------------------------//
@@ -430,7 +536,14 @@ bool antProcessing::getBatteryStatus
 
 //----------------------------------------------------------------------------------------------------------------------------------------
 // Auxilairy functions
-unsigned int antProcessing::uChar2UInt
+//----------------------------------------------------------------------------------------------------------------------------------------
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Convert an unsigned char string of length 4 to its integer value.
+//
+// -------------------------------------------------------------------------------------------------//
+unsigned int antProcessing::byte2UInt
 (
     BYTE byte1,
     BYTE byte2,
@@ -438,32 +551,47 @@ unsigned int antProcessing::uChar2UInt
     BYTE byte4
 )
 {
-    unsigned int result = ( uChar2UInt( byte1, byte2, byte3 ) << 8 ) + ( unsigned int ) byte4;
+    unsigned int result = ( byte2UInt( byte1, byte2, byte3 ) << 8 ) + ( unsigned int ) byte4;
     return result;
 }
 
-unsigned int antProcessing::uChar2UInt
+// -------------------------------------------------------------------------------------------------//
+//
+// Convert an unsigned char string of length 3 to its integer value.
+//
+// -------------------------------------------------------------------------------------------------//
+unsigned int antProcessing::byte2UInt
 (
     BYTE byte1,
     BYTE byte2,
     BYTE byte3
 )
 {
-    unsigned int result = ( uChar2UInt( byte1, byte2 ) << 8 ) + ( unsigned int ) byte3;
+    unsigned int result = ( byte2UInt( byte1, byte2 ) << 8 ) + ( unsigned int ) byte3;
     return result;
 }
 
-unsigned int antProcessing::uChar2UInt
+// -------------------------------------------------------------------------------------------------//
+//
+// Convert an unsigned char string of length 2 to its integer value.
+//
+// -------------------------------------------------------------------------------------------------//
+unsigned int antProcessing::byte2UInt
 (
     BYTE byte1,
     BYTE byte2
 )
 {
-    unsigned int result = ( uChar2UInt( byte1 ) << 8 ) + ( unsigned int ) byte2;
+    unsigned int result = ( byte2UInt( byte1 ) << 8 ) + ( unsigned int ) byte2;
     return result;
 }
 
-unsigned int antProcessing::uChar2UInt
+// -------------------------------------------------------------------------------------------------//
+//
+// Convert an unsigned char to its integer value.
+//
+// -------------------------------------------------------------------------------------------------//
+unsigned int antProcessing::byte2UInt
 (
     BYTE byte1
 )
@@ -472,6 +600,11 @@ unsigned int antProcessing::uChar2UInt
     return result;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an error message to the error message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendErrorMessage
 (
     const amString &message
@@ -480,6 +613,11 @@ void antProcessing::appendErrorMessage
     errorMessage += message;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an integer to the error message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendErrorMessage
 (
     int value
@@ -488,6 +626,11 @@ void antProcessing::appendErrorMessage
     errorMessage += amString( value );
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsigned integer to the error message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendErrorMessage
 (
     unsigned int value
@@ -496,6 +639,11 @@ void antProcessing::appendErrorMessage
     errorMessage += amString( value );
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsigned char (BYTE) to the error message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendErrorMessage
 (
     BYTE value
@@ -503,6 +651,13 @@ void antProcessing::appendErrorMessage
 {
     errorMessage += amString( value );
 }
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a floating point number to the error message string
+// with 'precision' digits after the decimal dot.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendErrorMessage
 (
     double value,
@@ -512,6 +667,11 @@ void antProcessing::appendErrorMessage
     errorMessage += amString( value, precision );
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a string to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsField
 (
     const amString &fieldName
@@ -528,6 +688,11 @@ void antProcessing::appendDiagnosticsField
     diagnosticsBuffer += auxBuffer;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a string as an item name to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsItemName
 (
     const amString &itemName
@@ -546,6 +711,11 @@ void antProcessing::appendDiagnosticsItemName
     diagnosticsBuffer += ": ";
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a string as a new line to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &message
@@ -557,6 +727,11 @@ void antProcessing::appendDiagnosticsLine
     diagnosticsBuffer += message;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a BYTE from an array at position 'index' to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -571,6 +746,11 @@ void antProcessing::appendDiagnosticsLine
     diagnosticsBuffer += amString(itemValue ); 
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a string item with its name and value to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -583,6 +763,12 @@ void antProcessing::appendDiagnosticsLine
     diagnosticsBuffer += "\"";
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsiged int item with its name and value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -599,6 +785,12 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsiged int item with its name and string and numerical value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -618,6 +810,12 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a BYTE item with its name and byte and numerical value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -638,6 +836,12 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a 2-BYTE item with its name and their byte and numerical value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -658,6 +862,12 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a 3-BYTE item with its name and their byte and numerical value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -679,6 +889,12 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a 4-BYTE item with its name and their byte and numerical value and additional information
+// to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendDiagnosticsLine
 (
     const amString &itemName,
@@ -701,6 +917,11 @@ void antProcessing::appendDiagnosticsLine
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a BYTE value to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput
 (
     BYTE itemValue
@@ -710,6 +931,11 @@ void antProcessing::appendOutput
     outBuffer += amString( itemValue );
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an integer value with unit to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput
 (
     int             itemValue,
@@ -721,6 +947,12 @@ void antProcessing::appendOutput
     outBuffer += unit;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a floating point value with unit to the diagnotisc message string
+// with 'precision' digits after the decimal dot.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput
 (
     double          itemValue,
@@ -733,6 +965,11 @@ void antProcessing::appendOutput
     outBuffer += unit;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsigned integer value with unit to the diagnotisc message string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput
 (
     unsigned int    itemValue,
@@ -744,6 +981,11 @@ void antProcessing::appendOutput
     outBuffer += unit;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a string to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput
 (
     const amString &itemValue
@@ -754,7 +996,10 @@ void antProcessing::appendOutput
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an consitional value to a JSON object
+//
+// Append one of two strings to the output (result) string.
+// Which string to append is determined by the value of the condition.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputConditional
 (
@@ -774,6 +1019,12 @@ void antProcessing::appendOutputConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an integer value or a string to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputConditional
 (
     bool            condition,
@@ -792,6 +1043,12 @@ void antProcessing::appendOutputConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsigned integer value or a string to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputConditional
 (
     bool            condition,
@@ -810,6 +1067,13 @@ void antProcessing::appendOutputConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a floating point value (with 'precision' digits after the decimal dot)
+// or a string to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputConditional
 (
     bool            condition,
@@ -829,6 +1093,12 @@ void antProcessing::appendOutputConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append one of 4 possible strings to the output (result) string.
+// Which string to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutput4Way
 (
     int             condition,
@@ -858,12 +1128,14 @@ void antProcessing::appendOutput4Way
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an BYTE (byte) value to a JSON object
+//
+// Append an BYTE (byte) value as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
     const amString &itemName,
-    BYTE   itemValue
+    BYTE            itemValue
 )
 {
     outBuffer += C_JSON_INDENT;
@@ -875,7 +1147,9 @@ void antProcessing::appendJSONItem
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an unsigned integer value to a JSON object
+//
+// Append an unsigned integer value as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
@@ -892,7 +1166,9 @@ void antProcessing::appendJSONItem
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an (signed) integer value to a JSON object
+//
+// Append an (signed) integer value as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
@@ -909,7 +1185,9 @@ void antProcessing::appendJSONItem
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an boolean value to a JSON object
+//
+// Append an boolean value as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItemB
 (
@@ -926,7 +1204,9 @@ void antProcessing::appendJSONItemB
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append a string value to a JSON object
+//
+// Append a string value as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
@@ -943,7 +1223,10 @@ void antProcessing::appendJSONItem
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an double precision value to a JSON object
+//
+// Append a floating point value (with 'precision' digits after the decimal dot)
+// as part of a JSON object to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem
 (
@@ -961,7 +1244,34 @@ void antProcessing::appendJSONItem
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Append an consitional value to a JSON object
+//
+// Append an unsigned integer value form an array (with its array name and indes)
+// as part of a JSON object to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::appendJSONItem
+(
+    const amString &itemName,
+    unsigned int    index,
+    BYTE            itemValue
+)
+{
+    outBuffer += C_JSON_INDENT;
+    outBuffer += "\"";
+    outBuffer += itemName;
+    outBuffer += "[ ";;
+    outBuffer += amString( index );
+    outBuffer += " ]";;
+    outBuffer += "\": ";
+    outBuffer += amString(itemValue ); 
+    outBuffer += ",\n";
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Append one of two strings as part of a JSON object to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItemConditional
 (
@@ -986,6 +1296,12 @@ void antProcessing::appendJSONItemConditional
     outBuffer += "\",\n";
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an integer value or a string as part of a JSON object to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItemConditional
 (
     const amString &itemName,
@@ -1011,6 +1327,12 @@ void antProcessing::appendJSONItemConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append an unsigned integer value or a string as part of a JSON object to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItemConditional
 (
     const amString &itemName,
@@ -1036,6 +1358,13 @@ void antProcessing::appendJSONItemConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append a floating point value (with 'precision' digits after the decimal dot) or a string
+// as part of a JSON object to the output (result) string.
+// Which value to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItemConditional
 (
     const amString &itemName,
@@ -1062,6 +1391,12 @@ void antProcessing::appendJSONItemConditional
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Append one of 4 possible strings as part of a JSON object to the output (result) string.
+// Which string to append is determined by the value of the condition.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::appendJSONItem4Way
 (
     const amString &itemName,
@@ -1097,8 +1432,8 @@ void antProcessing::appendJSONItem4Way
 
 // -------------------------------------------------------------------------------------------------//
 //
-// (If JSON, open the object and)
-// Output sensor type, time stamp, and semi-cooked toggle.
+// Output sensor type and ID, time stamp, and semi-cooked toggle to the output (result) string.
+// If the output mode is JSON also output the opening string for the JSON object.
 //
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createOutputHeader
@@ -1148,7 +1483,9 @@ void antProcessing::createOutputHeader
 
 // -------------------------------------------------------------------------------------------------//
 //
-// Output ant2txt version (and if JSON, close the object)
+// Output version to the output (result) string.
+// If the output mode is JSON also output the exceutable's name and
+// the closing string for the JSON object.
 //
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::appendOutputFooter
@@ -1178,12 +1515,21 @@ void antProcessing::appendOutputFooter
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a device type that is not supported by this version.
+// The output string contains the "unknown type" indicator "TYPE", the device type number and
+// device ID, the time stamp and the full payload written as hexadecimal numbers.
+// The idea behind this is that future versions that support the device type can scan this string
+// and create the correct output from the data.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::createUnknownDeviceTypeString
 (
     int             deviceType,
     int             deviceID,
     const amString &timeStampBuffer,
-    BYTE   payLoad[]
+    BYTE            payLoad[]
 )
 {
     amString sensorID( C_UNKNOWN_TYPE_HEAD);
@@ -1217,752 +1563,6 @@ void antProcessing::createUnknownDeviceTypeString
     appendOutputFooter( b2tVersion );
 }
 
-// ---------------------------------------------------------------------------------
-// te: This needs reworking - ANT-FS Documentation required
-// ---------------------------------------------------------------------------------
-bool antProcessing::createCommonResultStringPage67
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    value1,
-    unsigned int    value2,
-    unsigned int    value3,
-    unsigned int    value4,
-    unsigned int    value5
-)
-{
-    // For now semi-cooked and fully cooked output are the same
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 67;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        appendJSONItem( "status byte 1",   value1 );
-        appendJSONItem( "status byte 2",   value2 );
-        appendJSONItem( "authentication",  value3 );
-        appendJSONItem( "device type",     value4 );
-        appendJSONItem( "manufacturer id", value5 );
-    }
-    else
-    {
-        appendOutput( value1 );
-        appendOutput( value2 );
-        appendOutput( value3 );
-        appendOutput( value4 );
-        appendOutput( value5 );
-    }
-    return result;
-}
-
-// ---------------------------------------------------------------------------------
-// te: This needs reworking - ANT-FS Documentation required
-// ---------------------------------------------------------------------------------
-bool antProcessing::createCommonResultStringPage68
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    value1,
-    unsigned int    value2,
-    unsigned int    value3,
-    unsigned int    value4
-)
-{
-    // For now semi-cooked and fully cooked output are the same
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 68;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        appendJSONItem( "command/response id", value1 );
-        appendJSONItem( "channel frequency",   value2 );
-        appendJSONItem( "channel period",      value3 );
-        appendJSONItem( "host serial number",  value4 );
-    }
-    else
-    {
-        appendOutput( value1 );
-        appendOutput( value2 );
-        appendOutput( value3 );
-        appendOutput( value4 );
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 70 (0x46)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage70
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    descriptor1,
-    unsigned int    descriptor2,
-    unsigned int    requestedResponse,
-    unsigned int    requestedPage,
-    unsigned int    commandType
-)
-{
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 70;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        if ( !semiCookedOut && ( descriptor1 == 255 ) )
-        {
-            appendJSONItem( "descriptor byte 1 page", C_NONE_ID );
-        }
-        else
-        {
-            appendJSONItem( "descriptor byte 1 page", descriptor1 );
-        }
-
-        if ( !semiCookedOut && ( descriptor2 == 255 ) )
-        {
-            appendJSONItem( "descriptor byte 2 page", C_NONE_ID );
-        }
-        else
-        {
-            appendJSONItem( "descriptor byte 2 page", descriptor2 );
-        }
-
-        if ( semiCookedOut )
-        {
-            appendJSONItem( "requested response",    requestedResponse );
-            appendJSONItem( "requested page number", requestedPage );
-            appendJSONItem( "command type",          commandType );
-        }
-        else
-        {
-            if ( requestedResponse == 0 )
-            {
-                appendJSONItem( "number of transmisions", C_INVALID_JSON );
-            }
-            else if ( requestedResponse == 128 )
-            {
-                appendJSONItem( "number of transmisions", "until success acknowledged" );
-            }
-            else
-            {
-                appendJSONItem( "number of transmisions", requestedResponse & 0x80 );
-                appendJSONItem( "acknowledgement reply", ( requestedResponse & 128 ) ? C_TRUE_JSON : C_FALSE_JSON );
-            }
-            appendJSONItem( "requested page number", requestedPage );
-            appendJSONItem( "command type", ( commandType == 1 ) ? "data page" : "ant fs session" );
-        }
-    }
-    else
-    {
-        // Power Meters the page number is already identified by the device type (as PWRB46 - 46 = 0x70)
-
-        if ( semiCookedOut )
-        {
-            appendOutput( descriptor1 );
-            appendOutput( descriptor2 );
-            appendOutput( requestedResponse );
-            appendOutput( requestedPage );
-            appendOutput( commandType );
-        }
-        else
-        {
-            appendOutput( "DESCRIPTOR_BYTE_1" );
-            if ( descriptor1 == 255 )
-            {
-                appendOutput( "NONE" );
-            }
-            else
-            {
-                appendOutput( descriptor1 );
-            }
-
-            appendOutput( "DESCRIPTOR_BYTE_2" );
-            if ( descriptor2 == 255 )
-            {
-                appendOutput( "NONE" );
-            }
-            else
-            {
-                appendOutput( descriptor2 );
-            }
-
-
-            if ( requestedResponse == 0 )
-            {
-                appendOutput( C_TRANSMIT_INVALID );
-            }
-            else if ( requestedResponse == 128 )
-            {
-                appendOutput( C_TRANSMIT_UNTIL_SUCCESS_ACKNOWLEDGED );
-            }
-            else
-            {
-                appendOutput( C_TRANSMIT_NB_TIMES );
-                appendOutput( ( unsigned int ) requestedResponse & 0x7F );
-                appendOutput( ( requestedResponse & 128 ) ? C_REPLY_ACKNOWLEDGE : C_NO_REPLY_ACKNOWLEDGE );
-            }
-
-            appendOutput( C_REQUESTED_PAGE_NO );
-            appendOutput( requestedPage );
-            appendOutput( ( commandType == 1 ) ? C_DATA_PAGE : C_ANT_FS_SESSION );
-        }
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 80 (0x50)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage80
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    manufacturerID,
-    unsigned int    hardwareRevision,
-    unsigned int    modelNumber
-)
-{
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 80;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        appendJSONItem( C_MANUFACTURER_JSON,      manufacturerID );
-        appendJSONItem( C_HARDWARE_REVISION_JSON, hardwareRevision );
-        appendJSONItem( C_MODEL_NUMBER_JSON,      modelNumber );
-    }
-    else
-    {
-        // Power Meters the page number is already identified by the device type (as PWRB50 - 50 = 0x80)
-        appendOutput( manufacturerID );
-        appendOutput( hardwareRevision );
-        appendOutput( modelNumber );
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 81 (0x51)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage81
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    serialNumber,
-    unsigned int    softwareRevision
-)
-{
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 81;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
-        if ( !semiCookedOut && ( int ( serialNumber ) == -1 ) )
-        {
-            appendJSONItem( C_SERIAL_NUMBER_JSON, C_NONE_ID );
-        }
-        else
-        {
-            appendJSONItem( C_SERIAL_NUMBER_JSON, serialNumber );
-        }
-        appendJSONItem( C_SOFTWARE_REVISION_JSON, softwareRevision );
-    }
-    else
-    {
-        // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
-        if ( semiCookedOut || ( ( int ) serialNumber >= 0 ) )
-        {
-            appendOutput( serialNumber );
-        }
-        else
-        {
-            appendOutput( "NO_SERIAL_NUMBER" );
-        }
-        appendOutput( softwareRevision );
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 82 (0x52)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage82
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    voltage256,
-    unsigned int    status,
-    unsigned int    deltaOperatingTime,
-    unsigned int    resolution,
-    unsigned int    nbBatteries,
-    unsigned int    batteryID
-)
-{
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 82;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( semiCookedOut )
-    {
-        if ( outputAsJSON )
-        {
-            appendJSONItem( "voltage256",           voltage256 );
-            appendJSONItem( "battery status index", status );
-            appendJSONItem( "operating time",       deltaOperatingTime );
-            appendJSONItem( "resolution",           resolution );
-            appendJSONItem( "number of batteries",  nbBatteries );
-            appendJSONItem( "battery no.",          batteryID );
-        }
-        else
-        {
-            appendOutput( voltage256 );
-            appendOutput( status );
-            appendOutput( deltaOperatingTime );
-            appendOutput( resolution );
-            appendOutput( nbBatteries );
-            appendOutput( batteryID );
-        }
-    }
-    else
-    {
-        amString batteryStatus;
-        double   voltageDbl         = ( double ) voltage256 / 256.0;
-        double   totalOperatingTime = getTotalOperationTime( sensorID );
-        double   auxDouble          = ( double ) deltaOperatingTime;
-
-        auxDouble          *= ( double ) resolution;
-        totalOperatingTime += auxDouble;
-        setTotalOperationTime( sensorID, totalOperatingTime );
-
-        getBatteryStatus( batteryStatus, status, outputAsJSON );
-
-        if ( outputAsJSON )
-        {
-            if ( nbBatteries == 0 )
-            {
-                appendJSONItem( "number of batteries", C_N_A_JSON );
-                appendJSONItem( "battery no.",         C_N_A_JSON );
-            }
-            else
-            {
-                appendJSONItem( "number of batteries", nbBatteries );
-                appendJSONItem( "battery no.",         batteryID );
-            }
-            appendJSONItem( "voltage",              voltageDbl, 2 );
-            appendJSONItem( "battery status",       batteryStatus );
-            appendJSONItem( "total operating time", totalOperatingTime, timePrecision );
-        }
-        else
-        {
-            unsigned int localNbBatteries = ( nbBatteries == 0 ) ? 1 : nbBatteries;
-            appendOutput( localNbBatteries );
-            appendOutput( batteryID );
-            appendOutput( voltageDbl, 2 );
-            appendOutput( batteryStatus );
-            appendOutput( totalOperatingTime, timePrecision );
-        }
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 83 (0x53)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage83
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    seconds,
-    unsigned int    minutes,
-    unsigned int    hours,
-    unsigned int    weekDayNo,
-    unsigned int    monthDay,
-    unsigned int    month,
-    unsigned int    year
-)
-{
-    bool     result = true;
-    amString timeString;
-    amString dateString;
-    amString wDayString;
-
-    if ( outputPage )
-    {
-        int dataPage = 83;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( !semiCookedOut )
-    {
-        int year2000 = year + 2000;
-        dateString = date2String( year2000, month, monthDay );
-        timeString = time2String( hours, minutes, seconds );
-        switch( weekDayNo )
-        {
-            case  0: wDayString = "SUN";
-                     break;
-            case  1: wDayString = "MON";
-                     break;
-            case  2: wDayString = "TUE";
-                     break;
-            case  3: wDayString = "WED";
-                     break;
-            case  4: wDayString = "THU";
-                     break;
-            case  5: wDayString = "FRI";
-                     break;
-            case  6: wDayString = "SAT";
-                     break;
-            default: wDayString = C_UNKNOWN;
-                     break;
-        }
-        wDayString.toLower();
-    }
-
-    if ( outputAsJSON )
-    {
-        if ( semiCookedOut )
-        {
-            appendJSONItem( "year", year );
-            appendJSONItem( "month", month );
-            appendJSONItem( "monthDay", monthDay );
-            appendJSONItem( "week day", weekDayNo );
-            appendJSONItem( "hours", hours );
-            appendJSONItem( "minutes", minutes );
-            appendJSONItem( "seconds", seconds );
-        }
-        else
-        {
-            appendJSONItem( "date", dateString );
-            appendJSONItem( "time", timeString );
-            appendJSONItem( "week day", wDayString );
-        }
-    }
-    else
-    {
-        if ( semiCookedOut )
-        {
-            appendOutput( seconds );
-            appendOutput( minutes );
-            appendOutput( hours );
-            appendOutput( weekDayNo );
-            appendOutput( monthDay );
-            appendOutput( month );
-            appendOutput( year );
-        }
-        else
-        {
-            appendOutput( "DATE" );
-            appendOutput( dateString );
-            appendOutput( "WEEK_DAY" );
-            appendOutput( wDayString );
-            appendOutput( "TIME" );
-            appendOutput( timeString );
-        }
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-// Page Number 84 (0x54)
-// -------------------------------------------------------------------------------------------------//
-bool antProcessing::createCommonResultStringPage84
-(
-    const amString &sensorID,
-    bool            outputPage,
-    unsigned int    subPage1,
-    unsigned int    subPage2,
-    unsigned int    dataField1,
-    unsigned int    dataField2
-)
-{
-    bool result = true;
-
-    if ( outputPage )
-    {
-        int dataPage = 84;
-        if ( outputAsJSON )
-        {
-            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
-        }
-        else
-        {
-            appendOutput( dataPage );
-        }
-    }
-
-    if ( outputAsJSON )
-    {
-        if ( semiCookedOut )
-        {
-            appendJSONItem( "sub page 1",   subPage1 );
-            appendJSONItem( "data field 1", dataField1 );
-            appendJSONItem( "sub page 2",   subPage1 );
-            appendJSONItem( "data field 2", dataField1 );
-        }
-        else
-        {
-            createDataPage84SubPage( sensorID, 1, subPage1, dataField1 );
-            createDataPage84SubPage( sensorID, 2, subPage2, dataField2 );
-        }
-    }
-    else
-    {
-        if ( semiCookedOut )
-        {
-            appendOutput( subPage1 );
-            appendOutput( dataField1 );
-            appendOutput( subPage2 );
-            appendOutput( dataField2 );
-        }
-        else
-        {
-            createDataPage84SubPage( sensorID, 1, subPage1, dataField1 );
-            createDataPage84SubPage( sensorID, 2, subPage2, dataField2 );
-        }
-    }
-    return result;
-}
-
-// -------------------------------------------------------------------------------------------------//
-//
-// Output a message for a package in packet saver mode
-//
-// -------------------------------------------------------------------------------------------------//
-void antProcessing::createPacketSaverModeString
-(
-    const amString      &timeStampBuffer,
-    const BYTE *payLoad,
-    BYTE        nbBytes
-)
-{
-    createOutputHeader( C_PACKET_SAVER_NAME, timeStampBuffer );
-    for ( int counter = 0; counter < nbBytes; ++counter )
-    {
-        if ( diagnostics )
-        {
-            appendDiagnosticsLine( "byte", counter, payLoad[ counter ] );
-        }
-        if ( outputAsJSON )
-        {
-            std::stringstream auxStream;
-            auxStream << "byte[ " << counter << " ]";
-            appendJSONItem( auxStream.str(), payLoad[ counter ] );
-        }
-        else
-        {
-            appendOutput( payLoad[ counter ] );
-        }
-    }
-    appendOutputFooter( b2tVersion );
-}
-
-// -------------------------------------------------------------------------------------------------//
-//
-// Output a BRIDGE status message
-//
-// -------------------------------------------------------------------------------------------------//
-void antProcessing::createBridgeString
-(
-    const amString &bridgeDeviceID,
-    const amString &timeStampBuffer,
-    const amString &bridgeName,
-    const amString &bridgeMACAddess,
-    const amString &firmwareVersion,
-    int             voltageValue,
-    int             powerIndicator,
-    int             operatingMode,
-    int             connectionStatus
-)
-{
-    double dVoltage = semiCookedOut ? 0 : ( ( double ) ( 500 + voltageValue ) ) / 1000.0;
-
-    createOutputHeader( bridgeDeviceID, timeStampBuffer );
-
-    if ( outputAsJSON )
-    {
-        appendJSONItem( "bridge name",      bridgeName );
-        appendJSONItem( "mac address",      bridgeMACAddess );
-        appendJSONItem( "firmware version", firmwareVersion );
-
-        if ( semiCookedOut )
-        {
-            appendJSONItem( "voltage", voltageValue );
-            appendJSONItem( "power indicator", powerIndicator );
-            appendJSONItem( "operating mode", operatingMode );
-            appendJSONItem( "connection status", connectionStatus );
-        }
-        else
-        {
-            appendJSONItem( "voltage", dVoltage, 3 );
-            appendJSONItem( "power indicator", powerIndicator ? "E" : "I" );
-            appendJSONItem( "operating mode", operatingMode );
-            appendJSONItem( "connection status", connectionStatus ? "I" : "A" );
-        }
-    }
-    else
-    {
-        appendOutput( bridgeName );
-        appendOutput( bridgeMACAddess );
-        appendOutput( firmwareVersion );
-        if ( semiCookedOut )
-        {
-            appendOutput( voltageValue );
-        }
-        else
-        {
-            appendOutput( dVoltage, 3, "V" );
-        }
-        appendOutput( powerIndicator ? "E" : "I" );
-        appendOutput( operatingMode );
-        appendOutput( connectionStatus ? "I" : "A" );
-    }
-    appendOutputFooter( b2tVersion );
-}
-
-// -------------------------------------------------------------------------------------------------//
-//
-// Output a PACKET SAVER MODE message
-//
-// -------------------------------------------------------------------------------------------------//
-void antProcessing::createPacketSaverString
-(
-    const BYTE *line,
-    int                  nbBytes,
-    const amString      &timeStampBuffer
-)
-{
-    createOutputHeader( C_PACKET_SAVER_NAME, timeStampBuffer );
-    for ( int counter = 0; counter < nbBytes; ++counter )
-    {
-        if ( diagnostics )
-        {
-            appendDiagnosticsLine( "byte", counter, line[ counter ] );
-        }
-        if ( outputAsJSON )
-        {
-            std::stringstream auxStream;
-            auxStream << "byte[ " << counter << " ]";
-            appendJSONItem( auxStream.str(), line[ counter ] );
-        }
-        else
-        {
-            appendOutput( line[ counter ] );
-        }
-    }
-    appendOutputFooter( b2tVersion );
-}
-
-// -------------------------------------------------------------------------------------------------//
-//
-// Output an UNKNOWN PACKET message
-//
-// -------------------------------------------------------------------------------------------------//
-void antProcessing::createUnknownPacketString
-(
-    const BYTE *line,
-    int                  nbBytes,
-    const amString      &timeStampBuffer
-)
-{
-    createOutputHeader( C_UNKOWN_PACKET_NAME, timeStampBuffer );
-    for ( int counter = 0; counter < nbBytes; ++counter )
-    {
-        if ( diagnostics )
-        {
-            appendDiagnosticsLine( "byte", counter, line[ counter ] );
-        }
-        if ( outputAsJSON )
-        {
-            std::stringstream auxStream;
-            auxStream << "byte[ " << counter << " ]";
-            appendJSONItem( auxStream.str(), line[ counter ] );
-        }
-        else
-        {
-            appendOutput( line[ counter ] );
-        }
-    }
-    appendOutputFooter( b2tVersion );
-}
-
 // -------------------------------------------------------------------------------------------------//
 // -------------------------------------------------------------------------------------------------//
 //
@@ -1970,10 +1570,16 @@ void antProcessing::createUnknownPacketString
 //
 // -------------------------------------------------------------------------------------------------//
 // -------------------------------------------------------------------------------------------------//
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
 bool antProcessing::processCommonPages
 (
     const amString &sensorID,
-    BYTE   payLoad[],
+    const BYTE      payLoad[],
     bool            outputPage
 )
 {
@@ -2020,11 +1626,11 @@ bool antProcessing::processCommonPages
                  // Note: This needs reworking - ANT-FS Documentation required
                  // ---------------------------------------------------------------------------------
 
-                 value1 = uChar2UInt( payLoad[ 1 ] );
-                 value2 = uChar2UInt( payLoad[ 2 ] );
-                 value3 = uChar2UInt( payLoad[ 3 ] );
-                 value4 = uChar2UInt( payLoad[ 5 ], payLoad[ 4 ] );
-                 value5 = uChar2UInt( payLoad[ 7 ], payLoad[ 6 ] );
+                 value1 = byte2UInt( payLoad[ 1 ] );
+                 value2 = byte2UInt( payLoad[ 2 ] );
+                 value3 = byte2UInt( payLoad[ 3 ] );
+                 value4 = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
+                 value5 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Status Byte 1",   payLoad[ 1 ], value1 );
@@ -2040,10 +1646,10 @@ bool antProcessing::processCommonPages
                  // Note: This needs reworking - ANT-FS Documentation required
                  // ---------------------------------------------------------------------------------
 
-                 value1 = uChar2UInt( payLoad[ 1 ] );
-                 value2 = uChar2UInt( payLoad[ 2 ] );
-                 value3 = uChar2UInt( payLoad[ 3 ] );
-                 value4 = uChar2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
+                 value1 = byte2UInt( payLoad[ 1 ] );
+                 value2 = byte2UInt( payLoad[ 2 ] );
+                 value3 = byte2UInt( payLoad[ 3 ] );
+                 value4 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Command/Response ID", payLoad[ 1 ], value1 );
@@ -2054,11 +1660,11 @@ bool antProcessing::processCommonPages
                  result = createCommonResultStringPage68( sensorID, outputPage, value1, value2, value3, value4 );
                  break;
 
-        case 70: descriptor1       = uChar2UInt( payLoad[ 3 ] );
-                 descriptor2       = uChar2UInt( payLoad[ 4 ] );
-                 requestedResponse = uChar2UInt( payLoad[ 5 ] );
-                 requestedPage   = uChar2UInt( payLoad[ 6 ] );
-                 commandType       = uChar2UInt( payLoad[ 7 ] );
+        case 70: descriptor1       = byte2UInt( payLoad[ 3 ] );
+                 descriptor2       = byte2UInt( payLoad[ 4 ] );
+                 requestedResponse = byte2UInt( payLoad[ 5 ] );
+                 requestedPage   = byte2UInt( payLoad[ 6 ] );
+                 commandType       = byte2UInt( payLoad[ 7 ] );
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Descriptor Byte 1",  payLoad[ 3 ], descriptor1 );
@@ -2070,9 +1676,9 @@ bool antProcessing::processCommonPages
                  result = createCommonResultStringPage70( sensorID, outputPage, descriptor1, descriptor2, requestedResponse, requestedPage, commandType );
                  break;
 
-        case 80: modelNumber      = uChar2UInt( payLoad[ 7 ], payLoad[ 6 ] );
-                 hardwareRevision = uChar2UInt( payLoad[ 3 ] );
-                 manufacturerID   = uChar2UInt( payLoad[ 5 ], payLoad[ 4 ] );
+        case 80: modelNumber      = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
+                 hardwareRevision = byte2UInt( payLoad[ 3 ] );
+                 manufacturerID   = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Hardware Revision", payLoad[ 3 ],               hardwareRevision );
@@ -2082,8 +1688,8 @@ bool antProcessing::processCommonPages
                  result = createCommonResultStringPage80( sensorID, outputPage, manufacturerID, hardwareRevision, modelNumber );
                  break;
 
-        case 81: serialNumber     = uChar2UInt( payLoad[ 3 ] );
-                 softwareRevision = uChar2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
+        case 81: serialNumber     = byte2UInt( payLoad[ 3 ] );
+                 softwareRevision = byte2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Software Revision", payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ], softwareRevision );
@@ -2105,9 +1711,9 @@ bool antProcessing::processCommonPages
 
                  nbBatteries        = ( payLoad[ 2 ] == 0xFF ) ? 0 : ( payLoad[ 2 ] & 0x0F );
                  batteryID          = ( payLoad[ 2 ] == 0xFF ) ? 0 : ( ( payLoad[ 2 ] & 0xF0 ) >> 4 );
-                 deltaOperatingTime = uChar2UInt( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
-                 voltageInt         = uChar2UInt( payLoad[ 7 ] ) & 0x0F;
-                 voltage256         = uChar2UInt( payLoad[ 6 ] ) + ( voltageInt << 8 );
+                 deltaOperatingTime = byte2UInt( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
+                 voltageInt         = byte2UInt( payLoad[ 7 ] ) & 0x0F;
+                 voltage256         = byte2UInt( payLoad[ 6 ] ) + ( voltageInt << 8 );
                  status             = ( payLoad[ 7 ] >> 4 ) & 0x07;
                  resolution         = ( payLoad[ 7 ] & 0x80 ) ? 16 : 2;
                  if ( diagnostics )
@@ -2126,13 +1732,13 @@ bool antProcessing::processCommonPages
                  break;
 
         case 83: // Time And Date
-                 seconds   = uChar2UInt( payLoad[ 1 ] );    // Seconds (0-59)
-                 minutes   = uChar2UInt( payLoad[ 2 ] );    // Minutes (0-59)
-                 hours     = uChar2UInt( payLoad[ 3 ] );    // Hours (0-24)
-                 weekDayNo = uChar2UInt( payLoad[ 4 ] );    // Day of Week (0-6, Sun = 0)
-                 monthDay  = uChar2UInt( payLoad[ 5 ] );    // Day of Month (1-31)
-                 month     = uChar2UInt( payLoad[ 6 ] );    // Month (1-12)
-                 year      = uChar2UInt( payLoad[ 7 ] );    // Year since 2000 (0-255)
+                 seconds   = byte2UInt( payLoad[ 1 ] );    // Seconds (0-59)
+                 minutes   = byte2UInt( payLoad[ 2 ] );    // Minutes (0-59)
+                 hours     = byte2UInt( payLoad[ 3 ] );    // Hours (0-24)
+                 weekDayNo = byte2UInt( payLoad[ 4 ] );    // Day of Week (0-6, Sun = 0)
+                 monthDay  = byte2UInt( payLoad[ 5 ] );    // Day of Month (1-31)
+                 month     = byte2UInt( payLoad[ 6 ] );    // Month (1-12)
+                 year      = byte2UInt( payLoad[ 7 ] );    // Year since 2000 (0-255)
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Seconds",         payLoad[ 1 ], seconds );
@@ -2147,10 +1753,10 @@ bool antProcessing::processCommonPages
                  break;
 
         case 84: // Weather Data
-                 subPage1   = uChar2UInt( payLoad[ 2 ] );                      // SubPage1 (determines what type of data dataField1 is)
-                 subPage2   = uChar2UInt( payLoad[ 3 ] );                      // SubPage2 (determines what type of data dataField2 is)
-                 dataField1 = uChar2UInt( payLoad[ 5 ], payLoad[ 4 ] );        // Data Value 1
-                 dataField2 = uChar2UInt( payLoad[ 7 ], payLoad[ 6 ] );        // Data Value 2
+                 subPage1   = byte2UInt( payLoad[ 2 ] );                      // SubPage1 (determines what type of data dataField1 is)
+                 subPage2   = byte2UInt( payLoad[ 3 ] );                      // SubPage2 (determines what type of data dataField2 is)
+                 dataField1 = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );        // Data Value 1
+                 dataField2 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );        // Data Value 2
                  if ( diagnostics )
                  {
                      appendDiagnosticsLine( "Sub Page 1",   payLoad[ 2 ], subPage1 );
@@ -2162,24 +1768,22 @@ bool antProcessing::processCommonPages
                  break;
 
         default: // - - Unknown Page - - - - - - - - - - - - - - - - -
-                 if ( diagnostics )
-                 {
-                     appendDiagnosticsLine( "Unknown Data Page" );
-                     appendDiagnosticsLine( "data page", payLoad[ 0 ], dataPage );
-                     for ( int counter = 1; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
-                     {
-                         appendDiagnosticsLine( "payLoad", counter, payLoad[ counter ] );
-                     }
-                 }
+                 result = createCommonResultStringUnsupportedPage( sensorID, dataPage, payLoad );
+                 break;
     }
     return result;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (from semi-cooked input)
+// and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
 bool antProcessing::processCommonPagesSemiCooked
 (
     const amSplitString &words,
     unsigned int         startCounter,
-    unsigned int         dataPage,
     bool                 outputPage
 )
 {
@@ -2215,15 +1819,14 @@ bool antProcessing::processCommonPagesSemiCooked
         unsigned int   descriptor1        = 0;
         unsigned int   descriptor2        = 0;
         unsigned int   requestedResponse  = 0;
-        unsigned int   requestedPage    = 0;
+        unsigned int   requestedPage      = 0;
         unsigned int   commandType        = 0;
         unsigned int   value1             = 0;
         unsigned int   value2             = 0;
         unsigned int   value3             = 0;
         unsigned int   value4             = 0;
         unsigned int   value5             = 0;
-        unsigned int   value6             = 0;
-        unsigned int   value7             = 0;
+        unsigned int   dataPage           = words[ counter++ ].toUInt();
         const amString sensorID           = words[ 0 ];
 
         switch ( dataPage )
@@ -2397,26 +2000,7 @@ bool antProcessing::processCommonPagesSemiCooked
                      }
                      break;
             default: // - - Unknown Page - - - - - - - - - - - - - - - - -
-                     if ( diagnostics )
-                     {
-                         counter = startCounter - 1;
-                         if ( dataPageOK )
-                         {
-                             appendDiagnosticsLine( "Input data vector too short for Data Page" );
-                         }
-                         else
-                         {
-                             appendDiagnosticsLine( "Unknown Data Page" );
-                         }
-                         appendDiagnosticsLine( "data page", words[ counter   ], dataPage );
-                         appendDiagnosticsLine( "value1",    words[ counter++ ], value1 );
-                         appendDiagnosticsLine( "value2",    words[ counter++ ], value2 );
-                         appendDiagnosticsLine( "value3",    words[ counter++ ], value3 );
-                         appendDiagnosticsLine( "value4",    words[ counter++ ], value4 );
-                         appendDiagnosticsLine( "value5",    words[ counter++ ], value5 );
-                         appendDiagnosticsLine( "value6",    words[ counter++ ], value6 );
-                         appendDiagnosticsLine( "value7",    words[ counter++ ], value7 );
-                     }
+                     result = createCommonResultStringUnsupportedPageSemiCooked( sensorID, dataPage, words, startCounter );
                      break;
         }
     }
@@ -2424,7 +2008,622 @@ bool antProcessing::processCommonPagesSemiCooked
 }
 
 // -------------------------------------------------------------------------------------------------//
-// Sub Page for Page Number 84
+//
+// Create the output for a common page (data page 0x43 or 67) and
+// append it to the output (result) string.
+//
+// Note: This needs reworking - ANT-FS Documentation required
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage67
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    value1,
+    unsigned int    value2,
+    unsigned int    value3,
+    unsigned int    value4,
+    unsigned int    value5
+)
+{
+    // For now semi-cooked and fully cooked output are the same
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 67;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        appendJSONItem( "status byte 1",   value1 );
+        appendJSONItem( "status byte 2",   value2 );
+        appendJSONItem( "authentication",  value3 );
+        appendJSONItem( "device type",     value4 );
+        appendJSONItem( "manufacturer id", value5 );
+    }
+    else
+    {
+        appendOutput( value1 );
+        appendOutput( value2 );
+        appendOutput( value3 );
+        appendOutput( value4 );
+        appendOutput( value5 );
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x44 or 68) and
+// append it to the output (result) string.
+//
+// Note: This needs reworking - ANT-FS Documentation required
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage68
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    value1,
+    unsigned int    value2,
+    unsigned int    value3,
+    unsigned int    value4
+)
+{
+    // For now semi-cooked and fully cooked output are the same
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 68;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        appendJSONItem( "command/response id", value1 );
+        appendJSONItem( "channel frequency",   value2 );
+        appendJSONItem( "channel period",      value3 );
+        appendJSONItem( "host serial number",  value4 );
+    }
+    else
+    {
+        appendOutput( value1 );
+        appendOutput( value2 );
+        appendOutput( value3 );
+        appendOutput( value4 );
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x46 or 70) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage70
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    descriptor1,
+    unsigned int    descriptor2,
+    unsigned int    requestedResponse,
+    unsigned int    requestedPage,
+    unsigned int    commandType
+)
+{
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 70;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        if ( !semiCookedOut && ( descriptor1 == 255 ) )
+        {
+            appendJSONItem( "descriptor byte 1 page", C_NONE_ID );
+        }
+        else
+        {
+            appendJSONItem( "descriptor byte 1 page", descriptor1 );
+        }
+
+        if ( !semiCookedOut && ( descriptor2 == 255 ) )
+        {
+            appendJSONItem( "descriptor byte 2 page", C_NONE_ID );
+        }
+        else
+        {
+            appendJSONItem( "descriptor byte 2 page", descriptor2 );
+        }
+
+        if ( semiCookedOut )
+        {
+            appendJSONItem( "requested response",    requestedResponse );
+            appendJSONItem( "requested page number", requestedPage );
+            appendJSONItem( "command type",          commandType );
+        }
+        else
+        {
+            if ( requestedResponse == 0 )
+            {
+                appendJSONItem( "number of transmisions", C_INVALID_JSON );
+            }
+            else if ( requestedResponse == 128 )
+            {
+                appendJSONItem( "number of transmisions", "until success acknowledged" );
+            }
+            else
+            {
+                appendJSONItem( "number of transmisions", requestedResponse & 0x80 );
+                appendJSONItem( "acknowledgement reply", ( requestedResponse & 128 ) ? C_TRUE_JSON : C_FALSE_JSON );
+            }
+            appendJSONItem( "requested page number", requestedPage );
+            appendJSONItem( "command type", ( commandType == 1 ) ? "data page" : "ant fs session" );
+        }
+    }
+    else
+    {
+        // Power Meters the page number is already identified by the device type (as PWRB46 - 46 = 0x70)
+
+        if ( semiCookedOut )
+        {
+            appendOutput( descriptor1 );
+            appendOutput( descriptor2 );
+            appendOutput( requestedResponse );
+            appendOutput( requestedPage );
+            appendOutput( commandType );
+        }
+        else
+        {
+            appendOutput( "DESCRIPTOR_BYTE_1" );
+            if ( descriptor1 == 255 )
+            {
+                appendOutput( "NONE" );
+            }
+            else
+            {
+                appendOutput( descriptor1 );
+            }
+
+            appendOutput( "DESCRIPTOR_BYTE_2" );
+            if ( descriptor2 == 255 )
+            {
+                appendOutput( "NONE" );
+            }
+            else
+            {
+                appendOutput( descriptor2 );
+            }
+
+
+            if ( requestedResponse == 0 )
+            {
+                appendOutput( C_TRANSMIT_INVALID );
+            }
+            else if ( requestedResponse == 128 )
+            {
+                appendOutput( C_TRANSMIT_UNTIL_SUCCESS_ACKNOWLEDGED );
+            }
+            else
+            {
+                appendOutput( C_TRANSMIT_NB_TIMES );
+                appendOutput( ( unsigned int ) requestedResponse & 0x7F );
+                appendOutput( ( requestedResponse & 128 ) ? C_REPLY_ACKNOWLEDGE : C_NO_REPLY_ACKNOWLEDGE );
+            }
+
+            appendOutput( C_REQUESTED_PAGE_NO );
+            appendOutput( requestedPage );
+            appendOutput( ( commandType == 1 ) ? C_DATA_PAGE : C_ANT_FS_SESSION );
+        }
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x50 or 80) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage80
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    manufacturerID,
+    unsigned int    hardwareRevision,
+    unsigned int    modelNumber
+)
+{
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 80;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        appendJSONItem( C_MANUFACTURER_JSON,      manufacturerID );
+        appendJSONItem( C_HARDWARE_REVISION_JSON, hardwareRevision );
+        appendJSONItem( C_MODEL_NUMBER_JSON,      modelNumber );
+    }
+    else
+    {
+        // Power Meters the page number is already identified by the device type (as PWRB50 - 50 = 0x80)
+        appendOutput( manufacturerID );
+        appendOutput( hardwareRevision );
+        appendOutput( modelNumber );
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x51 or 81) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage81
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    serialNumber,
+    unsigned int    softwareRevision
+)
+{
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 81;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
+        if ( !semiCookedOut && ( int ( serialNumber ) == -1 ) )
+        {
+            appendJSONItem( C_SERIAL_NUMBER_JSON, C_NONE_ID );
+        }
+        else
+        {
+            appendJSONItem( C_SERIAL_NUMBER_JSON, serialNumber );
+        }
+        appendJSONItem( C_SOFTWARE_REVISION_JSON, softwareRevision );
+    }
+    else
+    {
+        // Power Meters the page number is already identified by the device type (as PWRB51 - 51 = 0x81)
+        if ( semiCookedOut || ( ( int ) serialNumber >= 0 ) )
+        {
+            appendOutput( serialNumber );
+        }
+        else
+        {
+            appendOutput( "NO_SERIAL_NUMBER" );
+        }
+        appendOutput( softwareRevision );
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x52 or 82) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage82
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    voltage256,
+    unsigned int    status,
+    unsigned int    deltaOperatingTime,
+    unsigned int    resolution,
+    unsigned int    nbBatteries,
+    unsigned int    batteryID
+)
+{
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 82;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( semiCookedOut )
+    {
+        if ( outputAsJSON )
+        {
+            appendJSONItem( "voltage256",           voltage256 );
+            appendJSONItem( "battery status index", status );
+            appendJSONItem( "operating time",       deltaOperatingTime );
+            appendJSONItem( "resolution",           resolution );
+            appendJSONItem( "number of batteries",  nbBatteries );
+            appendJSONItem( "battery no.",          batteryID );
+        }
+        else
+        {
+            appendOutput( voltage256 );
+            appendOutput( status );
+            appendOutput( deltaOperatingTime );
+            appendOutput( resolution );
+            appendOutput( nbBatteries );
+            appendOutput( batteryID );
+        }
+    }
+    else
+    {
+        amString batteryStatus;
+        double   voltageDbl         = ( double ) voltage256 / 256.0;
+        double   totalOperatingTime = getTotalOperationTime( sensorID );
+        double   auxDouble          = ( double ) deltaOperatingTime;
+
+        auxDouble          *= ( double ) resolution;
+        totalOperatingTime += auxDouble;
+        setTotalOperationTime( sensorID, totalOperatingTime );
+
+        getBatteryStatus( batteryStatus, status, outputAsJSON );
+
+        if ( outputAsJSON )
+        {
+            if ( nbBatteries == 0 )
+            {
+                appendJSONItem( "number of batteries", C_N_A_JSON );
+                appendJSONItem( "battery no.",         C_N_A_JSON );
+            }
+            else
+            {
+                appendJSONItem( "number of batteries", nbBatteries );
+                appendJSONItem( "battery no.",         batteryID );
+            }
+            appendJSONItem( "voltage",              voltageDbl, 2 );
+            appendJSONItem( "battery status",       batteryStatus );
+            appendJSONItem( "total operating time", totalOperatingTime, timePrecision );
+        }
+        else
+        {
+            unsigned int localNbBatteries = ( nbBatteries == 0 ) ? 1 : nbBatteries;
+            appendOutput( localNbBatteries );
+            appendOutput( batteryID );
+            appendOutput( voltageDbl, 2 );
+            appendOutput( batteryStatus );
+            appendOutput( totalOperatingTime, timePrecision );
+        }
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x53 or 83) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage83
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    seconds,
+    unsigned int    minutes,
+    unsigned int    hours,
+    unsigned int    weekDayNo,
+    unsigned int    monthDay,
+    unsigned int    month,
+    unsigned int    year
+)
+{
+    bool     result = true;
+    amString timeString;
+    amString dateString;
+    amString wDayString;
+
+    if ( outputPage )
+    {
+        int dataPage = 83;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( !semiCookedOut )
+    {
+        int year2000 = year + 2000;
+        dateString = date2String( year2000, month, monthDay );
+        timeString = time2String( hours, minutes, seconds );
+        switch( weekDayNo )
+        {
+            case  0: wDayString = "SUN";
+                     break;
+            case  1: wDayString = "MON";
+                     break;
+            case  2: wDayString = "TUE";
+                     break;
+            case  3: wDayString = "WED";
+                     break;
+            case  4: wDayString = "THU";
+                     break;
+            case  5: wDayString = "FRI";
+                     break;
+            case  6: wDayString = "SAT";
+                     break;
+            default: wDayString = C_UNKNOWN;
+                     break;
+        }
+        wDayString.toLower();
+    }
+
+    if ( outputAsJSON )
+    {
+        if ( semiCookedOut )
+        {
+            appendJSONItem( "year", year );
+            appendJSONItem( "month", month );
+            appendJSONItem( "monthDay", monthDay );
+            appendJSONItem( "week day", weekDayNo );
+            appendJSONItem( "hours", hours );
+            appendJSONItem( "minutes", minutes );
+            appendJSONItem( "seconds", seconds );
+        }
+        else
+        {
+            appendJSONItem( "date", dateString );
+            appendJSONItem( "time", timeString );
+            appendJSONItem( "week day", wDayString );
+        }
+    }
+    else
+    {
+        if ( semiCookedOut )
+        {
+            appendOutput( seconds );
+            appendOutput( minutes );
+            appendOutput( hours );
+            appendOutput( weekDayNo );
+            appendOutput( monthDay );
+            appendOutput( month );
+            appendOutput( year );
+        }
+        else
+        {
+            appendOutput( "DATE" );
+            appendOutput( dateString );
+            appendOutput( "WEEK_DAY" );
+            appendOutput( wDayString );
+            appendOutput( "TIME" );
+            appendOutput( timeString );
+        }
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a common page (data page 0x54 or 84) and
+// append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringPage84
+(
+    const amString &sensorID,
+    bool            outputPage,
+    unsigned int    subPage1,
+    unsigned int    subPage2,
+    unsigned int    dataField1,
+    unsigned int    dataField2
+)
+{
+    bool result = true;
+
+    if ( outputPage )
+    {
+        int dataPage = 84;
+        if ( outputAsJSON )
+        {
+            appendJSONItem( C_DATA_PAGE_JSON, dataPage );
+        }
+        else
+        {
+            appendOutput( dataPage );
+        }
+    }
+
+    if ( outputAsJSON )
+    {
+        if ( semiCookedOut )
+        {
+            appendJSONItem( "sub page 1",   subPage1 );
+            appendJSONItem( "data field 1", dataField1 );
+            appendJSONItem( "sub page 2",   subPage1 );
+            appendJSONItem( "data field 2", dataField1 );
+        }
+        else
+        {
+            createDataPage84SubPage( sensorID, 1, subPage1, dataField1 );
+            createDataPage84SubPage( sensorID, 2, subPage2, dataField2 );
+        }
+    }
+    else
+    {
+        if ( semiCookedOut )
+        {
+            appendOutput( subPage1 );
+            appendOutput( dataField1 );
+            appendOutput( subPage2 );
+            appendOutput( dataField2 );
+        }
+        else
+        {
+            createDataPage84SubPage( sensorID, 1, subPage1, dataField1 );
+            createDataPage84SubPage( sensorID, 2, subPage2, dataField2 );
+        }
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a sub page of common page 0x54 or 84 and
+// append it to the output (result) string.
+//
 // -------------------------------------------------------------------------------------------------//
 void antProcessing::createDataPage84SubPage
 (
@@ -2522,6 +2721,286 @@ void antProcessing::createDataPage84SubPage
     }
 }
 
+amDeviceType antProcessing::processUnsupportedDataPage
+(
+    const amSplitString words
+)
+{
+    amDeviceType  result        = OTHER_DEVICE;
+    unsigned int  nbWords       = words.size();
+    unsigned int  counter       = 0;
+    unsigned int  dataPage      = 0;
+    unsigned int  nbWordsSensor = 0;
+    amString      sensorID;
+    amString      semiCookedString;
+    amString      timeStampBuffer;
+    amString      inputString;
+    amSplitString sensorWords;
+
+    if ( nbWords > 13 )  // SENSOR(1) + TIME(1) + SEMICOOKED(1) + DATAPAGE(1) + UNSUPPORTED(1) + PALYLOD(8)
+    {
+        sensorID         = words[ counter++ ];                            //  0
+        timeStampBuffer  = words[ counter++ ];                            //  1
+        if ( diagnostics )
+        {
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+        }
+        if ( isRegisteredDevice( sensorID ) )
+        {
+            semiCookedString = words[ counter++ ];                        //  2
+            if ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING )
+            {
+                if ( diagnostics )
+                {
+                    appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                }
+            }
+            else
+            {
+                --counter;
+            }
+            dataPage = ( unsigned int ) words[ counter++ ].toInt();       //  2 or 3
+            if ( diagnostics )
+            {
+                appendDiagnosticsLine( "Data Page", dataPage );
+            }
+
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
+            {
+                nbWordsSensor = sensorWords.split( sensorID, "_" );
+                if ( nbWordsSensor == 2 ) 
+                {   
+                    inputString  = C_UNKNOWN_TYPE_HEAD;
+                    inputString += amString( C_AUDIO_TYPE );
+                    inputString += "_";
+                    inputString += sensorWords[ 1 ];
+                    inputString += "\t";
+                    inputString += timeStampBuffer;
+                    while ( ++counter < nbWords )
+                    {   
+                        inputString += "\t";
+                        inputString += words[ counter ];
+                    }   
+                    result = updateSensorSemiCooked( inputString );
+                }
+            }
+        }
+    }   
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for an unsupported data page and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringUnsupportedPage
+(
+    const amString &sensorID,
+    unsigned int    dataPage,
+    const BYTE     *payLoad
+)
+{
+    bool result = true;
+
+    if ( diagnostics )
+    {
+        appendDiagnosticsLine( "Unsupported Data Page Number", dataPage );
+    }
+    if ( outputAsJSON )
+    {
+        appendJSONItem( C_UNSUPPORTED_DATA_PAGE_JSON, dataPage );
+    }
+    else
+    {
+        appendOutput( dataPage );
+        appendOutput( C_UNSUPPORTED_DATA_PAGE );
+    }
+
+    for ( int counter = 0; counter < C_ANT_PAYLOAD_LENGTH; ++counter )
+    {
+        if ( diagnostics )
+        {
+            appendDiagnosticsLine( "byte", counter, payLoad[ counter ] );
+        }
+        if ( outputAsJSON )
+        {
+            appendJSONItem( "byte", counter, payLoad[ counter ] );
+        }
+        else
+        {
+            appendOutput( payLoad[ counter ] );
+        }
+    }
+
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// For semi-cooked input, create the output for an unsupported data page
+// and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+bool antProcessing::createCommonResultStringUnsupportedPageSemiCooked
+(
+    const amString      &sensorID,
+    unsigned int         dataPage,
+    const amSplitString &words,
+    unsigned int         startCounter
+)
+{
+    bool         result                          = true;
+    unsigned int wordsCounter                    = startCounter;
+    BYTE         payLoad[ C_ANT_PAYLOAD_LENGTH ] = { 0 };
+
+    for ( int counter = 0; ( counter < C_ANT_PAYLOAD_LENGTH ) && ( wordsCounter < words.size() ); ++counter, ++wordsCounter )
+    {
+        payLoad[ counter ] = words[ wordsCounter ].toInt();
+    }
+    result = createCommonResultStringUnsupportedPage( sensorID, dataPage, payLoad );
+
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a bridge status message and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::createBridgeString
+(
+    const amString &bridgeDeviceID,
+    const amString &timeStampBuffer,
+    const amString &bridgeName,
+    const amString &bridgeMACAddess,
+    const amString &firmwareVersion,
+    int             voltageValue,
+    int             powerIndicator,
+    int             operatingMode,
+    int             connectionStatus
+)
+{
+    double dVoltage = semiCookedOut ? 0 : ( ( double ) ( 500 + voltageValue ) ) / 1000.0;
+
+    createOutputHeader( bridgeDeviceID, timeStampBuffer );
+
+    if ( outputAsJSON )
+    {
+        appendJSONItem( "bridge name",      bridgeName );
+        appendJSONItem( "mac address",      bridgeMACAddess );
+        appendJSONItem( "firmware version", firmwareVersion );
+
+        if ( semiCookedOut )
+        {
+            appendJSONItem( "voltage", voltageValue );
+            appendJSONItem( "power indicator", powerIndicator );
+            appendJSONItem( "operating mode", operatingMode );
+            appendJSONItem( "connection status", connectionStatus );
+        }
+        else
+        {
+            appendJSONItem( "voltage", dVoltage, 3 );
+            appendJSONItem( "power indicator", powerIndicator ? "E" : "I" );
+            appendJSONItem( "operating mode", operatingMode );
+            appendJSONItem( "connection status", connectionStatus ? "I" : "A" );
+        }
+    }
+    else
+    {
+        appendOutput( bridgeName );
+        appendOutput( bridgeMACAddess );
+        appendOutput( firmwareVersion );
+        if ( semiCookedOut )
+        {
+            appendOutput( voltageValue );
+        }
+        else
+        {
+            appendOutput( dVoltage, 3, "V" );
+        }
+        appendOutput( powerIndicator ? "E" : "I" );
+        appendOutput( operatingMode );
+        appendOutput( connectionStatus ? "I" : "A" );
+    }
+    appendOutputFooter( b2tVersion );
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for a message in packet saver mode (which includes the hexadecimal values
+// of all bytes) and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::createPacketSaverString
+(
+    const BYTE     *line,
+    int             nbBytes,
+    const amString &timeStampBuffer
+)
+{
+    createOutputHeader( C_PACKET_SAVER_NAME, timeStampBuffer );
+    for ( int counter = 0; counter < nbBytes; ++counter )
+    {
+        if ( diagnostics )
+        {
+            appendDiagnosticsLine( "byte", counter, line[ counter ] );
+        }
+        if ( outputAsJSON )
+        {
+            std::stringstream auxStream;
+            auxStream << "byte[ " << counter << " ]";
+            appendJSONItem( auxStream.str(), line[ counter ] );
+        }
+        else
+        {
+            appendOutput( line[ counter ] );
+        }
+    }
+    appendOutputFooter( b2tVersion );
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Create the output for an unrecognized message (which includes the hexadecimal values
+// of all bytes) and append it to the output (result) string.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::createUnknownPacketString
+(
+    const BYTE     *line,
+    int             nbBytes,
+    const amString &timeStampBuffer
+)
+{
+    createOutputHeader( C_UNKOWN_PACKET_NAME, timeStampBuffer );
+    for ( int counter = 0; counter < nbBytes; ++counter )
+    {
+        if ( diagnostics )
+        {
+            appendDiagnosticsLine( "byte", counter, line[ counter ] );
+        }
+        if ( outputAsJSON )
+        {
+            std::stringstream auxStream;
+            auxStream << "byte[ " << counter << " ]";
+            appendJSONItem( auxStream.str(), line[ counter ] );
+        }
+        else
+        {
+            appendOutput( line[ counter ] );
+        }
+    }
+    appendOutputFooter( b2tVersion );
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Output the result string, the 'raw data' output string, and/or the dignostics string.
+// Depending on the settings, output the string(s) on stdout and/or the multicast port.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::outputData
 (
     void
@@ -2574,6 +3053,11 @@ int antProcessing::outputData
     return errorCode;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Read (and process) the input data from a stream.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::readAntFromStream
 (
     std::istream &inStream
@@ -2596,6 +3080,11 @@ int antProcessing::readAntFromStream
     return errorCode;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Read (and process) a single input line from a stream.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::readSemiCookedSingleLineFromStream
 (
     std::istream &inStream
@@ -2627,6 +3116,11 @@ int antProcessing::readSemiCookedSingleLineFromStream
 }
 
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Read (and process) binary ANT+ data from a stream.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::readAntSingleLineFromStream
 (
     std::istream &inStream
@@ -2691,58 +3185,63 @@ int antProcessing::readAntSingleLineFromStream
     return errorCode;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Process binary ANT+ data.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::ant2txtLine
 (
     const BYTE *line,
-    int                  nbBytes
+    int         nbBytes
 )
 {
-    const char    operatingModeString7[] = "continuous scan mode";
-    const char    operatingModeString6[] = "proximity scan mode";
-    const char    operatingModeString5[] = "ANT-FS access point mode";
-    const char    operatingModeString0[] = "undefined";
+    const char   operatingModeString7[] = "continuous scan mode";
+    const char   operatingModeString6[] = "proximity scan mode";
+    const char   operatingModeString5[] = "ANT-FS access point mode";
+    const char   operatingModeString0[] = "undefined";
 
-    char          bridgeName[ C_WASP_NAME_LENGTH ];
-    char          deviceIDCString[ C_SMALL_BUFFER_SIZE ];
-    char          operatingModeString[ C_MEDIUM_BUFFER_SIZE ];
-    BYTE payLoad[ C_ANT_PAYLOAD_LENGTH ];
-    BYTE packetID[ 2 ];
-    BYTE rssi[ 2 ];
-    BYTE timeStamp[ 2 ];
-    BYTE reserved[ 2 ];
-    BYTE voltage[ 2 ];
-    BYTE macAddress[ C_MAC_ADDRESS_LENGTH ];
-    BYTE packetCommand      = 0;
-    BYTE sequence           = 0;
-    BYTE messageType        = 0;
-    BYTE channel            = 0;
-    BYTE messageFlag        = 0;
-    BYTE deviceIDmsb        = 0;
-    BYTE deviceIDlsb        = 0;
-    BYTE transType          = 0;
-    BYTE measurementType    = 0;
-    BYTE thresholding       = 0;
-    BYTE crc                = 0;
-    BYTE majorVersion       = 0;
-    BYTE minorVersion       = 0;
-    BYTE connectionStatus   = 0;
-    BYTE waspProductVersion = 0;
-    BYTE powerIndicator     = 0;
-    BYTE operatingMode      = 0;
-    BYTE bridgeNameLength   = 0;
-    int           counter            = 0;
-    int           deviceType         = 0;
-    int           byteCount          = 0;
-    int           payLoadLength      = 0;
-    int           deviceIDint        = 0;
-    int           rssiValue          = 0;
-    int           reservedValue      = 0;
-    int           voltageValue       = 0;
-    int           timeStampValue     = 0;
-    size_t        charCount          = 0;
-    amString      deviceID           = "";
-    amString      timeStampBuffer;
-    amDeviceType  resultDevice;
+    char         bridgeName[ C_WASP_NAME_LENGTH ];
+    char         deviceIDCString[ C_SMALL_BUFFER_SIZE ];
+    char         operatingModeString[ C_MEDIUM_BUFFER_SIZE ];
+    BYTE         payLoad[ C_ANT_PAYLOAD_LENGTH ];
+    BYTE         packetID[ 2 ];
+    BYTE         rssi[ 2 ];
+    BYTE         timeStamp[ 2 ];
+    BYTE         reserved[ 2 ];
+    BYTE         voltage[ 2 ];
+    BYTE         macAddress[ C_MAC_ADDRESS_LENGTH ];
+    BYTE         packetCommand      = 0;
+    BYTE         sequence           = 0;
+    BYTE         messageType        = 0;
+    BYTE         channel            = 0;
+    BYTE         messageFlag        = 0;
+    BYTE         deviceIDmsb        = 0;
+    BYTE         deviceIDlsb        = 0;
+    BYTE         transType          = 0;
+    BYTE         measurementType    = 0;
+    BYTE         thresholding       = 0;
+    BYTE         crc                = 0;
+    BYTE         majorVersion       = 0;
+    BYTE         minorVersion       = 0;
+    BYTE         connectionStatus   = 0;
+    BYTE         waspProductVersion = 0;
+    BYTE         powerIndicator     = 0;
+    BYTE         operatingMode      = 0;
+    BYTE         bridgeNameLength   = 0;
+    int          counter            = 0;
+    int          deviceType         = 0;
+    int          byteCount          = 0;
+    int          payLoadLength      = 0;
+    int          deviceIDint        = 0;
+    int          rssiValue          = 0;
+    int          reservedValue      = 0;
+    int          voltageValue       = 0;
+    int          timeStampValue     = 0;
+    size_t       charCount          = 0;
+    amString     deviceID           = "";
+    amString     timeStampBuffer;
+    amDeviceType resultDevice;
 
     resetOutBuffer();
     resetRawBuffer();
@@ -3235,6 +3734,11 @@ int antProcessing::ant2txtLine
     return errorCode;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Read (and process) binary ANT+ data from a multicast port.
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::readAntFromMultiCast
 (
     void
@@ -3289,7 +3793,7 @@ int antProcessing::readAntFromMultiCast
     if ( errorCode == 0 )
     {
         BYTE line[ C_BUFFER_SIZE ];
-        int           nbBytes   = 1;
+        int  nbBytes   = 1;
 
         resetOutBuffer();
         resetDiagnosticsBuffer();
@@ -3326,7 +3830,10 @@ int antProcessing::readAntFromMultiCast
     return errorCode;
 }
 
-//-------------------------------------------------------------------------------------
+// -------------------------------------------------------------------------------------------------//
+//
+// Process a binary ANT+ data package.
+//
 // A package has the following syntax:
 //
 //  ANT+ messages
@@ -3363,7 +3870,8 @@ int antProcessing::readAntFromMultiCast
 //     Byte      16: Bridge Name Length
 //     Byte 17 - 48: Bridge Name ASCII Name of Bridge
 //     Byte 49 - 55: Bridge Mac Mac Address of Bridge in HEX
-//-------------------------------------------------------------------------------------
+//
+// -------------------------------------------------------------------------------------------------//
 int antProcessing::ant2txt
 (
     void
@@ -3448,6 +3956,11 @@ int antProcessing::ant2txt
     return errorCode;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Read (and process) the device IDs and pareameters from a stream.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::readDeviceFileStream
 (
     std::ifstream &deviceFileStream
@@ -3479,6 +3992,129 @@ void antProcessing::readDeviceFileStream
     }
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Set the 'idle' counter for a device
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::setZeroTimeCount
+(
+    const amString &sensorID,
+    unsigned int    value
+)
+{
+    if ( zeroTimeCountTable.count( sensorID ) > 0 )
+    {
+        zeroTimeCountTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
+    }
+    zeroTimeCountTable[ sensorID ] = value;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Return the 'idle' count for a device
+//
+// -------------------------------------------------------------------------------------------------//
+unsigned int antProcessing::getZeroTimeCount
+(
+    const amString &sensorID
+)
+{
+    unsigned int value = 0;
+    if ( zeroTimeCountTable.count( sensorID ) > 0 )
+    {
+        value = zeroTimeCountTable[ sensorID ];
+    }
+    return value;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Set the value for sensor 'sensorID' in the hash table 'totalOperatingTimeTable'.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::setTotalOperationTime
+(
+    const amString &sensorID,
+    double          value
+)
+{
+    if ( totalOperatingTimeTable.count( sensorID ) == 0 )
+    {
+        totalOperatingTimeTable.insert( std::pair<amString, double>(  sensorID, 0 ) );
+    }
+    totalOperatingTimeTable[ sensorID ] = value;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Return the value for sensor 'sensorID' in the hash table 'totalOperatingTimeTable'.
+//
+// -------------------------------------------------------------------------------------------------//
+double antProcessing::getTotalOperationTime
+(
+    const amString &sensorID
+)
+{
+    double result = 0;
+    if ( totalOperatingTimeTable.count( sensorID ) > 0 )
+    {
+        result = totalOperatingTimeTable[ sensorID ];
+    }
+    return result;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Output the error message string.
+//
+// -------------------------------------------------------------------------------------------------//
+void antProcessing::outputError
+(
+    void
+)
+{
+    switch ( errorCode )
+    {
+        case 0:
+             appendErrorMessage( "Exited without error." );
+             break;
+        case E_BAD_PARAMETER_VALUE:
+        case E_MC_WRITE_FAIL:
+        case E_MC_NO_INTERFACE:
+        case E_MC_NO_IP_ADDRESS:
+        case E_NO_IP_ADDRESS_IF:
+        case E_MC_NO_PORT_NUMBER:
+        case E_BAD_OPTION:
+        case E_UNKNOWN_OPTION:
+        case E_SOCKET_CREATE_FAIL:
+        case E_SOCKET_SET_OPT_FAIL:
+        case E_LOOP_BACK_IP_ADDRESS:
+        case E_SOCKET_BIND_FAIL:
+        case E_READ_ERROR:
+        case E_READ_FILE_NOT_OPEN:
+        case E_READ_TIMEOUT:
+             break;
+        default:
+             appendErrorMessage( "Unknown error code " );
+             appendErrorMessage( errorCode );
+             appendErrorMessage( ".\n" );
+             break;
+    }
+
+    std::cerr << std::endl;
+    std::cerr << programName;
+    std::cerr << ": ";
+    std::cerr << std::endl;
+    std::cerr << errorMessage;
+    std::cerr << std::endl;
+}
+
+// -------------------------------------------------------------------------------------------------//
+//
+// Output the general 'help' message.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::help
 (
     void
@@ -3842,6 +4478,11 @@ void antProcessing::help
     std::cout << outputMessage.str() << std::endl;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Output the general 'help' message for power meters.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::outputOptionPOWER
 (
     std::stringstream &outputMessage,
@@ -3874,6 +4515,11 @@ void antProcessing::outputOptionPOWER
     outputMessage << "PWRB52    Power Meter Battery Information.";
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Output the 'help' message that lists all supported devices types.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::outputOptionF
 (
     std::stringstream &outputMessage,
@@ -3909,6 +4555,11 @@ void antProcessing::outputOptionF
     outputMessage << std::endl;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Output all supported devices types and their non-JSON output formats.
+//
+// -------------------------------------------------------------------------------------------------//
 void antProcessing::outputFormats
 (
     const amString &deviceType
@@ -6419,6 +7070,11 @@ void antProcessing::outputFormats
     std::cout << outputMessage.str() << std::endl;
 }
 
+// -------------------------------------------------------------------------------------------------//
+//
+// Process command line arguments.
+//
+// -------------------------------------------------------------------------------------------------//
 bool antProcessing::processArguments
 (
     const amString &programNameIn,
@@ -6663,185 +7319,5 @@ bool antProcessing::processArguments
     }
 
     return running;
-}
-
-void antProcessing::setZeroTimeCount
-(
-    const amString &sensorID,
-    unsigned int    value
-)
-{
-    if ( zeroTimeCountTable.count( sensorID ) > 0 )
-    {
-        zeroTimeCountTable.insert( std::pair<amString, unsigned int>( sensorID, 0 ) );
-    }
-    zeroTimeCountTable[ sensorID ] = value;
-}
-
-unsigned int antProcessing::getZeroTimeCount
-(
-    const amString &sensorID
-)
-{
-    unsigned int value = 0;
-    if ( zeroTimeCountTable.count( sensorID ) > 0 )
-    {
-        value = zeroTimeCountTable[ sensorID ];
-    }
-    return value;
-}
-
-void antProcessing::getUnixTimeAsString
-(
-    amString &timeStampBuffer
-)
-{
-    double subSecondTimer = 0;
-    if ( testMode )
-    {
-        subSecondTimer = ( double ) testCounter * 0.1;
-        ++testCounter;
-    }
-    else
-    {
-        subSecondTimer = getUnixTime();
-    }
-    getUnixTimeAsString( timeStampBuffer, subSecondTimer );
-}
-
-void antProcessing::getUnixTimeAsString
-(
-    amString &timeStampBuffer,
-    double    subSecondTimer
-)
-{
-    timeStampBuffer = amString( subSecondTimer, timePrecision );
-}
-
-void antProcessing::setTotalOperationTime
-(
-    const amString &sensorID,
-    double          value
-)
-{
-    if ( totalOperatingTimeTable.count( sensorID ) == 0 )
-    {
-        totalOperatingTimeTable.insert( std::pair<amString, double>(  sensorID, 0 ) );
-    }
-    totalOperatingTimeTable[ sensorID ] = value;
-}
-
-double antProcessing::getTotalOperationTime
-(
-    const amString &sensorID
-)
-{
-    double result = 0;
-    if ( totalOperatingTimeTable.count( sensorID ) > 0 )
-    {
-        result = totalOperatingTimeTable[ sensorID ];
-    }
-    return result;
-}
-
-double antProcessing::getUnixTime
-(
-    void
-)
-{
-    struct timeval tv; 
-    gettimeofday( &tv, NULL );
-    double result = ( double ) tv.tv_sec + ( ( double ) tv.tv_usec ) / 1.0E6;
-
-    return result;
-}
-
-int antProcessing::hex2Int
-(
-    BYTE b4, 
-    BYTE b3, 
-    BYTE b2, 
-    BYTE b1
-)
-{
-    int res = hex2Int( b4 );
-    res <<= 24; 
-    res += hex2Int( b3, b2, b1 );
-    return res;
-}
-
-int antProcessing::hex2Int 
-(
-    BYTE b3, 
-    BYTE b2, 
-    BYTE b1
-)
-{
-    int res = hex2Int( b3 );
-    res <<= 16; 
-    res += hex2Int( b2, b1 );
-    return res;
-}
-
-int antProcessing::hex2Int 
-(
-    BYTE b2, 
-    BYTE b1
-)
-{
-    int res = hex2Int( b2 );
-    res <<= 8;
-    res += hex2Int( b1 );
-    return res;
-}
-
-int antProcessing::hex2Int 
-(
-    BYTE b1
-)
-{
-    int res = ( unsigned int ) b1; 
-    return res;
-}
-
-void antProcessing::outputError
-(
-    void
-)
-{
-    switch ( errorCode )
-    {
-        case 0:
-             appendErrorMessage( "Exited without error." );
-             break;
-        case E_BAD_PARAMETER_VALUE:
-        case E_MC_WRITE_FAIL:
-        case E_MC_NO_INTERFACE:
-        case E_MC_NO_IP_ADDRESS:
-        case E_NO_IP_ADDRESS_IF:
-        case E_MC_NO_PORT_NUMBER:
-        case E_BAD_OPTION:
-        case E_UNKNOWN_OPTION:
-        case E_SOCKET_CREATE_FAIL:
-        case E_SOCKET_SET_OPT_FAIL:
-        case E_LOOP_BACK_IP_ADDRESS:
-        case E_SOCKET_BIND_FAIL:
-        case E_READ_ERROR:
-        case E_READ_FILE_NOT_OPEN:
-        case E_READ_TIMEOUT:
-             break;
-        default:
-             appendErrorMessage( "Unknown error code " );
-             appendErrorMessage( errorCode );
-             appendErrorMessage( ".\n" );
-             break;
-    }
-
-    std::cerr << std::endl;
-    std::cerr << programName;
-    std::cerr << ": ";
-    std::cerr << std::endl;
-    std::cerr << errorMessage;
-    std::cerr << std::endl;
 }
 

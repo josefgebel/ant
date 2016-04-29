@@ -47,52 +47,57 @@ amString::amString
 
 amString::amString
 (
-    unsigned char number
+    BYTE number
 ) : std::string()
 {
     std::stringstream auxStream;
-    auxStream << "0x" << std::uppercase << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number;
+    auxStream << std::hex << std::setfill( '0' );
+    auxStream << "0x" << std::uppercase << std::setw( 2 ) << static_cast<unsigned>( number );
     assign( auxStream.str() );
 }
 
 amString::amString
 (
-    unsigned char number1,
-    unsigned char number2
+    BYTE number1,
+    BYTE number2
 ) : std::string()
 {
     std::stringstream auxStream;
-    auxStream << "0x" << std::uppercase << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number1 << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number2;
+    auxStream << std::hex << std::setfill( '0' ) << "0x" << std::uppercase;
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number1 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number2 );
     assign( auxStream.str() );
 }
 
 amString::amString
 (
-    unsigned char number1,
-    unsigned char number2,
-    unsigned char number3
+    BYTE number1,
+    BYTE number2,
+    BYTE number3
 ) : std::string()
 {
     std::stringstream auxStream;
-    auxStream << "0x" << std::uppercase << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number1;
-    auxStream << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number2;
-    auxStream << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number3;
+    auxStream << std::hex << std::setfill( '0' ) << "0x" << std::uppercase;
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number1 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number2 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number3 );
     assign( auxStream.str() );
 }
 
 amString::amString
 (
-    unsigned char number1,
-    unsigned char number2,
-    unsigned char number3,
-    unsigned char number4
+    BYTE number1,
+    BYTE number2,
+    BYTE number3,
+    BYTE number4
 ) : std::string()
 {
     std::stringstream auxStream;
-    auxStream << "0x" << std::uppercase << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number1;
-    auxStream << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number2;
-    auxStream << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number3;
-    auxStream << std::setfill( '0' ) << std::setw( 4 ) << std::hex << number4;
+    auxStream << std::hex << std::setfill( '0' ) << "0x" << std::uppercase;
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number1 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number2 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number3 );
+    auxStream << std::setw( 2 ) << static_cast<unsigned>( number4 );
     assign( auxStream.str() );
 }
 

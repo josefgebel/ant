@@ -85,7 +85,7 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensor
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -138,39 +138,43 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
 )
 {
     amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
-    {
-        amString      sensorID;
-        amString      semiCookedString;
-        amString      timeStampBuffer;
-        amString      curVersion   = getVersion();
-        amSplitString words;
-        unsigned int  nbWords      = words.split( inputBuffer );
-        unsigned int  startCounter = 0;
-        unsigned int  counter      = 0;
-        unsigned int  dataPage     = 0;
-        bool          commonPage   = false;
-        bool          outputPageNo = true;
+    amString      sensorID;
+    amString      semiCookedString;
+    amString      timeStampBuffer;
+    amString      curVersion   = getVersion();
+    amSplitString words;
+    unsigned int  nbWords      = words.split( inputBuffer );
+    unsigned int  startCounter = 0;
+    unsigned int  counter      = 0;
+    unsigned int  dataPage     = 0;
+    bool          commonPage   = false;
+    bool          outputPageNo = true;
 
-        if ( nbWords > 7 )
+    if ( nbWords > 7 )
+    {
+        sensorID         = words[ counter++ ];                     //  0
+        timeStampBuffer  = words[ counter++ ];                     //  1
+        semiCookedString = words[ counter++ ];                     //  2
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                     //  0
-            timeStampBuffer  = words[ counter++ ];                     //  1
-            semiCookedString = words[ counter++ ];                     //  2
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isBloodPressureSensor( sensorID ) )
+        {
+            startCounter = counter;
+            dataPage     = words[ counter++ ].toUInt();            //  3
             if ( diagnostics )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                appendDiagnosticsLine( "Data Page", dataPage );
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isBloodPressureSensor( sensorID ) )
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
             {
-                startCounter = counter;
-                dataPage     = words[ counter++ ].toUInt();            //  3
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Data Page", dataPage );
-                }
+                result = UNKNOWN_DEVICE;
+            }
+            else
+            {
                 counter = startCounter;
                 if ( dataPage == C_NON_EXISTENT_DATA_PAGE )
                 {
@@ -183,40 +187,44 @@ amDeviceType antBloodPressureProcessing::processBloodPressureSensorSemiCooked
                 }
             }
         }
+    }
 
-        if ( result == BLOOD_PRESSURE_SENSOR )
+    if ( result == BLOOD_PRESSURE_SENSOR )
+    {
+        if ( nbWords > counter )
         {
-            if ( nbWords > counter )
+            curVersion = words.back();
+            if ( diagnostics )
             {
-                curVersion = words.back();
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Version", curVersion );
-                }
+                appendDiagnosticsLine( "Version", curVersion );
             }
-            createOutputHeader( sensorID, timeStampBuffer );
-            if ( commonPage )
-            {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
-                if ( !commonPage )
-                {
-                    result = OTHER_DEVICE;
-                }
-            }
-            else
-            {
-                createBLDPRResultString( dataPage );
-            }
-            appendOutputFooter( curVersion );
         }
-
-        if ( result == OTHER_DEVICE )
+        createOutputHeader( sensorID, timeStampBuffer );
+        if ( commonPage )
         {
-            resetOutBuffer();
-            if ( outputUnknown )
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
+            if ( !commonPage )
             {
-                setOutBuffer( inputBuffer );
+                result = OTHER_DEVICE;
             }
+        }
+        else
+        {
+            createBLDPRResultString( dataPage );
+        }
+        appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
+        {
+            setOutBuffer( inputBuffer );
         }
     }
 

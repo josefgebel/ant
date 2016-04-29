@@ -86,7 +86,7 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
 
     if ( isRegisteredDevice( sensorID ) )
     {
-        dataPage = hex2Int( payLoad[ 0 ] );
+        dataPage = byte2UInt( payLoad[ 0 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -96,7 +96,7 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
         {
             case  1: result          = MULTI_SPORT_SD_SENSOR;
 
-                     auxInt1         = hex2Int( payLoad[ 3 ], payLoad[ 2 ] );    // Time Stamp
+                     auxInt1         = byte2UInt( payLoad[ 3 ], payLoad[ 2 ] );    // Time Stamp
                      rollOver        = 65536;  // 256^2
                      additionalData1 = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, auxInt1 );
                      if ( !semiCookedOut )
@@ -114,7 +114,7 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
                          }
                      }
 
-                     auxInt2         = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );    // Distance
+                     auxInt2         = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );    // Distance
                      rollOver        = 65536;  // 256^2
                      additionalData2 = getDeltaInt( rollOverHappened, sensorID, rollOver, eventDistTable, auxInt2 );
                      if ( !semiCookedOut )
@@ -132,7 +132,7 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
                          }
                      }
 
-                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );    // Instantaneous Speed
+                     additionalData3 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );    // Instantaneous Speed
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Instantaneous Speed", payLoad[ 7 ], payLoad[ 6 ], additionalData3 );
@@ -140,8 +140,8 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
                      break;
 
             case  2: result          = MULTI_SPORT_SD_SENSOR;
-                     auxInt1         = hex2Int( payLoad[ 4 ], payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] );          // Latitude
-                     auxInt2         = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );          // Longitude
+                     auxInt1         = byte2UInt( payLoad[ 4 ], payLoad[ 3 ], payLoad[ 2 ], payLoad[ 1 ] );          // Latitude
+                     auxInt2         = byte2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );          // Longitude
                      additionalData1 = ( auxInt1 << 4 ) >> 4;
                      additionalData2 = auxInt2 >> 4;
                      if ( diagnostics )
@@ -154,11 +154,11 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
                      break;
 
             case  3: result          = MULTI_SPORT_SD_SENSOR;
-                     auxInt1         = hex2Int( payLoad[ 4 ] );
+                     auxInt1         = byte2UInt( payLoad[ 4 ] );
                      additionalData1 = ( auxInt1 << 4 ) >> 4;                          // Fix Type
-                     auxInt2         = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+                     auxInt2         = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
                      additionalData2 = auxInt2 >> 4;                                   // Heading
-                     additionalData3 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );          // Elevation
+                     additionalData3 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );          // Elevation
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Fix Type",  payLoad[ 4 ],               additionalData1, " (bits 7-4)" );
@@ -168,8 +168,8 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensor
                      break;
 
             case 48: result          = MULTI_SPORT_SD_SENSOR;
-                     additionalData1 = hex2Int( payLoad[ 5 ] );                        // Mode
-                     additionalData2 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );          // Scale Factor
+                     additionalData1 = byte2UInt( payLoad[ 5 ] );                        // Mode
+                     additionalData2 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );          // Scale Factor
                      if ( diagnostics )
                      {
                          appendDiagnosticsLine( "Mode",         payLoad[ 5 ],               additionalData1 );
@@ -209,46 +209,50 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensorSem
     const amString &inputBuffer
 )
 {
-    amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
-    {
-        amString      sensorID;
-        amString      semiCookedString;
-        amString      timeStampBuffer;
-        amString      curVersion            = getVersion();
-        amSplitString words;
-        unsigned int  nbWords               = words.split( inputBuffer );
-        unsigned int  counter               = 0;
-        unsigned int  startCounter          = 0;
-        unsigned int  dataPage              = 0;
-        unsigned int  additionalData1       = 0;
-        unsigned int  additionalData2       = 0;
-        unsigned int  additionalData3       = 0;
-        double        additionalDoubleData1 = 0;
-        double        additionalDoubleData2 = 0;
-        bool          commonPage            = false;
-        bool          outputPageNo          = true;
+    amDeviceType  result                = OTHER_DEVICE;
+    amString      sensorID;
+    amString      semiCookedString;
+    amString      timeStampBuffer;
+    amString      curVersion            = getVersion();
+    amSplitString words;
+    unsigned int  nbWords               = words.split( inputBuffer );
+    unsigned int  counter               = 0;
+    unsigned int  startCounter          = 0;
+    unsigned int  dataPage              = 0;
+    unsigned int  additionalData1       = 0;
+    unsigned int  additionalData2       = 0;
+    unsigned int  additionalData3       = 0;
+    double        additionalDoubleData1 = 0;
+    double        additionalDoubleData2 = 0;
+    bool          commonPage            = false;
+    bool          outputPageNo          = true;
 
-        if ( nbWords > 5 )
+    if ( nbWords > 5 )
+    {
+        sensorID         = words[ counter++ ];                                                  //  0 - sensor ID
+        timeStampBuffer  = words[ counter++ ];                                                  //  1 - time stamp
+        semiCookedString = words[ counter++ ];                                                  //  2 - semi-cooked ID
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                                                  //  0 - sensor ID
-            timeStampBuffer  = words[ counter++ ];                                                  //  1 - time stamp
-            semiCookedString = words[ counter++ ];                                                  //  2 - semi-cooked ID
+            appendDiagnosticsLine( "SensorID",   sensorID );
+            appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
+            appendDiagnosticsLine( "SemiCooked", semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isMultiSportSensor( sensorID ) )
+        {
+            startCounter = counter;
+            dataPage     = words[ counter++ ].toUInt();                                   //  3 - data page
             if ( diagnostics )
             {
-                appendDiagnosticsLine( "SensorID",   sensorID );
-                appendDiagnosticsLine( "Timestamp",  timeStampBuffer );
-                appendDiagnosticsLine( "SemiCooked", semiCookedString );
+                appendDiagnosticsLine( "Data Page", dataPage );
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isMultiSportSensor( sensorID ) )
-            {
-                startCounter = counter;
-                dataPage     = words[ counter++ ].toUInt();                                   //  3 - data page
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Data Page", dataPage );
-                }
 
+            if ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE )
+            {
+                result = UNKNOWN_DEVICE;
+            }
+            else
+            {
                 switch ( dataPage & 0x0F )
                 {
                     case  1: if ( nbWords > 6 )
@@ -317,31 +321,44 @@ amDeviceType antMultiSportProcessing::processMultiSportSpeedAndDistanceSensorSem
                 }
             }
         }
+    }
 
-        if ( result == MULTI_SPORT_SD_SENSOR )
+    if ( result == MULTI_SPORT_SD_SENSOR )
+    {
+        if ( nbWords > counter )
         {
-            if ( nbWords > counter )
+            curVersion = words.back();
+            if ( diagnostics )
             {
-                curVersion = words.back();
-                if ( diagnostics )
-                {
-                    appendDiagnosticsLine( "Version", curVersion );
-                }
+                appendDiagnosticsLine( "Version", curVersion );
             }
-            createOutputHeader( sensorID, timeStampBuffer );
-            if ( commonPage )
+        }
+        createOutputHeader( sensorID, timeStampBuffer );
+        if ( commonPage )
+        {
+            commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
+            if ( !commonPage )
             {
-                commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
-                if ( !commonPage )
-                {
-                    result = OTHER_DEVICE;
-                }
+                result = OTHER_DEVICE;
             }
-            else
-            {
-                createMSSDMResultString( dataPage, additionalData1, additionalData2, additionalData3, additionalDoubleData1, additionalDoubleData2 );
-            }
-            appendOutputFooter( curVersion );
+        }
+        else
+        {
+            createMSSDMResultString( dataPage, additionalData1, additionalData2, additionalData3, additionalDoubleData1, additionalDoubleData2 );
+        }
+        appendOutputFooter( curVersion );
+    }
+    else if ( result == UNKNOWN_DEVICE )
+    {
+        result = processUnsupportedDataPage( words );
+    }
+
+    if ( result == OTHER_DEVICE )
+    {
+        resetOutBuffer();
+        if ( outputUnknown )
+        {
+            setOutBuffer( inputBuffer );
         }
     }
 

@@ -868,7 +868,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     unsigned int additionalData1 = 0;
     unsigned int additionalData2 = 0;
 
-    calibrationID = hex2Int( payLoad[ 1 ] );
+    calibrationID = byte2UInt( payLoad[ 1 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "\nCalibration ID", payLoad[ 1 ], calibrationID );
@@ -878,7 +878,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     {
         // Crank Torque Frequency (CTF) Power Sensor defined message
         result          = POWER_METER;
-        additionalData1 = hex2Int( payLoad[ 2 ] );   // CTF Defined ID
+        additionalData1 = byte2UInt( payLoad[ 2 ] );   // CTF Defined ID
         if ( diagnostics )
         {
             appendDiagnosticsLine( "CTF Defined ID", payLoad[ 2 ], additionalData1 );
@@ -886,7 +886,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
 
         if ( ( additionalData1 == 1 ) || ( additionalData1 == 2 ) || ( additionalData1 == 3 ) )
         {
-            additionalData2 = hex2Int( payLoad[ 6 ], payLoad[ 7 ] );    // Message Value
+            additionalData2 = byte2UInt( payLoad[ 6 ], payLoad[ 7 ] );    // Message Value
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "Message Value", payLoad[ 7 ], payLoad[ 6 ], additionalData2 );
@@ -894,7 +894,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
         }
         else if ( additionalData1 == 172 )
         {
-            additionalData2 = hex2Int( payLoad[ 3 ] );   // CTF Acknowledge Message
+            additionalData2 = byte2UInt( payLoad[ 3 ] );   // CTF Acknowledge Message
             if ( diagnostics )
             {
                 appendDiagnosticsLine( "CTF Acknowledge Message", payLoad[ 3 ], additionalData2 );
@@ -904,7 +904,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     else if ( calibrationID == C_AUTO_ZERO_SUPPORT_MESSAGE_ID )                            //  18 = 0x12
     {
         result          = POWER_METER;
-        auxInt          = hex2Int( payLoad[ 2 ] );
+        auxInt          = byte2UInt( payLoad[ 2 ] );
         additionalData1 = auxInt & 1;     // Auto Zero Enable
         additionalData2 = auxInt & 2;     // Auto Zero Status
         if ( diagnostics )
@@ -924,7 +924,7 @@ amDeviceType antPowerProcessing::processPowerMeterB01
     else if ( calibrationID == C_CALIBRATION_REQUEST_AUTO_ZERO_ID )                        // 171 = 0xAB
     {
         result          = POWER_METER;
-        additionalData1 = hex2Int( payLoad[ 2 ] );    // Auto Zero Status
+        additionalData1 = byte2UInt( payLoad[ 2 ] );    // Auto Zero Status
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Auto Zero Status", payLoad[ 2 ], additionalData1 );
@@ -934,8 +934,8 @@ amDeviceType antPowerProcessing::processPowerMeterB01
               ( calibrationID == C_CALIBRATION_RESPONSE_MANUAL_ZERO_FAIL_ID ) )             // 175 = 0xAF
     {
         result          = POWER_METER;
-        additionalData1 = hex2Int( payLoad[ 2 ] );                  // Auto Zero Status
-        additionalData2 = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );    // Message Value
+        additionalData1 = byte2UInt( payLoad[ 2 ] );                  // Auto Zero Status
+        additionalData2 = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );    // Message Value
         if ( diagnostics )
         {
             char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -1040,7 +1040,7 @@ amDeviceType antPowerProcessing::processPowerMeterB02
     //   1   Subpage Number
     //   2-7 Subpage Defined Data
 
-    subPageNumber = hex2Int( payLoad[ 1 ] );
+    subPageNumber = byte2UInt( payLoad[ 1 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "Sub Page Number", payLoad[ 2 ], subPageNumber );
@@ -1050,9 +1050,9 @@ amDeviceType antPowerProcessing::processPowerMeterB02
     {
         // Crank Parameters
         result          = POWER_METER;
-        additionalData1 = hex2Int( payLoad[ 4 ] );
-        additionalData2 = hex2Int( payLoad[ 5 ] );
-        additionalData3 = hex2Int( payLoad[ 6 ] );
+        additionalData1 = byte2UInt( payLoad[ 4 ] );
+        additionalData2 = byte2UInt( payLoad[ 5 ] );
+        additionalData3 = byte2UInt( payLoad[ 6 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Crank Length (int)", payLoad[ 4 ], additionalData1 );
@@ -1241,16 +1241,16 @@ amDeviceType antPowerProcessing::processPowerMeterB03
     //   6   Measurement Value LSB   \      Range:
     //   7   Measurement Value MSB   / -32768 to 32767
 
-    nbDataTypes                 = hex2Int( payLoad[ 1 ] ) & 0x07;
-    dataType                    = hex2Int( payLoad[ 2 ] );
-    scaleFactor                 = hex2Int( payLoad[ 3 ] );
-    timeStampInt                = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+    nbDataTypes                 = byte2UInt( payLoad[ 1 ] ) & 0x07;
+    dataType                    = byte2UInt( payLoad[ 2 ] );
+    scaleFactor                 = byte2UInt( payLoad[ 3 ] );
+    timeStampInt                = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
     rollOver                    = ( 1 << 16 );  // 2^16 = 256^2
     deltaEventTime              = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, timeStampInt );
     timeStampDbl                = totalTimeTable[ sensorID ];
     timeStampDbl               += ( double ) deltaEventTime / 2048.0;
     totalTimeTable[ sensorID ]  = timeStampDbl;
-    value                       = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+    value                       = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
     if ( diagnostics )
     {
         char auxBuffer[ C_MEDIUM_BUFFER_SIZE ] = { 0 };
@@ -1424,8 +1424,8 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount       = hex2Int( payLoad[ 1 ] );
-        accumulatedPower = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        eventCount       = byte2UInt( payLoad[ 1 ] );
+        accumulatedPower = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver         = 256;
         if ( isLeftCrankEvent( sensorID, eventCount, rollOver ) )
         {
@@ -1471,7 +1471,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Pedal Power
-        pedalPower = hex2Int( payLoad[ 2 ] );
+        pedalPower = byte2UInt( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Pedal Power", payLoad[ 2 ], pedalPower );
@@ -1480,7 +1480,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex2Int( payLoad[ 3 ] );
+        instantaneousCadence = byte2UInt( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -1489,7 +1489,7 @@ amDeviceType antPowerProcessing::processPowerMeterB10
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Power
-        instantaneousPower = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        instantaneousPower = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Power", payLoad[ 7 ], payLoad[ 6 ], instantaneousPower );
@@ -1733,7 +1733,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount      = hex2Int( payLoad[ 1 ] );
+        eventCount      = byte2UInt( payLoad[ 1 ] );
         rollOver        = 256;
         deltaEventCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, eventCount );
         if ( diagnostics )
@@ -1757,7 +1757,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Wheel Ticks
-        wheelTicks = hex2Int( payLoad[ 2 ] );
+        wheelTicks = byte2UInt( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Wheel Ticks", payLoad[ 2 ], wheelTicks );
@@ -1765,7 +1765,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex2Int( payLoad[ 3 ] );
+        instantaneousCadence = byte2UInt( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -1773,7 +1773,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Power
-        accumWheelPeriod = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
+        accumWheelPeriod = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
         rollOver         = 65536;  // 256^2
         deltaWheelPeriod = getDeltaInt( rollOverHappened, sensorID, rollOver, crankOrWheelPeriodTable, accumWheelPeriod );
         if ( diagnostics )
@@ -1790,7 +1790,7 @@ amDeviceType antPowerProcessing::processPowerMeterB11
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Torque
-        accumulatedTorque      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        accumulatedTorque      = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver               = 65536;  // 256^2
         deltaAccumulatedTorque = getDeltaInt( rollOverHappened, sensorID, rollOver, accumulatedTorqueTable, accumulatedTorque );
         if ( diagnostics )
@@ -2035,9 +2035,9 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount        = hex2Int( payLoad[ 1 ] );
-        crankPeriod       = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
-        accumulatedTorque = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+        eventCount        = byte2UInt( payLoad[ 1 ] );
+        crankPeriod       = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
+        accumulatedTorque = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
         rollOver          = 256;
         if ( isLeftCrankEvent( sensorID, eventCount, rollOver ) )
         {
@@ -2136,7 +2136,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Crank Ticks
-        crankTicks = hex2Int( payLoad[ 2 ] );
+        crankTicks = byte2UInt( payLoad[ 2 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Crank Ticks", payLoad[ 2 ], crankTicks );
@@ -2145,7 +2145,7 @@ amDeviceType antPowerProcessing::processPowerMeterB12
 
         // - - - - - - - - - - - - - - - -
         // Instantaneous Cadence
-        instantaneousCadence = hex2Int( payLoad[ 3 ] );
+        instantaneousCadence = byte2UInt( payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Instantaneous Cadence", payLoad[ 3 ], instantaneousCadence );
@@ -2452,11 +2452,11 @@ amDeviceType antPowerProcessing::processPowerMeterB13
         appendPowerSensor( sensorID );
     }
 
-    eventCount                  = hex2Int( payLoad[ 1 ] );
-    rawLeftTorqueEffectiveness  = hex2Int( payLoad[ 2 ] );
-    rawRightTorqueEffectiveness = hex2Int( payLoad[ 3 ] );
-    rawLeftPedalSmoothness      = hex2Int( payLoad[ 4 ] );
-    rawRightPedalSmoothness     = hex2Int( payLoad[ 5 ] );
+    eventCount                  = byte2UInt( payLoad[ 1 ] );
+    rawLeftTorqueEffectiveness  = byte2UInt( payLoad[ 2 ] );
+    rawRightTorqueEffectiveness = byte2UInt( payLoad[ 3 ] );
+    rawLeftPedalSmoothness      = byte2UInt( payLoad[ 4 ] );
+    rawRightPedalSmoothness     = byte2UInt( payLoad[ 5 ] );
 
     // - - - - - - - - - - - - - - - -
     // Event Count
@@ -2586,7 +2586,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Event Count
-        eventCount      = hex2Int( payLoad[ 1 ] );
+        eventCount      = byte2UInt( payLoad[ 1 ] );
         rollOver        = 256;
         deltaEventCount = getDeltaInt( rollOverHappened, sensorID, rollOver, eventCountTable, eventCount );
         if ( diagnostics )
@@ -2611,7 +2611,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Factory Slope (Nm/10Hz)
-        factorySlope_Nm_10Hz = hex2Int( payLoad[ 2 ], payLoad[ 3 ] );
+        factorySlope_Nm_10Hz = byte2UInt( payLoad[ 2 ], payLoad[ 3 ] );
         if ( diagnostics )
         {
             appendDiagnosticsLine( "Factory Slope", payLoad[ 2 ], payLoad[ 3 ], factorySlope_Nm_10Hz, " (Nm/10Hz)" );
@@ -2620,7 +2620,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Time Stamp
-        timeStamp      = hex2Int( payLoad[ 4 ], payLoad[ 5 ] );
+        timeStamp      = byte2UInt( payLoad[ 4 ], payLoad[ 5 ] );
         rollOver       = 65536;  // 256^2
         deltaTimeStamp = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, timeStamp );
         if ( diagnostics )
@@ -2637,7 +2637,7 @@ amDeviceType antPowerProcessing::processPowerMeterB20
 
         // - - - - - - - - - - - - - - - -
         // Accumulated Torque Ticks
-        torqueTicks      = hex2Int( payLoad[ 6 ], payLoad[ 7 ] );
+        torqueTicks      = byte2UInt( payLoad[ 6 ], payLoad[ 7 ] );
         rollOver         = 65536;  // 256^2
         deltaTorqueTicks = getDeltaInt( rollOverHappened, sensorID, rollOver, accumulatedTorqueTable, torqueTicks );
         if ( diagnostics )
@@ -2932,11 +2932,11 @@ amDeviceType antPowerProcessing::processPowerMeterB46
 {
     amDeviceType result            = POWER_METER;
     amString     sensorID          = amString( C_PM_REQUEST_HEAD ) + deviceIDNo;
-    unsigned int descriptor1       = hex2Int( payLoad[ 3 ] );
-    unsigned int descriptor2       = hex2Int( payLoad[ 4 ] );
-    unsigned int requestedResponse = hex2Int( payLoad[ 5 ] );
-    unsigned int requestedPageNo   = hex2Int( payLoad[ 6 ] );
-    unsigned int commandType       = hex2Int( payLoad[ 7 ] );
+    unsigned int descriptor1       = byte2UInt( payLoad[ 3 ] );
+    unsigned int descriptor2       = byte2UInt( payLoad[ 4 ] );
+    unsigned int requestedResponse = byte2UInt( payLoad[ 5 ] );
+    unsigned int requestedPageNo   = byte2UInt( payLoad[ 6 ] );
+    unsigned int commandType       = byte2UInt( payLoad[ 7 ] );
     bool         outputPageNo      = false;  // The page number is already mentioned in the meassage header (PWBR46)
 
     // ---------------------------------------------------------------
@@ -3099,9 +3099,9 @@ amDeviceType antPowerProcessing::processPowerMeterB50
 )
 {
     amDeviceType result           = POWER_METER;
-    unsigned int hardwareRevision = hex2Int( payLoad[ 3 ] );
-    unsigned int manufacturerID   = hex2Int( payLoad[ 5 ], payLoad[ 4 ] );
-    unsigned int modelNumber      = hex2Int( payLoad[ 7 ], payLoad[ 6 ] );
+    unsigned int hardwareRevision = byte2UInt( payLoad[ 3 ] );
+    unsigned int manufacturerID   = byte2UInt( payLoad[ 5 ], payLoad[ 4 ] );
+    unsigned int modelNumber      = byte2UInt( payLoad[ 7 ], payLoad[ 6 ] );
     amString     sensorID         = amString( C_PM_MFR_INFO_HEAD ) + deviceIDNo;
     bool         outputPageNo     = false;  // The page number is already mentioned in the meassage header (PWBR50)
 
@@ -3253,8 +3253,8 @@ amDeviceType antPowerProcessing::processPowerMeterB51
 {
     amDeviceType result           = POWER_METER;
     amString     sensorID         = amString( C_PM_PROD_INFO_HEAD ) + deviceIDNo;
-    unsigned int serialNumber     = hex2Int( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
-    unsigned int softwareRevision = hex2Int( payLoad[ 3 ] );
+    unsigned int serialNumber     = byte2UInt( payLoad[ 7 ], payLoad[ 6 ], payLoad[ 5 ], payLoad[ 4 ] );
+    unsigned int softwareRevision = byte2UInt( payLoad[ 3 ] );
     bool         outputPageNo     = false;  // The page number is already mentioned in the meassage header (PWBR51)
 
     if ( diagnostics )
@@ -3569,8 +3569,8 @@ amDeviceType antPowerProcessing::processPowerMeterB52
     }
 
 
-    voltage256  = hex2Int( payLoad[ 6 ] );
-    voltageInt  = hex2Int( payLoad[ 7 ] ) & 0x0F;
+    voltage256  = byte2UInt( payLoad[ 6 ] );
+    voltageInt  = byte2UInt( payLoad[ 7 ] ) & 0x0F;
     voltage256 += voltageInt * 256;
     if ( diagnostics )
     {
@@ -3589,7 +3589,7 @@ amDeviceType antPowerProcessing::processPowerMeterB52
 
 
     resolution        = ( payLoad[ 7 ] & 128 ) ? 16 : 2;
-    operatingTime     = hex2Int( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
+    operatingTime     = byte2UInt( payLoad[ 5 ], payLoad[ 4 ], payLoad[ 3 ] );
     rollOver          = 16777216;  // 256^3
     deltaOperatingTime = getDeltaInt( rollOverHappened, sensorID, rollOver, eventTimeTable, operatingTime );
     if ( diagnostics )
@@ -3708,7 +3708,7 @@ amDeviceType antPowerProcessing::processPowerMeter
     amString     sensorID;
     char         auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
 
-    dataPage = hex2Int( payLoad[ 0 ] );
+    dataPage = byte2UInt( payLoad[ 0 ] );
     if ( diagnostics )
     {
         appendDiagnosticsLine( "Data Page", payLoad[ 0 ], dataPage );
@@ -3768,19 +3768,10 @@ amDeviceType antPowerProcessing::processPowerMeter
                  sensorID = amString( C_POWER_DEVICE_HEAD ) + auxBuffer + deviceIDNo;
                  createOutputHeader( sensorID, timeStampBuffer );
                  commonPage = processCommonPages( sensorID, payLoad, outputPageNo );
+                 appendOutputFooter( getVersion() );
                  if ( commonPage )
                  {
                      result = POWER_METER;
-                     appendOutputFooter( getVersion() );
-                 }
-                 else
-                 {
-                     resetOutBuffer();
-                     if ( outputUnknown )
-                     {
-                         int deviceIDNoAsInt = deviceIDNo.toInt();
-                         createUnknownDeviceTypeString( C_POWER_TYPE, deviceIDNoAsInt, timeStampBuffer, payLoad );
-                     }
                  }
                  break;
     }
@@ -3793,33 +3784,37 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
     const amString &inputBuffer
 )
 {
-    amDeviceType result = OTHER_DEVICE;
-    if ( !inputBuffer.empty() )
-    {
-        char          auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
-        amSplitString words;
-        unsigned int  nbWords            = words.split( inputBuffer );
-        unsigned int  dataPage           = 0;
-        unsigned int  counter            = 0;
-        unsigned int  startCounter       = 0;
-        bool          commonPage         = false;
-        bool          outputPageNo       = false;
-        amString      sensorID;
-        amString      timeStampBuffer;
-        amString      semiCookedString;
+    amDeviceType  result                          = OTHER_DEVICE;
+    char          auxBuffer[ C_TINY_BUFFER_SIZE ] = { 0 };
+    amSplitString words;
+    unsigned int  nbWords                         = words.split( inputBuffer );
+    unsigned int  dataPage                        = 0;
+    unsigned int  counter                         = 0;
+    unsigned int  startCounter                    = 0;
+    bool          commonPage                      = false;
+    bool          outputPageNo                    = false;
+    amString      sensorID;
+    amString      timeStampBuffer;
+    amString      semiCookedString;
 
-        if ( nbWords > 4 )
+    if ( nbWords > 4 )
+    {
+        sensorID         = words[ counter++ ];                                      //  0
+        timeStampBuffer  = words[ counter++ ];                                      //  1
+        semiCookedString = words[ counter++ ];                                      //  2
+        if ( diagnostics )
         {
-            sensorID         = words[ counter++ ];                                      //  0
-            timeStampBuffer  = words[ counter++ ];                                      //  1
-            semiCookedString = words[ counter++ ];                                      //  2
-            if ( diagnostics )
+            appendDiagnosticsLine( sensorID );
+            appendDiagnosticsLine( timeStampBuffer );
+            appendDiagnosticsLine( semiCookedString );
+        }
+        if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterRelated( sensorID ) )
+        {
+            if ( ( words[ counter ] == C_UNSUPPORTED_DATA_PAGE ) || ( words[ counter + 1 ] == C_UNSUPPORTED_DATA_PAGE ) )
             {
-                appendDiagnosticsLine( sensorID );
-                appendDiagnosticsLine( timeStampBuffer );
-                appendDiagnosticsLine( semiCookedString );
+                result = processUnsupportedDataPage( words );
             }
-            if ( isRegisteredDevice( sensorID ) && ( semiCookedString == C_SEMI_COOKED_SYMBOL_AS_STRING ) && isPowerMeterRelated( sensorID ) )
+            else
             {
                 startCounter = counter;
                 strcpy( auxBuffer, sensorID.c_str() );
@@ -3911,7 +3906,7 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
                              result = processPowerMeterB52SemiCooked( inputBuffer );
                              break;
                     default: createOutputHeader( sensorID, timeStampBuffer );
-                             commonPage = processCommonPagesSemiCooked( words, startCounter, dataPage, outputPageNo );
+                             commonPage = processCommonPagesSemiCooked( words, startCounter, outputPageNo );
                              if ( commonPage )
                              {
                                  result = POWER_METER;
@@ -3927,9 +3922,10 @@ amDeviceType antPowerProcessing::processPowerMeterSemiCooked
                              }
                              break;
                  }
-             }
+            }
         }
     }
+
     return result;
 }
 

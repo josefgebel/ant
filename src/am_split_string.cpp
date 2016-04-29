@@ -93,8 +93,8 @@ void amSplitString::removeTerminal
 size_t amSplitString::split
 (
     const amString &text,
-    const amString &additionalTermnials,
-    const amString &additionalSeparators
+    const amString &additionalSeparators,
+    const amString &additionalTermnials
 )
 {
     amString                 word;

@@ -93,16 +93,12 @@ class antProcessing
         void clearErrors           ( void ) { errorMessage.clear(); errorCode = 0; }
 
         void setOutBuffer( const amString &value ) { outBuffer = value; }
+        amString getOutBuffer( void ) const { return outBuffer; }
 
         virtual void initializeSupportedDeviceTypes( void ) { }
 
         void readDeviceFileStream( std::ifstream &deviceFileStream );
         virtual void readDeviceFileLine( const char *line ) {}
-
-        int hex2Int( BYTE b1 );
-        int hex2Int( BYTE b2, BYTE b1 );
-        int hex2Int( BYTE b3, BYTE b2, BYTE b1 );
-        int hex2Int( BYTE b4, BYTE b3, BYTE b2, BYTE b1 );
 
         double getUnixTime( void );
         void getUnixTimeAsString( amString &timeStampBuffer );
@@ -166,6 +162,9 @@ class antProcessing
                  unsigned int    dataField2
              );
         void createDataPage84SubPage( const amString &sensorID, unsigned int subPageNo, unsigned int subPage, unsigned int dataField );
+        bool createCommonResultStringUnsupportedPage( const amString &sensorID, unsigned int dataPage, const BYTE *payLoad );
+        bool createCommonResultStringUnsupportedPageSemiCooked( const amString &sensorID, unsigned int dataPage, const amSplitString &words, unsigned int startCounter );
+
         bool getBatteryStatus( amString &status, int index, bool lowerCase = false );
 
         unsigned int getDeltaInt
@@ -203,10 +202,10 @@ class antProcessing
 
 
         // Auxilairy functions
-        unsigned int uChar2UInt( BYTE byte1 );
-        unsigned int uChar2UInt( BYTE byte1, BYTE byte2 );
-        unsigned int uChar2UInt( BYTE byte1, BYTE byte2, BYTE byte3 );
-        unsigned int uChar2UInt( BYTE byte1, BYTE byte2, BYTE byte3, BYTE byte4 );
+        unsigned int byte2UInt( BYTE byte1 );
+        unsigned int byte2UInt( BYTE byte1, BYTE byte2 );
+        unsigned int byte2UInt( BYTE byte1, BYTE byte2, BYTE byte3 );
+        unsigned int byte2UInt( BYTE byte1, BYTE byte2, BYTE byte3, BYTE byte4 );
         void appendOutput( BYTE itemValue );
         void appendOutput( int itemValue, const amString &unit = "" );
         void appendOutput( double itemValue, unsigned int precision, const amString &unit = "" );
@@ -222,6 +221,7 @@ class antProcessing
         void appendJSONItem( const amString &itemName, int             itemValue );
         void appendJSONItem( const amString &itemName, double          itemValue, int precision );
         void appendJSONItem( const amString &itemName, const amString &itemValue );
+        void appendJSONItem( const amString &itemName, unsigned int    index,     BYTE itemValue );
         void appendJSONItemB( const amString &itemName, bool           itemValue );
         void appendJSONItemConditional( const amString &itemName, bool condition, int             itemValueTrue, const amString &itemValueFalse );
         void appendJSONItemConditional( const amString &itemName, bool condition, unsigned int    itemValueTrue, const amString &itemValueFalse );
@@ -234,9 +234,10 @@ class antProcessing
         void appendOutputFooter( const amString &versionString );
 
         amDeviceType processUndefinedSensorType( const amString &inputBuffer );
+        amDeviceType processUnsupportedDataPage( const amSplitString words );
 
-        bool processCommonPagesSemiCooked( const amSplitString &words, unsigned int startCounter, unsigned int dataPage, bool outputPageNo );
-        bool processCommonPages( const amString &sensorID, BYTE payLoad[], bool outputPageNo );
+        bool processCommonPagesSemiCooked( const amSplitString &words, unsigned int startCounter, bool outputPageNo );
+        bool processCommonPages( const amString &sensorID, const BYTE payLoad[], bool outputPageNo );
 
         void resetAll( void );
 
@@ -327,8 +328,6 @@ class antProcessing
         virtual amDeviceType processSensor( int deviceType, const amString &deviceIDNo, const amString &timeStampBuffer, BYTE payLoad[] );
         virtual amDeviceType processSensorSemiCooked( const amString &inputBuffer );
         amDeviceType         updateSensorSemiCooked ( const amString &inputBuffer );
-
-        void createPacketSaverModeString( const amString &timeStampBuffer, const BYTE *payLoad, BYTE nbBytes );
 
         void createBridgeString
              (
